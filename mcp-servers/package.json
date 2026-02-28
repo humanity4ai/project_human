@@ -1,11 +1,50 @@
 {
   "name": "@humanity4ai/mcp-servers",
-  "private": true,
+  "private": false,
   "version": "0.1.0",
   "type": "module",
+  "description": "MCP contracts and runtime server for Humanity4AI skills",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/humanity4ai/project_human.git",
+    "directory": "mcp-servers"
+  },
+  "homepage": "https://github.com/humanity4ai/project_human/tree/main/mcp-servers",
+  "bugs": {
+    "url": "https://github.com/humanity4ai/project_human/issues"
+  },
+  "keywords": ["mcp", "ai", "schemas", "contracts", "humanity4ai"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./handlers": {
+      "types": "./dist/handlers.d.ts",
+      "default": "./dist/handlers.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "default": "./dist/types.js"
+    },
+    "./schemas/*": "./schemas/*"
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "README.md"
+  ],
   "scripts": {
     "check": "tsc --project tsconfig.json",
-    "start": "tsx src/server.ts"
+    "build": "tsc --project tsconfig.build.json",
+    "start": "tsx src/server.ts",
+    "prepack": "pnpm run build"
   },
   "dependencies": {
     "zod": "^3.25.76"

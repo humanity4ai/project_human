@@ -5,3 +5,4 @@
 - `quality-gates.md` - release quality criteria
 - `good-first-issues.md` - starter tasks for new contributors
 - `traction-14-day.md` - launch content cadence for traction
+- `package-release.md` - release process for npm package distribution

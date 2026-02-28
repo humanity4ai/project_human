@@ -8,6 +8,7 @@ The project is designed for broad compatibility across agent platforms, includin
 [![Release](https://img.shields.io/github/v/release/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/releases)
 [![Issues](https://img.shields.io/github/issues/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/issues)
 [![Contributors](https://img.shields.io/github/contributors/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/graphs/contributors)
+[![Pages](https://img.shields.io/badge/docs-GitHub%20Pages-1f2937)](https://humanity4ai.github.io/project_human/)
 
 ## Start Here
 
@@ -15,6 +16,7 @@ The project is designed for broad compatibility across agent platforms, includin
 - Contributors: [Contributing Guide](CONTRIBUTING.md)
 - Integrators: [Agent Adapter Guide](docs/agent-adapters.md)
 - Team execution: [Operations Plan](OPERATIONS.md)
+- Public landing page: <https://humanity4ai.github.io/project_human/>
 
 ## Mission
 
@@ -90,6 +92,14 @@ See implementation notes in `docs/integrations.md` and `docs/agent-adapters.md`.
 - 14-day launch cadence: `docs/traction-14-day.md`
 - Quality gates: `docs/quality-gates.md`
 - Release roadmap: `ROADMAP.md`
+
+## Package Release
+
+`mcp-servers` is now prepared as a publishable package with build artifacts and schema exports.
+
+- Build package: `pnpm --filter @humanity4ai/mcp-servers build`
+- Create tarball: `pnpm --filter @humanity4ai/mcp-servers pack`
+- Release guide: `docs/package-release.md`
 
 ## Safety Position
 

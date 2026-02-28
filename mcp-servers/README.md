@@ -29,6 +29,22 @@ Invoke action:
 {"id":"2","type":"invoke","payload":{"action":"supportive_reply","input":{"message":"I feel overwhelmed","risk_level":"medium"}}}
 ```
 
+## Package Use
+
+Install from npm once published:
+
+```bash
+pnpm add @humanity4ai/mcp-servers
+```
+
+Then import contracts:
+
+```ts
+import { actionContracts, validateContracts } from "@humanity4ai/mcp-servers";
+
+const contracts = validateContracts(actionContracts);
+```
+
 ## Planned v0.2+
 
 - Runtime adapters for OpenCode, Claude Code, and Copilot
