@@ -1,0 +1,20 @@
+name: conflict-de-escalation
+version: 0.1.0
+status: active
+category: communication
+summary: Conflict de-escalation planning with safety-aware alternatives
+boundaries:
+  - No coercion
+  - No threats
+actions:
+  - id: deescalation_plan
+    input_schema: ../../mcp-servers/schemas/conflict-de-escalation.input.json
+    output_schema: ../../mcp-servers/schemas/conflict-de-escalation.output.json
+uncertainty:
+  confidence: medium
+  contested: true
+  cultural_scope: region
+provenance:
+  sources:
+    - internal-curation
+  license: MIT

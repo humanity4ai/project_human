@@ -1,0 +1,21 @@
+name: example-skill
+version: 0.1.0
+status: draft
+category: humane-interaction
+summary: Short purpose statement
+boundaries:
+  - Non-clinical support only
+  - No diagnosis or treatment advice
+  - Escalate safety-critical situations
+actions:
+  - id: example_action
+    input_schema: schemas/example.input.json
+    output_schema: schemas/example.output.json
+uncertainty:
+  confidence: medium
+  contested: false
+  cultural_scope: global
+provenance:
+  sources:
+    - internal-corpus
+  license: MIT

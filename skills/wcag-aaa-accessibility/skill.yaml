@@ -1,0 +1,19 @@
+name: wcag-aaa-accessibility
+version: 0.1.0
+status: active
+category: accessibility
+summary: WCAG-oriented accessibility audit and remediation support
+boundaries:
+  - Guidance only, not legal opinion
+actions:
+  - id: wcagaaa_check
+    input_schema: ../../mcp-servers/schemas/wcag-aaa-accessibility.input.json
+    output_schema: ../../mcp-servers/schemas/wcag-aaa-accessibility.output.json
+uncertainty:
+  confidence: high
+  contested: false
+  cultural_scope: global
+provenance:
+  sources:
+    - wcag-2.2
+  license: MIT

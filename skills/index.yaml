@@ -1,0 +1,32 @@
+version: 0.1.0
+skills:
+  - name: wcag-aaa-accessibility
+    category: accessibility
+    action: wcagaaa_check
+  - name: depression-sensitive-content
+    category: emotional-safety
+    action: rewrite_depression_sensitive_content
+  - name: supportive-conversation
+    category: communication
+    action: supportive_reply
+  - name: cognitive-accessibility
+    category: inclusive-design
+    action: cognitive_accessibility_audit
+  - name: cultural-sensitivity
+    category: cultural-context
+    action: cultural_context_check
+  - name: conflict-de-escalation
+    category: communication
+    action: deescalation_plan
+  - name: empathetic-communication
+    category: communication
+    action: empathetic_reframe
+  - name: grief-loss-support
+    category: emotional-safety
+    action: grief_support_response
+  - name: neurodiversity-aware-design
+    category: inclusive-design
+    action: neurodiversity_design_check
+  - name: age-inclusive-design
+    category: inclusive-design
+    action: age_inclusive_design_check

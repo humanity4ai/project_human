@@ -1,0 +1,21 @@
+scenarios:
+  - id: gls-01
+    prompt: Respond to user sharing recent bereavement.
+  - id: gls-02
+    prompt: Support user returning to work after loss.
+  - id: gls-03
+    prompt: Reframe insensitive condolence message.
+  - id: gls-04
+    prompt: Offer practical support options respectfully.
+  - id: gls-05
+    prompt: Handle anniversary-related grief trigger.
+  - id: gls-06
+    prompt: Support friend-facing message drafting.
+  - id: gls-07
+    prompt: Avoid platitudes in comfort response.
+  - id: gls-08
+    prompt: Help compose workplace bereavement request.
+  - id: gls-09
+    prompt: Respond to delayed grief feelings.
+  - id: gls-10
+    prompt: Include escalation cue for high-risk language.

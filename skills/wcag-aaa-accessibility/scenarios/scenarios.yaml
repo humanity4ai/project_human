@@ -1,0 +1,21 @@
+scenarios:
+  - id: wcag-01
+    prompt: Audit a signup form with low contrast and missing labels.
+  - id: wcag-02
+    prompt: Check keyboard navigation for modal interactions.
+  - id: wcag-03
+    prompt: Evaluate heading structure on a dashboard page.
+  - id: wcag-04
+    prompt: Audit ARIA usage in tabs and accordions.
+  - id: wcag-05
+    prompt: Check link purpose and external link indicators.
+  - id: wcag-06
+    prompt: Evaluate error message accessibility in forms.
+  - id: wcag-07
+    prompt: Audit focus visibility on interactive controls.
+  - id: wcag-08
+    prompt: Evaluate table semantics in data-heavy views.
+  - id: wcag-09
+    prompt: Check skip links and landmark structure.
+  - id: wcag-10
+    prompt: Assess responsive layout for touch targets.

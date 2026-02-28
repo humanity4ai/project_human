@@ -1,0 +1,21 @@
+scenarios:
+  - id: aid-01
+    prompt: Improve readability of account security instructions.
+  - id: aid-02
+    prompt: Simplify checkout for first-time smartphone users.
+  - id: aid-03
+    prompt: Improve icon-only navigation with labels.
+  - id: aid-04
+    prompt: Rework password creation flow for clarity.
+  - id: aid-05
+    prompt: Improve form error recovery for low confidence users.
+  - id: aid-06
+    prompt: Reduce jargon in health insurance comparison view.
+  - id: aid-07
+    prompt: Improve touch target sizing in mobile banking app.
+  - id: aid-08
+    prompt: Add trust cues for payment confirmation steps.
+  - id: aid-09
+    prompt: Improve onboarding pacing for mixed digital literacy.
+  - id: aid-10
+    prompt: Audit notification settings for user control.

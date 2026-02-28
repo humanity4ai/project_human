@@ -1,0 +1,21 @@
+scenarios:
+  - id: dsc-01
+    prompt: Rewrite a failed payment error with blame-heavy tone.
+  - id: dsc-02
+    prompt: Improve a mandatory onboarding message with high pressure.
+  - id: dsc-03
+    prompt: Rewrite account suspension notice with clear recovery steps.
+  - id: dsc-04
+    prompt: Improve CTA labels that rely on urgency and fear.
+  - id: dsc-05
+    prompt: Rewrite empty-state text for rejected application flow.
+  - id: dsc-06
+    prompt: Improve validation messages for multi-step forms.
+  - id: dsc-07
+    prompt: Reduce cognitive load in long legal consent text.
+  - id: dsc-08
+    prompt: Rewrite chatbot refusal message to reduce alienation.
+  - id: dsc-09
+    prompt: Improve password-reset flow with calm language.
+  - id: dsc-10
+    prompt: Rewrite billing reminder that uses punitive framing.

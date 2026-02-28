@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["reframed_message"],
+  "properties": {
+    "reframed_message": { "type": "string" },
+    "rationale": { "type": "array", "items": { "type": "string" } }
+  }
+}

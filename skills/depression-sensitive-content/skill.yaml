@@ -1,0 +1,20 @@
+name: depression-sensitive-content
+version: 0.1.0
+status: active
+category: emotional-safety
+summary: Rewrite and audit content for emotional safety and cognitive accessibility
+boundaries:
+  - Non-clinical guidance only
+  - No diagnosis or treatment advice
+actions:
+  - id: rewrite_depression_sensitive_content
+    input_schema: ../../mcp-servers/schemas/depression-sensitive-content.input.json
+    output_schema: ../../mcp-servers/schemas/depression-sensitive-content.output.json
+uncertainty:
+  confidence: medium
+  contested: false
+  cultural_scope: global
+provenance:
+  sources:
+    - depression-sensitive-web-content
+  license: MIT

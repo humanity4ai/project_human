@@ -1,0 +1,19 @@
+name: grief-loss-support
+version: 0.1.0
+status: active
+category: emotional-safety
+summary: Bereavement-aware communication with strong safety boundaries
+boundaries:
+  - Non-clinical support only
+actions:
+  - id: grief_support_response
+    input_schema: ../../mcp-servers/schemas/grief-loss-support.input.json
+    output_schema: ../../mcp-servers/schemas/grief-loss-support.output.json
+uncertainty:
+  confidence: medium
+  contested: true
+  cultural_scope: region
+provenance:
+  sources:
+    - internal-curation
+  license: MIT

@@ -1,0 +1,20 @@
+name: cultural-sensitivity
+version: 0.1.0
+status: active
+category: cultural-context
+summary: Cross-cultural communication adaptation with uncertainty handling
+boundaries:
+  - No stereotypes
+  - Must include uncertainty when context is partial
+actions:
+  - id: cultural_context_check
+    input_schema: ../../mcp-servers/schemas/cultural-sensitivity.input.json
+    output_schema: ../../mcp-servers/schemas/cultural-sensitivity.output.json
+uncertainty:
+  confidence: medium
+  contested: true
+  cultural_scope: region
+provenance:
+  sources:
+    - internal-curation
+  license: MIT

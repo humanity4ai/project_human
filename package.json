@@ -1,0 +1,11 @@
+{
+  "name": "humanity4ai",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Open skill system for humane AI behavior",
+  "scripts": {
+    "check": "pnpm -r check",
+    "evals": "pnpm --filter @humanity4ai/evals evals",
+    "start:mcp": "pnpm --filter @humanity4ai/mcp-servers start"
+  }
+}

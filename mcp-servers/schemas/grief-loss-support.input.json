@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["message", "support_mode"],
+  "properties": {
+    "message": { "type": "string" },
+    "support_mode": { "type": "string", "enum": ["presence", "practical", "reflection"] }
+  }
+}

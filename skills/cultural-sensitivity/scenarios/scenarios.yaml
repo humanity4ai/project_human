@@ -1,0 +1,21 @@
+scenarios:
+  - id: cs-01
+    prompt: Adapt US-centric onboarding copy for APAC users.
+  - id: cs-02
+    prompt: Rewrite holiday campaign text for global audience.
+  - id: cs-03
+    prompt: Review idiomatic language in legal disclaimers.
+  - id: cs-04
+    prompt: Localize apology language for formal cultures.
+  - id: cs-05
+    prompt: Adjust direct feedback phrasing for hierarchy-sensitive teams.
+  - id: cs-06
+    prompt: Review symbols and colors for regional meaning conflicts.
+  - id: cs-07
+    prompt: Adapt support script for multilingual users.
+  - id: cs-08
+    prompt: Rewrite career page with inclusive cultural framing.
+  - id: cs-09
+    prompt: Refine chatbot greeting for cross-border usage.
+  - id: cs-10
+    prompt: Add uncertainty note where audience context is unknown.

@@ -1,0 +1,21 @@
+scenarios:
+  - id: nd-01
+    prompt: Review animation-heavy UI for sensory overload risk.
+  - id: nd-02
+    prompt: Reduce choice overload in complex settings panel.
+  - id: nd-03
+    prompt: Improve predictable navigation in admin app.
+  - id: nd-04
+    prompt: Rework notification strategy to reduce interruption.
+  - id: nd-05
+    prompt: Improve focus states in dense forms.
+  - id: nd-06
+    prompt: Add pacing options to onboarding tutorial.
+  - id: nd-07
+    prompt: Simplify language in long content blocks.
+  - id: nd-08
+    prompt: Improve keyboard and assistive flow consistency.
+  - id: nd-09
+    prompt: Address auditory alert dependence.
+  - id: nd-10
+    prompt: Propose low-stimulus alternative interface mode.

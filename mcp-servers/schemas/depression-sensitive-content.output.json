@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["result", "safety_flags"],
+  "properties": {
+    "result": { "type": "string" },
+    "safety_flags": { "type": "array", "items": { "type": "string" } },
+    "uncertainty": { "type": "string" }
+  }
+}

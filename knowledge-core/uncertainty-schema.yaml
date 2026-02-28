@@ -1,0 +1,22 @@
+version: 1
+fields:
+  confidence:
+    type: enum
+    values: [low, medium, high]
+  contested:
+    type: boolean
+  cultural_scope:
+    type: enum
+    values: [global, region, community]
+  time_sensitivity:
+    type: enum
+    values: [low, high]
+  assumptions:
+    type: list
+  ethical_tension:
+    type: list
+
+required:
+  - confidence
+  - contested
+  - cultural_scope

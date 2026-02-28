@@ -1,0 +1,21 @@
+scenarios:
+  - id: ca-01
+    prompt: Simplify a 6-step insurance claim form.
+  - id: ca-02
+    prompt: Improve memory burden in onboarding flow.
+  - id: ca-03
+    prompt: Rewrite dense dashboard instructions.
+  - id: ca-04
+    prompt: Add recovery paths to checkout interruptions.
+  - id: ca-05
+    prompt: Improve progressive disclosure in settings.
+  - id: ca-06
+    prompt: Reduce jargon in fintech transaction alerts.
+  - id: ca-07
+    prompt: Rework confusing dropdown-heavy workflow.
+  - id: ca-08
+    prompt: Improve inline help for tax filing steps.
+  - id: ca-09
+    prompt: Prioritize errors on long forms.
+  - id: ca-10
+    prompt: Add orientation cues for multi-tab task.

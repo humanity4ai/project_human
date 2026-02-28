@@ -1,0 +1,21 @@
+scenarios:
+  - id: cde-01
+    prompt: Defuse argument in customer support ticket thread.
+  - id: cde-02
+    prompt: Reframe angry complaint email for calmer response.
+  - id: cde-03
+    prompt: Handle team conflict over ownership dispute.
+  - id: cde-04
+    prompt: Respond to hostile social media mention.
+  - id: cde-05
+    prompt: Calm user upset about account lockout.
+  - id: cde-06
+    prompt: Guide a manager through tense one-on-one meeting.
+  - id: cde-07
+    prompt: De-escalate billing disagreement in chat.
+  - id: cde-08
+    prompt: Defuse escalation between internal stakeholders.
+  - id: cde-09
+    prompt: Handle repeated interruptions in discussion.
+  - id: cde-10
+    prompt: Recommend handoff path for unresolved high-intensity conflict.

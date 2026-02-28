@@ -1,0 +1,19 @@
+name: cognitive-accessibility
+version: 0.1.0
+status: active
+category: inclusive-design
+summary: Cognitive accessibility checks for content and user flows
+boundaries:
+  - Non-clinical guidance only
+actions:
+  - id: cognitive_accessibility_audit
+    input_schema: ../../mcp-servers/schemas/cognitive-accessibility.input.json
+    output_schema: ../../mcp-servers/schemas/cognitive-accessibility.output.json
+uncertainty:
+  confidence: medium
+  contested: false
+  cultural_scope: global
+provenance:
+  sources:
+    - internal-curation
+  license: MIT

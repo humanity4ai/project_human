@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["reply", "escalation_guidance"],
+  "properties": {
+    "reply": { "type": "string" },
+    "escalation_guidance": { "type": "array", "items": { "type": "string" } },
+    "boundaries_notice": { "type": "string" }
+  }
+}

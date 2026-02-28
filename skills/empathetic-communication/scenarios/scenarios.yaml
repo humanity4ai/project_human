@@ -1,0 +1,21 @@
+scenarios:
+  - id: ec-01
+    prompt: Rewrite terse denial message with empathy.
+  - id: ec-02
+    prompt: Improve apology after service outage.
+  - id: ec-03
+    prompt: Reframe negative interview feedback.
+  - id: ec-04
+    prompt: Respond to user frustration over delays.
+  - id: ec-05
+    prompt: Rewrite rejection email with dignity-preserving tone.
+  - id: ec-06
+    prompt: Improve manager response to employee burnout concerns.
+  - id: ec-07
+    prompt: Rewrite chatbot refusal to maintain trust.
+  - id: ec-08
+    prompt: Improve legal compliance note for emotional clarity.
+  - id: ec-09
+    prompt: Reframe product limitation explanation.
+  - id: ec-10
+    prompt: Adapt escalation response for calm resolution.
