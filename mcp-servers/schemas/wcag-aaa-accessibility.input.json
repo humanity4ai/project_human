@@ -1,10 +1,28 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["target", "level"],
+  "required": [
+    "target",
+    "level"
+  ],
   "properties": {
-    "target": { "type": "string", "description": "URL or HTML input" },
-    "level": { "type": "string", "enum": ["A", "AA", "AAA"], "default": "AAA" },
-    "context": { "type": "string" }
-  }
+    "target": {
+      "type": "string",
+      "description": "URL or HTML input"
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "A",
+        "AA",
+        "AAA"
+      ],
+      "default": "AAA"
+    },
+    "context": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/wcag-aaa-accessibility.input.json"
 }

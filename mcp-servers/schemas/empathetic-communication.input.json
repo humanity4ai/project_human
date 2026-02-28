@@ -1,9 +1,23 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["message"],
+  "required": [
+    "message"
+  ],
   "properties": {
-    "message": { "type": "string" },
-    "tone": { "type": "string", "enum": ["neutral", "warm", "formal"], "default": "warm" }
-  }
+    "message": {
+      "type": "string"
+    },
+    "tone": {
+      "type": "string",
+      "enum": [
+        "neutral",
+        "warm",
+        "formal"
+      ],
+      "default": "warm"
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/empathetic-communication.input.json"
 }

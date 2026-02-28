@@ -1,9 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["flow_description"],
+  "required": [
+    "flow_description"
+  ],
   "properties": {
-    "flow_description": { "type": "string" },
-    "age_groups": { "type": "array", "items": { "type": "string" } }
-  }
+    "flow_description": {
+      "type": "string"
+    },
+    "age_groups": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/age-inclusive-design.input.json"
 }

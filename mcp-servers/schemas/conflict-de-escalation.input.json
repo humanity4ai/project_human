@@ -1,9 +1,23 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["situation"],
+  "required": [
+    "situation"
+  ],
   "properties": {
-    "situation": { "type": "string" },
-    "intensity": { "type": "string", "enum": ["low", "medium", "high"], "default": "medium" }
-  }
+    "situation": {
+      "type": "string"
+    },
+    "intensity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "default": "medium"
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/conflict-de-escalation.input.json"
 }

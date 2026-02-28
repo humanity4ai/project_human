@@ -1,9 +1,23 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["plan"],
+  "required": [
+    "plan"
+  ],
   "properties": {
-    "plan": { "type": "array", "items": { "type": "string" } },
-    "risk_notes": { "type": "array", "items": { "type": "string" } }
-  }
+    "plan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/conflict-de-escalation.output.json"
 }

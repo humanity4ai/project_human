@@ -3,8 +3,13 @@
   "private": true,
   "version": "0.1.0",
   "description": "Open skill system for humane AI behavior",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=10"
+  },
   "scripts": {
     "check": "pnpm -r check",
+    "build": "pnpm --filter @humanity4ai/mcp-servers build:contracts && pnpm --filter @humanity4ai/mcp-servers build",
     "evals": "pnpm --filter @humanity4ai/evals evals",
     "start:mcp": "pnpm --filter @humanity4ai/mcp-servers start"
   }

@@ -1,9 +1,27 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["reframed_message"],
+  "required": [
+    "reframed_message"
+  ],
   "properties": {
-    "reframed_message": { "type": "string" },
-    "rationale": { "type": "array", "items": { "type": "string" } }
-  }
+    "reframed_message": {
+      "type": "string"
+    },
+    "rationale": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "escalation_guidance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Optional escalation steps when emotional content suggests higher risk"
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/empathetic-communication.output.json"
 }

@@ -1,9 +1,23 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["recommendations"],
+  "required": [
+    "recommendations"
+  ],
   "properties": {
-    "recommendations": { "type": "array", "items": { "type": "string" } },
-    "tradeoffs": { "type": "array", "items": { "type": "string" } }
-  }
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tradeoffs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/neurodiversity-aware-design.output.json"
 }

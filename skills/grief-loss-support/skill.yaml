@@ -5,6 +5,7 @@ category: emotional-safety
 summary: Bereavement-aware communication with strong safety boundaries
 boundaries:
   - Non-clinical support only
+  - Escalate to crisis or professional support when high-risk language is detected
 actions:
   - id: grief_support_response
     input_schema: ../../mcp-servers/schemas/grief-loss-support.input.json

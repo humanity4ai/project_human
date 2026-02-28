@@ -1,0 +1,15 @@
+# Global owner — reviews all PRs by default
+* @simonplmak-cloud
+
+# Safety-critical skills require explicit review
+/skills/supportive-conversation/ @simonplmak-cloud
+/skills/grief-loss-support/ @simonplmak-cloud
+/skills/depression-sensitive-content/ @simonplmak-cloud
+
+# MCP server and schemas
+/mcp-servers/ @simonplmak-cloud
+
+# Governance and policy files
+/GOVERNANCE.md @simonplmak-cloud
+/SECURITY.md @simonplmak-cloud
+/CODE_OF_CONDUCT.md @simonplmak-cloud

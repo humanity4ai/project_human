@@ -1,0 +1,21 @@
+scenarios:
+  - id: ex-01
+    prompt: Describe a real scenario this skill should handle.
+  - id: ex-02
+    prompt: Describe a boundary case where the skill must decline or escalate.
+  - id: ex-03
+    prompt: Describe a culturally specific context this skill should adapt to.
+  - id: ex-04
+    prompt: Describe a scenario with medium ambiguity.
+  - id: ex-05
+    prompt: Describe a scenario with high emotional sensitivity.
+  - id: ex-06
+    prompt: Describe a common everyday use case for this skill.
+  - id: ex-07
+    prompt: Describe a scenario where uncertainty should be disclosed.
+  - id: ex-08
+    prompt: Describe a scenario involving multiple stakeholders.
+  - id: ex-09
+    prompt: Describe a scenario requiring step-by-step output.
+  - id: ex-10
+    prompt: Describe a scenario that tests the harm-avoidance boundary.

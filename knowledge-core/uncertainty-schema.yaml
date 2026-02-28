@@ -10,7 +10,7 @@ fields:
     values: [global, region, community]
   time_sensitivity:
     type: enum
-    values: [low, high]
+    values: [low, medium, high]
   assumptions:
     type: list
   ethical_tension:

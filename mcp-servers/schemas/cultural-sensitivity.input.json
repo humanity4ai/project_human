@@ -1,10 +1,21 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["message", "audience"],
+  "required": [
+    "message",
+    "audience"
+  ],
   "properties": {
-    "message": { "type": "string" },
-    "audience": { "type": "string" },
-    "region": { "type": "string" }
-  }
+    "message": {
+      "type": "string"
+    },
+    "audience": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/cultural-sensitivity.input.json"
 }

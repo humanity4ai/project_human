@@ -1,20 +1,28 @@
 name: example-skill
 version: 0.1.0
 status: draft
-category: humane-interaction
-summary: Short purpose statement
+# Valid categories: accessibility, emotional-safety, communication, cognitive-support,
+# cultural-context, conflict-navigation, inclusive-design, lifecycle-support,
+# neurodiversity, age-inclusion
+category: communication
+summary: Short purpose statement (one sentence describing what the skill does)
 boundaries:
   - Non-clinical support only
   - No diagnosis or treatment advice
   - Escalate safety-critical situations
 actions:
   - id: example_action
-    input_schema: schemas/example.input.json
-    output_schema: schemas/example.output.json
+    # Paths are relative to the skill directory
+    input_schema: ../../mcp-servers/schemas/example-skill.input.json
+    output_schema: ../../mcp-servers/schemas/example-skill.output.json
 uncertainty:
   confidence: medium
   contested: false
   cultural_scope: global
+  time_sensitivity: low
+  assumptions:
+    - List assumptions that affect skill outputs
+  ethical_tension: []
 provenance:
   sources:
     - internal-corpus

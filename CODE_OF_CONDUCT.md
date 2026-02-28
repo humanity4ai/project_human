@@ -14,6 +14,10 @@ This project follows a professional and inclusive standard.
 - Doxxing, intimidation, or exclusionary language.
 - Submitting intentionally harmful guidance as "skills."
 
+## Reporting
+
+To report a violation, email **simon@ascent.partners**. All reports are reviewed confidentially by the core maintainer team. Do not open public issues for conduct reports.
+
 ## Enforcement
 
-Maintainers may edit, remove, or reject contributions that violate this code.
+Maintainers may edit, remove, or reject contributions that violate this code. Repeated or severe violations may result in a permanent ban from the project.

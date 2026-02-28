@@ -1,7 +1,7 @@
 name: cognitive-accessibility
 version: 0.1.0
 status: active
-category: inclusive-design
+category: cognitive-support
 summary: Cognitive accessibility checks for content and user flows
 boundaries:
   - Non-clinical guidance only

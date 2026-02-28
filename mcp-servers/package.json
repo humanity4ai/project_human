@@ -36,15 +36,22 @@
     "./schemas/*": "./schemas/*"
   },
   "files": [
-    "dist",
+    "dist/index.js",
+    "dist/index.d.ts",
+    "dist/handlers.js",
+    "dist/handlers.d.ts",
+    "dist/types.js",
+    "dist/types.d.ts",
     "schemas",
+    "src/contracts.json",
     "README.md"
   ],
   "scripts": {
     "check": "tsc --project tsconfig.json",
     "build": "tsc --project tsconfig.build.json",
+    "build:contracts": "tsx src/export-contracts.ts",
     "start": "tsx src/server.ts",
-    "prepack": "pnpm run build"
+    "prepack": "pnpm run build:contracts && pnpm run build"
   },
   "dependencies": {
     "zod": "^3.25.76"

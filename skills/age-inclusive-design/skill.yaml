@@ -1,7 +1,7 @@
 name: age-inclusive-design
 version: 0.1.0
 status: active
-category: inclusive-design
+category: age-inclusion
 summary: Age-inclusive UX guidance for content, forms, and workflows
 boundaries:
   - No age stereotypes

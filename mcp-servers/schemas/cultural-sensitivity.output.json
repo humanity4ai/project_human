@@ -1,10 +1,24 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["adapted_message", "notes"],
+  "required": [
+    "adapted_message",
+    "notes"
+  ],
   "properties": {
-    "adapted_message": { "type": "string" },
-    "notes": { "type": "array", "items": { "type": "string" } },
-    "uncertainty": { "type": "string" }
-  }
+    "adapted_message": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "uncertainty": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/cultural-sensitivity.output.json"
 }

@@ -8,11 +8,16 @@ Humanity4AI uses an open governance model with a core maintainer team and open p
 - Community contributors can propose skills, scenarios, and rubric improvements by pull request.
 - Decisions are recorded in repo issues and pull requests for traceability.
 
+## Maintainers
+
+See `MAINTAINERS.md` for the current maintainer list. Safety-critical changes require at least two maintainer approvals as listed there.
+
 ## Decision Policy
 
-- Safety and boundary changes require at least two maintainer approvals.
+- Safety and boundary changes require at least two maintainer approvals (see `MAINTAINERS.md`).
 - New skills require template compliance, provenance declaration, and rubric coverage.
 - Breaking schema changes require a version bump and migration note.
+- Security and safety reports must follow `SECURITY.md` — do not open public issues.
 
 ## Release Policy
 

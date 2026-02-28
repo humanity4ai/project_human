@@ -1,9 +1,23 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["message", "support_mode"],
+  "required": [
+    "message",
+    "support_mode"
+  ],
   "properties": {
-    "message": { "type": "string" },
-    "support_mode": { "type": "string", "enum": ["presence", "practical", "reflection"] }
-  }
+    "message": {
+      "type": "string"
+    },
+    "support_mode": {
+      "type": "string",
+      "enum": [
+        "presence",
+        "practical",
+        "reflection"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/grief-loss-support.input.json"
 }

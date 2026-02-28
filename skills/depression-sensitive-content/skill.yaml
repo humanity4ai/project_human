@@ -6,6 +6,7 @@ summary: Rewrite and audit content for emotional safety and cognitive accessibil
 boundaries:
   - Non-clinical guidance only
   - No diagnosis or treatment advice
+  - Escalate to professional support if clinical risk signals are present in content context
 actions:
   - id: rewrite_depression_sensitive_content
     input_schema: ../../mcp-servers/schemas/depression-sensitive-content.input.json

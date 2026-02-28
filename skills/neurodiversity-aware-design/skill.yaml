@@ -1,7 +1,7 @@
 name: neurodiversity-aware-design
 version: 0.1.0
 status: active
-category: inclusive-design
+category: neurodiversity
 summary: Design guidance for neurodiversity-aware interfaces and workflows
 boundaries:
   - No diagnostic claims

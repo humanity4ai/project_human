@@ -1,10 +1,27 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["message", "risk_level"],
+  "required": [
+    "message",
+    "risk_level"
+  ],
   "properties": {
-    "message": { "type": "string" },
-    "risk_level": { "type": "string", "enum": ["low", "medium", "high"] },
-    "locale": { "type": "string", "default": "en" }
-  }
+    "message": {
+      "type": "string"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "locale": {
+      "type": "string",
+      "default": "en"
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/supportive-conversation.input.json"
 }

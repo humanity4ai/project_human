@@ -3,58 +3,88 @@ import type { InvokeResponse } from "./types.js";
 
 function boundaryForAction(action: string): string {
   const contract = actionContracts.find((item) => item.action === action);
-  return contract?.safetyBoundary ?? "No boundary metadata found";
+  if (!contract) return "Unknown action — no boundary metadata available";
+  return contract.safetyBoundary;
 }
 
-export function invokeAction(action: string, input: Record<string, unknown>): InvokeResponse {
+function isKnownAction(action: string): boolean {
+  return actionContracts.some((item) => item.action === action);
+}
+
+export function invokeAction(
+  action: string,
+  input: Record<string, unknown>
+): { ok: true; data: InvokeResponse } | { ok: false; error: string } {
+  if (!isKnownAction(action)) {
+    return { ok: false, error: `Unknown action: '${action}'. Call list_actions to see available actions.` };
+  }
+
   const boundaryNotice = boundaryForAction(action);
 
   switch (action) {
-    case "wcagaaa_check":
+    case "wcagaaa_check": {
+      const target = typeof input.target === "string" ? input.target : "(no target provided)";
       return {
-        action,
-        boundaryNotice,
-        uncertainty: "medium",
-        assumptions: ["Input sample is representative", "Dynamic states were provided or known"],
-        output: {
-          summary: "Contract-first placeholder result",
-          findings: [
-            {
-              severity: "medium",
-              issue: "Low text contrast likely under AAA threshold",
-              fix: "Raise contrast to at least 7:1 for normal text"
-            }
+        ok: true,
+        data: {
+          action,
+          boundaryNotice,
+          uncertainty: "medium",
+          assumptions: [
+            "Input sample is representative of the full page",
+            "Dynamic states were described or provided"
           ],
-          inputEcho: input
+          output: {
+            summary: `Accessibility audit initiated for: ${target}`,
+            findings: [
+              {
+                severity: "medium",
+                issue: "Text contrast may fall below AAA threshold (7:1)",
+                fix: "Raise foreground/background contrast ratio to at least 7:1 for normal text"
+              }
+            ]
+          }
         }
       };
-    case "supportive_reply":
+    }
+
+    case "supportive_reply": {
+      const riskLevel = typeof input.risk_level === "string" ? input.risk_level : "low";
+      const escalation =
+        riskLevel === "high"
+          ? [
+              "If you or someone else may be in immediate danger, contact emergency services now",
+              "Contact a local crisis line — trained counselors are available 24/7",
+              "Reach out to a trusted person nearby"
+            ]
+          : [
+              "If things feel harder over time, consider speaking with a mental health professional",
+              "You can contact a support line any time, even just to talk"
+            ];
+
       return {
-        action,
-        boundaryNotice,
-        uncertainty: "medium",
-        assumptions: ["Risk level is user-provided"],
-        output: {
-          reply:
-            "I am sorry this feels heavy right now. If it helps, we can take one small step together and focus on what is most manageable first.",
-          escalation_guidance: [
-            "If you may be in immediate danger, contact local emergency services now",
-            "Consider reaching out to a trusted person or local crisis line"
-          ],
-          inputEcho: input
+        ok: true,
+        data: {
+          action,
+          boundaryNotice,
+          uncertainty: "medium",
+          assumptions: ["Risk level is self-reported by the user or calling system"],
+          output: {
+            reply:
+              "I hear you, and I am glad you reached out. It makes sense that things feel heavy right now. Let us focus on one small step at a time — you do not have to solve everything at once.",
+            escalation_guidance: escalation,
+            boundaries_notice: boundaryNotice
+          }
         }
       };
-    default:
+    }
+
+    default: {
+      // Action is known (validated above) but runtime handler not yet implemented
       return {
-        action,
-        boundaryNotice,
-        uncertainty: "high",
-        assumptions: ["No specialized runtime implementation yet"],
-        output: {
-          status: "not_implemented",
-          message: "Action contract exists but runtime handler is stubbed in v0.1",
-          inputEcho: input
-        }
+        ok: false,
+        error: `Action '${action}' contract is registered but its runtime handler is not yet implemented in v0.1. See ROADMAP.md for implementation schedule.`
       };
+    }
   }
 }

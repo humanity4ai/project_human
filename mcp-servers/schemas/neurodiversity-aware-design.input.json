@@ -1,9 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["ui_description"],
+  "required": [
+    "ui_description"
+  ],
   "properties": {
-    "ui_description": { "type": "string" },
-    "focus": { "type": "array", "items": { "type": "string" } }
-  }
+    "ui_description": {
+      "type": "string"
+    },
+    "focus": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/neurodiversity-aware-design.input.json"
 }
