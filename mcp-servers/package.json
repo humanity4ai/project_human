@@ -14,6 +14,7 @@
   "bugs": {
     "url": "https://github.com/humanity4ai/project_human/issues"
   },
+  "author": "Ascent Partners Foundation <simon@ascent.partners>",
   "keywords": ["mcp", "ai", "schemas", "contracts", "humanity4ai"],
   "publishConfig": {
     "access": "public"
@@ -33,6 +34,10 @@
       "types": "./dist/types.d.ts",
       "default": "./dist/types.js"
     },
+    "./validate": {
+      "types": "./dist/validate.d.ts",
+      "default": "./dist/validate.js"
+    },
     "./schemas/*": "./schemas/*"
   },
   "files": [
@@ -42,6 +47,8 @@
     "dist/handlers.d.ts",
     "dist/types.js",
     "dist/types.d.ts",
+    "dist/validate.js",
+    "dist/validate.d.ts",
     "schemas",
     "src/contracts.json",
     "README.md"

@@ -46,29 +46,60 @@ The project is designed for broad compatibility across agent platforms, includin
 - Evaluation baseline and quality gates
 - Public contribution process and governance docs
 
+## Prerequisites
+
+- **Node.js** >= 20 — [nodejs.org/download](https://nodejs.org/en/download)
+- **pnpm** >= 10 — `npm install -g pnpm`
+- **Docker** (optional, for container deployment)
+
 ## Quick Start
 
 ```bash
+git clone https://github.com/humanity4ai/project_human.git
+cd project_human
 pnpm install
 pnpm check
 pnpm evals
 pnpm start:mcp
 ```
 
-Open a second terminal and send a request to the MCP runtime:
+Test the running server from a second terminal:
 
 ```bash
-printf '{"id":"1","type":"list_actions"}\n' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+echo '{"id":"1","type":"list_actions"}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+```
+
+Invoke a skill action:
+
+```bash
+echo '{"id":"2","type":"invoke","payload":{"action":"supportive_reply","input":{"message":"I feel overwhelmed","risk_level":"medium"}}}' \
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+```
+
+Full install and deploy guide: [`INSTALL.md`](INSTALL.md)
+
+## Docker (one command)
+
+```bash
+docker compose up
+```
+
+Then send requests to the running container:
+
+```bash
+echo '{"id":"1","type":"list_actions"}' | docker compose exec -T mcp-server node dist/server.js
 ```
 
 ## MCP Runtime (v0.1)
 
-`mcp-servers` provides a contract-first line-delimited JSON runtime with two request types:
+`mcp-servers` provides a line-delimited JSON runtime. Two request types:
 
-- `list_actions` - returns all registered action contracts
-- `invoke` - validates payload and executes skill handler (implemented or stubbed)
+- `list_actions` — returns all 10 registered action contracts
+- `invoke` — validates input against JSON schema, executes skill handler, returns structured response
 
-This lets agents integrate now while deeper platform-specific adapters are built in later versions.
+All 10 skill actions are fully implemented with structured, rule-based responses.
+
+See [`docs/protocol.md`](docs/protocol.md) for the full protocol specification.
 
 ## Integrations
 
