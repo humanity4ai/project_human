@@ -1,8 +1,12 @@
 # Documentation Index
 
-- `integrations.md` - platform integration overview
-- `agent-adapters.md` - contract-based adapter implementation guidance
-- `quality-gates.md` - release quality criteria
-- `good-first-issues.md` - starter tasks for new contributors
-- `traction-14-day.md` - launch content cadence for traction
-- `package-release.md` - release process for npm package distribution
+| File | Purpose |
+|------|---------|
+| `protocol.md` | Full protocol specification for the MCP server transport |
+| `worked-example.md` | End-to-end integration walkthrough with all 10 actions |
+| `agent-adapters.md` | Platform-specific adapter code (OpenCode, Claude Code, Copilot, Manus AI, OpenClaw, n8n) |
+| `integrations.md` | Platform integration overview |
+| `quality-gates.md` | Release quality criteria |
+| `good-first-issues.md` | Starter tasks for new contributors |
+| `traction-14-day.md` | 14-day launch content cadence |
+| `package-release.md` | npm package release process |

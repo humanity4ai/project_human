@@ -1,0 +1,12 @@
+node_modules
+dist
+.git
+.github
+*.log
+*.tgz
+evals/reports
+site
+marketing
+docs
+templates
+.env*

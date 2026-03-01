@@ -1,8 +1,15 @@
+/**
+ * Humanity4AI MCP Server — line-delimited JSON transport
+ * Protocol: see docs/protocol.md
+ * Copyright (c) 2026 Ascent Partners Foundation. MIT License.
+ */
 import { createInterface } from "node:readline";
 import { z } from "zod";
 import { actionContracts, validateContracts } from "./index.js";
 import { invokeAction } from "./handlers.js";
 import { invokeRequestSchema } from "./types.js";
+
+const VERSION = "0.1.0";
 
 const MAX_LINE_BYTES = 512 * 1024; // 512 KB hard limit per request
 
@@ -51,6 +58,14 @@ function handleEnvelope(envelope: Envelope): void {
 
   send({ id: envelope.id, ok: false, error: "Unsupported request type" });
 }
+
+// Startup banner written to stderr so it does not pollute the JSON stdout stream
+process.stderr.write(
+  `Humanity4AI MCP Server v${VERSION}\n` +
+  `Actions: ${actionContracts.length} registered\n` +
+  `Protocol: line-delimited JSON (see docs/protocol.md)\n` +
+  `Ready — waiting for requests on stdin\n`
+);
 
 const rl = createInterface({ input: process.stdin, terminal: false });
 

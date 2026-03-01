@@ -10,13 +10,13 @@ skills:
     category: communication
     action: supportive_reply
   - name: cognitive-accessibility
-    category: inclusive-design
+    category: cognitive-support
     action: cognitive_accessibility_audit
   - name: cultural-sensitivity
     category: cultural-context
     action: cultural_context_check
   - name: conflict-de-escalation
-    category: communication
+    category: conflict-navigation
     action: deescalation_plan
   - name: empathetic-communication
     category: communication
@@ -25,8 +25,8 @@ skills:
     category: emotional-safety
     action: grief_support_response
   - name: neurodiversity-aware-design
-    category: inclusive-design
+    category: neurodiversity
     action: neurodiversity_design_check
   - name: age-inclusive-design
-    category: inclusive-design
+    category: age-inclusion
     action: age_inclusive_design_check

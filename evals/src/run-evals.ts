@@ -76,7 +76,10 @@ const REQUIRED_FILES = [
   "scenarios/scenarios.yaml"
 ];
 
-function countScenarioIds(content: string): number {
+export { VALID_CATEGORIES, ESCALATION_REQUIRED_SKILLS, REQUIRED_FILES };
+export type { EvalResult };
+
+export function countScenarioIds(content: string): number {
   // Use yaml parser for accuracy rather than regex
   try {
     const doc = parse(content) as { scenarios?: unknown[] };
@@ -88,7 +91,7 @@ function countScenarioIds(content: string): number {
   }
 }
 
-function evaluateSkill(skillDir: string): EvalResult {
+export function evaluateSkill(skillDir: string): EvalResult {
   const issues: string[] = [];
   const skillName = basename(skillDir);
 
@@ -174,7 +177,7 @@ function loadContractsFromModule(repoRoot: string): ActionContract[] {
   }
 }
 
-function evaluateContractConsistency(skillsRoot: string, repoRoot: string): EvalResult {
+export function evaluateContractConsistency(skillsRoot: string, repoRoot: string): EvalResult {
   const issues: string[] = [];
 
   // Load contracts from the exported JSON snapshot (resilient to formatting changes)
@@ -258,7 +261,7 @@ function evaluateContractConsistency(skillsRoot: string, repoRoot: string): Eval
   return { skill: "contract-consistency", pass: issues.length === 0, issues };
 }
 
-function writeMarkdownReport(results: EvalResult[], outputPath: string): void {
+export function writeMarkdownReport(results: EvalResult[], outputPath: string): void {
   const failures = results.filter((r) => !r.pass);
   const lines: string[] = [
     "# Eval Baseline Report",
