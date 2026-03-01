@@ -18,6 +18,7 @@ See `MAINTAINERS.md` for the current maintainer list. Safety-critical changes re
 - New skills require template compliance, provenance declaration, and rubric coverage.
 - Breaking schema changes require a version bump and migration note.
 - Security and safety reports must follow `SECURITY.md` — do not open public issues.
+- Manifesto-related changes must link to a rationale issue/PR and map to `docs/manifesto-roadmap-map.md`.
 
 ## Release Policy
 
@@ -30,3 +31,9 @@ See `MAINTAINERS.md` for the current maintainer list. Safety-critical changes re
 - Support-oriented skills are non-clinical and non-diagnostic.
 - Harmful, discriminatory, or coercive content is not accepted.
 - Uncertainty and context limits must be declared for claims with contested interpretations.
+
+## Manifesto Evolution
+
+- The canonical manifesto is maintained in `docs/manifesto.md`.
+- Manifesto text updates require maintainer review and a traceable rationale in GitHub issues or PRs.
+- Principle-level implementation changes should update `docs/manifesto-roadmap-map.md`.
