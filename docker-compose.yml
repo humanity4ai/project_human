@@ -1,0 +1,31 @@
+# Humanity4AI — local development and testing
+# Copyright (c) 2026 Ascent Partners Foundation. MIT License.
+#
+# Usage:
+#   docker compose up --build          Start server
+#   docker compose up --build -d       Start in background
+#   docker compose down                Stop and remove containers
+#
+# Send a request to the running server:
+#   echo '{"id":"1","type":"list_actions"}' | docker compose exec -T mcp-server node dist/server.js
+
+services:
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: humanity4ai-mcp:latest
+    container_name: humanity4ai-mcp-server
+    restart: unless-stopped
+    stdin_open: true
+    tty: false
+    environment:
+      - NODE_ENV=production
+    volumes:
+      # Mount skills directory for live skill updates without rebuild
+      - ./skills:/app/skills:ro
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

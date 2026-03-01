@@ -1,0 +1,19 @@
+name: supportive-conversation
+version: 0.1.0
+status: active
+category: communication
+summary: Fixture with missing escalation in boundaries
+boundaries:
+  - Non-clinical support only
+actions:
+  - id: supportive_reply
+    input_schema: ../../mcp-servers/schemas/supportive-conversation.input.json
+    output_schema: ../../mcp-servers/schemas/supportive-conversation.output.json
+uncertainty:
+  confidence: medium
+  contested: false
+  cultural_scope: global
+provenance:
+  sources:
+    - internal-curation
+  license: MIT

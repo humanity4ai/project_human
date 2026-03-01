@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "check": "tsc --project tsconfig.json",
-    "evals": "tsx src/run-evals.ts"
+    "check:test": "tsc --project tsconfig.test.json",
+    "evals": "tsx src/run-evals.ts",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "yaml": "^2.8.1",
@@ -13,7 +16,9 @@
   },
   "devDependencies": {
     "@types/node": "^24.4.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
   }
 }

@@ -16,10 +16,8 @@
       }
     },
     "boundaries_notice": {
-      "type": "string"
-    },
-    "boundaryNotice": {
-      "type": "string"
+      "type": "string",
+      "description": "Safety boundary notice for this action"
     }
   },
   "additionalProperties": false,

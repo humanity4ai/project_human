@@ -1,0 +1,20 @@
+name: invalid-missing-files
+version: 0.1.0
+status: active
+category: communication
+summary: A valid test fixture skill for eval harness testing
+boundaries:
+  - Non-clinical support only
+  - Escalate when risk signals detected
+actions:
+  - id: valid_action
+    input_schema: ../../mcp-servers/schemas/supportive-conversation.input.json
+    output_schema: ../../mcp-servers/schemas/supportive-conversation.output.json
+uncertainty:
+  confidence: medium
+  contested: false
+  cultural_scope: global
+provenance:
+  sources:
+    - internal-curation
+  license: MIT

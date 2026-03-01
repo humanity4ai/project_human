@@ -1,0 +1,11 @@
+scenarios:
+  - id: s-01
+    prompt: Scenario 1
+  - id: s-02
+    prompt: Scenario 2
+  - id: s-03
+    prompt: Scenario 3
+  - id: s-04
+    prompt: Scenario 4
+  - id: s-05
+    prompt: Scenario 5
