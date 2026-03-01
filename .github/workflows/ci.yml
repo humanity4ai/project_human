@@ -47,7 +47,7 @@ jobs:
 
       - name: Upload eval report
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449a6d2de58c96d2ddc03 # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: eval-report
           path: evals/reports/latest.md
@@ -55,7 +55,7 @@ jobs:
 
       - name: Upload coverage (mcp-servers)
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449a6d2de58c96d2ddc03 # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: coverage-mcp-servers
           path: mcp-servers/coverage/lcov.info
@@ -63,7 +63,7 @@ jobs:
 
       - name: Upload coverage (evals)
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449a6d2de58c96d2ddc03 # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: coverage-evals
           path: evals/coverage/lcov.info

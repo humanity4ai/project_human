@@ -6,14 +6,54 @@ Thanks for contributing to Humanity4AI. This guide covers all contribution types
 
 ---
 
-## Contribution Types
+## Before You Open an Issue
 
-- New skill proposals
-- Scenario additions and improvements
-- Rubric improvements
-- MCP schema or handler additions
-- Documentation and translations
-- Bug fixes in the eval harness or server
+Not everything belongs in an issue tracker. Use the right channel:
+
+| Type | Where |
+|------|-------|
+| Bug in skills, eval harness, or server | Issue — Bug Report template |
+| New skill proposal | Issue — Skill Proposal template |
+| Scenario additions | Issue — Scenario Addition template |
+| Platform integration request | Issue — Integration Request template |
+| Question about usage | [Discussions — Integration Help](https://github.com/humanity4ai/project_human/discussions) |
+| New skill idea (not yet concrete) | [Discussions — Skill Ideas](https://github.com/humanity4ai/project_human/discussions) |
+| Safety or ethics discussion | [Discussions — Safety & Ethics](https://github.com/humanity4ai/project_human/discussions) |
+| Show what you built | [Discussions — Show & Tell](https://github.com/humanity4ai/project_human/discussions) |
+| Security or safety concern | Email `simon@ascent.partners` — see `SECURITY.md` |
+
+---
+
+## Contribution Flow
+
+```
+Have an idea?
+  └─► Discuss first in GitHub Discussions (Skill Ideas or Integration Help)
+        └─► Ready to build? Open an Issue (skill-proposal or integration-request)
+              └─► Fork the repo and create a branch
+                    └─► Implement your changes
+                          └─► Run: pnpm check && pnpm evals && pnpm test
+                                └─► Open a Pull Request (use the PR template)
+                                      └─► CI runs automatically
+                                            └─► Maintainer reviews
+                                                  └─► Approved + CI green = Merged
+                                                        └─► Branch auto-deleted
+```
+
+---
+
+## What Gets Reviewed by Whom
+
+| Path | Reviewers | Notes |
+|------|-----------|-------|
+| Any file | `@simonplmak-cloud` | Global owner — all PRs |
+| `skills/supportive-conversation/` | `@simonplmak-cloud` | Safety-critical |
+| `skills/grief-loss-support/` | `@simonplmak-cloud` | Safety-critical |
+| `skills/depression-sensitive-content/` | `@simonplmak-cloud` | Safety-critical |
+| `mcp-servers/` | `@simonplmak-cloud` | Runtime and contracts |
+| `GOVERNANCE.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md` | `@simonplmak-cloud` | Policy files |
+
+All PRs require 1 approving review before merge. Safety-critical paths require the CODEOWNERS reviewer specifically.
 
 ---
 
@@ -26,7 +66,19 @@ pnpm --version   # >= 10
 
 ---
 
-## Required artifacts for a new skill
+## Contribution Types
+
+- New skill proposals
+- Scenario additions and improvements
+- Rubric improvements
+- MCP schema or handler additions
+- Documentation and translations
+- Bug fixes in the eval harness or server
+- Platform integration adapters
+
+---
+
+## Required Artifacts for a New Skill
 
 Every skill directory must include:
 
@@ -43,7 +95,7 @@ Use the template at `templates/skill/` as your starting point.
 
 ---
 
-## Adding a new MCP action
+## Adding a New MCP Action
 
 When adding a new skill, you must also register the corresponding MCP action:
 
@@ -96,7 +148,6 @@ function handleYourAction(
   input: Record<string, unknown>,
   boundaryNotice: string
 ): HandlerResult {
-  // Extract and use typed inputs — never echo raw input
   const myField = str(input, "my_field", "default");
 
   return {
@@ -107,7 +158,6 @@ function handleYourAction(
       uncertainty: "medium",
       assumptions: ["List assumptions here"],
       output: {
-        // Match your output JSON schema
         result: "structured output here"
       }
     }
@@ -129,16 +179,17 @@ Valid category slugs: `accessibility`, `emotional-safety`, `communication`, `cog
 
 ---
 
-## Safety and provenance
+## Safety and Provenance
 
 - Declare source provenance in `skill.yaml`
 - Include explicit boundaries and non-goals
 - Do not submit clinical diagnosis, treatment plans, or legal advice playbooks
 - Safety-critical skills (`supportive-conversation`, `grief-loss-support`, `depression-sensitive-content`) require escalation language in boundaries
+- Never reference specific individuals or organisations in scenarios without consent
 
 ---
 
-## Workflow
+## Full Workflow
 
 ```bash
 # 1. Fork and create a branch
@@ -153,18 +204,19 @@ cp -r templates/skill skills/my-skill-name
 # 4. Regenerate contracts if you added a new action
 pnpm --filter @humanity4ai/mcp-servers build:contracts
 
-# 5. Run all checks
+# 5. Run all checks — all must pass
 pnpm check
 pnpm evals
+pnpm test
 
-# 6. Open a pull request
+# 6. Open a pull request — use the template and fill every section
 ```
 
-All checks must pass before a PR is reviewed.
+All three checks must pass and appear in the PR test evidence section before a review begins.
 
 ---
 
-## Eval report
+## Eval Report
 
 To see a detailed markdown report of eval results:
 
@@ -172,3 +224,18 @@ To see a detailed markdown report of eval results:
 EVAL_REPORT=1 pnpm evals
 # Report written to evals/reports/latest.md
 ```
+
+---
+
+## Branch Protection
+
+The `main` branch is protected:
+
+- Direct pushes are blocked
+- 1 approving review is required
+- CODEOWNERS review is required for safety-critical paths
+- CI (`pnpm check`, `pnpm build`, `pnpm evals`, `pnpm test`) must pass
+- Branch must be up to date with `main` before merge
+- Force pushes are blocked
+
+Merged branches are auto-deleted. Keep your branches short-lived and focused.
