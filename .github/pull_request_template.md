@@ -1,3 +1,10 @@
+<!--
+  TARGET BRANCH: development
+  All feature work, bug fixes, skill additions, and documentation must target the
+  `development` branch. Only planned releases may target `main`, and only by
+  @simonplmak-cloud or @humanity4ai. See docs/release-process.md for the promotion process.
+-->
+
 ## Summary
 
 <!-- One paragraph describing what this PR does and why -->

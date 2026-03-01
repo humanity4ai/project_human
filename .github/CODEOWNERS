@@ -1,5 +1,11 @@
+# Branch model:
+#   feature/* ──► development  (all contributor code — default branch)
+#   development ──► main        (planned releases only, by @simonplmak-cloud or @humanity4ai)
+#
+# CODEOWNERS applies to PRs targeting both development and main.
+
 # Global owner — reviews all PRs by default
-* @simonplmak-cloud
+* @simonplmak-cloud @humanity4ai
 
 # Safety-critical skills require explicit review
 /skills/supportive-conversation/ @simonplmak-cloud
