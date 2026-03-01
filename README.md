@@ -24,6 +24,16 @@ The project is designed for broad compatibility across agent platforms, includin
 - Publish structured, testable skill specifications that can be executed through MCP-compatible tools.
 - Keep skills auditable and updatable through open governance, provenance rules, and evaluation rubrics.
 
+## Manifesto
+
+We believe intelligence without humanity is not progress. Systems that affect people must communicate with humility, respect uncertainty, and escalate to qualified human support when risk exceeds model competence.
+
+Read the full manifesto: [`docs/manifesto.md`](docs/manifesto.md)
+
+- Manifesto implementation map: [`docs/manifesto-roadmap-map.md`](docs/manifesto-roadmap-map.md)
+- Community call thread: https://github.com/humanity4ai/project_human/issues/41
+- Help wanted issues: https://github.com/humanity4ai/project_human/issues?q=is%3Aopen+label%3A%22help+wanted%22
+
 ## Repository Layout
 
 - `skills/` - Ten launch skill packs with machine-readable specs, rubrics, and scenarios.
@@ -159,6 +169,12 @@ Or open via GitHub UI — the default base branch is `development`.
 - 14-day launch cadence: `docs/traction-14-day.md`
 - Quality gates: `docs/quality-gates.md`
 - Release roadmap: `ROADMAP.md`
+
+## How To Help This Week
+
+- Expand multilingual supportive-conversation scenarios: https://github.com/humanity4ai/project_human/issues/11
+- Improve launch-skill quality boundaries: https://github.com/humanity4ai/project_human/issues/3
+- Add edge-case scenario coverage across 4 skills: https://github.com/humanity4ai/project_human/issues/4
 
 ## Package Release
 

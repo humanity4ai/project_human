@@ -56,6 +56,7 @@ $ pnpm test
 - [ ] `pnpm check` passes (TypeScript)
 - [ ] `pnpm evals` passes (all 11 gates)
 - [ ] `pnpm test` passes (all tests)
+- [ ] If manifesto-related, linked principle in `docs/manifesto-roadmap-map.md` and linked issue are included
 - [ ] New skills have at least 10 scenarios
 - [ ] Provenance and license metadata included in `skill.yaml`
 - [ ] `CHANGELOG.md` updated for modified skills
