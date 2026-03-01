@@ -1,0 +1,38 @@
+{
+  "request": {
+    "id": "ca-example-1",
+    "type": "invoke",
+    "payload": {
+      "action": "cognitive_accessibility_audit",
+      "input": {
+        "content": "Pursuant to our policy, notwithstanding prior agreements, please complete all required fields herein within 24 hours.",
+        "target_context": "Insurance claim form"
+      }
+    }
+  },
+  "response": {
+    "id": "ca-example-1",
+    "ok": true,
+    "data": {
+      "action": "cognitive_accessibility_audit",
+      "boundaryNotice": "Design guidance only",
+      "uncertainty": "medium",
+      "assumptions": [
+        "Target context: Insurance claim form",
+        "Word count: 17",
+        "Estimated sentences: 1",
+        "Automated analysis — human review recommended for sensitive contexts"
+      ],
+      "output": {
+        "findings": [
+          "Legal/technical jargon detected: pursuant, notwithstanding, herein"
+        ],
+        "recommendations": [
+          "Replace jargon with plain language equivalents",
+          "Test content with users who have varied cognitive profiles",
+          "Provide a summary at the top for users who cannot read the full content"
+        ]
+      }
+    }
+  }
+}

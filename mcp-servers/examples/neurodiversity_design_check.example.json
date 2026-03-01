@@ -1,0 +1,42 @@
+{
+  "request": {
+    "id": "nd-example-1",
+    "type": "invoke",
+    "payload": {
+      "action": "neurodiversity_design_check",
+      "input": {
+        "ui_description": "A dashboard with animated loading indicators, real-time notification badges, and auto-playing tutorial video on first visit.",
+        "focus": ["adhd", "sensory"]
+      }
+    }
+  },
+  "response": {
+    "id": "nd-example-1",
+    "ok": true,
+    "data": {
+      "action": "neurodiversity_design_check",
+      "boundaryNotice": "Inclusive design guidance only",
+      "uncertainty": "medium",
+      "assumptions": [
+        "Focus areas: adhd, sensory",
+        "Recommendations are general design patterns — individual needs vary significantly",
+        "No diagnostic claims about users are made or implied"
+      ],
+      "output": {
+        "recommendations": [
+          "Batch notifications — avoid interrupting flow with real-time alerts for non-urgent events",
+          "Provide a focus/do-not-disturb mode that suppresses non-critical UI elements",
+          "Use progress indicators for multi-step tasks to maintain orientation and momentum",
+          "Respect prefers-reduced-motion media query — disable or reduce animations by default for users who set this",
+          "Avoid auto-playing audio, video, or scrolling content — always provide user controls",
+          "Use predictable layouts — avoid reorganising navigation or controls between sessions"
+        ],
+        "tradeoffs": [
+          "Focus mode may hide useful ambient information — offer opt-in rather than opt-out",
+          "Removing animations may reduce perceived polish — consider a user-toggled motion preference setting",
+          "Neurodiversity encompasses a wide spectrum — no single design choice works for all users; provide options and settings where possible"
+        ]
+      }
+    }
+  }
+}

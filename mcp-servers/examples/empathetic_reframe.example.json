@@ -1,0 +1,36 @@
+{
+  "request": {
+    "id": "ec-example-1",
+    "type": "invoke",
+    "payload": {
+      "action": "empathetic_reframe",
+      "input": {
+        "message": "We cannot process your refund. As per our policy you should have submitted within 30 days.",
+        "tone": "warm"
+      }
+    }
+  },
+  "response": {
+    "id": "ec-example-1",
+    "ok": true,
+    "data": {
+      "action": "empathetic_reframe",
+      "boundaryNotice": "No manipulation or deceptive empathy",
+      "uncertainty": "low",
+      "assumptions": [
+        "Tone: warm",
+        "Reframe applies pattern-based rules — human review recommended for high-stakes communications",
+        "Does not modify factual content or commitments"
+      ],
+      "output": {
+        "reframed_message": "what we are able to do is process your refund. To make sure things go smoothly for you you should have submitted within 30 days.",
+        "rationale": [
+          "Replaced restrictive 'we cannot' to possibility-focused 'what we can do'",
+          "Converted restrictive 'we cannot' to possibility-focused 'what we can do'",
+          "Softened formal policy references to user-benefit framing"
+        ],
+        "escalation_guidance": []
+      }
+    }
+  }
+}

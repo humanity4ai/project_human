@@ -24,21 +24,38 @@ Not everything belongs in an issue tracker. Use the right channel:
 
 ---
 
+## Branch Model
+
+Humanity4AI uses a two-tier branching strategy:
+
+```
+feature/* ──► development  (all contributor code — this is the default branch)
+                  │
+                  ▼  planned releases only, by @simonplmak-cloud or @humanity4ai
+                main  (stable, production-ready releases)
+```
+
+**All pull requests from contributors must target `development`.** Pull requests targeting `main` are restricted to maintainers and represent planned releases only.
+
+---
+
 ## Contribution Flow
 
 ```
 Have an idea?
   └─► Discuss first in GitHub Discussions (Skill Ideas or Integration Help)
         └─► Ready to build? Open an Issue (skill-proposal or integration-request)
-              └─► Fork the repo and create a branch
+              └─► Fork the repo and create a branch from development
                     └─► Implement your changes
                           └─► Run: pnpm check && pnpm evals && pnpm test
-                                └─► Open a Pull Request (use the PR template)
+                                └─► Open a PR targeting development (use the PR template)
                                       └─► CI runs automatically
                                             └─► Maintainer reviews
-                                                  └─► Approved + CI green = Merged
+                                                  └─► Approved + CI green = Merged into development
                                                         └─► Branch auto-deleted
 ```
+
+When the `development` branch is ready for release, maintainers open a promotion PR from `development → main`. See `docs/release-process.md` for the full process.
 
 ---
 
@@ -192,24 +209,29 @@ Valid category slugs: `accessibility`, `emotional-safety`, `communication`, `cog
 ## Full Workflow
 
 ```bash
-# 1. Fork and create a branch
+# 1. Fork the repo, then clone your fork
+git clone https://github.com/<your-username>/project_human.git
+cd project_human
+
+# 2. Create a branch from development (the default branch)
+git checkout development
 git checkout -b add-my-skill
 
-# 2. Copy the template
+# 3. Copy the template
 cp -r templates/skill skills/my-skill-name
 
-# 3. Implement your changes
+# 4. Implement your changes
 # ... edit skill files, add handler, add schemas ...
 
-# 4. Regenerate contracts if you added a new action
+# 5. Regenerate contracts if you added a new action
 pnpm --filter @humanity4ai/mcp-servers build:contracts
 
-# 5. Run all checks — all must pass
+# 6. Run all checks — all must pass
 pnpm check
 pnpm evals
 pnpm test
 
-# 6. Open a pull request — use the template and fill every section
+# 7. Open a pull request targeting development — fill every section of the template
 ```
 
 All three checks must pass and appear in the PR test evidence section before a review begins.
@@ -229,13 +251,25 @@ EVAL_REPORT=1 pnpm evals
 
 ## Branch Protection
 
-The `main` branch is protected:
+Both `development` and `main` are protected branches.
+
+### `development` (default — target all contributor PRs here)
 
 - Direct pushes are blocked
-- 1 approving review is required
-- CODEOWNERS review is required for safety-critical paths
-- CI (`pnpm check`, `pnpm build`, `pnpm evals`, `pnpm test`) must pass
-- Branch must be up to date with `main` before merge
-- Force pushes are blocked
+- 1 approving review required
+- CODEOWNERS review required for safety-critical paths
+- CI must pass (`pnpm check`, `pnpm build`, `pnpm evals`, `pnpm test`)
+- Branch must be up to date before merge
+- Force pushes blocked
 
-Merged branches are auto-deleted. Keep your branches short-lived and focused.
+### `main` (stable releases — maintainers only)
+
+- Only `@simonplmak-cloud` and `@humanity4ai` may open PRs targeting `main`
+- 1 approving review required
+- CI re-runs as a final release gate (Option A)
+- Force pushes blocked
+- Direct commits blocked for everyone
+
+Merged branches are auto-deleted. Keep feature branches short-lived and focused.
+
+See `docs/release-process.md` for how `development` is promoted to `main`.
