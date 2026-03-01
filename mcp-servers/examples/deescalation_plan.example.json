@@ -1,0 +1,43 @@
+{
+  "request": {
+    "id": "cde-example-1",
+    "type": "invoke",
+    "payload": {
+      "action": "deescalation_plan",
+      "input": {
+        "situation": "Customer is very angry about a billing error and threatening to escalate publicly on social media.",
+        "intensity": "high"
+      }
+    }
+  },
+  "response": {
+    "id": "cde-example-1",
+    "ok": true,
+    "data": {
+      "action": "deescalation_plan",
+      "boundaryNotice": "No coercive tactics",
+      "uncertainty": "medium",
+      "assumptions": [
+        "Intensity level: high",
+        "Steps are general communication patterns — not a substitute for trained mediation",
+        "Safety-critical situations require qualified personnel"
+      ],
+      "output": {
+        "plan": [
+          "Pause and allow a moment of silence before responding — rushing escalates tension",
+          "Acknowledge the emotion without judgment: 'I can hear this is important to you'",
+          "Ask one clarifying question to show genuine interest: 'Can you help me understand what you need most right now?'",
+          "Validate the concern explicitly before moving to solutions: 'That sounds genuinely frustrating'",
+          "Offer a structured break: 'Let us take 10 minutes and come back to this — what time works for you?'",
+          "Narrow the scope: 'Let us focus on one issue at a time — what is the most urgent thing for you right now?'",
+          "End with a clear, agreed next step and timeline — ambiguity sustains conflict"
+        ],
+        "risk_notes": [
+          "High intensity: avoid defending positions or escalating with counter-arguments",
+          "High intensity: if safety is a concern, follow your organisation's safety escalation procedure immediately",
+          "High intensity: consider involving a neutral third party or mediator"
+        ]
+      }
+    }
+  }
+}

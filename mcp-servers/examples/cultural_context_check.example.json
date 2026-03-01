@@ -1,0 +1,39 @@
+{
+  "request": {
+    "id": "cs-example-1",
+    "type": "invoke",
+    "payload": {
+      "action": "cultural_context_check",
+      "input": {
+        "message": "Hey guys, last chance to sign up before the deadline!",
+        "audience": "enterprise customers",
+        "region": "Japan"
+      }
+    }
+  },
+  "response": {
+    "id": "cs-example-1",
+    "ok": true,
+    "data": {
+      "action": "cultural_context_check",
+      "boundaryNotice": "Context-sensitive recommendations with uncertainty disclosure",
+      "uncertainty": "high",
+      "assumptions": [
+        "Audience: enterprise customers",
+        "Region: Japan",
+        "Cultural guidance represents tendencies, not rules — context always varies",
+        "Human localisation review is strongly recommended for production content"
+      ],
+      "output": {
+        "adapted_message": "[Adapted for enterprise customers audience, Japan]:  last chance to sign up before the deadline!",
+        "notes": [
+          "Hierarchy and collective framing are typically valued — address the group benefit before individual benefit",
+          "Indirect communication is often preferred — soften direct refusals or negative framing",
+          "Colours: red may be positive (luck) rather than negative (error) in East Asian contexts",
+          "Formal titles and organisation names carry significant weight — use them"
+        ],
+        "uncertainty": "Cultural guidance represents tendencies, not rules — context always varies"
+      }
+    }
+  }
+}

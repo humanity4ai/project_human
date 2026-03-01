@@ -1,0 +1,40 @@
+{
+  "request": {
+    "id": "wcag-example-1",
+    "type": "invoke",
+    "payload": {
+      "action": "wcagaaa_check",
+      "input": {
+        "target": "https://example.com/signup",
+        "level": "AAA",
+        "context": "User registration form"
+      }
+    }
+  },
+  "response": {
+    "id": "wcag-example-1",
+    "ok": true,
+    "data": {
+      "action": "wcagaaa_check",
+      "boundaryNotice": "Compliance guidance only; does not replace legal review",
+      "uncertainty": "medium",
+      "assumptions": [
+        "Target: https://example.com/signup",
+        "Compliance level: WCAG 2.2 AAA",
+        "Context: User registration form",
+        "Automated checks cover ~40% of WCAG criteria — manual review required for full compliance"
+      ],
+      "output": {
+        "summary": "Found 5 potential issues. Manual audit required for full WCAG 2.2 AAA compliance.",
+        "findings": [
+          { "severity": "high", "issue": "Missing skip navigation link", "fix": "Add <a href='#main-content' class='skip-link'>Skip to main content</a> as first focusable element" },
+          { "severity": "high", "issue": "Text contrast may fall below AAA threshold (7:1)", "fix": "Raise foreground/background contrast ratio to at least 7:1 for normal text" },
+          { "severity": "medium", "issue": "Form inputs should include visible labels", "fix": "Add <label for='field-id'> or aria-labelledby pointing to visible label element" },
+          { "severity": "medium", "issue": "Images and icons require descriptive alt text", "fix": "Audit all <img> elements — add meaningful alt text or alt='' for decorative usage" },
+          { "severity": "low", "issue": "External links should indicate they open in a new tab", "fix": "Add rel='noopener noreferrer' and a screen-reader announcement such as '(opens in new tab)'" }
+        ],
+        "next_step": "Run manual keyboard-only navigation and screen reader test against each finding"
+      }
+    }
+  }
+}

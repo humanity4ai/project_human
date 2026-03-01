@@ -1,0 +1,35 @@
+{
+  "request": {
+    "id": "dsc-example-1",
+    "type": "invoke",
+    "payload": {
+      "action": "rewrite_depression_sensitive_content",
+      "input": {
+        "text": "You failed to complete your application. You must try again.",
+        "mode": "rewrite",
+        "domain": "onboarding"
+      }
+    }
+  },
+  "response": {
+    "id": "dsc-example-1",
+    "ok": true,
+    "data": {
+      "action": "rewrite_depression_sensitive_content",
+      "boundaryNotice": "Non-clinical UX/content guidance only",
+      "uncertainty": "medium",
+      "assumptions": [
+        "Mode: rewrite",
+        "Domain: onboarding",
+        "Pattern matching is heuristic — human review recommended for production content",
+        "Non-clinical tool — does not assess clinical risk of content"
+      ],
+      "output": {
+        "result": "let's complete your application. you can try again.",
+        "safety_flags": ["Shame/blame language detected: \"you failed\"", "Shame/blame language detected: \"you must\""],
+        "pattern_count": 2,
+        "review_recommended": true
+      }
+    }
+  }
+}

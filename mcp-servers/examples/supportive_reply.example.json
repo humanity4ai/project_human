@@ -1,0 +1,34 @@
+{
+  "request": {
+    "id": "sc-example-1",
+    "type": "invoke",
+    "payload": {
+      "action": "supportive_reply",
+      "input": {
+        "message": "I feel overwhelmed and I don't know what to do.",
+        "risk_level": "medium"
+      }
+    }
+  },
+  "response": {
+    "id": "sc-example-1",
+    "ok": true,
+    "data": {
+      "action": "supportive_reply",
+      "boundaryNotice": "Non-clinical support; must provide escalation cues when risk is elevated",
+      "uncertainty": "medium",
+      "assumptions": [
+        "Risk level: medium (self-reported or system-assessed)",
+        "Non-clinical support only — not a substitute for professional mental health care"
+      ],
+      "output": {
+        "reply": "I hear you, and I am glad you reached out. It makes sense that things feel heavy right now. You do not have to have it all figured out — let us focus on one small step at a time.",
+        "escalation_guidance": [
+          "If things feel harder over time, consider speaking with a mental health professional",
+          "You can contact a support line any time, even just to talk"
+        ],
+        "boundaries_notice": "Non-clinical support; must provide escalation cues when risk is elevated"
+      }
+    }
+  }
+}

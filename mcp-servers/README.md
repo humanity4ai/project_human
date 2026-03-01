@@ -45,6 +45,32 @@ import { actionContracts, validateContracts } from "@humanity4ai/mcp-servers";
 const contracts = validateContracts(actionContracts);
 ```
 
+## Examples
+
+The `examples/` directory contains one complete request/response pair per action:
+
+| File | Action |
+|------|--------|
+| `examples/wcagaaa_check.example.json` | `wcagaaa_check` |
+| `examples/rewrite_depression_sensitive_content.example.json` | `rewrite_depression_sensitive_content` |
+| `examples/supportive_reply.example.json` | `supportive_reply` |
+| `examples/cognitive_accessibility_audit.example.json` | `cognitive_accessibility_audit` |
+| `examples/cultural_context_check.example.json` | `cultural_context_check` |
+| `examples/deescalation_plan.example.json` | `deescalation_plan` |
+| `examples/empathetic_reframe.example.json` | `empathetic_reframe` |
+| `examples/grief_support_response.example.json` | `grief_support_response` |
+| `examples/neurodiversity_design_check.example.json` | `neurodiversity_design_check` |
+| `examples/age_inclusive_design_check.example.json` | `age_inclusive_design_check` |
+
+Each file follows the structure:
+
+```json
+{
+  "request":  { "id": "...", "type": "invoke", "payload": { "action": "...", "input": { ... } } },
+  "response": { "id": "...", "ok": true, "data": { "action": "...", "boundaryNotice": "...", "uncertainty": "...", "assumptions": [...], "output": { ... } } }
+}
+```
+
 ## Planned v0.2+
 
 - Runtime adapters for OpenCode, Claude Code, and Copilot

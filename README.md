@@ -113,10 +113,46 @@ See implementation notes in `docs/integrations.md` and `docs/agent-adapters.md`.
 
 ## Contribute in 10 Minutes
 
-1. Pick one starter task in `docs/good-first-issues.md`.
-2. Copy `templates/skill/` for new skill work.
-3. Run `pnpm check && pnpm evals`.
-4. Open a PR using `.github/pull_request_template.md`.
+**Step 1 — Pick a task**
+
+Browse [open starter issues](https://github.com/humanity4ai/project_human/issues/new/choose) or see `docs/good-first-issues.md` for curated tasks.
+
+**Step 2 — Fork, branch, and implement**
+
+```bash
+# Clone your fork
+git clone https://github.com/<your-username>/project_human.git
+cd project_human
+
+# Branch from development (the default branch)
+git checkout development
+git checkout -b my-contribution
+
+# Copy the skill template if adding a new skill
+cp -r templates/skill skills/my-skill-name
+
+# Run all checks before opening a PR
+pnpm check && pnpm evals && pnpm test
+```
+
+**Step 3 — Open a PR targeting `development`**
+
+```bash
+gh pr create \
+  --base development \
+  --title "Add: my contribution" \
+  --body "Closes #<issue-number>"
+```
+
+Or open via GitHub UI — the default base branch is `development`.
+
+**Troubleshooting**
+
+| Error | Fix |
+|-------|-----|
+| `ERR_PNPM_OUTDATED_LOCKFILE` | Run `pnpm install` (without `--frozen-lockfile`) to update the lockfile, then commit `pnpm-lock.yaml` |
+| `pnpm: command not found` | Run `npm install -g pnpm` |
+| `pnpm evals` fails | Run `EVAL_REPORT=1 pnpm evals` — the report at `evals/reports/latest.md` shows which gates failed and why |
 
 ## Traction and Roadmap
 

@@ -1,0 +1,45 @@
+{
+  "request": {
+    "id": "aid-example-1",
+    "type": "invoke",
+    "payload": {
+      "action": "age_inclusive_design_check",
+      "input": {
+        "flow_description": "Online banking password reset flow with CAPTCHA, SMS verification code, and a 5-minute session timeout.",
+        "age_groups": ["older adults", "seniors"]
+      }
+    }
+  },
+  "response": {
+    "id": "aid-example-1",
+    "ok": true,
+    "data": {
+      "action": "age_inclusive_design_check",
+      "boundaryNotice": "Inclusive design guidance only",
+      "uncertainty": "low",
+      "assumptions": [
+        "Age groups: older adults, seniors",
+        "Recommendations are design patterns — individual ability varies within any age group",
+        "No age stereotypes are intended — guidance is based on design research"
+      ],
+      "output": {
+        "recommendations": [
+          "Minimum touch target size of 44x44px — larger is better for reduced motor precision",
+          "Avoid time-limited sessions or actions — older users may need more time to read and decide",
+          "Provide large, high-contrast text options — default minimum 18px for body text",
+          "Use plain language and avoid jargon, acronyms, and digital-native shorthand",
+          "Offer telephone or in-person alternatives alongside digital flows — not everyone defaults to digital",
+          "Add explicit confirmation steps before irreversible financial actions",
+          "Display amounts clearly with currency and totals — avoid ambiguity"
+        ],
+        "access_notes": [
+          "Motor, vision, and cognitive changes with age vary widely — do not assume impairment; provide options",
+          "Trust signals matter more for older users — display security indicators, human support contacts, and clear data policies",
+          "Financial flows require the highest trust and clarity standards across all age groups",
+          "Age is not a homogeneous category — test with real users from each target group",
+          "Avoid ageist assumptions in language and imagery — design for capability, not limitation"
+        ]
+      }
+    }
+  }
+}

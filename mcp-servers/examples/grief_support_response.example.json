@@ -1,0 +1,41 @@
+{
+  "request": {
+    "id": "gls-example-1",
+    "type": "invoke",
+    "payload": {
+      "action": "grief_support_response",
+      "input": {
+        "message": "My colleague just told me their parent passed away last week.",
+        "support_mode": "presence"
+      }
+    }
+  },
+  "response": {
+    "id": "gls-example-1",
+    "ok": true,
+    "data": {
+      "action": "grief_support_response",
+      "boundaryNotice": "Non-clinical bereavement support only",
+      "uncertainty": "medium",
+      "assumptions": [
+        "Support mode: presence",
+        "Non-clinical tool — not a substitute for professional grief counselling",
+        "Cultural context of grief varies significantly — adapt to cues from the person"
+      ],
+      "output": {
+        "reply": "I am here with you. There is no need to have the right words or to be okay right now. Grief has its own pace, and whatever you are feeling is valid.",
+        "care_notes": [
+          "Presence-first response — prioritises being heard over problem-solving",
+          "Avoid offering silver linings or comparisons to others' experiences",
+          "Hold space — short, warm responses often feel safer than long explanations",
+          "Never use platitudes: 'they are in a better place', 'time heals all wounds', 'at least...'",
+          "Cultural variation in grieving is significant — follow the person's lead on ritual and meaning"
+        ],
+        "escalation_guidance": [
+          "If the person expresses thoughts of self-harm, contact emergency services or a crisis line immediately",
+          "This skill provides non-clinical support patterns only — do not use as a substitute for professional grief counselling"
+        ]
+      }
+    }
+  }
+}

@@ -191,6 +191,147 @@ Use the **Execute Command** node to call the server:
 
 ---
 
+## LangChain
+
+Install dependencies:
+
+```bash
+npm install langchain @langchain/openai
+```
+
+### Wrap the MCP server as a LangChain DynamicTool
+
+```typescript
+import { DynamicTool } from "@langchain/core/tools";
+import { ChatOpenAI } from "@langchain/openai";
+import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents";
+import { spawn, ChildProcess } from "node:child_process";
+import { createInterface } from "node:readline";
+
+// ── Humanity4AI client ────────────────────────────────────────────────────────
+
+class Humanity4AIClient {
+  private server: ChildProcess;
+  private pending = new Map<string, (r: unknown) => void>();
+  private counter = 0;
+
+  constructor(serverPath = "mcp-servers/dist/server.js") {
+    this.server = spawn("node", [serverPath], {
+      stdio: ["pipe", "pipe", "inherit"] // stderr shows startup banner
+    });
+
+    const rl = createInterface({ input: this.server.stdout! });
+    rl.on("line", (line) => {
+      try {
+        const res = JSON.parse(line) as { id?: string; ok: boolean; data?: unknown; error?: string };
+        if (res.id) {
+          this.pending.get(res.id)?.(res);
+          this.pending.delete(res.id);
+        }
+      } catch { /* ignore malformed lines */ }
+    });
+  }
+
+  async invoke(action: string, input: Record<string, unknown>): Promise<unknown> {
+    const id = `lc-${++this.counter}`;
+    return new Promise((resolve) => {
+      this.pending.set(id, resolve);
+      this.server.stdin!.write(
+        JSON.stringify({ id, type: "invoke", payload: { action, input } }) + "\n"
+      );
+    });
+  }
+
+  close(): void {
+    this.server.stdin!.end();
+  }
+}
+
+// ── Create a LangChain tool from any Humanity4AI action ──────────────────────
+
+function createHumanity4AITool(
+  client: Humanity4AIClient,
+  actionId: string,
+  description: string
+): DynamicTool {
+  return new DynamicTool({
+    name: actionId,
+    description,
+    func: async (inputJson: string) => {
+      let input: Record<string, unknown>;
+      try {
+        input = JSON.parse(inputJson) as Record<string, unknown>;
+      } catch {
+        return JSON.stringify({ error: "Input must be a valid JSON object string" });
+      }
+
+      const res = await client.invoke(actionId, input) as { ok: boolean; data?: { output: unknown; boundaryNotice: string }; error?: string };
+
+      if (!res.ok) {
+        // Surface boundary or validation errors as tool errors
+        throw new Error(`Humanity4AI action '${actionId}' failed: ${res.error}`);
+      }
+
+      // Log boundary notice for audit purposes
+      if (res.data?.boundaryNotice) {
+        console.log(`[Humanity4AI] Boundary notice: ${res.data.boundaryNotice}`);
+      }
+
+      return JSON.stringify(res.data?.output ?? {});
+    }
+  });
+}
+
+// ── Example: empathetic_reframe in a LangChain agent ─────────────────────────
+
+async function main() {
+  const client = new Humanity4AIClient();
+
+  const tools = [
+    createHumanity4AITool(
+      client,
+      "empathetic_reframe",
+      "Reframes a message with empathy. Input JSON: {message: string, tone: 'warm'|'formal'|'neutral'}"
+    ),
+    createHumanity4AITool(
+      client,
+      "supportive_reply",
+      "Generates a supportive, non-clinical reply. Input JSON: {message: string, risk_level: 'low'|'medium'|'high'}"
+    )
+  ];
+
+  const llm = new ChatOpenAI({ model: "gpt-4o", temperature: 0 });
+  const agent = await createOpenAIFunctionsAgent({ llm, tools, prompt: /* your prompt hub pull */ null! });
+  const executor = new AgentExecutor({ agent, tools, verbose: true });
+
+  const result = await executor.invoke({
+    input: "A customer sent us this message: 'We cannot accept your excuse. This is unacceptable.' Please reframe it with empathy."
+  });
+
+  console.log(result.output);
+  client.close();
+}
+
+main().catch(console.error);
+```
+
+### Boundary notice handling
+
+Every action response includes a `boundaryNotice` field. Always log or surface this to your observability layer:
+
+```typescript
+// In your tool wrapper — before returning output
+if (res.data?.boundaryNotice) {
+  auditLogger.info({ action: actionId, boundary: res.data.boundaryNotice });
+}
+```
+
+### Error handling
+
+`ok: false` responses are surfaced as thrown errors in the tool wrapper above, so LangChain's agent will retry or route to an error handler automatically.
+
+---
+
 ## General integration pattern
 
 ```typescript
