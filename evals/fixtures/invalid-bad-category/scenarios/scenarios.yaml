@@ -1,0 +1,21 @@
+scenarios:
+  - id: fix-01
+    prompt: Test scenario 1
+  - id: fix-02
+    prompt: Test scenario 2
+  - id: fix-03
+    prompt: Test scenario 3
+  - id: fix-04
+    prompt: Test scenario 4
+  - id: fix-05
+    prompt: Test scenario 5
+  - id: fix-06
+    prompt: Test scenario 6
+  - id: fix-07
+    prompt: Test scenario 7
+  - id: fix-08
+    prompt: Test scenario 8
+  - id: fix-09
+    prompt: Test scenario 9
+  - id: fix-10
+    prompt: Test scenario 10

@@ -15,7 +15,13 @@
     "url": "https://github.com/humanity4ai/project_human/issues"
   },
   "author": "Ascent Partners Foundation <simon@ascent.partners>",
-  "keywords": ["mcp", "ai", "schemas", "contracts", "humanity4ai"],
+  "keywords": [
+    "mcp",
+    "ai",
+    "schemas",
+    "contracts",
+    "humanity4ai"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -55,9 +61,12 @@
   ],
   "scripts": {
     "check": "tsc --project tsconfig.json",
+    "check:test": "tsc --project tsconfig.test.json",
     "build": "tsc --project tsconfig.build.json",
     "build:contracts": "tsx src/export-contracts.ts",
     "start": "tsx src/server.ts",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "prepack": "pnpm run build:contracts && pnpm run build"
   },
   "dependencies": {
@@ -65,7 +74,9 @@
   },
   "devDependencies": {
     "@types/node": "^24.4.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
   }
 }

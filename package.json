@@ -11,6 +11,8 @@
     "check": "pnpm -r check",
     "build": "pnpm --filter @humanity4ai/mcp-servers build:contracts && pnpm --filter @humanity4ai/mcp-servers build",
     "evals": "pnpm --filter @humanity4ai/evals evals",
+    "test": "pnpm -r test",
+    "test:coverage": "pnpm -r test:coverage",
     "start:mcp": "pnpm --filter @humanity4ai/mcp-servers start"
   }
 }
