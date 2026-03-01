@@ -9,8 +9,13 @@ updates:
       # zod v4 is a breaking change — update manually after migration review
       - dependency-name: "zod"
         update-types: ["version-update:semver-major"]
-      # @types/node: stay on v22 LTS — v24+ breaks frozen-lockfile without manual update
+      # @types/node: stay on v22 LTS — major bumps break frozen-lockfile
       - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      # vitest v4 is a major version — update manually after test API review
+      - dependency-name: "vitest"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@vitest/coverage-v8"
         update-types: ["version-update:semver-major"]
 
   - package-ecosystem: npm
@@ -22,6 +27,10 @@ updates:
       - dependency-name: "zod"
         update-types: ["version-update:semver-major"]
       - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "vitest"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@vitest/coverage-v8"
         update-types: ["version-update:semver-major"]
 
   - package-ecosystem: github-actions
