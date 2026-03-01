@@ -12,6 +12,7 @@ Add at least 10 multilingual prompts to `skills/supportive-conversation/scenario
 
 - Issue: https://github.com/humanity4ai/project_human/issues/11
 - Labels: `needs-scenarios`, `help wanted`
+- Manifesto principles: dignity and non-exploitation; open community implementation
 - Key constraint: all scenarios must preserve the non-clinical, escalation-aware boundary
 
 ---
@@ -22,6 +23,7 @@ Review boundary wording, `SKILL.md` anti-patterns, and rubric examples for 4 ski
 
 - Issue: https://github.com/humanity4ai/project_human/issues/3
 - Labels: `help wanted`
+- Manifesto principles: honest uncertainty and explicit limits; boundaries over performance theater
 - Key constraint: no clinical or legal advice language introduced
 
 ---
@@ -32,7 +34,18 @@ Add 5+ new edge-case and ambiguity scenarios to 4 skills: `cultural-sensitivity`
 
 - Issue: https://github.com/humanity4ai/project_human/issues/4
 - Labels: `needs-scenarios`, `help wanted`
+- Manifesto principles: honest uncertainty and explicit limits; reproducible quality gates
 - Key constraint: scenarios must be realistic, respectful, and non-clinical
+
+---
+
+## Manifesto-aligned Starter Ideas
+
+- Manifesto coverage audit across all 10 skills (docs + rubric links)
+- Improve uncertainty signaling examples in supportive and conflict scenarios
+- Add contributor-facing checklist for manifesto-related PRs and tests
+
+Use this implementation map when proposing issues: `docs/manifesto-roadmap-map.md`
 
 ---
 

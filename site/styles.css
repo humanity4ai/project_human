@@ -84,6 +84,18 @@ h1 {
   padding: 0 1rem 3rem;
 }
 
+.manifesto {
+  background: linear-gradient(135deg, #f0fdfa, #eff6ff);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.1rem;
+  margin-bottom: 1.2rem;
+}
+
+.manifesto p {
+  color: var(--muted);
+}
+
 .grid.three {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

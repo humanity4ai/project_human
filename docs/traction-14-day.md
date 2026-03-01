@@ -27,3 +27,13 @@ This plan is designed to convert visitors into contributors and integrators.
 - Demo post: one screenshot + one runnable command.
 - Skill post: problem, boundary, output example.
 - Community post: one issue link and expected impact.
+
+## KPI Tracker
+
+Track these metrics weekly during manifesto activation:
+
+- First-time contributors (count)
+- New `help wanted` issues opened and closed
+- Discussion -> issue -> PR conversion rate
+- Median time to first maintainer response
+- Manifesto-mapped issue completion count

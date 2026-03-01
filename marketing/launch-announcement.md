@@ -14,6 +14,15 @@ Today we are launching Humanity4AI, an open community project to make humane, un
 
 Human behavior is contextual and uncertain. Humanity4AI helps agents handle that reality with transparent assumptions, safety boundaries, and testable outputs.
 
+## Manifesto and community call
+
+We have now published our manifesto, **The Soul of New Machines: Last Epigone**, to make our social and safety commitments explicit.
+
+- Read: `docs/manifesto.md`
+- Implement it with us: `docs/manifesto-roadmap-map.md`
+- Join the community call thread: https://github.com/humanity4ai/project_human/issues/41
+- Pick a `help wanted` issue: https://github.com/humanity4ai/project_human/issues?q=is%3Aopen+label%3A%22help+wanted%22
+
 ## Get involved
 
 - Read: `README.md`
