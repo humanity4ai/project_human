@@ -1,17 +1,32 @@
+---
+name: neurodiversity-aware-design
+description: Improve digital experiences for diverse cognitive processing. Use when user asks to 'make ADHD-friendly', 'autism-friendly design', 'sensory-friendly', 'reduce sensory overload'.
+version: 0.2.0
+tags:
+  - neurodiversity
+  - ADHD
+  - autism
+  - sensory
+---
+
 # Neurodiversity-Aware Design
 
 ## Purpose
 
-Improve digital experiences for diverse cognitive processing and sensory profiles.
+Improves digital experiences for diverse cognitive processing and sensory profiles.
+
+## When to Use
+
+- "Make ADHD-friendly"
+- "Autism-friendly design"
+- "Reduce sensory overload"
 
 ## Boundaries
 
-- Design and communication guidance only.
-- No diagnostic claims about users.
+- Design guidance only
+- No diagnostic claims
 
-## Workflow
+## Resources
 
-1. Identify sensory and cognitive load risks.
-2. Recommend alternatives for focus, pacing, and predictability.
-3. Document tradeoffs and optional variants.
-4. Return prioritized design actions.
+- **[references/standards.md](references/standards.md)**
+- **[references/patterns.md](references/patterns.md)**

@@ -1,17 +1,20 @@
+---
+name: cultural-sensitivity
+description: Adapt responses to reduce cultural bias. Use when user asks to 'make culturally sensitive', 'adapt for culture', 'reduce cultural bias'.
+version: 0.2.0
+tags:
+  - cultural
+  - sensitivity
+  - inclusion
+---
+
 # Cultural Sensitivity
 
 ## Purpose
 
-Adapt responses and UX copy to reduce cultural bias and improve contextual appropriateness.
+Adapt responses and UX copy to reduce cultural bias.
 
-## Boundaries
+## Resources
 
-- No stereotyping or essentialism.
-- Must disclose uncertainty where cultural context is incomplete.
-
-## Workflow
-
-1. Identify audience and region constraints.
-2. Detect culturally loaded expressions.
-3. Propose adapted alternatives with rationale.
-4. Include uncertainty notes and optional variants.
+- **[references/standards.md](references/standards.md)**
+- **[references/patterns.md](references/patterns.md)**

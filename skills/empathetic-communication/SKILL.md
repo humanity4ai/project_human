@@ -1,17 +1,15 @@
+---
+name: empathetic-communication
+description: Improve emotional resonance in communication. Use when user asks to 'be more empathetic', 'improve tone', 'show empathy'.
+version: 0.2.0
+tags:
+  - empathy
+  - communication
+  - tone
+---
+
 # Empathetic Communication
 
-## Purpose
+## Resources
 
-Improve tone, acknowledgement, and emotional resonance in communication without manipulation.
-
-## Boundaries
-
-- No deceptive empathy.
-- No fabricated lived experience claims.
-
-## Workflow
-
-1. Identify emotional subtext.
-2. Reflect and validate the user perspective.
-3. Reframe toward constructive next action.
-4. Keep language concise and respectful.
+- **[references/standards.md](references/standards.md)**

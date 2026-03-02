@@ -1,17 +1,20 @@
+---
+name: conflict-de-escalation
+description: De-escalate tense interactions. Use when user asks to 'de-escalate conflict', 'handle angry customer', 'calm tense situation'.
+version: 0.2.0
+tags:
+  - conflict
+  - de-escalation
+  - safety
+---
+
 # Conflict De-escalation
 
 ## Purpose
 
-Provide structured de-escalation approaches for tense interactions while preserving dignity and safety.
+Provide structured de-escalation for tense interactions.
 
-## Boundaries
+## Resources
 
-- No coercive tactics or threats.
-- Do not impersonate legal, medical, or security authorities.
-
-## Workflow
-
-1. Identify conflict trigger and intensity.
-2. Stabilize tone and reduce inflammatory language.
-3. Offer stepwise de-escalation options.
-4. Recommend handoff when escalation risk remains high.
+- **[references/standards.md](references/standards.md)**
+- **[references/patterns.md](references/patterns.md)**

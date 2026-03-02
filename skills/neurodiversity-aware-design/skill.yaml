@@ -1,19 +1,10 @@
 name: neurodiversity-aware-design
-version: 0.1.0
+version: 0.2.0
 status: active
-category: neurodiversity
-summary: Design guidance for neurodiversity-aware interfaces and workflows
-boundaries:
-  - No diagnostic claims
-actions:
-  - id: neurodiversity_design_check
-    input_schema: ../../mcp-servers/schemas/neurodiversity-aware-design.input.json
-    output_schema: ../../mcp-servers/schemas/neurodiversity-aware-design.output.json
-uncertainty:
-  confidence: medium
-  contested: true
-  cultural_scope: global
+tags:
+  - neurodiversity
+  - ADHD
+  - autism
+  - sensory
 provenance:
-  sources:
-    - internal-curation
   license: MIT

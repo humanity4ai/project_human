@@ -1,19 +1,8 @@
 name: empathetic-communication
-version: 0.1.0
+version: 0.2.0
 status: active
-category: communication
-summary: Empathy-first reframing with strong anti-manipulation boundary
-boundaries:
-  - No manipulative emotional framing
-actions:
-  - id: empathetic_reframe
-    input_schema: ../../mcp-servers/schemas/empathetic-communication.input.json
-    output_schema: ../../mcp-servers/schemas/empathetic-communication.output.json
-uncertainty:
-  confidence: medium
-  contested: true
-  cultural_scope: global
+tags:
+  - empathy
+  - communication
 provenance:
-  sources:
-    - internal-curation
   license: MIT

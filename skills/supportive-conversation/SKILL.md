@@ -1,17 +1,15 @@
+---
+name: supportive-conversation
+description: Generate supportive responses with safety boundaries. Use when user asks to 'be supportive', 'help with emotional support', 'provide encouragement'.
+version: 0.2.0
+tags:
+  - support
+  - conversation
+  - empathy
+---
+
 # Supportive Conversation
 
-## Purpose
+## Resources
 
-Generate empathetic, non-clinical supportive responses with clear safety boundaries and escalation guidance.
-
-## Boundaries
-
-- Non-clinical emotional support only.
-- No diagnosis, treatment, or emergency replacement.
-
-## Workflow
-
-1. Detect emotional signal and risk level.
-2. Reflect and validate without overclaiming.
-3. Offer practical, low-pressure next steps.
-4. Include escalation options when risk is elevated.
+- **[references/standards.md](references/standards.md)**

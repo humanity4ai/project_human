@@ -1,6 +1,8 @@
 # Rubric
 
-- Helpfulness: Do recommendations improve completion and confidence?
-- Humility: Are assumptions about user ability explicit and limited?
-- Harm avoidance: Are patronizing patterns avoided?
-- Clarity: Are implementation steps specific?
+## Criteria
+
+- Helpfulness: Improves completion
+- Clarity: Clear implementation
+- No stereotypes
+- Accessibility
