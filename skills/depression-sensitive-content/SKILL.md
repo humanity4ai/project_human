@@ -157,3 +157,181 @@ When uncertain:
 - Level 1: Metadata (name, description) - Always loaded at startup
 - Level 2: SKILL.md body - Loaded when skill triggers
 - Level 3: references/ and scripts/ - Loaded on demand
+
+## Language Guidelines
+
+### Person-First vs. Identity-First
+
+**Person-First** (generally preferred):
+- "person living with depression"
+- "individual experiencing anxiety"
+- "someone with bipolar disorder"
+
+**Identity-First** (some prefer—respect both):
+- "depressed person" (if they use this)
+- "autistic person" (if they use this)
+- "disabled person" (if they use this)
+
+**Best Practice**: When in doubt, ask. If writing for a general audience, person-first is the safer default.
+
+### Terms to Avoid
+
+| Avoid | Preferred |
+|-------|-----------|
+| "committed suicide" | "died by suicide" or "took their own life" |
+| "suicide victim" | "person who died by suicide" |
+| "mentally ill" (noun) | "person with mental illness" |
+| "suffering from" | "living with" or "experiencing" |
+| "paranoid schizophrenic" | "person with schizophrenia" |
+| "high-functioning" | Be specific about abilities |
+| "borderline" | Specify the trait |
+| "addict" | "person with substance use disorder" |
+| "clean" (drug tests) | "negative" |
+| "dirty" (drug tests) | "positive" |
+
+### Crisis Language
+
+**Required** when content discusses suicide or self-harm:
+- Use "died by suicide" not "committed suicide"
+- Use "suicidal thoughts" not "suicidal tendencies"
+- Use "person with suicidal ideation" not "suicidal person"
+- Include crisis resources: 988, Crisis Text Line (741741)
+
+## Cognitive Accessibility
+
+### Sentence Structure
+- Keep sentences under 20 words when possible
+- Use active voice
+- One idea per sentence
+- Break long paragraphs into shorter ones
+
+### Word Choice
+- Avoid jargon and technical terms
+- Use common, everyday words
+- Define abbreviations on first use
+- Avoid idioms and slang that may confuse
+
+### Formatting
+- Use clear headings
+- Use bullet points for lists
+- Use white space generously
+- Consider accessibility (screen reader friendly)
+
+## Examples (Extended)
+
+### Example 1: Patient Documentation
+**Input**: "The depressed patient showed poor compliance with treatment."
+
+**Output**: "The person living with depression found it challenging to follow the treatment plan."
+
+**Why it works**: Person-first language respects dignity. "Found it challenging" is less judgmental than "poor compliance."
+
+---
+
+### Example 2: Website Content
+**Input**: "Depression is a serious mental illness that affects millions of people worldwide and requires professional intervention. If you suffer from depression, you know how debilitating it can be."
+
+**Output**: "Depression affects millions of people. It can feel overwhelming, but support is available. If you're experiencing depression, you may find these resources helpful."
+
+**Why it works**: 
+- Shorter sentences reduce cognitive load
+- "It can feel overwhelming" validates experience
+- "If you're experiencing" uses person-first language
+- "Support is available" is empowering, not clinical
+
+---
+
+### Example 3: News Article
+**Input**: "She was a victim of severe depression and committed suicide last year."
+
+**Output**: "She was living with depression and died by suicide last year."
+
+**Why it works**: 
+- "Victim of depression" implies helplessness
+- "Committed suicide" can carry stigma (implies crime/sin)
+- Both alternatives are accurate and respectful
+
+---
+
+### Example 4: Product Copy
+**Input**: "Stop feeling sad and start living again!"
+
+**Output**: "Finding moments of joy is possible. Here's how we can support you."
+
+**Why it works**:
+- "Stop feeling sad" trivializes depression
+- "Start living again" implies they weren't living
+- New version acknowledges struggle while offering support
+
+---
+
+### Example 5: Form Fields
+**Input**: "Are you depressed? Yes / No"
+
+**Output**: "How have you been feeling lately? (Select all that apply)
+- Persistent sadness
+- Loss of interest
+- Difficulty sleeping
+- Fatigue
+- None of the above"
+
+**Why it works**:
+- Single "depressed?" question is reductive
+- Opens up nuance without labeling
+- Gives user control over how they describe themselves
+
+---
+
+## Common Patterns to Fix
+
+### 1. Language That Implies Choice
+**Bad**: "They chose to live on the streets despite mental illness."
+**Better**: "They experienced homelessness while living with mental illness."
+
+### 2. Language That Implies Weakness
+**Bad**: "He's just lazy and doesn't want to work."
+**Better**: "He may be experiencing barriers to employment. Let's explore support options."
+
+### 3. Language That Implies Hopelessness
+**Bad**: "The treatment didn't work. There's no hope."
+**Better**: "The treatment approach needs adjustment. Let's explore other options."
+
+### 4. Language That Shames
+**Bad**: "If you can't handle stress, you shouldn't be in this job."
+**Better**: "Let's explore accommodations that might help manage stress in this role."
+
+### 5. Language That Stereotypes
+**Bad**: "People with depression are unpredictable."
+**Better**: "Depression can affect people differently. Some may need flexibility in their work arrangements."
+
+---
+
+## Available Scripts
+
+- **`scripts/audit.py`** — Scans content for stigmatizing phrases
+- **`scripts/detect_harmful.py`** — Identifies harmful or dangerous language
+- **`scripts/detect_cognitive.py`** — Detects cognitive friction
+- **`scripts/classify_severity.py`** — Classifies issues by severity
+- **`scripts/suggest_alternatives.py`** — Generates alternative phrasing
+- **`scripts/validate_safe.py`** — Validates content is safe
+- **`scripts/categorize_issues.py`** — Categorizes issues by type
+- **`scripts/check_medical.py`** — Checks for medical claims
+- **`scripts/check_stigma.py`** — Checks for stigma patterns
+- **`scripts/suggest_gentle.py`** — Suggests gentler language
+- **`scripts/check_escalation.py`** — Checks escalation needs
+- **`scripts/generate_rationale.py`** — Generates rewrite rationale
+
+```bash
+# Audit content
+python3 scripts/audit.py --input content.txt --format json
+
+# Suggest alternatives
+python3 scripts/suggest_alternatives.py --input content.txt --format json
+
+# Check for stigma
+python3 scripts/check_stigma.py --input content.txt --format json
+```
+
+---
+
+*This skill provides content auditing for emotional safety. It is not a substitute for professional mental health advice.*

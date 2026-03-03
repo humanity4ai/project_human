@@ -104,3 +104,86 @@ Suggest:
 - **[references/measurement.md](references/measurement.md)** - Measurement metrics
 - **[references/examples.md](references/examples.md)** - Examples
 - **[references/quick-reference.md](references/quick-reference.md)** - Quick reference
+
+## Cognitive Load Theory
+
+### Types of Cognitive Load
+
+**Intrinsic Load**: Inherent complexity of the material
+- Cannot be eliminated, can be managed
+- Break complex topics into steps
+
+**Extraneous Load**: Unnecessary burden from design
+- Should be minimized
+- Clear layout, simple language
+
+**Germane Load**: Productive learning
+- Should be supported
+- Good examples, practice
+
+### Reducing Cognitive Load
+
+1. **Chunk Information**: Group related items
+2. **Use White Space**: Don't crowd content
+3. **Clear Hierarchy**: Headings, lists, structure
+4. **Multiple Formats**: Text + images + video
+5. **Allow Pacing**: Don't rush users
+
+## Sentence and Paragraph Guidelines
+
+### Sentence Length
+- Target: 15-20 words maximum
+- Avoid: Sentences over 25 words
+- Split long sentences into two
+
+### Paragraph Length
+- Maximum 3-4 sentences per paragraph
+- One idea per paragraph
+- Use white space between paragraphs
+
+### Word Choice
+- Use common, everyday words
+- Avoid jargon
+- Define technical terms inline
+- Use verbs, not noun forms
+
+## Task Design
+
+### Multi-Step Tasks
+- Break into 3-5 steps maximum
+- Show progress (step X of Y)
+- Allow saving progress
+- Don't require memory across steps
+
+### Error Recovery
+- Clear error messages
+- Suggest corrections
+- Don't blame users
+- Easy to find and fix errors
+
+### Navigation
+- Consistent placement
+- Clear labels
+- Don't require remembering
+- Provide search
+
+## Script Usage
+
+This skill includes validation scripts:
+
+- **analyze_load.py** — Analyze cognitive load
+- **measure_readability.py** — Measure readability
+- **simplify_text.py** — Suggest simplifications
+- **chunk_content.py** — Analyze chunking
+
+```bash
+# Analyze cognitive load
+python3 scripts/analyze_load.py --input content.txt --format json
+
+# Measure readability
+python3 scripts/measure_readability.py --input content.txt --format json
+```
+
+---
+
+*This skill helps create cognitively accessible content.*
