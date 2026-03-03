@@ -1,8 +1,23 @@
 name: supportive-conversation
 version: 0.2.0
 status: active
+category: emotional-safety
+summary: Supportive conversation techniques for emotional support
 tags:
   - support
   - conversation
+boundaries:
+  - Non-therapeutic support only
+  - Escalate to professional help when risk signals detected
+actions:
+  - id: supportive_reply
+    input_schema: ../../mcp-servers/schemas/supportive-conversation.input.json
+    output_schema: ../../mcp-servers/schemas/supportive-conversation.output.json
+uncertainty:
+  confidence: medium
+  contested: false
+  cultural_scope: global
 provenance:
+  sources:
+    - internal-curation
   license: MIT

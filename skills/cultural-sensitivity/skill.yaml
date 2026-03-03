@@ -1,9 +1,24 @@
 name: cultural-sensitivity
 version: 0.2.0
 status: active
+category: cultural-context
+summary: Cultural sensitivity guidance for inclusive design
 tags:
   - cultural
   - sensitivity
   - inclusion
+boundaries:
+  - Avoid cultural stereotypes
+  - Acknowledge cultural context variations
+actions:
+  - id: cultural_context_check
+    input_schema: ../../mcp-servers/schemas/cultural-sensitivity.input.json
+    output_schema: ../../mcp-servers/schemas/cultural-sensitivity.output.json
+uncertainty:
+  confidence: medium
+  contested: true
+  cultural_scope: global
 provenance:
+  sources:
+    - internal-curation
   license: MIT

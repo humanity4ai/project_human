@@ -1,10 +1,25 @@
 name: neurodiversity-aware-design
 version: 0.2.0
 status: active
+category: neurodiversity
+summary: Neurodiversity-aware design for diverse cognitive patterns
 tags:
   - neurodiversity
   - ADHD
   - autism
   - sensory
+boundaries:
+  - Avoid neurodiversity stereotypes
+  - Consider sensory sensitivities
+actions:
+  - id: neurodiversity_design_check
+    input_schema: ../../mcp-servers/schemas/neurodiversity-aware-design.input.json
+    output_schema: ../../mcp-servers/schemas/neurodiversity-aware-design.output.json
+uncertainty:
+  confidence: medium
+  contested: true
+  cultural_scope: global
 provenance:
+  sources:
+    - internal-curation
   license: MIT
