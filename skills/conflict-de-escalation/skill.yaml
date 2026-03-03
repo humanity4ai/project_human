@@ -1,19 +1,22 @@
 name: conflict-de-escalation
-version: 0.1.0
+version: 0.2.0
 status: active
 category: conflict-navigation
-summary: Conflict de-escalation planning with safety-aware alternatives
+summary: De-escalation techniques for conflict resolution
+tags:
+  - conflict
+  - de-escalation
 boundaries:
-  - No coercion
-  - No threats
+  - Non-clinical de-escalation only
+  - Escalate to professional help when needed
 actions:
   - id: deescalation_plan
     input_schema: ../../mcp-servers/schemas/conflict-de-escalation.input.json
     output_schema: ../../mcp-servers/schemas/conflict-de-escalation.output.json
 uncertainty:
   confidence: medium
-  contested: true
-  cultural_scope: region
+  contested: false
+  cultural_scope: global
 provenance:
   sources:
     - internal-curation

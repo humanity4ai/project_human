@@ -1,10 +1,16 @@
 name: neurodiversity-aware-design
-version: 0.1.0
+version: 0.2.0
 status: active
 category: neurodiversity
-summary: Design guidance for neurodiversity-aware interfaces and workflows
+summary: Neurodiversity-aware design for diverse cognitive patterns
+tags:
+  - neurodiversity
+  - ADHD
+  - autism
+  - sensory
 boundaries:
-  - No diagnostic claims
+  - Avoid neurodiversity stereotypes
+  - Consider sensory sensitivities
 actions:
   - id: neurodiversity_design_check
     input_schema: ../../mcp-servers/schemas/neurodiversity-aware-design.input.json

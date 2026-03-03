@@ -1,11 +1,15 @@
 name: cultural-sensitivity
-version: 0.1.0
+version: 0.2.0
 status: active
 category: cultural-context
-summary: Cross-cultural communication adaptation with uncertainty handling
+summary: Cultural sensitivity guidance for inclusive design
+tags:
+  - cultural
+  - sensitivity
+  - inclusion
 boundaries:
-  - No stereotypes
-  - Must include uncertainty when context is partial
+  - Avoid cultural stereotypes
+  - Acknowledge cultural context variations
 actions:
   - id: cultural_context_check
     input_schema: ../../mcp-servers/schemas/cultural-sensitivity.input.json
@@ -13,7 +17,7 @@ actions:
 uncertainty:
   confidence: medium
   contested: true
-  cultural_scope: region
+  cultural_scope: global
 provenance:
   sources:
     - internal-curation

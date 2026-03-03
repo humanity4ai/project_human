@@ -1,10 +1,28 @@
 name: wcag-aaa-accessibility
-version: 0.1.0
+version: 0.2.0
 status: active
 category: accessibility
-summary: WCAG-oriented accessibility audit and remediation support
+summary: WCAG-oriented accessibility audit and remediation support with Level AAA as default target
+tags:
+  - accessibility
+  - WCAG
+  - ADA compliance
+  - screen reader
+  - keyboard navigation
+  - color contrast
+  - accessibility audit
+  - remediation guidance
+  - audit accessibility
+  - check WCAG compliance
+  - fix accessibility issues
+author: project-human
+compatibility: Requires ability to read HTML/CSS and analyze web content
+allowed-tools: Read, Grep, Glob
 boundaries:
-  - Guidance only, not legal opinion
+  - Guidance only, not legal certification or legal opinion
+  - Must disclose assumptions and test coverage limits
+  - Never provide legal compliance guarantees
+  - Always reference WCAG Success Criterion numbers
 actions:
   - id: wcagaaa_check
     input_schema: ../../mcp-servers/schemas/wcag-aaa-accessibility.input.json
@@ -16,4 +34,13 @@ uncertainty:
 provenance:
   sources:
     - wcag-2.2
+    - ISO/IEC 40500:2012
+    - ISO 21801-1:2020
   license: MIT
+references:
+  - name: WCAG 2.2
+    url: https://www.w3.org/TR/WCAG22/
+  - name: Understanding WCAG 2.2
+    url: https://www.w3.org/WAI/WCAG22/Understanding/
+  - name: ISO/IEC 40500:2012
+    url: https://www.iso.org/standard/50943.html
