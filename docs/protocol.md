@@ -151,4 +151,13 @@ All action responses include these top-level fields:
 | Tool invocation | `invoke` | `tools/call` |
 | SDK dependency | None | `@modelcontextprotocol/sdk` |
 
-Migration to JSON-RPC 2.0 is planned for v0.2 to enable native compatibility with Claude Code, Copilot, and other MCP SDK clients. The adapter will be a thin wrapper over the existing handlers.
+## Available Protocols
+
+Humanity4AI provides two server implementations:
+
+| Server | Command | Protocol | Use Case |
+|--------|---------|----------|----------|
+| Standard MCP SDK (recommended) | `pnpm start:mcp-sdk` | JSON-RPC 2.0 | Claude Code, Copilot, OpenCode, any MCP SDK client |
+| Legacy NDJSON | `pnpm start:mcp` | Custom NDJSON | Backward compatibility |
+
+See [`mcp-servers/README.md`](../mcp-servers/README.md) for full details.

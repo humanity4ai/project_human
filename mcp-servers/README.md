@@ -156,9 +156,9 @@ Each file follows the structure:
 
 ---
 
-## Planned v0.2+
+## v0.2+ Roadmap
 
 - HTTP/SSE transport for remote MCP server deployments
 - Auth policies and rate controls
 - Telemetry and evaluation hooks
-- JSON-RPC 2.0 adapter for the legacy NDJSON server
+- Rich scenario scoring beyond structural checks
