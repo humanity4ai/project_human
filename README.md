@@ -145,6 +145,54 @@ Both servers expose all 10 skill actions with input validation, structured respo
 
 See [`mcp-servers/README.md`](mcp-servers/README.md) for the full tool reference and [`docs/protocol.md`](docs/protocol.md) for the legacy protocol specification.
 
+## Alternative: Prompt Engineering
+
+If your AI agent doesn't support MCP or skills, you can still use Humanity4AI by providing project content directly in the conversation context.
+
+### How It Works
+
+You (the user) manually share the relevant file contents with your LLM. The LLM then applies those principles when responding to you.
+
+### What to Share
+
+Tell your LLM:
+
+> "Here is the Humanity4AI skill pack for humane AI interactions. Apply these principles in our conversation:
+>
+> **Core Principles** (read this first):
+> [Paste content from `knowledge-core/principles.md`]
+>
+> **Skills to Use**:
+> - For empathetic responses: use `skills/empathetic-communication/SKILL.md`
+> - For grief/loss situations: use `skills/grief-loss-support/SKILL.md`
+> - For accessibility audits: use `skills/wcag-aaa-accessibility/SKILL.md`
+> [Add other skills you'll need]
+>
+> **Rules**:
+> - Always surface the `boundaryNotice` when risk is elevated
+> - Include `escalation_guidance` for safety-critical skills
+> - Disclose uncertainty level: low / medium / high
+ rubric dimensions: Help> - Follow thefulness, Humility, Harm avoidance, Clarity"
+
+### What the LLM Can Do
+
+With skill content in context, the LLM can:
+
+- Apply skill-specific communication patterns from SKILL.md
+- Follow safety boundaries and escalation guidance
+- Use rubric criteria to evaluate responses
+- Reference scenarios for real-world examples
+- Disclose uncertainty metadata appropriately
+
+### Best Practices
+
+1. **Share principles first** — Set the foundation with `knowledge-core/principles.md`
+2. **Share relevant skills only** — Don't overwhelm context; load skills as needed
+3. **Reference specific sections** — Point to exact files for the skill you need
+4. **Check boundaries** — Always surface `boundaryNotice` for safety-critical skills
+
+This approach works with any LLM — no MCP or tools required.
+
 ## Integrations
 
 - OpenCode
@@ -206,9 +254,8 @@ Or open via GitHub UI — the default base branch is `development`.
 
 ## How To Help This Week
 
-- Expand multilingual supportive-conversation scenarios: https://github.com/humanity4ai/project_human/issues/11
-- Improve launch-skill quality boundaries: https://github.com/humanity4ai/project_human/issues/3
-- Add edge-case scenario coverage across 4 skills: https://github.com/humanity4ai/project_human/issues/4
+- Good first issues: https://github.com/humanity4ai/project_human/issues?q=is%3Aopen+label%3A%22good+first+issue%22
+- Help wanted: https://github.com/humanity4ai/project_human/issues?q=is%3Aopen+label%3A%22help+wanted%22
 
 ## Package Release
 
