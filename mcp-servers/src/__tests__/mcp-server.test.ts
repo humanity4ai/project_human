@@ -25,9 +25,10 @@ describe("toMcpResult", () => {
     const result = toMcpResult({
       ok: true,
       data: {
+        action: "supportive_reply",
         boundaryNotice: "non-clinical only",
         uncertainty: "low",
-        assumptions: "none",
+        assumptions: ["none"],
         output: { reply: "You are heard." },
       },
     });
