@@ -10,7 +10,8 @@ export default defineConfig({
       exclude: [
         "src/__tests__/**",
         "src/server.ts",
-        "src/export-contracts.ts"
+        "src/export-contracts.ts",
+        "src/bin.ts"
       ],
       thresholds: {
         statements: 90,
