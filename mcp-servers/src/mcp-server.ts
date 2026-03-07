@@ -20,28 +20,11 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import { invokeAction } from "./handlers.js";
 
-const VERSION = "0.1.0";
-
-// ── Server setup ─────────────────────────────────────────────────────────────
-
-const server = new McpServer(
-  {
-    name: "humanity4ai",
-    version: VERSION,
-  },
-  {
-    capabilities: { tools: {} },
-    instructions:
-      "Humanity4AI provides reusable 'humanity skills' for AI agents. " +
-      "Each tool enforces safety boundaries and discloses uncertainty. " +
-      "Always surface the boundaryNotice and uncertainty fields to users. " +
-      "These skills are non-clinical — escalate to qualified professionals when risk is elevated.",
-  }
-);
+export const VERSION = "0.1.0";
 
 // ── Helper: convert invokeAction result to MCP CallToolResult ────────────────
 
-function toMcpResult(result: ReturnType<typeof invokeAction>) {
+export function toMcpResult(result: ReturnType<typeof invokeAction>) {
   if (!result.ok) {
     return {
       isError: true,
@@ -63,7 +46,148 @@ function toMcpResult(result: ReturnType<typeof invokeAction>) {
   };
 }
 
-// ── Tool: wcagaaa_check ───────────────────────────────────────────────────────
+// ── Tool handlers (exported for testability) ─────────────────────────────────
+
+export async function handleWcagaaaCheck({
+  target,
+  level,
+  context,
+}: {
+  target: string;
+  level: "A" | "AA" | "AAA";
+  context?: string;
+}) {
+  const input: Record<string, unknown> = { target, level };
+  if (context !== undefined) input.context = context;
+  return toMcpResult(invokeAction("wcagaaa_check", input));
+}
+
+export async function handleRewriteDepressionSensitiveContent({
+  text,
+  mode,
+  domain,
+}: {
+  text: string;
+  mode: "audit" | "rewrite";
+  domain?: string;
+}) {
+  const input: Record<string, unknown> = { text, mode };
+  if (domain !== undefined) input.domain = domain;
+  return toMcpResult(invokeAction("rewrite_depression_sensitive_content", input));
+}
+
+export async function handleSupportiveReply({
+  message,
+  risk_level,
+  locale,
+}: {
+  message: string;
+  risk_level: "low" | "medium" | "high";
+  locale?: string;
+}) {
+  const input: Record<string, unknown> = { message, risk_level };
+  if (locale !== undefined) input.locale = locale;
+  return toMcpResult(invokeAction("supportive_reply", input));
+}
+
+export async function handleCognitiveAccessibilityAudit({
+  content,
+  target_context,
+}: {
+  content: string;
+  target_context?: string;
+}) {
+  const input: Record<string, unknown> = { content };
+  if (target_context !== undefined) input.target_context = target_context;
+  return toMcpResult(invokeAction("cognitive_accessibility_audit", input));
+}
+
+export async function handleCulturalContextCheck({
+  message,
+  audience,
+  region,
+}: {
+  message: string;
+  audience: string;
+  region?: string;
+}) {
+  const input: Record<string, unknown> = { message, audience };
+  if (region !== undefined) input.region = region;
+  return toMcpResult(invokeAction("cultural_context_check", input));
+}
+
+export async function handleDeescalationPlan({
+  situation,
+  intensity,
+}: {
+  situation: string;
+  intensity: "low" | "medium" | "high";
+}) {
+  return toMcpResult(invokeAction("deescalation_plan", { situation, intensity }));
+}
+
+export async function handleEmpatheticReframe({
+  message,
+  tone,
+}: {
+  message: string;
+  tone: "neutral" | "warm" | "formal";
+}) {
+  return toMcpResult(invokeAction("empathetic_reframe", { message, tone }));
+}
+
+export async function handleGriefSupportResponse({
+  message,
+  support_mode,
+}: {
+  message: string;
+  support_mode: "presence" | "practical" | "reflection";
+}) {
+  return toMcpResult(invokeAction("grief_support_response", { message, support_mode }));
+}
+
+export async function handleNeurodiversityDesignCheck({
+  ui_description,
+  focus,
+}: {
+  ui_description: string;
+  focus?: string[];
+}) {
+  const input: Record<string, unknown> = { ui_description };
+  if (focus !== undefined) input.focus = focus;
+  return toMcpResult(invokeAction("neurodiversity_design_check", input));
+}
+
+export async function handleAgeInclusiveDesignCheck({
+  flow_description,
+  age_groups,
+}: {
+  flow_description: string;
+  age_groups?: string[];
+}) {
+  const input: Record<string, unknown> = { flow_description };
+  if (age_groups !== undefined) input.age_groups = age_groups;
+  return toMcpResult(invokeAction("age_inclusive_design_check", input));
+}
+
+// ── Server setup ─────────────────────────────────────────────────────────────
+
+const server = new McpServer(
+  {
+    name: "humanity4ai",
+    version: VERSION,
+  },
+  {
+    capabilities: { tools: {} },
+    instructions:
+      "Humanity4AI provides reusable 'humanity skills' for AI agents. " +
+      "Each tool enforces safety boundaries and discloses uncertainty. " +
+      "Always surface the boundaryNotice and uncertainty fields to users. " +
+      "These skills are non-clinical — escalate to qualified professionals when risk is elevated.",
+  }
+);
+
+// ── Tool registrations ────────────────────────────────────────────────────────
 
 server.tool(
   "wcagaaa_check",
@@ -81,14 +205,8 @@ server.tool(
       .optional()
       .describe("Optional additional context about the page or component"),
   },
-  async ({ target, level, context }) => {
-    const input: Record<string, unknown> = { target, level };
-    if (context !== undefined) input.context = context;
-    return toMcpResult(invokeAction("wcagaaa_check", input));
-  }
+  handleWcagaaaCheck
 );
-
-// ── Tool: rewrite_depression_sensitive_content ────────────────────────────────
 
 server.tool(
   "rewrite_depression_sensitive_content",
@@ -106,14 +224,8 @@ server.tool(
       .optional()
       .describe("Optional domain context (e.g. 'healthcare', 'social media')"),
   },
-  async ({ text, mode, domain }) => {
-    const input: Record<string, unknown> = { text, mode };
-    if (domain !== undefined) input.domain = domain;
-    return toMcpResult(invokeAction("rewrite_depression_sensitive_content", input));
-  }
+  handleRewriteDepressionSensitiveContent
 );
-
-// ── Tool: supportive_reply ────────────────────────────────────────────────────
 
 server.tool(
   "supportive_reply",
@@ -133,14 +245,8 @@ server.tool(
       .default("en")
       .describe("BCP 47 locale code for the response language (default: 'en')"),
   },
-  async ({ message, risk_level, locale }) => {
-    const input: Record<string, unknown> = { message, risk_level };
-    if (locale !== undefined) input.locale = locale;
-    return toMcpResult(invokeAction("supportive_reply", input));
-  }
+  handleSupportiveReply
 );
-
-// ── Tool: cognitive_accessibility_audit ──────────────────────────────────────
 
 server.tool(
   "cognitive_accessibility_audit",
@@ -158,14 +264,8 @@ server.tool(
         "Optional context about the target audience or use case (e.g. 'healthcare patients', 'elderly users')"
       ),
   },
-  async ({ content, target_context }) => {
-    const input: Record<string, unknown> = { content };
-    if (target_context !== undefined) input.target_context = target_context;
-    return toMcpResult(invokeAction("cognitive_accessibility_audit", input));
-  }
+  handleCognitiveAccessibilityAudit
 );
-
-// ── Tool: cultural_context_check ─────────────────────────────────────────────
 
 server.tool(
   "cultural_context_check",
@@ -184,14 +284,8 @@ server.tool(
       .optional()
       .describe("Optional geographic region for more specific cultural context"),
   },
-  async ({ message, audience, region }) => {
-    const input: Record<string, unknown> = { message, audience };
-    if (region !== undefined) input.region = region;
-    return toMcpResult(invokeAction("cultural_context_check", input));
-  }
+  handleCulturalContextCheck
 );
-
-// ── Tool: deescalation_plan ───────────────────────────────────────────────────
 
 server.tool(
   "deescalation_plan",
@@ -207,12 +301,8 @@ server.tool(
       .default("medium")
       .describe("Intensity of the conflict: 'low', 'medium', or 'high'"),
   },
-  async ({ situation, intensity }) => {
-    return toMcpResult(invokeAction("deescalation_plan", { situation, intensity }));
-  }
+  handleDeescalationPlan
 );
-
-// ── Tool: empathetic_reframe ──────────────────────────────────────────────────
 
 server.tool(
   "empathetic_reframe",
@@ -226,12 +316,8 @@ server.tool(
       .default("warm")
       .describe("Desired tone of the empathetic reframe"),
   },
-  async ({ message, tone }) => {
-    return toMcpResult(invokeAction("empathetic_reframe", { message, tone }));
-  }
+  handleEmpatheticReframe
 );
-
-// ── Tool: grief_support_response ─────────────────────────────────────────────
 
 server.tool(
   "grief_support_response",
@@ -248,12 +334,8 @@ server.tool(
         "'presence' for emotional companionship, 'practical' for next steps, 'reflection' for meaning-making"
       ),
   },
-  async ({ message, support_mode }) => {
-    return toMcpResult(invokeAction("grief_support_response", { message, support_mode }));
-  }
+  handleGriefSupportResponse
 );
-
-// ── Tool: neurodiversity_design_check ────────────────────────────────────────
 
 server.tool(
   "neurodiversity_design_check",
@@ -273,14 +355,8 @@ server.tool(
         "Optional list of specific neurodiversity conditions to focus on (e.g. ['ADHD', 'dyslexia'])"
       ),
   },
-  async ({ ui_description, focus }) => {
-    const input: Record<string, unknown> = { ui_description };
-    if (focus !== undefined) input.focus = focus;
-    return toMcpResult(invokeAction("neurodiversity_design_check", input));
-  }
+  handleNeurodiversityDesignCheck
 );
-
-// ── Tool: age_inclusive_design_check ─────────────────────────────────────────
 
 server.tool(
   "age_inclusive_design_check",
@@ -300,16 +376,12 @@ server.tool(
         "Optional list of age groups to focus on (e.g. ['children', 'elderly', 'teenagers'])"
       ),
   },
-  async ({ flow_description, age_groups }) => {
-    const input: Record<string, unknown> = { flow_description };
-    if (age_groups !== undefined) input.age_groups = age_groups;
-    return toMcpResult(invokeAction("age_inclusive_design_check", input));
-  }
+  handleAgeInclusiveDesignCheck
 );
 
 // ── Start server ──────────────────────────────────────────────────────────────
 
-async function main(): Promise<void> {
+export async function main(): Promise<void> {
   const transport = new StdioServerTransport();
   await server.connect(transport);
   process.stderr.write(
@@ -320,7 +392,10 @@ async function main(): Promise<void> {
   );
 }
 
-main().catch((err: unknown) => {
-  process.stderr.write(`Fatal error: ${String(err)}\n`);
-  process.exit(1);
-});
+/* istanbul ignore next */
+if (process.env.NODE_ENV !== "test") {
+  main().catch((err: unknown) => {
+    process.stderr.write(`Fatal error: ${String(err)}\n`);
+    process.exit(1);
+  });
+}
