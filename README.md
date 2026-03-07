@@ -70,6 +70,38 @@ cd project_human
 pnpm install
 pnpm check
 pnpm evals
+```
+
+### For AI Agents — Standard MCP SDK (JSON-RPC 2.0)
+
+Start the standard MCP server compatible with Claude Code, Copilot, Manus AI, OpenCode, and any MCP SDK client:
+
+```bash
+pnpm start:mcp-sdk
+```
+
+Configure your agent by adding this to your MCP client config:
+
+```json
+{
+  "mcpServers": {
+    "humanity4ai": {
+      "command": "pnpm",
+      "args": ["--filter", "@humanity4ai/mcp-servers", "start:mcp-sdk"],
+      "cwd": "/path/to/project_human"
+    }
+  }
+}
+```
+
+All 10 humanity skills are discoverable via `tools/list` and invocable via `tools/call`.
+See [`mcp-servers/README.md`](mcp-servers/README.md) for full protocol details and tool reference.
+
+### Legacy NDJSON server
+
+The original custom NDJSON server is still available for backward compatibility:
+
+```bash
 pnpm start:mcp
 ```
 
@@ -102,14 +134,16 @@ echo '{"id":"1","type":"list_actions"}' | docker compose exec -T mcp-server node
 
 ## MCP Runtime (v0.1)
 
-`mcp-servers` provides a line-delimited JSON runtime. Two request types:
+`mcp-servers` provides **two server implementations**:
 
-- `list_actions` — returns all 10 registered action contracts
-- `invoke` — validates input against JSON schema, executes skill handler, returns structured response
+| Server | Command | Protocol |
+|--------|---------|----------|
+| **Standard MCP SDK** (recommended) | `pnpm start:mcp-sdk` | JSON-RPC 2.0 over stdio |
+| Legacy NDJSON | `pnpm start:mcp` | Custom NDJSON over stdio |
 
-All 10 skill actions are fully implemented with structured, rule-based responses.
+Both servers expose all 10 skill actions with input validation, structured responses, safety boundaries, and uncertainty disclosure.
 
-See [`docs/protocol.md`](docs/protocol.md) for the full protocol specification.
+See [`mcp-servers/README.md`](mcp-servers/README.md) for the full tool reference and [`docs/protocol.md`](docs/protocol.md) for the legacy protocol specification.
 
 ## Integrations
 
