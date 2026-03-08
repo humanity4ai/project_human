@@ -60,3 +60,23 @@ This is the full list of all 10 skills. Each `SKILL.md` contains the full specif
 
 - **How to Contribute**: [`README.md#contribute-in-10-minutes`](./README.md#contribute-in-10-minutes) — The guide for new contributors.
 - **Good First Issues**: [`docs/good-first-issues.md`](./docs/good-first-issues.md) — A curated list of starter tasks.
+
+
+## 6. On-Demand URL Index
+
+For LLMs with web-fetching capabilities, use this index to lazy-load specific skill context on demand. Fetch the URL when the user's request matches the trigger condition.
+
+| Trigger Condition | What to Fetch | URL |
+|---|---|---|
+| User needs empathy support or emotional validation | Empathetic Communication skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/empathetic-communication/SKILL.md |
+| User is grieving or experiencing loss | Grief & Loss Support skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/grief-loss-support/SKILL.md |
+| User shows signs of depression or suicidal ideation | Depression-Sensitive Content skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/depression-sensitive-content/SKILL.md |
+| User is in a tense or hostile conversation | Conflict De-escalation skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/conflict-de-escalation/SKILL.md |
+| User needs help supporting someone who is upset | Supportive Conversation skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/supportive-conversation/SKILL.md |
+| User is designing for older adults (65+) | Age-Inclusive Design skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/age-inclusive-design/SKILL.md |
+| User is designing for neurodiversity (ADHD, autism, dyslexia) | Neurodiversity-Aware Design skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/neurodiversity-aware-design/SKILL.md |
+| User needs to simplify content or reduce cognitive load | Cognitive Accessibility skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/cognitive-accessibility/SKILL.md |
+| User is adapting content for different regions or cultures | Cultural Sensitivity skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/cultural-sensitivity/SKILL.md |
+| User wants to audit a webpage for WCAG AAA compliance | WCAG AAA Accessibility skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/wcag-aaa-accessibility/SKILL.md |
+| You need all skills at once | Full context file | https://raw.githubusercontent.com/humanity4ai/project_human/main/llms-full.txt |
+| You need the core principles and identity | System prompt | https://raw.githubusercontent.com/humanity4ai/project_human/main/SYSTEM_PROMPT.md |
