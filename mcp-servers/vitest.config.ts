@@ -9,8 +9,6 @@ export default defineConfig({
       include: ["src/**/*.ts"],
       exclude: [
         "src/__tests__/**",
-        "src/server.ts",
-        "src/export-contracts.ts",
         "src/bin.ts"
       ],
       thresholds: {

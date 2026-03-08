@@ -1,16 +1,16 @@
 /**
- * Humanity4AI Standard MCP Server — JSON-RPC 2.0 over stdio
+ * Humanity4AI MCP Server — JSON-RPC 2.0 over stdio
  *
- * This server implements the official Model Context Protocol (MCP) SDK
- * JSON-RPC 2.0 protocol, making all Humanity4AI skills natively accessible
- * to standard MCP-compatible AI agents (Claude Code, Copilot, Manus AI,
- * OpenCode, LangChain, and any other MCP SDK client).
+ * Implements the official Model Context Protocol (MCP) SDK JSON-RPC 2.0
+ * protocol, making all Humanity4AI skills natively accessible to standard
+ * MCP-compatible AI agents (Claude Code, Copilot, Manus AI, OpenCode,
+ * LangChain, and any other MCP SDK client).
  *
  * Protocol: @modelcontextprotocol/sdk (JSON-RPC 2.0 over stdio)
- * Custom NDJSON server: src/server.ts (legacy, kept for backward compatibility)
  *
  * Usage:
- *   pnpm --filter @humanity4ai/mcp-servers start:mcp-sdk
+ *   pnpm start
+ *   npx -y @humanity4ai/mcp-servers
  *
  * Copyright (c) 2026 Ascent Partners Foundation. MIT License.
  */

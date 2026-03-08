@@ -19,7 +19,6 @@
     "mcp",
     "ai",
     "schemas",
-    "contracts",
     "humanity4ai",
     "model-context-protocol",
     "empathy",
@@ -66,20 +65,17 @@
     "dist/validate.d.ts",
     "dist/mcp-server.js",
     "schemas",
-    "src/contracts.json",
     "README.md"
   ],
   "scripts": {
     "check": "tsc --project tsconfig.json",
     "check:test": "tsc --project tsconfig.test.json",
     "build": "tsc --project tsconfig.build.json",
-    "build:contracts": "tsx src/export-contracts.ts",
     "start": "tsx src/mcp-server.ts",
-    "start:legacy": "tsx src/server.ts",
     "start:bin": "tsx src/bin.ts",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "prepack": "pnpm run build:contracts && pnpm run build"
+    "prepack": "pnpm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",

@@ -612,7 +612,7 @@ export function invokeAction(
   if (!isKnownAction(action)) {
     return {
       ok: false,
-      error: `Unknown action: '${action}'. Call list_actions to see available actions.`
+      error: `Unknown action: '${action}'. Use tools/list to see available actions.`
     };
   }
 

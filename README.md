@@ -97,27 +97,6 @@ Configure your agent by adding this to your MCP client config:
 All 10 humanity skills are discoverable via `tools/list` and invocable via `tools/call`.
 See [`mcp-servers/README.md`](mcp-servers/README.md) for full protocol details and tool reference.
 
-### Legacy NDJSON server
-
-The original custom NDJSON server is still available for backward compatibility:
-
-```bash
-pnpm start:legacy
-```
-
-Test the running server from a second terminal:
-
-```bash
-echo '{"id":"1","type":"list_actions"}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
-```
-
-Invoke a skill action:
-
-```bash
-echo '{"id":"2","type":"invoke","payload":{"action":"supportive_reply","input":{"message":"I feel overwhelmed","risk_level":"medium"}}}' \
-  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
-```
-
 Full install and deploy guide: [`INSTALL.md`](INSTALL.md)
 
 ## Docker (one command)
@@ -126,24 +105,16 @@ Full install and deploy guide: [`INSTALL.md`](INSTALL.md)
 docker compose up
 ```
 
-Then send requests to the running container:
-
-```bash
-echo '{"id":"1","type":"list_actions"}' | docker compose exec -T mcp-server node dist/server.js
-```
-
 ## MCP Runtime (v0.1)
 
-`mcp-servers` provides **two server implementations**:
+`mcp-servers` exposes all 10 skill actions via the standard MCP SDK JSON-RPC 2.0 protocol:
 
 | Server | Command | Protocol |
 |--------|---------|----------|
-| **Standard MCP SDK** (recommended, default) | `pnpm start` | JSON-RPC 2.0 over stdio |
-| Legacy NDJSON | `pnpm start:legacy` | Custom NDJSON over stdio |
+| **Standard MCP SDK** | `pnpm start` | JSON-RPC 2.0 over stdio |
 
-Both servers expose all 10 skill actions with input validation, structured responses, safety boundaries, and uncertainty disclosure.
-
-See [`mcp-servers/README.md`](mcp-servers/README.md) for the full tool reference and [`docs/protocol.md`](docs/protocol.md) for the legacy protocol specification.
+All tools include input validation, structured responses, safety boundaries, and uncertainty disclosure.
+See [`mcp-servers/README.md`](mcp-servers/README.md) for the full tool reference.
 
 ## Alternative: Prompt Engineering
 

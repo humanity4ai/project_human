@@ -9,11 +9,10 @@
   },
   "scripts": {
     "check": "pnpm -r check",
-    "build": "pnpm --filter @humanity4ai/mcp-servers build:contracts && pnpm --filter @humanity4ai/mcp-servers build",
+    "build": "pnpm --filter @humanity4ai/mcp-servers build",
     "evals": "pnpm --filter @humanity4ai/evals evals",
     "test": "pnpm -r test",
     "test:coverage": "pnpm -r test:coverage",
-    "start": "pnpm --filter @humanity4ai/mcp-servers start",
-    "start:legacy": "pnpm --filter @humanity4ai/mcp-servers start:legacy"
+    "start": "pnpm --filter @humanity4ai/mcp-servers start"
   }
 }

@@ -2,16 +2,11 @@
 
 MCP action contracts and server runtime for Humanity4AI skills.
 
-This package ships **two server implementations**:
-
-| Server | File | Protocol | Compatible with |
-|--------|------|----------|-----------------|
-| **Standard MCP SDK** (recommended) | `src/mcp-server.ts` | JSON-RPC 2.0 over stdio | Claude Code, Copilot, Manus AI, OpenCode, LangChain, any MCP SDK client |
-| Legacy NDJSON | `src/server.ts` | Custom NDJSON over stdio | Custom integrations (see `docs/agent-adapters.md`) |
+All 10 humanity skills are exposed as standard MCP tools using the official `@modelcontextprotocol/sdk` JSON-RPC 2.0 protocol, natively compatible with Claude Code, Copilot, Manus AI, OpenCode, LangChain, and any other MCP SDK client.
 
 ---
 
-## Quick Start for AI Agents (Standard MCP SDK)
+## Quick Start for AI Agents
 
 ### 1. Clone and install
 
@@ -21,12 +16,12 @@ cd project_human
 pnpm install
 ```
 
-### 2. Start the standard MCP server
+### 2. Start the MCP server
 
 ```bash
-pnpm start:mcp-sdk
+pnpm start
 # or directly:
-pnpm --filter @humanity4ai/mcp-servers start:mcp-sdk
+pnpm --filter @humanity4ai/mcp-servers start
 ```
 
 The server starts on **stdio** using the official MCP SDK JSON-RPC 2.0 protocol.
@@ -34,15 +29,28 @@ All 10 humanity skills are registered as MCP tools and discoverable via `tools/l
 
 ### 3. Configure your MCP client
 
-Add to your MCP client configuration (e.g. `claude_desktop_config.json`, `.cursor/mcp.json`, `manus-mcp.json`):
+Add to your MCP client configuration (e.g. `claude_desktop_config.json`, `.cursor/mcp.json`, `opencode.json`):
 
 ```json
 {
   "mcpServers": {
     "humanity4ai": {
       "command": "pnpm",
-      "args": ["--filter", "@humanity4ai/mcp-servers", "start:mcp-sdk"],
+      "args": ["--filter", "@humanity4ai/mcp-servers", "start"],
       "cwd": "/path/to/project_human"
+    }
+  }
+}
+```
+
+Or use `npx` once published to npm (no local clone needed):
+
+```json
+{
+  "mcpServers": {
+    "humanity4ai": {
+      "command": "npx",
+      "args": ["-y", "@humanity4ai/mcp-servers"]
     }
   }
 }
@@ -67,11 +75,9 @@ Add to your MCP client configuration (e.g. `claude_desktop_config.json`, `.curso
 
 ---
 
-## Protocol Details
+## Protocol
 
-### Standard MCP SDK server (recommended)
-
-The standard server (`src/mcp-server.ts`) uses the official `@modelcontextprotocol/sdk` and communicates via **JSON-RPC 2.0 over stdio**. This is the protocol natively understood by Claude Code, Copilot, Manus AI, OpenCode, and any other MCP SDK-compatible agent.
+The server uses the official `@modelcontextprotocol/sdk` and communicates via **JSON-RPC 2.0 over stdio**.
 
 **Tool discovery:**
 ```json
@@ -82,14 +88,6 @@ The standard server (`src/mcp-server.ts`) uses the official `@modelcontextprotoc
 **Tool invocation:**
 ```json
 {"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"empathetic_reframe","arguments":{"message":"I failed the exam I studied so hard for","tone":"warm"}}}
-```
-
-### Legacy NDJSON server
-
-The legacy server (`src/server.ts`) uses a custom line-delimited JSON protocol. See [`docs/protocol.md`](../docs/protocol.md) for the full specification and [`docs/agent-adapters.md`](../docs/agent-adapters.md) for integration examples.
-
-```bash
-pnpm --filter @humanity4ai/mcp-servers start
 ```
 
 ---
@@ -144,15 +142,6 @@ The `examples/` directory contains one complete request/response pair per action
 | `examples/grief_support_response.example.json` | `grief_support_response` |
 | `examples/neurodiversity_design_check.example.json` | `neurodiversity_design_check` |
 | `examples/age_inclusive_design_check.example.json` | `age_inclusive_design_check` |
-
-Each file follows the structure:
-
-```json
-{
-  "request":  { "id": "...", "type": "invoke", "payload": { "action": "...", "input": { ... } } },
-  "response": { "id": "...", "ok": true, "data": { "action": "...", "boundaryNotice": "...", "uncertainty": "...", "assumptions": [...], "output": { ... } } }
-}
-```
 
 ---
 
