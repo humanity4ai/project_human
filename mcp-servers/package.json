@@ -19,11 +19,18 @@
     "mcp",
     "ai",
     "schemas",
-    "contracts",
-    "humanity4ai"
+    "humanity4ai",
+    "model-context-protocol",
+    "empathy",
+    "accessibility",
+    "wcag",
+    "mental-health"
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "bin": {
+    "humanity4ai-mcp": "./dist/bin.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -47,6 +54,7 @@
     "./schemas/*": "./schemas/*"
   },
   "files": [
+    "dist/bin.js",
     "dist/index.js",
     "dist/index.d.ts",
     "dist/handlers.js",
@@ -55,21 +63,22 @@
     "dist/types.d.ts",
     "dist/validate.js",
     "dist/validate.d.ts",
+    "dist/mcp-server.js",
     "schemas",
-    "src/contracts.json",
     "README.md"
   ],
   "scripts": {
     "check": "tsc --project tsconfig.json",
     "check:test": "tsc --project tsconfig.test.json",
     "build": "tsc --project tsconfig.build.json",
-    "build:contracts": "tsx src/export-contracts.ts",
-    "start": "tsx src/server.ts",
+    "start": "tsx src/mcp-server.ts",
+    "start:bin": "tsx src/bin.ts",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "prepack": "pnpm run build:contracts && pnpm run build"
+    "prepack": "pnpm run build"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
     "zod": "^3.25.76"
   },
   "devDependencies": {

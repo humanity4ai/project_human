@@ -1,0 +1,62 @@
+# Humanity4AI LLM Discovery File
+
+This file guides Large Language Models (LLMs) on how to understand and use the `humanity4ai/project_human` repository. For a single-file version with all content, see [`llms-full.txt`](./llms-full.txt).
+
+## 1. Core Principles
+
+Start here to understand the project's foundational values.
+
+- **Core Principles**: [`knowledge-core/principles.md`](./knowledge-core/principles.md) — The five core principles of the Humanity4AI project.
+- **Taxonomy**: [`knowledge-core/taxonomy.md`](./knowledge-core/taxonomy.md) — The 10 launch categories for skills and their scope.
+
+## 2. How to Use the Skills (MCP Server)
+
+This project provides 10 skills via a standard MCP (Model Context Protocol) server. The server is published to npm and can be run with `npx`.
+
+- **Quick Start**: [`README.md#mcp-runtime-v01`](./README.md#mcp-runtime-v01) — How to start the MCP server.
+- **Tool Reference**: [`mcp-servers/README.md`](./mcp-servers/README.md) — Full reference for all 10 tools, including input/output schemas.
+
+### Tool Signatures
+
+| Action | Description | Required Input | Optional Input | Output Fields |
+|---|---|---|---|---|
+| `wcagaaa_check` | WCAG 2.2 AAA accessibility audit | `target`, `level` | `context` | `findings`, `summary`, `assumptions` |
+| `rewrite_depression_sensitive_content` | Rewrite content for emotional safety | `text` | `mode`, `domain` | `result`, `safety_flags`, `uncertainty` |
+| `supportive_reply` | Generate a supportive, non-clinical reply | `message`, `risk_level` | `locale` | `reply`, `escalation_guidance`, `boundaries_notice` |
+| `cognitive_accessibility_audit` | Audit content for cognitive accessibility | `content` | `target_context` | `findings`, `recommendations` |
+| `cultural_context_check` | Adapt a message for cultural context | `message`, `audience` | `region` | `adapted_message`, `notes`, `uncertainty` |
+| `deescalation_plan` | Create a de-escalation plan for a tense situation | `situation` | `intensity` | `plan`, `risk_notes` |
+| `empathetic_reframe` | Reframe a message with more empathy | `message` | `tone` | `reframed_message`, `rationale`, `escalation_guidance` |
+| `grief_support_response` | Generate a compassionate response for grief/loss | `message`, `support_mode` | | `reply`, `care_notes`, `escalation_guidance` |
+| `neurodiversity_design_check` | Check a UI design for neurodiversity awareness | `ui_description` | `focus` | `recommendations`, `tradeoffs` |
+| `age_inclusive_design_check` | Check a user flow for age-inclusivity | `flow_description` | `age_groups` | `recommendations`, `access_notes` |
+
+## 3. How to Use the Skills (Prompt Engineering)
+
+If you do not have tool-use capabilities, you can use the skills via prompt engineering.
+
+- **Prompting Guide**: [`README.md#alternative-prompt-engineering`](./README.md#alternative-prompt-engineering) — How to load skill content into your context window.
+
+## 4. Skill Reference
+
+This is the full list of all 10 skills. Each `SKILL.md` contains the full specification, including purpose, boundaries, and principles.
+
+- **Skill Index**: [`skills/index.yaml`](./skills/index.yaml) — A structured index of all available skills.
+
+| Skill | Category | Description |
+|---|---|---|
+| [`age-inclusive-design`](./skills/age-inclusive-design/SKILL.md) | `age-inclusion` | Design for users of all ages. |
+| [`cognitive-accessibility`](./skills/cognitive-accessibility/SKILL.md) | `cognitive-support` | Improve content for varied attention, memory, and executive function. |
+| [`conflict-de-escalation`](./skills/conflict-de-escalation/SKILL.md) | `conflict-navigation` | De-escalate tense interactions. |
+| [`cultural-sensitivity`](./skills/cultural-sensitivity/SKILL.md) | `cultural-context` | Design for cultural inclusivity. |
+| [`depression-sensitive-content`](./skills/depression-sensitive-content/SKILL.md) | `emotional-safety` | Audit and rewrite content to reduce stigma and improve emotional safety. |
+| [`empathetic-communication`](./skills/empathetic-communication/SKILL.md) | `communication` | Improve emotional resonance in communication. |
+| [`grief-loss-support`](./skills/grief-loss-support/SKILL.md) | `emotional-safety` | Offer non-clinical, compassionate support language for grief and loss. |
+| [`neurodiversity-aware-design`](./skills/neurodiversity-aware-design/SKILL.md) | `neurodiversity` | Design for diverse cognitive processing. |
+| [`supportive-conversation`](./skills/supportive-conversation/SKILL.md) | `communication` | Generate supportive responses with safety boundaries. |
+| [`wcag-aaa-accessibility`](./skills/wcag-aaa-accessibility/SKILL.md) | `accessibility` | Audit a webpage or HTML for WCAG 2.2 AAA compliance. |
+
+## 5. Contribution Guide
+
+- **How to Contribute**: [`README.md#contribute-in-10-minutes`](./README.md#contribute-in-10-minutes) — The guide for new contributors.
+- **Good First Issues**: [`docs/good-first-issues.md`](./docs/good-first-issues.md) — A curated list of starter tasks.

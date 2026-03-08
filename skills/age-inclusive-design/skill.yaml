@@ -1,10 +1,15 @@
 name: age-inclusive-design
-version: 0.1.0
+version: 0.2.0
 status: active
 category: age-inclusion
-summary: Age-inclusive UX guidance for content, forms, and workflows
+summary: Age-inclusive UX guidance
+tags:
+  - age-inclusive
+  - elderly
+author: project-human
 boundaries:
   - No age stereotypes
+  - Consider diverse abilities within age groups
 actions:
   - id: age_inclusive_design_check
     input_schema: ../../mcp-servers/schemas/age-inclusive-design.input.json

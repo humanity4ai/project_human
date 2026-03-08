@@ -1,12 +1,27 @@
 name: depression-sensitive-content
-version: 0.1.0
+version: 0.2.0
 status: active
 category: emotional-safety
-summary: Rewrite and audit content for emotional safety and cognitive accessibility
+summary: Rewrite and audit content for emotional safety, stigma reduction, and cognitive accessibility
+tags:
+  - mental-health
+  - emotional-safety
+  - content-audit
+  - stigma-reduction
+  - sensitive-content
+  - depression
+  - cognitive-load
+  - language-guidelines
+  - person-first
+author: project-human
+compatibility: Requires Python 3.8+
+allowed-tools: Bash(python3:*), Read, Write
 boundaries:
   - Non-clinical guidance only
   - No diagnosis or treatment advice
-  - Escalate to professional support if clinical risk signals are present in content context
+  - Escalate to professional support if clinical risk signals are present
+  - Always use person-first language
+  - Include crisis resources when suicidal ideation detected
 actions:
   - id: rewrite_depression_sensitive_content
     input_schema: ../../mcp-servers/schemas/depression-sensitive-content.input.json
@@ -15,6 +30,13 @@ uncertainty:
   confidence: medium
   contested: false
   cultural_scope: global
+references:
+  - name: APA Guidelines
+    url: https://www.apa.org/topics/depression
+  - name: DBS Alliance Language Guide
+    url: https://www.dbsalliance.org/
+  - name: SPRC Guidelines
+    url: https://www.sprc.org/
 provenance:
   sources:
     - depression-sensitive-web-content

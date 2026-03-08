@@ -27,11 +27,9 @@ For safety-critical skills (`supportive-conversation`, `grief-loss-support`, `de
 
 ### Gate 3: Contract consistency
 
-- `mcp-servers/src/contracts.json` must be present (run `pnpm --filter @humanity4ai/mcp-servers build:contracts` to generate)
-- Every skill must have a matching entry in the contract registry
-- Action IDs in `skill.yaml` must match the contract registry
-- Input/output schema paths must be consistent between `skill.yaml` and contracts
-- All referenced JSON schema files must exist and be valid JSON
+- `skill.yaml.name` must match the folder name (no mismatches)
+- Every skill must define at least one action in `skill.yaml`
+- All input/output JSON schema files referenced in `skill.yaml` must exist and be valid JSON
 
 ---
 
@@ -75,7 +73,7 @@ FAIL  my-new-skill
       - Missing file: scenarios/scenarios.yaml
       - Skill folder/name mismatch: folder='my-new-skill' skill.yaml.name='my_new_skill'
 FAIL  contract-consistency
-      - No MCP contract found for skill 'my-new-skill'
+      - Contract/folder mismatch: skill.yaml.name='my_new_skill' folder='my-new-skill'
 ```
 
 ---

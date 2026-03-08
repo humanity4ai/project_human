@@ -1,11 +1,23 @@
 name: grief-loss-support
-version: 0.1.0
+version: 0.2.0
 status: active
 category: emotional-safety
 summary: Bereavement-aware communication with strong safety boundaries
+tags:
+  - grief
+  - bereavement
+  - loss
+  - emotional-support
+  - compassionate
+  - non-clinical
+author: project-human
+compatibility: Requires Python 3.8+
+allowed-tools: Bash(python3:*), Read, Write
 boundaries:
   - Non-clinical support only
   - Escalate to crisis or professional support when high-risk language is detected
+  - Acknowledge loss without minimizing
+  - Use presence-first language
 actions:
   - id: grief_support_response
     input_schema: ../../mcp-servers/schemas/grief-loss-support.input.json
@@ -14,6 +26,11 @@ uncertainty:
   confidence: medium
   contested: true
   cultural_scope: region
+references:
+  - name: APA Grief Guidelines
+    url: https://www.apa.org/topics/grief
+  - name: SAMHSA Bereavement
+    url: https://www.samhsa.gov/
 provenance:
   sources:
     - internal-curation
