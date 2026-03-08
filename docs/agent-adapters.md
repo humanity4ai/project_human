@@ -2,7 +2,7 @@
 
 **Copyright (c) 2026 Ascent Partners Foundation. MIT License.**
 
-This guide explains how to integrate the Humanity4AI MCP server into specific agent platforms.
+This guide explains how to integrate the Humanity4AI MCP server into specific agent platforms. For LLM-native discovery, start with [`/llms.txt`](../llms.txt) at the repository root.
 
 See [`docs/protocol.md`](protocol.md) for the full request/response protocol specification.
 
