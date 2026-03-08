@@ -294,3 +294,42 @@ console.log(result.content);
 
 await client.close();
 ```
+
+---
+
+## Perplexity
+
+Perplexity's chat interface does not fetch arbitrary URLs like `llms.txt` or `SYSTEM_PROMPT.md`. The correct way to use Humanity4AI with Perplexity is to install the MCP server as a **local connector** via the Perplexity Mac app.
+
+**Step 1 — Publish to npm**
+
+This is a one-time step for the repository maintainer:
+
+```bash
+# From the mcp-servers directory
+cd mcp-servers
+npm publish --access public
+```
+
+**Step 2 — Install as a Local MCP Connector (for Perplexity users)**
+
+1. Open the Perplexity Mac app
+2. Go to **Settings > Connectors**
+3. Click **Add Connector**
+4. In the **Simple** tab, enter:
+   - **Server Name**: `humanity4ai`
+   - **Command**: `npx -y @humanity4ai/mcp-servers`
+5. Click **Save**
+6. Wait for the status to show **Running**
+
+**Step 3 — Use the skills in Perplexity**
+
+Once the connector is running, you can invoke any of the 10 skills by name. For example:
+
+> "Use the `supportive_reply` tool to respond to this message: 'I am feeling overwhelmed'"
+
+Perplexity will then use the local MCP server to get the response from the Humanity4AI skillset.
+
+### Why `llms.txt` doesn't work with Perplexity
+
+Perplexity's chat interface is designed for web search and answering questions. It does not have the capability to fetch and read arbitrary file URLs from GitHub or other sources directly in its context. The only way to provide external tools and context is via the MCP connector mechanism.
