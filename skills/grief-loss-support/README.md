@@ -1,28 +1,30 @@
-# Grief and Loss Support
+# Grief & Loss Support Skill
 
-Non-clinical bereavement support skill.
+## Overview
+This skill provides guidance on how to support someone who is grieving a loss, in a compassionate and non-intrusive way.
 
 ## Purpose
+The purpose of this skill is to help users offer meaningful support to friends, family, or colleagues who are experiencing grief, while respecting their individual needs and boundaries.
 
-Provides compassionate support language for grief and loss conversations.
+## When to Use
+Use this skill when you want to:
+- Comfort someone who has recently experienced a loss.
+- Offer practical support to someone who is grieving.
+- Know what to say (and what not to say) to someone who is grieving.
 
-## Usage
+## Key Features
+- **Grief Support Etiquette**: Guidance on how to be a supportive presence without being intrusive or offering unsolicited advice.
+- **Practical Support Ideas**: A list of practical ways to help someone who is grieving, such as cooking a meal, running errands, or simply being present.
+- **Condolence Message Templates**: A set of templates for writing thoughtful and sincere condolence messages.
 
-Use when:
-- Responding to loss
-- Supporting grieving users
-- Writing sympathy messages
-- Supporting bereavement
+## Usage Examples
 
-## Scripts
+### Example 1: Supporting a Grieving Friend
+```
+My friend's mother just passed away. What can I do to support her?
+```
 
-- detect_crisis.py - Detect crisis language
-- detect_harmful.py - Detect harmful phrases
-- acknowledge_loss.py - Generate acknowledgments
-- presence_first.py - Generate presence phrases
-- suggest_supportive.py - Suggest alternatives
-- validate_supportive.py - Validate response
-- practical_steps.py - Generate practical steps
-- escalate_assess.py - Assess escalation
-- check_minimizing.py - Check minimizing
-- validate_compassion.py - Validate compassion
+### Example 2: Writing a Condolence Card
+```
+I need to write a condolence card for a colleague. Can you help me with some wording?
+```

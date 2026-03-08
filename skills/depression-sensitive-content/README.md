@@ -1,50 +1,35 @@
-# Depression-Sensitive Content
+# Depression-Sensitive Content Skill
 
-Non-clinical accessibility and emotional safety skill for digital content.
+## Overview
+This skill audits and rewrites digital content to reduce stigma, improve emotional safety, and lower cognitive load for people affected by depression.
 
 ## Purpose
+The purpose of this skill is to create a safe and supportive online environment by ensuring content is written in a way that is sensitive to individuals who may be experiencing depression or other mental health challenges.
 
-This skill audits and rewrites content to reduce stigma, improve emotional safety, and lower cognitive load for people affected by depression.
+## When to Use
+Use this skill when you are:
+- Writing about mental health topics.
+- Creating content for a general audience that may include people with depression.
+- Auditing existing content for depression sensitivity.
 
 ## Key Features
+- **Person-First Language**: Guidance on using language that puts the person before their condition.
+- **Stigma Detection**: Automated detection of stigmatizing terms and phrases.
+- **Crisis Resource Integration**: Automatic inclusion of crisis support resources when appropriate.
+- **Alternative Phrase Suggestions**: Suggestions for more sensitive and inclusive language.
 
-- Person-first language enforcement
-- Stigmatizing term detection
-- Cognitive accessibility analysis
-- Crisis resource integration
-- Alternative phrase suggestions
+## Usage Examples
 
-## Usage
+### Example 1: Auditing a Blog Post
+```
+Audit this blog post about mental health for depression-sensitive language.
+```
 
-Use this skill when:
-- Auditing content for mental health sensitivity
-- Rewriting content for emotional safety
-- Removing stigmatizing language
-- Improving cognitive accessibility
-
-## Scripts
-
-- `audit.py` - Scan for stigmatizing phrases
-- `detect_harmful.py` - Identify harmful language
-- `detect_cognitive.py` - Detect cognitive friction
-- `classify_severity.py` - Classify issues by severity
-- `suggest_alternatives.py` - Generate alternative phrasing
-- `validate_safe.py` - Validate content safety
-- `categorize_issues.py` - Categorize issues by type
-- `check_medical.py` - Check for medical claims
-- `check_stigma.py` - Check for stigma patterns
-- `suggest_gentle.py` - Suggest gentler language
-- `check_escalation.py` - Check escalation needs
-- `generate_rationale.py` - Generate rewrite rationale
-
-## References
-
-- APA Guidelines
-- DBS Alliance Language Guide
-- SPRC Guidelines
+### Example 2: Rewriting Content
+```
+Rewrite this paragraph to be more sensitive to people with depression:
+"Depressives often struggle to get out of bed in the morning."
+```
 
 ## Boundaries
-
-- Non-clinical guidance only
-- No diagnosis or treatment advice
-- Include crisis resources when needed
+This skill provides non-clinical guidance only. It does not provide diagnosis or treatment advice. Always include crisis resources when discussing mental health topics.
