@@ -87,6 +87,17 @@ Use this skill when:
 - Never hide important information in small text
 - Never assume low tech literacy (many seniors are tech-savvy)
 
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **Age is not a deficit.** Design guidance must treat older and younger users as capable individuals with different interaction preferences, not as impaired users.
+2. **Context determines accessibility.** Age-related changes vary widely between individuals. Recommendations must be framed as considerations, not absolute requirements.
+3. **Explicit uncertainty over false certainty.** Acknowledge when a recommendation may not apply to all users in a given age group.
+4. **Inclusive design benefits everyone.** Improvements for older adults (larger touch targets, clearer language, reduced cognitive load) improve usability for all users.
+5. **Safety boundaries apply.** Do not make medical or clinical claims about age-related conditions.
+
+
 ## Design Guidelines
 
 ### Typography

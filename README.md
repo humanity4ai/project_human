@@ -77,7 +77,7 @@ pnpm evals
 Start the standard MCP server compatible with Claude Code, Copilot, Manus AI, OpenCode, and any MCP SDK client:
 
 ```bash
-pnpm start:mcp-sdk
+pnpm start
 ```
 
 Configure your agent by adding this to your MCP client config:
@@ -87,7 +87,7 @@ Configure your agent by adding this to your MCP client config:
   "mcpServers": {
     "humanity4ai": {
       "command": "pnpm",
-      "args": ["--filter", "@humanity4ai/mcp-servers", "start:mcp-sdk"],
+      "args": ["--filter", "@humanity4ai/mcp-servers", "start"],
       "cwd": "/path/to/project_human"
     }
   }
@@ -102,7 +102,7 @@ See [`mcp-servers/README.md`](mcp-servers/README.md) for full protocol details a
 The original custom NDJSON server is still available for backward compatibility:
 
 ```bash
-pnpm start:mcp
+pnpm start:legacy
 ```
 
 Test the running server from a second terminal:
@@ -138,8 +138,8 @@ echo '{"id":"1","type":"list_actions"}' | docker compose exec -T mcp-server node
 
 | Server | Command | Protocol |
 |--------|---------|----------|
-| **Standard MCP SDK** (recommended) | `pnpm start:mcp-sdk` | JSON-RPC 2.0 over stdio |
-| Legacy NDJSON | `pnpm start:mcp` | Custom NDJSON over stdio |
+| **Standard MCP SDK** (recommended, default) | `pnpm start` | JSON-RPC 2.0 over stdio |
+| Legacy NDJSON | `pnpm start:legacy` | Custom NDJSON over stdio |
 
 Both servers expose all 10 skill actions with input validation, structured responses, safety boundaries, and uncertainty disclosure.
 
@@ -147,51 +147,23 @@ See [`mcp-servers/README.md`](mcp-servers/README.md) for the full tool reference
 
 ## Alternative: Prompt Engineering
 
-If your AI agent doesn't support MCP or skills, you can still use Humanity4AI by providing project content directly in the conversation context.
+If your AI agent doesn't support MCP or skills, you can still use Humanity4AI by providing project content directly in the conversation context. This is less reliable than the MCP server but provides a good fallback.
 
 ### How It Works
 
-You (the user) manually share the relevant file contents with your LLM. The LLM then applies those principles when responding to you.
+You (the user) manually share the relevant file contents with your LLM. The LLM then applies those principles when responding to you. The best way to do this is to point the LLM to the `llms.txt` file.
 
 ### What to Share
 
 Tell your LLM:
 
-> "Here is the Humanity4AI skill pack for humane AI interactions. Apply these principles in our conversation:
->
-> **Core Principles** (read this first):
-> [Paste content from `knowledge-core/principles.md`]
->
-> **Skills to Use**:
-> - For empathetic responses: use `skills/empathetic-communication/SKILL.md`
-> - For grief/loss situations: use `skills/grief-loss-support/SKILL.md`
-> - For accessibility audits: use `skills/wcag-aaa-accessibility/SKILL.md`
-> [Add other skills you'll need]
->
-> **Rules**:
-> - Always surface the `boundaryNotice` when risk is elevated
-> - Include `escalation_guidance` for safety-critical skills
-> - Disclose uncertainty level: low / medium / high
- rubric dimensions: Help> - Follow thefulness, Humility, Harm avoidance, Clarity"
+> "You are an AI assistant with the Humanity4AI skillset. Your primary goal is to interact with users in a humane, ethical, and context-aware manner. Start by reading the `llms.txt` file at the root of this repository to understand your capabilities, then apply the principles and skills you find there in our conversation."
 
-### What the LLM Can Do
+Alternatively, you can provide the full context in one go:
 
-With skill content in context, the LLM can:
-
-- Apply skill-specific communication patterns from SKILL.md
-- Follow safety boundaries and escalation guidance
-- Use rubric criteria to evaluate responses
-- Reference scenarios for real-world examples
-- Disclose uncertainty metadata appropriately
-
-### Best Practices
-
-1. **Share principles first** — Set the foundation with `knowledge-core/principles.md`
-2. **Share relevant skills only** — Don't overwhelm context; load skills as needed
-3. **Reference specific sections** — Point to exact files for the skill you need
-4. **Check boundaries** — Always surface `boundaryNotice` for safety-critical skills
-
-This approach works with any LLM — no MCP or tools required.
+> "Here is the full context for the Humanity4AI skillset. Apply these principles and skills in our conversation:
+> 
+> [Paste the entire content of `llms-full.txt` here]"
 
 ## Integrations
 

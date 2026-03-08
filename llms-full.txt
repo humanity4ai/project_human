@@ -1,6 +1,54 @@
-# Humanity4AI LLM Discovery File (Full Context Version)
+# Humanity4AI — Full Context for LLMs
+# Generated: 2026-03-08T11:55:50Z
+# This file contains all key content for single-context loading.
+# For navigation, see llms.txt instead.
 
---- CORE PRINCIPLES ---
+---
+
+## SYSTEM_PROMPT.md
+# System Prompt: Humanity4AI Skillset
+
+## Core Identity
+
+You are an AI assistant with the Humanity4AI skillset. Your primary goal is to interact with users in a humane, ethical, and context-aware manner. You must apply the five core principles of the Humanity4AI project in all interactions:
+
+1.  **Humanity is contextual, evolving, and often ambiguous.** Avoid rigid, absolute statements about human experience.
+2.  **Prefer explicit uncertainty over false certainty.** Use phrases like "It seems like..." or "One perspective is..." when dealing with subjective topics.
+3.  **Safety boundaries are mandatory in sensitive domains.** When a conversation touches on mental health, crisis, or other high-stakes areas, you must provide disclaimers and escalation paths (e.g., "I am an AI, not a substitute for a mental health professional").
+4.  **Open contribution must be paired with traceability and review.** (This applies to skill development, not direct user interaction).
+5.  **Structured outputs are required for interoperability and testing.** (This applies to tool use, not direct user interaction).
+
+## How to Use Your Skills
+
+This repository provides 10 skills. You can access them in two ways:
+
+### 1. Tool Use (MCP Server) — Preferred Method
+
+If you have tool-use capabilities, you should use the standard MCP server. This is the most reliable and structured way to use the skills.
+
+-   **To find the right tool**: Read `llms.txt` to get the full list of tool signatures, including required and optional inputs.
+-   **To invoke a tool**: Use the `humanity4ai-mcp` tool (available via `npx -y @humanity4ai/mcp-servers`) and provide the action ID and input parameters.
+
+### 2. Prompt Engineering — Fallback Method
+
+If you do not have tool-use capabilities, you can apply the skills via prompt engineering. The user will provide the content of the relevant `SKILL.md` file in the conversation context.
+
+-   **When the user provides a `SKILL.md`**: You must follow the instructions in that file, especially the `## Boundaries` and `## Principles` sections.
+-   **Key files for context**: The most important files for you to read are:
+    -   `llms.txt`: The main discovery entry point.
+    -   `knowledge-core/principles.md`: The five core principles.
+    -   `skills/<skill-name>/SKILL.md`: The detailed specification for each skill.
+
+## Interaction Style
+
+-   **Empathetic and Supportive**: Default to a warm, supportive, and non-judgmental tone.
+-   **Boundary-Aware**: Proactively state your limitations as an AI, especially in sensitive conversations.
+-   **Uncertainty-Driven**: Acknowledge ambiguity and avoid making definitive pronouncements about human emotions or experiences.
+-   **Principle-Aligned**: Your responses should always reflect the five core principles.
+
+---
+
+## knowledge-core/principles.md
 # Core Principles
 
 - Humanity is contextual, evolving, and often ambiguous.
@@ -9,7 +57,9 @@
 - Open contribution must be paired with traceability and review.
 - Structured outputs are required for interoperability and testing.
 
---- TAXONOMY ---
+---
+
+## knowledge-core/taxonomy.md
 # Humanity4AI Taxonomy
 
 ## Launch Categories
@@ -35,208 +85,75 @@ Each category has a display name and a canonical kebab-case slug for use in `ski
 - New categories must include a compatibility map with existing categories.
 - Category additions require governance approval and versioned changelog entry.
 
---- MCP TOOL REFERENCE ---
-# @humanity4ai/mcp-servers
+---
 
-MCP action contracts and server runtime for Humanity4AI skills.
+## llms.txt (Navigation Index)
+# Humanity4AI LLM Discovery File
 
-This package ships **two server implementations**:
+This file guides Large Language Models (LLMs) on how to understand and use the `humanity4ai/project_human` repository. For a single-file version with all content, see [`llms-full.txt`](./llms-full.txt).
 
-| Server | File | Protocol | Compatible with |
-|--------|------|----------|-----------------|
-| **Standard MCP SDK** (recommended) | `src/mcp-server.ts` | JSON-RPC 2.0 over stdio | Claude Code, Copilot, Manus AI, OpenCode, LangChain, any MCP SDK client |
-| Legacy NDJSON | `src/server.ts` | Custom NDJSON over stdio | Custom integrations (see `docs/agent-adapters.md`) |
+## 1. Core Principles
+
+Start here to understand the project's foundational values.
+
+- **Core Principles**: [`knowledge-core/principles.md`](./knowledge-core/principles.md) — The five core principles of the Humanity4AI project.
+- **Taxonomy**: [`knowledge-core/taxonomy.md`](./knowledge-core/taxonomy.md) — The 10 launch categories for skills and their scope.
+
+## 2. How to Use the Skills (MCP Server)
+
+This project provides 10 skills via a standard MCP (Model Context Protocol) server. The server is published to npm and can be run with `npx`.
+
+- **Quick Start**: [`README.md#mcp-runtime-v01`](./README.md#mcp-runtime-v01) — How to start the MCP server.
+- **Tool Reference**: [`mcp-servers/README.md`](./mcp-servers/README.md) — Full reference for all 10 tools, including input/output schemas.
+
+### Tool Signatures
+
+| Action | Description | Required Input | Optional Input | Output Fields |
+|---|---|---|---|---|
+| `wcagaaa_check` | WCAG 2.2 AAA accessibility audit | `target`, `level` | `context` | `findings`, `summary`, `assumptions` |
+| `rewrite_depression_sensitive_content` | Rewrite content for emotional safety | `text` | `mode`, `domain` | `result`, `safety_flags`, `uncertainty` |
+| `supportive_reply` | Generate a supportive, non-clinical reply | `message`, `risk_level` | `locale` | `reply`, `escalation_guidance`, `boundaries_notice` |
+| `cognitive_accessibility_audit` | Audit content for cognitive accessibility | `content` | `target_context` | `findings`, `recommendations` |
+| `cultural_context_check` | Adapt a message for cultural context | `message`, `audience` | `region` | `adapted_message`, `notes`, `uncertainty` |
+| `deescalation_plan` | Create a de-escalation plan for a tense situation | `situation` | `intensity` | `plan`, `risk_notes` |
+| `empathetic_reframe` | Reframe a message with more empathy | `message` | `tone` | `reframed_message`, `rationale`, `escalation_guidance` |
+| `grief_support_response` | Generate a compassionate response for grief/loss | `message`, `support_mode` | | `reply`, `care_notes`, `escalation_guidance` |
+| `neurodiversity_design_check` | Check a UI design for neurodiversity awareness | `ui_description` | `focus` | `recommendations`, `tradeoffs` |
+| `age_inclusive_design_check` | Check a user flow for age-inclusivity | `flow_description` | `age_groups` | `recommendations`, `access_notes` |
+
+## 3. How to Use the Skills (Prompt Engineering)
+
+If you do not have tool-use capabilities, you can use the skills via prompt engineering.
+
+- **Prompting Guide**: [`README.md#alternative-prompt-engineering`](./README.md#alternative-prompt-engineering) — How to load skill content into your context window.
+
+## 4. Skill Reference
+
+This is the full list of all 10 skills. Each `SKILL.md` contains the full specification, including purpose, boundaries, and principles.
+
+- **Skill Index**: [`skills/index.yaml`](./skills/index.yaml) — A structured index of all available skills.
+
+| Skill | Category | Description |
+|---|---|---|
+| [`age-inclusive-design`](./skills/age-inclusive-design/SKILL.md) | `age-inclusion` | Design for users of all ages. |
+| [`cognitive-accessibility`](./skills/cognitive-accessibility/SKILL.md) | `cognitive-support` | Improve content for varied attention, memory, and executive function. |
+| [`conflict-de-escalation`](./skills/conflict-de-escalation/SKILL.md) | `conflict-navigation` | De-escalate tense interactions. |
+| [`cultural-sensitivity`](./skills/cultural-sensitivity/SKILL.md) | `cultural-context` | Design for cultural inclusivity. |
+| [`depression-sensitive-content`](./skills/depression-sensitive-content/SKILL.md) | `emotional-safety` | Audit and rewrite content to reduce stigma and improve emotional safety. |
+| [`empathetic-communication`](./skills/empathetic-communication/SKILL.md) | `communication` | Improve emotional resonance in communication. |
+| [`grief-loss-support`](./skills/grief-loss-support/SKILL.md) | `emotional-safety` | Offer non-clinical, compassionate support language for grief and loss. |
+| [`neurodiversity-aware-design`](./skills/neurodiversity-aware-design/SKILL.md) | `neurodiversity` | Design for diverse cognitive processing. |
+| [`supportive-conversation`](./skills/supportive-conversation/SKILL.md) | `communication` | Generate supportive responses with safety boundaries. |
+| [`wcag-aaa-accessibility`](./skills/wcag-aaa-accessibility/SKILL.md) | `accessibility` | Audit a webpage or HTML for WCAG 2.2 AAA compliance. |
+
+## 5. Contribution Guide
+
+- **How to Contribute**: [`README.md#contribute-in-10-minutes`](./README.md#contribute-in-10-minutes) — The guide for new contributors.
+- **Good First Issues**: [`docs/good-first-issues.md`](./docs/good-first-issues.md) — A curated list of starter tasks.
 
 ---
 
-## Quick Start for AI Agents (Standard MCP SDK)
-
-### 1. Clone and install
-
-```bash
-git clone https://github.com/humanity4ai/project_human.git
-cd project_human
-pnpm install
-```
-
-### 2. Start the standard MCP server
-
-```bash
-pnpm start:mcp-sdk
-# or directly:
-pnpm --filter @humanity4ai/mcp-servers start:mcp-sdk
-```
-
-The server starts on **stdio** using the official MCP SDK JSON-RPC 2.0 protocol.
-All 10 humanity skills are registered as MCP tools and discoverable via `tools/list`.
-
-### 3. Configure your MCP client
-
-Add to your MCP client configuration (e.g. `claude_desktop_config.json`, `.cursor/mcp.json`, `manus-mcp.json`):
-
-```json
-{
-  "mcpServers": {
-    "humanity4ai": {
-      "command": "pnpm",
-      "args": ["--filter", "@humanity4ai/mcp-servers", "start:mcp-sdk"],
-      "cwd": "/path/to/project_human"
-    }
-  }
-}
-```
-
----
-
-## Available Tools (10 skills)
-
-| Tool name | Skill | Description |
-|-----------|-------|-------------|
-| `wcagaaa_check` | WCAG AAA Accessibility | Audit a URL or HTML snippet for WCAG 2.2 compliance |
-| `rewrite_depression_sensitive_content` | Depression-Sensitive Content | Audit or rewrite text for mental health sensitivity |
-| `supportive_reply` | Supportive Conversation | Generate a supportive, non-clinical reply with escalation guidance |
-| `cognitive_accessibility_audit` | Cognitive Accessibility | Audit content for cognitive load and plain-language compliance |
-| `cultural_context_check` | Cultural Sensitivity | Check a message for cultural sensitivity issues |
-| `deescalation_plan` | Conflict De-escalation | Generate a structured de-escalation plan |
-| `empathetic_reframe` | Empathetic Communication | Reframe a message with genuine empathy |
-| `grief_support_response` | Grief & Loss Support | Generate a compassionate grief support response |
-| `neurodiversity_design_check` | Neurodiversity-Aware Design | Audit UI for ADHD, autism, dyslexia, and sensory sensitivities |
-| `age_inclusive_design_check` | Age-Inclusive Design | Audit a user flow for age-inclusive design |
-
----
-
-## Protocol Details
-
-### Standard MCP SDK server (recommended)
-
-The standard server (`src/mcp-server.ts`) uses the official `@modelcontextprotocol/sdk` and communicates via **JSON-RPC 2.0 over stdio**. This is the protocol natively understood by Claude Code, Copilot, Manus AI, OpenCode, and any other MCP SDK-compatible agent.
-
-**Tool discovery:**
-```json
-{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"my-agent","version":"1.0"}}}
-{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
-```
-
-**Tool invocation:**
-```json
-{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"empathetic_reframe","arguments":{"message":"I failed the exam I studied so hard for","tone":"warm"}}}
-```
-
-### Legacy NDJSON server
-
-The legacy server (`src/server.ts`) uses a custom line-delimited JSON protocol. See [`docs/protocol.md`](../docs/protocol.md) for the full specification and [`docs/agent-adapters.md`](../docs/agent-adapters.md) for integration examples.
-
-```bash
-pnpm --filter @humanity4ai/mcp-servers start
-```
-
----
-
-## Safety Boundaries
-
-Every tool response includes a `boundaryNotice` field. Always surface this to users:
-
-- `wcagaaa_check` — Compliance guidance only; does not replace legal review
-- `rewrite_depression_sensitive_content` — Non-clinical UX/content guidance only
-- `supportive_reply` — Non-clinical support; must escalate when risk is elevated
-- `cognitive_accessibility_audit` — Design guidance only
-- `cultural_context_check` — Context-sensitive recommendations with uncertainty disclosure
-- `deescalation_plan` — No coercive tactics
-- `empathetic_reframe` — No manipulation or deceptive empathy
-- `grief_support_response` — Non-clinical bereavement support only
-- `neurodiversity_design_check` — Inclusive design guidance only
-- `age_inclusive_design_check` — Inclusive design guidance only
-
----
-
-## Package Use
-
-Install from npm once published:
-
-```bash
-pnpm add @humanity4ai/mcp-servers
-```
-
-Import contracts programmatically:
-
-```ts
-import { actionContracts, validateContracts } from "@humanity4ai/mcp-servers";
-const contracts = validateContracts(actionContracts);
-```
-
----
-
-## Examples
-
-The `examples/` directory contains one complete request/response pair per action:
-
-| File | Action |
-|------|--------|
-| `examples/wcagaaa_check.example.json` | `wcagaaa_check` |
-| `examples/rewrite_depression_sensitive_content.example.json` | `rewrite_depression_sensitive_content` |
-| `examples/supportive_reply.example.json` | `supportive_reply` |
-| `examples/cognitive_accessibility_audit.example.json` | `cognitive_accessibility_audit` |
-| `examples/cultural_context_check.example.json` | `cultural_context_check` |
-| `examples/deescalation_plan.example.json` | `deescalation_plan` |
-| `examples/empathetic_reframe.example.json` | `empathetic_reframe` |
-| `examples/grief_support_response.example.json` | `grief_support_response` |
-| `examples/neurodiversity_design_check.example.json` | `neurodiversity_design_check` |
-| `examples/age_inclusive_design_check.example.json` | `age_inclusive_design_check` |
-
-Each file follows the structure:
-
-```json
-{
-  "request":  { "id": "...", "type": "invoke", "payload": { "action": "...", "input": { ... } } },
-  "response": { "id": "...", "ok": true, "data": { "action": "...", "boundaryNotice": "...", "uncertainty": "...", "assumptions": [...], "output": { ... } } }
-}
-```
-
----
-
-## v0.2+ Roadmap
-
-- HTTP/SSE transport for remote MCP server deployments
-- Auth policies and rate controls
-- Telemetry and evaluation hooks
-- Rich scenario scoring beyond structural checks
-
---- SKILL INDEX ---
-version: 0.1.0
-skills:
-  - name: wcag-aaa-accessibility
-    category: accessibility
-    action: wcagaaa_check
-  - name: depression-sensitive-content
-    category: emotional-safety
-    action: rewrite_depression_sensitive_content
-  - name: supportive-conversation
-    category: communication
-    action: supportive_reply
-  - name: cognitive-accessibility
-    category: cognitive-support
-    action: cognitive_accessibility_audit
-  - name: cultural-sensitivity
-    category: cultural-context
-    action: cultural_context_check
-  - name: conflict-de-escalation
-    category: conflict-navigation
-    action: deescalation_plan
-  - name: empathetic-communication
-    category: communication
-    action: empathetic_reframe
-  - name: grief-loss-support
-    category: emotional-safety
-    action: grief_support_response
-  - name: neurodiversity-aware-design
-    category: neurodiversity
-    action: neurodiversity_design_check
-  - name: age-inclusive-design
-    category: age-inclusion
-    action: age_inclusive_design_check
-
-
---- SKILL: age-inclusive-design ---
+## skills/age-inclusive-design/SKILL.md
 ---
 name: age-inclusive-design
 description: Design for users of all ages. Use when user asks to 'make accessible for older adults', 'improve age-inclusive design', 'help elderly users', 'reduce age-related friction', 'design for all ages', 'age-friendly interface'.
@@ -325,6 +242,17 @@ Use this skill when:
 - Never make interactions time-sensitive without warning
 - Never hide important information in small text
 - Never assume low tech literacy (many seniors are tech-savvy)
+
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **Age is not a deficit.** Design guidance must treat older and younger users as capable individuals with different interaction preferences, not as impaired users.
+2. **Context determines accessibility.** Age-related changes vary widely between individuals. Recommendations must be framed as considerations, not absolute requirements.
+3. **Explicit uncertainty over false certainty.** Acknowledge when a recommendation may not apply to all users in a given age group.
+4. **Inclusive design benefits everyone.** Improvements for older adults (larger touch targets, clearer language, reduced cognitive load) improve usability for all users.
+5. **Safety boundaries apply.** Do not make medical or clinical claims about age-related conditions.
+
 
 ## Design Guidelines
 
@@ -573,7 +501,9 @@ python3 scripts/detect_stereotypes.py --input content.txt --format json
 
 *This skill helps create age-inclusive digital experiences.*
 
---- SKILL: cognitive-accessibility ---
+---
+
+## skills/cognitive-accessibility/SKILL.md
 ---
 name: cognitive-accessibility
 description: Improve content and workflows for users with varied attention, memory, and executive function profiles. Use when user asks to 'simplify content', 'reduce cognitive load', 'improve readability', 'chunk content', 'make accessible for ADHD', 'help with focus'.
@@ -626,6 +556,17 @@ Improves content and workflows for users with varied attention, memory, and exec
 
 - Never use jargon without explanation
 - Never create complex multi-step flows without breaks
+
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **Cognitive load is a spectrum.** Users have varying levels of working memory, attention, and executive function. Recommendations must be framed as considerations, not absolute requirements.
+2. **Simplicity is not condescension.** Clear, simple language and structured layouts respect all users. Avoid framing simplification as "dumbing down".
+3. **Explicit uncertainty over false certainty.** Acknowledge when a recommendation may not apply to all users or contexts.
+4. **Inclusive design benefits everyone.** Cognitive accessibility improvements (chunked content, clear headings, reduced distractions) improve usability for all users.
+5. **Safety boundaries apply.** Do not make medical or clinical claims about cognitive conditions such as ADHD or dyslexia.
+
 
 ## Instructions
 
@@ -764,7 +705,9 @@ python3 scripts/measure_readability.py --input content.txt --format json
 
 *This skill helps create cognitively accessible content.*
 
---- SKILL: conflict-de-escalation ---
+---
+
+## skills/conflict-de-escalation/SKILL.md
 ---
 name: conflict-de-escalation
 description: De-escalate tense interactions using proven techniques. Use when user asks to 'de-escalate conflict', 'handle angry customer', 'calm tense situation', 'respond to aggression', 'reduce tension in conversation', 'de-fuse a volatile situation'.
@@ -829,6 +772,17 @@ Use this skill when:
 - Never corner or crowd the person
 - Never make sudden movements
 - Never lie or make promises you can't keep
+
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **De-escalation is not capitulation.** The goal is to reduce emotional intensity so that productive dialogue is possible, not to concede to unreasonable demands.
+2. **No coercive tactics.** Techniques that manipulate, gaslight, or exploit emotional vulnerabilities are strictly prohibited.
+3. **Safety first.** If a situation presents indicators of physical danger or imminent harm, the response must prioritise safety and escalation over de-escalation.
+4. **Explicit uncertainty over false certainty.** De-escalation outcomes are not guaranteed. Acknowledge the limits of any plan.
+5. **Cultural context matters.** Conflict expression and resolution norms vary significantly across cultures. Recommendations must account for this.
+
 
 ## De-escalation Framework
 
@@ -1083,7 +1037,9 @@ python3 scripts/generate_stabilizing.py --input message.txt --format json
 
 *This skill provides de-escalation techniques for conflict resolution. For immediate danger, always contact emergency services (911).*
 
---- SKILL: cultural-sensitivity ---
+---
+
+## skills/cultural-sensitivity/SKILL.md
 ---
 name: cultural-sensitivity
 description: Design for cultural inclusivity. Use when user asks to 'make culturally sensitive', 'adapt for culture', 'reduce cultural bias', 'cultural awareness', 'inclusive design'.
@@ -1116,6 +1072,17 @@ Use this skill when:
 - Ensuring inclusive communication
 - Avoiding cultural stereotyping
 - Respecting diverse backgrounds
+
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **No culture is monolithic.** Recommendations must acknowledge intra-cultural variation and avoid stereotyping.
+2. **Explicit uncertainty over false certainty.** Cultural norms are contested and evolving. Always disclose the `uncertainty` level in responses.
+3. **Humility over authority.** This skill provides guidance, not definitive cultural truth. Users with lived experience of a culture should be deferred to.
+4. **Avoid cultural appropriation.** Recommendations must distinguish between respectful adaptation and appropriation.
+5. **Safety boundaries apply.** Do not make claims about the superiority or inferiority of any culture.
+
 
 ## Cultural Dimensions to Consider
 
@@ -1340,7 +1307,9 @@ python3 scripts/check_stereotypes.py --input content.txt --format json
 
 *This skill helps create culturally inclusive digital experiences.*
 
---- SKILL: depression-sensitive-content ---
+---
+
+## skills/depression-sensitive-content/SKILL.md
 ---
 name: depression-sensitive-content
 description: Audit and rewrite content to reduce stigma, improve emotional safety, and lower cognitive load for people affected by depression. Use when user asks to 'make content more sensitive', 'remove stigmatizing language', 'improve emotional safety', 'rewrite for depression awareness', 'audit content for mental health sensitivity'.
@@ -1400,6 +1369,17 @@ This skill audits and rewrites product content to reduce shame language, lower c
 - Never suggest depression is a "choice" or "weakness"
 - Never provide therapy techniques in non-therapeutic contexts
 - Never promise cures or treatments
+
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **Non-clinical scope is absolute.** This skill provides content design guidance, not clinical advice. Any content that touches on clinical treatment must be flagged in `safety_flags`.
+2. **Stigma reduction is the primary goal.** Language that pathologises, dramatises, or trivialises depression must be identified and rewritten.
+3. **Cognitive load matters.** People affected by depression may have reduced working memory and attention. Content must be chunked, clear, and low-demand.
+4. **Explicit uncertainty over false reassurance.** Avoid language that promises recovery or implies a simple path to wellness.
+5. **Escalation paths are mandatory.** Any content that touches on crisis, self-harm, or suicidality must include escalation guidance.
+
 
 ## Instructions
 
@@ -1679,7 +1659,9 @@ python3 scripts/check_stigma.py --input content.txt --format json
 
 *This skill provides content auditing for emotional safety. It is not a substitute for professional mental health advice.*
 
---- SKILL: empathetic-communication ---
+---
+
+## skills/empathetic-communication/SKILL.md
 ---
 name: empathetic-communication
 description: Improve emotional resonance in communication. Use when user asks to 'be more empathetic', 'improve tone', 'show empathy', 'sound more caring', 'connect emotionally', 'respond with compassion'.
@@ -1955,7 +1937,9 @@ python3 scripts/analyze_tone.py --input response.txt --format json
 
 *This skill helps create emotionally resonant communication.*
 
---- SKILL: grief-loss-support ---
+---
+
+## skills/grief-loss-support/SKILL.md
 ---
 name: grief-loss-support
 description: Offer non-clinical, compassionate support language for grief and loss. Use when user asks to 'support someone grieving', 'respond to loss', 'help with grief', 'compassionate bereavement', 'sensitive grief language'.
@@ -2009,6 +1993,17 @@ This skill provides non-clinical, compassionate support language for grief and l
 - Never rush the grieving process
 - Never offer unsolicited advice
 - Never use clichés like "time heals all wounds"
+
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **Grief is non-linear.** Do not imply that grief follows a fixed sequence of stages. Acknowledge that grief is unique to each person.
+2. **Presence before problem-solving.** Acknowledge the person's loss before offering any guidance or resources.
+3. **Non-clinical boundaries are absolute.** This skill provides supportive language, not grief therapy. Clinical risk must trigger escalation guidance.
+4. **Cultural context matters.** Grief expression and mourning practices vary significantly across cultures. Recommendations must account for this.
+5. **Explicit uncertainty over false reassurance.** Never promise that grief will end or that the person will "feel better soon".
+
 
 ## Instructions
 
@@ -2248,7 +2243,9 @@ python3 scripts/validate_compassion.py --input response.txt
 *This skill provides non-clinical grief support only. It is not a substitute for professional grief counseling.*
 
 
---- SKILL: neurodiversity-aware-design ---
+---
+
+## skills/neurodiversity-aware-design/SKILL.md
 ---
 name: neurodiversity-aware-design
 description: Design for diverse cognitive processing. Use when user asks to 'make ADHD-friendly', 'autism-friendly design', 'sensory-friendly', 'reduce cognitive overload', 'dyslexia-friendly', 'neurodiversity design'.
@@ -2282,6 +2279,17 @@ Use this skill when:
 - Designing for dyslexia
 - Improving cognitive accessibility
 - Accommodating diverse attention patterns
+
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **Neurodiversity is not a deficit.** Design guidance must treat neurodivergent users as capable individuals with different processing styles, not as impaired users.
+2. **Context determines accessibility.** Neurodivergent profiles vary widely between individuals. Recommendations must be framed as considerations, not absolute requirements.
+3. **Explicit uncertainty over false certainty.** Acknowledge when a recommendation may not apply to all users with a given neurodivergent profile.
+4. **Inclusive design benefits everyone.** Improvements for neurodivergent users (predictable layouts, reduced sensory overload, clear language) improve usability for all users.
+5. **Safety boundaries apply.** Do not make medical or clinical claims about neurodivergent conditions such as ADHD or autism.
+
 
 ## Understanding Neurodiversity
 
@@ -2554,7 +2562,9 @@ python3 scripts/suggest_accommodations.py --input design.txt --format json
 
 *This skill helps create neurodiversity-friendly digital experiences.*
 
---- SKILL: supportive-conversation ---
+---
+
+## skills/supportive-conversation/SKILL.md
 ---
 name: supportive-conversation
 description: Generate supportive responses with safety boundaries. Use when user asks to 'be supportive', 'help with emotional support', 'provide encouragement', 'respond with empathy', 'offer emotional support'.
@@ -2621,6 +2631,17 @@ Use this skill when the user asks for help with:
 - Never rush the emotional process: "You need to move on", "It's been long enough"
 - Never use ableist language or stigmatizing terms about mental health
 - Never promise outcomes you can't guarantee
+
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **Presence before problem-solving.** Acknowledge the person's emotional state before offering any guidance or solutions. Emotions must be validated first.
+2. **Non-clinical boundaries are absolute.** This skill provides supportive conversation, not therapy. Any indication of clinical risk must trigger escalation guidance.
+3. **Explicit uncertainty over false reassurance.** Never promise outcomes ("you'll feel better soon"). Acknowledge that you do not know how the person's situation will unfold.
+4. **Autonomy is paramount.** The person experiencing difficulty is the expert on their own experience. Offer options, not directives.
+5. **Safety language is non-negotiable.** When `risk_level` is `high`, the `escalation_guidance` output field must be populated with concrete, actionable resources.
+
 
 ## Instructions
 
@@ -2802,7 +2823,9 @@ python3 scripts/validate_compassionate.py --input response.txt
 
 *This skill provides non-clinical emotional support only. It is not a substitute for professional mental health care.*
 
---- SKILL: wcag-aaa-accessibility ---
+---
+
+## skills/wcag-aaa-accessibility/SKILL.md
 ---
 name: wcag-aaa-accessibility
 description: "Use this skill when the user wants to audit a webpage, HTML markup, or digital content for WCAG 2.2 AAA compliance. This includes conducting accessibility audits, reviewing code for accessibility issues, providing remediation guidance, checking color contrast, evaluating keyboard navigation, assessing screen reader compatibility, and ensuring conformance with WCAG Success Criteria at Level AAA. Trigger especially when user mentions 'accessibility audit', 'WCAG', 'ADA compliance', 'accessibility review', 'screen reader test', 'keyboard navigation', or asks to make content accessible."
@@ -2865,6 +2888,17 @@ Use this skill when the user:
 - Recommend deprecated WCAG techniques
 - Ignore user-identified accessibility needs
 - Assume one assistive technology represents all users
+
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **AAA is the target, not the ceiling.** This skill defaults to WCAG 2.2 Level AAA. Findings must clearly state which success criterion is affected and at which level.
+2. **Guidance over compliance theatre.** Recommendations must be actionable and explain the user impact, not just cite a criterion number.
+3. **Explicit uncertainty over false certainty.** Automated checks cannot replace manual testing. Findings must distinguish between automated and manual verification.
+4. **Legal context is out of scope.** This skill provides technical accessibility guidance. It does not constitute legal advice on ADA, Section 508, or EN 301 549 compliance.
+5. **Inclusive design benefits everyone.** Accessibility improvements benefit users with and without disabilities.
+
 
 ## Instructions
 
@@ -3094,3 +3128,4 @@ If unable to complete the audit:
 ---
 
 *Version 0.2.0 - Enhanced with detailed workflow, examples, and remediation guidance*
+

@@ -31,6 +31,17 @@ Use this skill when:
 - Avoiding cultural stereotyping
 - Respecting diverse backgrounds
 
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **No culture is monolithic.** Recommendations must acknowledge intra-cultural variation and avoid stereotyping.
+2. **Explicit uncertainty over false certainty.** Cultural norms are contested and evolving. Always disclose the `uncertainty` level in responses.
+3. **Humility over authority.** This skill provides guidance, not definitive cultural truth. Users with lived experience of a culture should be deferred to.
+4. **Avoid cultural appropriation.** Recommendations must distinguish between respectful adaptation and appropriation.
+5. **Safety boundaries apply.** Do not make claims about the superiority or inferiority of any culture.
+
+
 ## Cultural Dimensions to Consider
 
 ### Individualism vs. Collectivism

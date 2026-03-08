@@ -6,9 +6,9 @@
 
 ## Overview
 
-The Humanity4AI MCP server uses a **line-delimited JSON (NDJSON) protocol over stdin/stdout**.
+Humanity4AI provides **two server implementations**. The **standard MCP SDK server** (JSON-RPC 2.0) is the default and recommended choice for all new integrations. The legacy NDJSON server is retained for backward compatibility only.
 
-This is a custom transport layer — it is **not** the MCP SDK JSON-RPC 2.0 protocol used by Anthropic's official Model Context Protocol SDK. We use a simpler, dependency-free protocol in v0.1 to maximise compatibility and ease of integration. A JSON-RPC 2.0 adapter is planned for v0.2.
+This document describes both protocols. For most users, only the MCP SDK section is relevant.
 
 ---
 
@@ -157,7 +157,7 @@ Humanity4AI provides two server implementations:
 
 | Server | Command | Protocol | Use Case |
 |--------|---------|----------|----------|
-| Standard MCP SDK (recommended) | `pnpm start:mcp-sdk` | JSON-RPC 2.0 | Claude Code, Copilot, OpenCode, any MCP SDK client |
-| Legacy NDJSON | `pnpm start:mcp` | Custom NDJSON | Backward compatibility |
+| Standard MCP SDK (recommended, default) | `pnpm start` | JSON-RPC 2.0 | Claude Code, Copilot, OpenCode, any MCP SDK client |
+| Legacy NDJSON | `pnpm start:legacy` | Custom NDJSON | Backward compatibility |
 
 See [`mcp-servers/README.md`](../mcp-servers/README.md) for full details.

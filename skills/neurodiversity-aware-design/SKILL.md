@@ -32,6 +32,17 @@ Use this skill when:
 - Improving cognitive accessibility
 - Accommodating diverse attention patterns
 
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **Neurodiversity is not a deficit.** Design guidance must treat neurodivergent users as capable individuals with different processing styles, not as impaired users.
+2. **Context determines accessibility.** Neurodivergent profiles vary widely between individuals. Recommendations must be framed as considerations, not absolute requirements.
+3. **Explicit uncertainty over false certainty.** Acknowledge when a recommendation may not apply to all users with a given neurodivergent profile.
+4. **Inclusive design benefits everyone.** Improvements for neurodivergent users (predictable layouts, reduced sensory overload, clear language) improve usability for all users.
+5. **Safety boundaries apply.** Do not make medical or clinical claims about neurodivergent conditions such as ADHD or autism.
+
+
 ## Understanding Neurodiversity
 
 ### ADHD (Attention Deficit Hyperactivity Disorder)

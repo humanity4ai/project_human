@@ -61,6 +61,17 @@ Use this skill when the user:
 - Ignore user-identified accessibility needs
 - Assume one assistive technology represents all users
 
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **AAA is the target, not the ceiling.** This skill defaults to WCAG 2.2 Level AAA. Findings must clearly state which success criterion is affected and at which level.
+2. **Guidance over compliance theatre.** Recommendations must be actionable and explain the user impact, not just cite a criterion number.
+3. **Explicit uncertainty over false certainty.** Automated checks cannot replace manual testing. Findings must distinguish between automated and manual verification.
+4. **Legal context is out of scope.** This skill provides technical accessibility guidance. It does not constitute legal advice on ADA, Section 508, or EN 301 549 compliance.
+5. **Inclusive design benefits everyone.** Accessibility improvements benefit users with and without disabilities.
+
+
 ## Instructions
 
 ### Step 1: Analyze the Target
