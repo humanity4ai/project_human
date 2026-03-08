@@ -8,15 +8,15 @@ Humanity4AI is an open, community-driven project that provides reusable "humanit
 [![Contributors](https://img.shields.io/github/contributors/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/graphs/contributors)
 [![Pages](https://img.shields.io/badge/docs-GitHub%20Pages-1f2937)](https://humanity4ai.github.io/project_human/)
 
-## Three Ways to Use Humanity4AI
+## Three Ways to Use Humanity4AI Skills
 
-There are three distinct ways to use the Humanity4AI skillset, depending on your AI platform and its capabilities.
+This repository provides **10 Humanity Skills** — reusable, testable specifications for humane AI behaviour covering empathy, accessibility, grief support, cultural sensitivity, and more. There are three distinct ways to access these skills, depending on your AI platform and its capabilities.
 
-| Method | Best for... | How it Works |
-|---|---|---|
-| **1. MCP Server** | Developer tools (VS Code, Cursor) and agents (Manus AI, OpenCode) | Run a local server that exposes all 10 skills as tools via the Model Context Protocol (MCP). |
-| **2. LLM Prompting** | Web chat AIs (Claude, Gemini, ChatGPT) | Provide the content of `llms.txt` or `llms-full.txt` directly in the chat context. |
-| **3. Local Files** | CLI tools without web access (OpenCode) | Clone the repository and point the tool to the local file path. |
+| Method | Skills Access | Best for... | How it Works |
+|---|---|---|---|
+| **1. MCP Server** | All 10 skills as invocable tools | Developer tools (VS Code, Cursor) and agents (Manus AI, OpenCode) | Run a local server that exposes all 10 skills as tools via the Model Context Protocol (MCP). |
+| **2. LLM Prompting** | Any skill via context window | Web chat AIs (Claude, Gemini, ChatGPT) | Provide the content of `llms.txt` or a specific `SKILL.md` directly in the chat context. |
+| **3. Local Files** | Any skill via filesystem | CLI tools without web access (OpenCode) | Clone the repository and point the tool to the relevant `SKILL.md` file path. |
 
 ---
 
