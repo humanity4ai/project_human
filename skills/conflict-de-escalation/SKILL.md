@@ -63,6 +63,17 @@ Use this skill when:
 - Never make sudden movements
 - Never lie or make promises you can't keep
 
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **De-escalation is not capitulation.** The goal is to reduce emotional intensity so that productive dialogue is possible, not to concede to unreasonable demands.
+2. **No coercive tactics.** Techniques that manipulate, gaslight, or exploit emotional vulnerabilities are strictly prohibited.
+3. **Safety first.** If a situation presents indicators of physical danger or imminent harm, the response must prioritise safety and escalation over de-escalation.
+4. **Explicit uncertainty over false certainty.** De-escalation outcomes are not guaranteed. Acknowledge the limits of any plan.
+5. **Cultural context matters.** Conflict expression and resolution norms vary significantly across cultures. Recommendations must account for this.
+
+
 ## De-escalation Framework
 
 ### The VERB Model

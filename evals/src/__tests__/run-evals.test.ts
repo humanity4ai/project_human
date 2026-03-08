@@ -3,7 +3,7 @@
  * Copyright (c) 2026 Ascent Partners Foundation. MIT License.
  */
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { existsSync, mkdirSync, rmSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, rmSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
@@ -150,44 +150,56 @@ describe("evaluateSkill — fixture tests", () => {
 describe("evaluateContractConsistency — real corpus", () => {
   const skillsRoot = join(REPO_ROOT, "skills");
 
-  it("E-21: contracts.json exists in mcp-servers/src", () => {
-    const contractsPath = join(REPO_ROOT, "mcp-servers", "src", "contracts.json");
-    expect(existsSync(contractsPath)).toBe(true);
-  });
-
-  it("E-22: contract-consistency passes against real skill corpus", () => {
+  it("E-21: contract-consistency passes against real skill corpus", () => {
     const result = evaluateContractConsistency(skillsRoot, REPO_ROOT);
     expect(result.pass).toBe(true);
     expect(result.issues).toHaveLength(0);
   });
 
-  it("E-23: result skill name is contract-consistency", () => {
+  it("E-22: result skill name is contract-consistency", () => {
     const result = evaluateContractConsistency(skillsRoot, REPO_ROOT);
     expect(result.skill).toBe("contract-consistency");
   });
 
-  it("E-24: returns fail with message when contracts.json is missing", () => {
-    const fakeRoot = join(tmpdir(), `no-contracts-${Date.now()}`);
-    mkdirSync(join(fakeRoot, "mcp-servers", "src"), { recursive: true });
+  it("E-23: returns pass with empty skills directory", () => {
+    const fakeRoot = join(tmpdir(), `empty-skills-${Date.now()}`);
     mkdirSync(join(fakeRoot, "skills"), { recursive: true });
     const result = evaluateContractConsistency(join(fakeRoot, "skills"), fakeRoot);
-    expect(result.pass).toBe(false);
-    expect(result.issues.some(i => i.includes("build:contracts") || i.includes("Cannot read"))).toBe(true);
+    expect(result.pass).toBe(true);
     rmSync(fakeRoot, { recursive: true });
   });
 
-  it("E-25: all 10 real skills have matching contracts", () => {
-    const result = evaluateContractConsistency(skillsRoot, REPO_ROOT);
-    // If any skill is missing a contract, it will be in the issues
-    expect(result.issues.some(i => i.includes("No MCP contract found"))).toBe(false);
+  it("E-24: reports folder/name mismatch when skill.yaml name differs from folder", () => {
+    const fakeRoot = join(tmpdir(), `mismatch-${Date.now()}`);
+    const skillDir = join(fakeRoot, "skills", "my-skill");
+    mkdirSync(skillDir, { recursive: true });
+    writeFileSync(join(skillDir, "skill.yaml"), [
+      "name: wrong-name",
+      "version: 0.1.0",
+      "status: active",
+      "category: communication",
+      "summary: Test skill",
+      "boundaries:\n  - boundary one",
+      "actions:\n  - id: test_action\n    input_schema: ./in.json\n    output_schema: ./out.json",
+      "uncertainty:\n  confidence: high\n  contested: false\n  cultural_scope: global",
+      "provenance:\n  sources:\n    - internal\n  license: MIT"
+    ].join("\n"));
+    const result = evaluateContractConsistency(join(fakeRoot, "skills"), fakeRoot);
+    expect(result.issues.some(i => i.includes("Contract/folder mismatch"))).toBe(true);
+    rmSync(fakeRoot, { recursive: true });
   });
 
-  it("E-26: all input schema files referenced in contracts exist", () => {
+  it("E-25: all 10 real skills have skill.yaml names matching folder names", () => {
+    const result = evaluateContractConsistency(skillsRoot, REPO_ROOT);
+    expect(result.issues.some(i => i.includes("Contract/folder mismatch"))).toBe(false);
+  });
+
+  it("E-26: all input schema files referenced in skill.yaml exist and are valid JSON", () => {
     const result = evaluateContractConsistency(skillsRoot, REPO_ROOT);
     expect(result.issues.some(i => i.includes("Invalid or missing JSON schema (input)"))).toBe(false);
   });
 
-  it("E-27: all output schema files referenced in contracts exist and are valid JSON", () => {
+  it("E-27: all output schema files referenced in skill.yaml exist and are valid JSON", () => {
     const result = evaluateContractConsistency(skillsRoot, REPO_ROOT);
     expect(result.issues.some(i => i.includes("Invalid or missing JSON schema (output)"))).toBe(false);
   });

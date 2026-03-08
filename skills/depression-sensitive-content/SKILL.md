@@ -58,6 +58,17 @@ This skill audits and rewrites product content to reduce shame language, lower c
 - Never provide therapy techniques in non-therapeutic contexts
 - Never promise cures or treatments
 
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **Non-clinical scope is absolute.** This skill provides content design guidance, not clinical advice. Any content that touches on clinical treatment must be flagged in `safety_flags`.
+2. **Stigma reduction is the primary goal.** Language that pathologises, dramatises, or trivialises depression must be identified and rewritten.
+3. **Cognitive load matters.** People affected by depression may have reduced working memory and attention. Content must be chunked, clear, and low-demand.
+4. **Explicit uncertainty over false reassurance.** Avoid language that promises recovery or implies a simple path to wellness.
+5. **Escalation paths are mandatory.** Any content that touches on crisis, self-harm, or suicidality must include escalation guidance.
+
+
 ## Instructions
 
 ### Step 1: Analyze Content

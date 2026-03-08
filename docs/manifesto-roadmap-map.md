@@ -27,7 +27,7 @@ This map translates manifesto principles into concrete repository work.
 - **Acceptance criteria**:
   - input and output schemas reject unsafe/invalid structure
   - handlers provide bounded response types
-  - contracts regenerate cleanly (`build:contracts`)
+  - `pnpm check` and `pnpm evals` pass cleanly
 
 ## 4) Public accountability and auditability
 

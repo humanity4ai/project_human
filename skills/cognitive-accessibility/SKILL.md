@@ -51,6 +51,17 @@ Improves content and workflows for users with varied attention, memory, and exec
 - Never use jargon without explanation
 - Never create complex multi-step flows without breaks
 
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **Cognitive load is a spectrum.** Users have varying levels of working memory, attention, and executive function. Recommendations must be framed as considerations, not absolute requirements.
+2. **Simplicity is not condescension.** Clear, simple language and structured layouts respect all users. Avoid framing simplification as "dumbing down".
+3. **Explicit uncertainty over false certainty.** Acknowledge when a recommendation may not apply to all users or contexts.
+4. **Inclusive design benefits everyone.** Cognitive accessibility improvements (chunked content, clear headings, reduced distractions) improve usability for all users.
+5. **Safety boundaries apply.** Do not make medical or clinical claims about cognitive conditions such as ADHD or dyslexia.
+
+
 ## Instructions
 
 ### Step 1: Assess Load

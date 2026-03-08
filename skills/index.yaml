@@ -3,30 +3,102 @@ skills:
   - name: wcag-aaa-accessibility
     category: accessibility
     action: wcagaaa_check
+    description: "Use this skill when the user wants to audit a webpage, HTML markup, or digital content for WCAG 2.2 AAA compliance. This includes conducting accessibility audits, reviewing code for accessibility issues, providing remediation guidance, checking color contrast, evaluating keyboard navigation, assessing screen reader compatibility, and ensuring conformance with WCAG Success Criteria at Level AAA. Trigger especially when user mentions 'accessibility audit', 'WCAG', 'ADA compliance', 'accessibility review', 'screen reader test', 'keyboard navigation', or asks to make content accessible."
+    tags:
+      - accessibility
+      - wcag
+      - a11y
+      - inclusive-design
+      - section-508
+      - ada
   - name: depression-sensitive-content
     category: emotional-safety
     action: rewrite_depression_sensitive_content
+    description: Audit and rewrite content to reduce stigma, improve emotional safety, and lower cognitive load for people affected by depression. Use when user asks to 'make content more sensitive', 'remove stigmatizing language', 'improve emotional safety', 'rewrite for depression awareness', 'audit content for mental health sensitivity'.
+    tags:
+      - mental-health
+      - emotional-safety
+      - depression
+      - stigma
+      - content-design
   - name: supportive-conversation
     category: communication
     action: supportive_reply
+    description: Generate supportive responses with safety boundaries. Use when user asks to 'be supportive', 'help with emotional support', 'provide encouragement', 'respond with empathy', 'offer emotional support'.
+    tags:
+      - emotional-support
+      - empathy
+      - communication
+      - active-listening
+      - compassion
   - name: cognitive-accessibility
     category: cognitive-support
     action: cognitive_accessibility_audit
+    description: Improve content and workflows for users with varied attention, memory, and executive function profiles. Use when user asks to 'simplify content', 'reduce cognitive load', 'improve readability', 'chunk content', 'make accessible for ADHD', 'help with focus'.
+    tags:
+      - cognitive-accessibility
+      - adhd
+      - executive-function
+      - readability
+      - inclusive-design
   - name: cultural-sensitivity
     category: cultural-context
     action: cultural_context_check
+    description: Design for cultural inclusivity. Use when user asks to 'make culturally sensitive', 'adapt for culture', 'reduce cultural bias', 'cultural awareness', 'inclusive design'.
+    tags:
+      - culture
+      - i18n
+      - l10n
+      - inclusive-design
+      - diversity
   - name: conflict-de-escalation
     category: conflict-navigation
     action: deescalation_plan
+    description: De-escalate tense interactions using proven techniques. Use when user asks to 'de-escalate conflict', 'handle angry customer', 'calm tense situation', 'respond to aggression', 'reduce tension in conversation', 'de-fuse a volatile situation'.
+    tags:
+      - conflict-resolution
+      - de-escalation
+      - communication
+      - customer-support
+      - emotional-regulation
   - name: empathetic-communication
     category: communication
     action: empathetic_reframe
+    description: Improve emotional resonance in communication. Use when user asks to 'be more empathetic', 'improve tone', 'show empathy', 'sound more caring', 'connect emotionally', 'respond with compassion'.
+    tags:
+      - empathy
+      - communication
+      - tone
+      - emotional-intelligence
+      - active-listening
+      - compassion
   - name: grief-loss-support
     category: emotional-safety
     action: grief_support_response
+    description: Offer non-clinical, compassionate support language for grief and loss. Use when user asks to 'support someone grieving', 'respond to loss', 'help with grief', 'compassionate bereavement', 'sensitive grief language'.
+    tags:
+      - grief-support
+      - bereavement
+      - emotional-safety
+      - compassion
+      - empathy
   - name: neurodiversity-aware-design
     category: neurodiversity
     action: neurodiversity_design_check
+    description: Design for diverse cognitive processing. Use when user asks to 'make ADHD-friendly', 'autism-friendly design', 'sensory-friendly', 'reduce cognitive overload', 'dyslexia-friendly', 'neurodiversity design'.
+    tags:
+      - neurodiversity
+      - adhd
+      - autism
+      - dyslexia
+      - inclusive-design
   - name: age-inclusive-design
     category: age-inclusion
     action: age_inclusive_design_check
+    description: Design for users of all ages. Use when user asks to 'make accessible for older adults', 'improve age-inclusive design', 'help elderly users', 'reduce age-related friction', 'design for all ages', 'age-friendly interface'.
+    tags:
+      - age-inclusion
+      - accessibility
+      - inclusive-design
+      - elderly
+      - seniors
