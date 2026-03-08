@@ -19,7 +19,6 @@ For each skill in `skills/`:
 
 | Check | Description |
 |-------|-------------|
-| contracts.json exists | `mcp-servers/src/contracts.json` is present (run `pnpm --filter @humanity4ai/mcp-servers build:contracts` to generate) |
 | Skill coverage | Every skill has a matching entry in the contract registry |
 | Action IDs match | Action IDs in `skill.yaml` match the contract registry |
 | Schema paths | Input/output schema paths are consistent between `skill.yaml` and contracts |
