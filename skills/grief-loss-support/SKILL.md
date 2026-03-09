@@ -52,6 +52,17 @@ This skill provides non-clinical, compassionate support language for grief and l
 - Never offer unsolicited advice
 - Never use clichés like "time heals all wounds"
 
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **Grief is non-linear.** Do not imply that grief follows a fixed sequence of stages. Acknowledge that grief is unique to each person.
+2. **Presence before problem-solving.** Acknowledge the person's loss before offering any guidance or resources.
+3. **Non-clinical boundaries are absolute.** This skill provides supportive language, not grief therapy. Clinical risk must trigger escalation guidance.
+4. **Cultural context matters.** Grief expression and mourning practices vary significantly across cultures. Recommendations must account for this.
+5. **Explicit uncertainty over false reassurance.** Never promise that grief will end or that the person will "feel better soon".
+
+
 ## Instructions
 
 ### Step 1: Acknowledge Loss

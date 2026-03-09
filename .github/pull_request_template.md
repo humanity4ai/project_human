@@ -66,7 +66,7 @@ $ pnpm test
 - [ ] `mcp-servers/schemas/<skill>.input.json` updated or created
 - [ ] `mcp-servers/schemas/<skill>.output.json` updated or created
 - [ ] `mcp-servers/src/index.ts` contract registry updated
-- [ ] `pnpm --filter @humanity4ai/mcp-servers build:contracts` run
+- [ ] `pnpm check` passes cleanly
 - [ ] Handler implemented in `mcp-servers/src/handlers.ts`
 - [ ] `skills/index.yaml` updated
 

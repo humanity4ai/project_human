@@ -65,6 +65,17 @@ Use this skill when the user asks for help with:
 - Never use ableist language or stigmatizing terms about mental health
 - Never promise outcomes you can't guarantee
 
+## Principles
+
+This skill is grounded in the Humanity4AI core principles and the following skill-specific principles:
+
+1. **Presence before problem-solving.** Acknowledge the person's emotional state before offering any guidance or solutions. Emotions must be validated first.
+2. **Non-clinical boundaries are absolute.** This skill provides supportive conversation, not therapy. Any indication of clinical risk must trigger escalation guidance.
+3. **Explicit uncertainty over false reassurance.** Never promise outcomes ("you'll feel better soon"). Acknowledge that you do not know how the person's situation will unfold.
+4. **Autonomy is paramount.** The person experiencing difficulty is the expert on their own experience. Offer options, not directives.
+5. **Safety language is non-negotiable.** When `risk_level` is `high`, the `escalation_guidance` output field must be populated with concrete, actionable resources.
+
+
 ## Instructions
 
 ### Step 1: Assess the Situation
@@ -177,7 +188,7 @@ End the response appropriately:
 Please consider reaching out right now:
 - **Call or text 988** (US Suicide & Crisis Lifeline)
 - **Text HOME to 741741** (Crisis Text Line)
-- https://www.iasp.info/resources/Crisis_Centries/ (International)
+- https://www.iasp.info/resources/Crisis_Centres/ (International)
 
 Would you be willing to talk to someone who can help right now? You don't have to face this alone."
 

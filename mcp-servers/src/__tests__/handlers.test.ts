@@ -39,10 +39,10 @@ describe("invokeAction — dispatch and validation", () => {
     expect(result.ok).toBe(false);
   });
 
-  it("H-2: unknown action error message contains list_actions hint", () => {
+  it("H-2: unknown action error message contains tools/list hint", () => {
     const result = callRaw("not_a_real_action", {});
     expect(result.ok).toBe(false);
-    if (!result.ok) expect(result.error).toContain("list_actions");
+    if (!result.ok) expect(result.error).toContain("tools/list");
   });
 
   it("H-3: unknown action error contains the action name", () => {

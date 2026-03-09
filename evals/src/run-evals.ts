@@ -57,16 +57,6 @@ const skillSpecSchema = z.object({
   })
 });
 
-const actionContractSchema = z.object({
-  skill: z.string().min(1),
-  action: z.string().min(1),
-  inputSchemaPath: z.string().min(1),
-  outputSchemaPath: z.string().min(1),
-  safetyBoundary: z.string().min(1)
-});
-
-type ActionContract = z.infer<typeof actionContractSchema>;
-
 const REQUIRED_FILES = [
   "SKILL.md",
   "skill.yaml",
@@ -164,38 +154,8 @@ export function evaluateSkill(skillDir: string): EvalResult {
   return { skill: skillName, pass: issues.length === 0, issues };
 }
 
-function loadContractsFromModule(repoRoot: string): ActionContract[] {
-  // Load contracts from the compiled JSON representation to avoid fragile regex parsing
-  const contractsJsonPath = join(repoRoot, "mcp-servers", "src", "contracts.json");
-  try {
-    const raw = readFileSync(contractsJsonPath, "utf8");
-    const data = JSON.parse(raw) as unknown[];
-    return data.map((item) => actionContractSchema.parse(item));
-  } catch {
-    // Fallback: import directly from the mcp-servers index (in-process)
-    return [];
-  }
-}
-
 export function evaluateContractConsistency(skillsRoot: string, repoRoot: string): EvalResult {
   const issues: string[] = [];
-
-  // Load contracts from the exported JSON snapshot (resilient to formatting changes)
-  const contractsJsonPath = join(repoRoot, "mcp-servers", "src", "contracts.json");
-  let contracts: ActionContract[] = [];
-
-  try {
-    const raw = readFileSync(contractsJsonPath, "utf8");
-    const data = JSON.parse(raw) as unknown[];
-    contracts = data.map((item) => actionContractSchema.parse(item));
-  } catch {
-    issues.push(
-      "Cannot read mcp-servers/src/contracts.json — run `pnpm --filter @humanity4ai/mcp-servers build:contracts` to regenerate"
-    );
-    return { skill: "contract-consistency", pass: false, issues };
-  }
-
-  const contractBySkill = new Map(contracts.map((c) => [c.skill, c]));
 
   const skillDirs = readdirSync(skillsRoot)
     .map((name: string) => join(skillsRoot, name))
@@ -218,42 +178,26 @@ export function evaluateContractConsistency(skillsRoot: string, repoRoot: string
       continue;
     }
 
-    const contract = contractBySkill.get(spec.name);
-    if (!contract) {
-      issues.push(`No MCP contract found for skill '${spec.name}'`);
+    if (spec.name !== folderName) {
+      issues.push(`Contract/folder mismatch: skill.yaml.name='${spec.name}' folder='${folderName}'`);
+    }
+
+    const action = spec.actions[0];
+    if (!action) {
+      issues.push(`No actions defined for skill '${spec.name}'`);
       continue;
     }
 
-    if (contract.skill !== folderName) {
-      issues.push(`Contract/folder mismatch: contract='${contract.skill}' folder='${folderName}'`);
-    }
-
-    const actionId = spec.actions[0]?.id;
-    if (actionId !== contract.action) {
-      issues.push(`Action mismatch for '${spec.name}': skill='${actionId}' contract='${contract.action}'`);
-    }
-
-    const inputPath = normalize(spec.actions[0]?.input_schema ?? "");
-    const outputPath = normalize(spec.actions[0]?.output_schema ?? "");
-    const contractInput = normalize(join("..", "..", "mcp-servers", contract.inputSchemaPath));
-    const contractOutput = normalize(join("..", "..", "mcp-servers", contract.outputSchemaPath));
-
-    if (inputPath !== contractInput) {
-      issues.push(`Input schema path mismatch for '${spec.name}': got '${inputPath}' expected '${contractInput}'`);
-    }
-    if (outputPath !== contractOutput) {
-      issues.push(`Output schema path mismatch for '${spec.name}': got '${outputPath}' expected '${contractOutput}'`);
-    }
-
-    for (const [label, schemaPath] of [
-      ["input", contract.inputSchemaPath],
-      ["output", contract.outputSchemaPath]
+    // Validate that the schema files referenced in skill.yaml exist and are valid JSON
+    for (const [label, relPath] of [
+      ["input", action.input_schema],
+      ["output", action.output_schema]
     ] as const) {
-      const fullPath = join(repoRoot, "mcp-servers", schemaPath);
+      const fullPath = normalize(join(dir, relPath));
       try {
         JSON.parse(readFileSync(fullPath, "utf8"));
       } catch {
-        issues.push(`Invalid or missing JSON schema (${label}): ${schemaPath}`);
+        issues.push(`Invalid or missing JSON schema (${label}) for '${spec.name}': ${relPath}`);
       }
     }
   }

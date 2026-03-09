@@ -6,50 +6,54 @@
 
 ## Overview
 
-The Humanity4AI MCP server uses a **line-delimited JSON (NDJSON) protocol over stdin/stdout**.
-
-This is a custom transport layer — it is **not** the MCP SDK JSON-RPC 2.0 protocol used by Anthropic's official Model Context Protocol SDK. We use a simpler, dependency-free protocol in v0.1 to maximise compatibility and ease of integration. A JSON-RPC 2.0 adapter is planned for v0.2.
+Humanity4AI uses the official `@modelcontextprotocol/sdk` JSON-RPC 2.0 protocol over stdio. This is the standard protocol natively understood by Claude Code, Copilot, Manus AI, OpenCode, LangChain, and any other MCP SDK-compatible agent.
 
 ---
 
 ## Transport
 
-- **Input**: stdin, one JSON object per line (newline-delimited)
-- **Output**: stdout, one JSON object per line (newline-delimited)
-- **Startup messages**: stderr only (never pollutes JSON output stream)
-- **Maximum request size**: 512 KB per line
+- **Input**: stdin, one JSON-RPC 2.0 message per line
+- **Output**: stdout, one JSON-RPC 2.0 message per line
+- **Startup messages**: stderr only (never pollutes the JSON output stream)
 
 ---
 
-## Request envelope
+## Initialisation
 
-Every request must be a JSON object with the following fields:
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `id` | string | No | Optional caller-assigned request ID, echoed in response |
-| `type` | string | Yes | Request type: `list_actions` or `invoke` |
-| `payload` | object | Conditional | Required for `invoke` — the action invocation payload |
-
-### `list_actions` request
-
-Returns all registered action contracts.
+Before calling any tools, clients must send an `initialize` request:
 
 ```json
-{"id":"req-1","type":"list_actions"}
+{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"my-agent","version":"1.0"}}}
 ```
 
-### `invoke` request
+Response:
 
-Invokes a named action with structured input.
+```json
+{"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2024-11-05","capabilities":{"tools":{}},"serverInfo":{"name":"humanity4ai-mcp","version":"0.1.0"}}}
+```
+
+---
+
+## Tool Discovery
+
+```json
+{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
+```
+
+Response includes all 10 registered tools with their name, description, and input schema.
+
+---
+
+## Tool Invocation
 
 ```json
 {
-  "id": "req-2",
-  "type": "invoke",
-  "payload": {
-    "action": "supportive_reply",
-    "input": {
+  "jsonrpc": "2.0",
+  "id": 3,
+  "method": "tools/call",
+  "params": {
+    "name": "supportive_reply",
+    "arguments": {
       "message": "I feel overwhelmed",
       "risk_level": "medium"
     }
@@ -57,36 +61,19 @@ Invokes a named action with structured input.
 }
 ```
 
----
-
-## Response envelope
-
-Every response is a JSON object:
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | string | Echoed from the request `id` field if provided |
-| `ok` | boolean | `true` if the request succeeded, `false` if it failed |
-| `data` | object | Present when `ok: true` — the response payload |
-| `error` | string | Present when `ok: false` — human-readable error message |
-| `issues` | array | Present when `ok: false` for validation errors — list of issue objects |
-
 ### Success response
 
 ```json
 {
-  "id": "req-2",
-  "ok": true,
-  "data": {
-    "action": "supportive_reply",
-    "boundaryNotice": "Non-clinical support; must provide escalation cues when risk is elevated",
-    "uncertainty": "medium",
-    "assumptions": ["Risk level: medium (self-reported or system-assessed)"],
-    "output": {
-      "reply": "I hear you, and I am glad you reached out...",
-      "escalation_guidance": ["If things feel harder over time, consider speaking with a mental health professional"],
-      "boundaries_notice": "Non-clinical support..."
-    }
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"action\": \"supportive_reply\",\n  \"boundaryNotice\": \"Non-clinical support; must escalate when risk is elevated\",\n  \"uncertainty\": \"medium\",\n  \"assumptions\": [\"Risk level: medium (self-reported)\"],\n  \"output\": {\n    \"reply\": \"I hear you, and I am glad you reached out...\",\n    \"escalation_guidance\": [\"If things feel harder over time, consider speaking with a mental health professional\"]\n  }\n}"
+      }
+    ]
   }
 }
 ```
@@ -95,69 +82,55 @@ Every response is a JSON object:
 
 ```json
 {
-  "id": "req-3",
-  "ok": false,
-  "error": "Input validation failed for action 'supportive_reply': Required field 'message' is missing or empty"
-}
-```
-
-### Validation error response
-
-```json
-{
-  "id": "req-4",
-  "ok": false,
-  "error": "Invalid invoke payload",
-  "issues": [{"code":"invalid_type","message":"Required","path":["action"]}]
+  "jsonrpc": "2.0",
+  "id": 3,
+  "error": {
+    "code": -32602,
+    "message": "Input validation failed for action 'supportive_reply': Required field 'message' is missing or empty"
+  }
 }
 ```
 
 ---
 
-## Action response fields
+## Tool Response Fields
 
-All action responses include these top-level fields:
+All tool responses return a single `text` content item containing a JSON-encoded `InvokeResponse` object:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `action` | string | The action that was invoked |
-| `boundaryNotice` | string | Safety boundary notice for this action |
+| `action` | string | The tool that was invoked |
+| `boundaryNotice` | string | Safety boundary notice — always surface to users |
 | `uncertainty` | `"low"` \| `"medium"` \| `"high"` | Confidence level of the response |
 | `assumptions` | string[] | Assumptions made during processing |
-| `output` | object | Action-specific structured output — see each skill's JSON schema |
+| `output` | object | Tool-specific structured output — see each skill's JSON schema |
 
 ---
 
-## Error codes
+## Error Codes
 
-| Condition | `ok` | `error` content |
-|-----------|------|----------------|
-| Unknown action | `false` | `Unknown action: '...'` |
-| Input validation failure | `false` | `Input validation failed for action '...'` |
-| Invalid envelope | `false` | `Invalid request envelope` |
-| Malformed JSON | `false` | `Malformed JSON request` |
-| Request too large | `false` | `Request exceeds maximum size (512 KB)` |
+| Condition | JSON-RPC error code | Message |
+|-----------|---------------------|---------|
+| Unknown tool | `-32601` | `Method not found` |
+| Input validation failure | `-32602` | `Input validation failed for action '...'` |
+| Invalid params | `-32602` | `Invalid params` |
+| Internal error | `-32603` | `Internal error` |
 
 ---
 
-## Comparison with MCP SDK (JSON-RPC 2.0)
+## Available Tools (10)
 
-| Feature | Humanity4AI v0.1 | MCP SDK JSON-RPC 2.0 |
-|---------|-----------------|----------------------|
-| Transport | stdin/stdout NDJSON | stdin/stdout or HTTP |
-| Framing | Newline-delimited | Length-prefixed or HTTP |
-| Protocol | Custom envelope | JSON-RPC 2.0 |
-| Tool discovery | `list_actions` | `tools/list` |
-| Tool invocation | `invoke` | `tools/call` |
-| SDK dependency | None | `@modelcontextprotocol/sdk` |
+| Tool name | Skill |
+|-----------|-------|
+| `wcagaaa_check` | WCAG AAA Accessibility |
+| `rewrite_depression_sensitive_content` | Depression-Sensitive Content |
+| `supportive_reply` | Supportive Conversation |
+| `cognitive_accessibility_audit` | Cognitive Accessibility |
+| `cultural_context_check` | Cultural Sensitivity |
+| `deescalation_plan` | Conflict De-escalation |
+| `empathetic_reframe` | Empathetic Communication |
+| `grief_support_response` | Grief & Loss Support |
+| `neurodiversity_design_check` | Neurodiversity-Aware Design |
+| `age_inclusive_design_check` | Age-Inclusive Design |
 
-## Available Protocols
-
-Humanity4AI provides two server implementations:
-
-| Server | Command | Protocol | Use Case |
-|--------|---------|----------|----------|
-| Standard MCP SDK (recommended) | `pnpm start:mcp-sdk` | JSON-RPC 2.0 | Claude Code, Copilot, OpenCode, any MCP SDK client |
-| Legacy NDJSON | `pnpm start:mcp` | Custom NDJSON | Backward compatibility |
-
-See [`mcp-servers/README.md`](../mcp-servers/README.md) for full details.
+See [`mcp-servers/README.md`](../mcp-servers/README.md) for full tool reference and input/output schemas.

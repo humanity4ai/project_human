@@ -31,9 +31,6 @@ jobs:
       - name: Type checks
         run: pnpm check
 
-      - name: Build contracts
-        run: pnpm --filter @humanity4ai/mcp-servers build:contracts
-
       - name: Build package
         run: pnpm --filter @humanity4ai/mcp-servers build
 

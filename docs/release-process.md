@@ -60,7 +60,6 @@ All must pass locally before opening the promotion PR.
 ```bash
 # In mcp-servers/package.json — update "version" field
 # Follow semver: patch for fixes, minor for new features, major for breaking changes
-pnpm --filter @humanity4ai/mcp-servers build:contracts
 pnpm --filter @humanity4ai/mcp-servers build
 ```
 
