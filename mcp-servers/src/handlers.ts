@@ -422,6 +422,7 @@ function handleEmpatheticReframe(input: Record<string, unknown>, boundaryNotice:
 // Handler: grief_support_response
 // ─────────────────────────────────────────────
 function handleGriefSupport(input: Record<string, unknown>, boundaryNotice: string): HandlerResult {
+  const message = str(input, "message");
   const supportMode = str(input, "support_mode", "presence");
 
   const careNotes: string[] = [];
@@ -433,17 +434,17 @@ function handleGriefSupport(input: Record<string, unknown>, boundaryNotice: stri
   let reply: string;
 
   if (supportMode === "presence") {
-    reply = "I am here with you. There is no need to have the right words or to be okay right now. Grief has its own pace, and whatever you are feeling is valid.";
+    reply = `I hear you, and I am here with you. You shared: "${message}". There is no need to have the right words or to be okay right now. Grief has its own pace, and whatever you are feeling is valid.`;
     careNotes.push("Presence-first response — prioritises being heard over problem-solving");
     careNotes.push("Avoid offering silver linings or comparisons to others' experiences");
     careNotes.push("Hold space — short, warm responses often feel safer than long explanations");
   } else if (supportMode === "practical") {
-    reply = "I am sorry for what you are going through. If it helps to think about one small thing, I am here to assist with whatever feels manageable right now — there is no pressure to do more than that.";
+    reply = `I am so sorry for what you are going through. You mentioned: "${message}". If it helps to think about one small thing, I am here to assist with whatever feels manageable right now — there is no pressure to do more than that.`;
     careNotes.push("Practical mode — offers help without imposing a to-do list");
     careNotes.push("Keep any suggested actions small, concrete, and optional");
     careNotes.push("Check in before offering advice — ask 'Would it help if I suggested some options?' first");
   } else {
-    reply = "Grief often does not follow a straight line. What you are feeling — even if it surprises you — is part of how we process loss. There is no right or wrong way to grieve.";
+    reply = `You shared: "${message}". Grief often does not follow a straight line. What you are feeling — even if it surprises you — is part of how we process loss. There is no right or wrong way to grieve.`;
     careNotes.push("Reflection mode — validates the non-linear nature of grief");
     careNotes.push("Avoid timelines or stages — grief does not follow a fixed sequence");
     careNotes.push("Normalising unexpected emotions (relief, anger, numbness) can reduce shame");
