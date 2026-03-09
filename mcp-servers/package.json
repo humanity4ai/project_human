@@ -10,7 +10,7 @@
     "url": "git+https://github.com/humanity4ai/project_human.git",
     "directory": "mcp-servers"
   },
-  "homepage": "https://github.com/humanity4ai/project_human/tree/main/mcp-servers",
+  "homepage": "https://github.com/humanity4ai/project_human/tree/development/mcp-servers",
   "bugs": {
     "url": "https://github.com/humanity4ai/project_human/issues"
   },
