@@ -1,27 +1,48 @@
 # Humanity4AI LLM Discovery File
 
-This file guides Large Language Models (LLMs) on how to understand and use the `humanity4ai/project_human` repository. For a single-file version with all content, see [`llms-full.txt`](./llms-full.txt).
+This file guides Large Language Models (LLMs) on how to understand and use the
+`humanity4ai/project_human` repository. For a single-file version with all
+content, see https://raw.githubusercontent.com/humanity4ai/project_human/development/llms-full.txt
+
+---
 
 ## 1. Core Principles
 
 Start here to understand the project's foundational values.
 
-- **Core Principles**: [`knowledge-core/principles.md`](./knowledge-core/principles.md) — The five core principles of the Humanity4AI project.
-- **Taxonomy**: [`knowledge-core/taxonomy.md`](./knowledge-core/taxonomy.md) — The 10 launch categories for skills and their scope.
+- **Core Principles**: https://raw.githubusercontent.com/humanity4ai/project_human/development/knowledge-core/principles.md
+  — The five core principles of the Humanity4AI project.
+- **Taxonomy**: https://raw.githubusercontent.com/humanity4ai/project_human/development/knowledge-core/taxonomy.md
+  — The 10 launch categories for skills and their scope.
+- **System Prompt**: https://raw.githubusercontent.com/humanity4ai/project_human/development/SYSTEM_PROMPT.md
+  — The canonical system prompt for LLMs using the Humanity4AI skillset.
+
+---
 
 ## 2. How to Use the Skills (MCP Server)
 
-This project provides 10 skills via a standard MCP (Model Context Protocol) server. The server is published to npm and can be run with `npx`.
+This project provides 10 skills via a standard MCP (Model Context Protocol)
+server. The server is published to npm and can be run with `npx`.
 
-- **Quick Start**: [`README.md#mcp-runtime-v01`](./README.md#mcp-runtime-v01) — How to start the MCP server.
-- **Tool Reference**: [`mcp-servers/README.md`](./mcp-servers/README.md) — Full reference for all 10 tools, including input/output schemas.
+- **Quick Start**: https://raw.githubusercontent.com/humanity4ai/project_human/development/README.md
+  — How to start the MCP server (see section: MCP Runtime v0.1).
+- **Tool Reference**: https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/README.md
+  — Full reference for all 10 tools, including input/output schemas.
+- **Agent Adapter Guide**: https://raw.githubusercontent.com/humanity4ai/project_human/development/docs/agent-adapters.md
+  — Integration examples for OpenCode, Claude, Cursor, Copilot, Manus AI, n8n, and LangChain.
+- **Action Contracts**: https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/src/index.ts
+  — TypeScript source for all 10 action contracts.
+- **MCP Server Source**: https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/src/mcp-server.ts
+  — Full MCP server implementation with tool registrations.
+- **Handler Source**: https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/src/handlers.ts
+  — All 10 action handler implementations.
 
 ### Tool Signatures
 
 | Action | Description | Required Input | Optional Input | Output Fields |
 |---|---|---|---|---|
 | `wcagaaa_check` | WCAG 2.2 AAA accessibility audit | `target`, `level` | `context` | `findings`, `summary`, `assumptions` |
-| `rewrite_depression_sensitive_content` | Rewrite content for emotional safety | `text` | `mode`, `domain` | `result`, `safety_flags`, `uncertainty` |
+| `rewrite_depression_sensitive_content` | Rewrite content for emotional safety | `text`, `mode` | `domain` | `result`, `safety_flags`, `uncertainty` |
 | `supportive_reply` | Generate a supportive, non-clinical reply | `message`, `risk_level` | `locale` | `reply`, `escalation_guidance`, `boundaries_notice` |
 | `cognitive_accessibility_audit` | Audit content for cognitive accessibility | `content` | `target_context` | `findings`, `recommendations` |
 | `cultural_context_check` | Adapt a message for cultural context | `message`, `audience` | `region` | `adapted_message`, `notes`, `uncertainty` |
@@ -31,52 +52,101 @@ This project provides 10 skills via a standard MCP (Model Context Protocol) serv
 | `neurodiversity_design_check` | Check a UI design for neurodiversity awareness | `ui_description` | `focus` | `recommendations`, `tradeoffs` |
 | `age_inclusive_design_check` | Check a user flow for age-inclusivity | `flow_description` | `age_groups` | `recommendations`, `access_notes` |
 
+---
+
 ## 3. How to Use the Skills (Prompt Engineering)
 
-If you do not have tool-use capabilities, you can use the skills via prompt engineering.
+If you do not have tool-use capabilities, you can use the skills via prompt
+engineering.
 
-- **Prompting Guide**: [`README.md#alternative-prompt-engineering`](./README.md#alternative-prompt-engineering) — How to load skill content into your context window.
+- **Prompting Guide**: https://raw.githubusercontent.com/humanity4ai/project_human/development/README.md
+  — How to load skill content into your context window (see section: Alternative — Prompt Engineering).
+
+---
 
 ## 4. Skill Reference
 
-This is the full list of all 10 skills. Each `SKILL.md` contains the full specification, including purpose, boundaries, and principles.
+This is the full list of all 10 skills. Each `SKILL.md` contains the full
+specification, including purpose, boundaries, and principles.
 
-- **Skill Index**: [`skills/index.yaml`](./skills/index.yaml) — A structured index of all available skills.
+- **Skill Index**: https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/index.yaml
+  — A structured YAML index of all available skills.
 
-| Skill | Category | Description |
+| Skill | Category | SKILL.md URL |
 |---|---|---|
-| [`age-inclusive-design`](./skills/age-inclusive-design/SKILL.md) | `age-inclusion` | Design for users of all ages. |
-| [`cognitive-accessibility`](./skills/cognitive-accessibility/SKILL.md) | `cognitive-support` | Improve content for varied attention, memory, and executive function. |
-| [`conflict-de-escalation`](./skills/conflict-de-escalation/SKILL.md) | `conflict-navigation` | De-escalate tense interactions. |
-| [`cultural-sensitivity`](./skills/cultural-sensitivity/SKILL.md) | `cultural-context` | Design for cultural inclusivity. |
-| [`depression-sensitive-content`](./skills/depression-sensitive-content/SKILL.md) | `emotional-safety` | Audit and rewrite content to reduce stigma and improve emotional safety. |
-| [`empathetic-communication`](./skills/empathetic-communication/SKILL.md) | `communication` | Improve emotional resonance in communication. |
-| [`grief-loss-support`](./skills/grief-loss-support/SKILL.md) | `emotional-safety` | Offer non-clinical, compassionate support language for grief and loss. |
-| [`neurodiversity-aware-design`](./skills/neurodiversity-aware-design/SKILL.md) | `neurodiversity` | Design for diverse cognitive processing. |
-| [`supportive-conversation`](./skills/supportive-conversation/SKILL.md) | `communication` | Generate supportive responses with safety boundaries. |
-| [`wcag-aaa-accessibility`](./skills/wcag-aaa-accessibility/SKILL.md) | `accessibility` | Audit a webpage or HTML for WCAG 2.2 AAA compliance. |
+| `age-inclusive-design` | `age-inclusion` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/age-inclusive-design/SKILL.md |
+| `cognitive-accessibility` | `cognitive-support` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/cognitive-accessibility/SKILL.md |
+| `conflict-de-escalation` | `conflict-navigation` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/conflict-de-escalation/SKILL.md |
+| `cultural-sensitivity` | `cultural-context` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/cultural-sensitivity/SKILL.md |
+| `depression-sensitive-content` | `emotional-safety` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/depression-sensitive-content/SKILL.md |
+| `empathetic-communication` | `communication` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/empathetic-communication/SKILL.md |
+| `grief-loss-support` | `emotional-safety` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/grief-loss-support/SKILL.md |
+| `neurodiversity-aware-design` | `neurodiversity` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/neurodiversity-aware-design/SKILL.md |
+| `supportive-conversation` | `communication` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/supportive-conversation/SKILL.md |
+| `wcag-aaa-accessibility` | `accessibility` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/wcag-aaa-accessibility/SKILL.md |
 
-## 5. Contribution Guide
+---
 
-- **How to Contribute**: [`README.md#contribute-in-10-minutes`](./README.md#contribute-in-10-minutes) — The guide for new contributors.
-- **Good First Issues**: [`docs/good-first-issues.md`](./docs/good-first-issues.md) — A curated list of starter tasks.
+## 5. Knowledge Core
 
+- **Principles**: https://raw.githubusercontent.com/humanity4ai/project_human/development/knowledge-core/principles.md
+- **Taxonomy**: https://raw.githubusercontent.com/humanity4ai/project_human/development/knowledge-core/taxonomy.md
+- **Uncertainty Schema**: https://raw.githubusercontent.com/humanity4ai/project_human/development/knowledge-core/uncertainty-schema.md
 
-## 6. On-Demand URL Index
+---
 
-For LLMs with web-fetching capabilities, use this index to lazy-load specific skill context on demand. Fetch the URL when the user's request matches the trigger condition.
+## 6. Governance & Contribution
 
-| Trigger Condition | What to Fetch | URL |
-|---|---|---|
-| User needs empathy support or emotional validation | Empathetic Communication skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/empathetic-communication/SKILL.md |
-| User is grieving or experiencing loss | Grief & Loss Support skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/grief-loss-support/SKILL.md |
-| User shows signs of depression or suicidal ideation | Depression-Sensitive Content skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/depression-sensitive-content/SKILL.md |
-| User is in a tense or hostile conversation | Conflict De-escalation skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/conflict-de-escalation/SKILL.md |
-| User needs help supporting someone who is upset | Supportive Conversation skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/supportive-conversation/SKILL.md |
-| User is designing for older adults (65+) | Age-Inclusive Design skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/age-inclusive-design/SKILL.md |
-| User is designing for neurodiversity (ADHD, autism, dyslexia) | Neurodiversity-Aware Design skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/neurodiversity-aware-design/SKILL.md |
-| User needs to simplify content or reduce cognitive load | Cognitive Accessibility skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/cognitive-accessibility/SKILL.md |
-| User is adapting content for different regions or cultures | Cultural Sensitivity skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/cultural-sensitivity/SKILL.md |
-| User wants to audit a webpage for WCAG AAA compliance | WCAG AAA Accessibility skill spec | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/wcag-aaa-accessibility/SKILL.md |
-| You need all skills at once | Full context file | https://raw.githubusercontent.com/humanity4ai/project_human/main/llms-full.txt |
-| You need the core principles and identity | System prompt | https://raw.githubusercontent.com/humanity4ai/project_human/main/SYSTEM_PROMPT.md |
+- **How to Contribute**: https://raw.githubusercontent.com/humanity4ai/project_human/development/CONTRIBUTING.md
+- **Good First Issues**: https://raw.githubusercontent.com/humanity4ai/project_human/development/docs/good-first-issues.md
+- **Governance**: https://raw.githubusercontent.com/humanity4ai/project_human/development/GOVERNANCE.md
+- **Code of Conduct**: https://raw.githubusercontent.com/humanity4ai/project_human/development/CODE_OF_CONDUCT.md
+- **Security Policy**: https://raw.githubusercontent.com/humanity4ai/project_human/development/SECURITY.md
+- **Maintainers**: https://raw.githubusercontent.com/humanity4ai/project_human/development/MAINTAINERS.md
+- **Release Notes**: https://raw.githubusercontent.com/humanity4ai/project_human/development/RELEASE_NOTES.md
+- **Roadmap**: https://raw.githubusercontent.com/humanity4ai/project_human/development/ROADMAP.md
+- **Repository Map**: https://raw.githubusercontent.com/humanity4ai/project_human/development/REPO_MAP.md
+- **Install Guide**: https://raw.githubusercontent.com/humanity4ai/project_human/development/INSTALL.md
+- **Operations Guide**: https://raw.githubusercontent.com/humanity4ai/project_human/development/OPERATIONS.md
+
+---
+
+## 7. MCP Schemas
+
+All JSON input/output schemas for the 10 actions are available at:
+
+| Schema | URL |
+|---|---|
+| `wcag-aaa-accessibility.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/wcag-aaa-accessibility.input.json |
+| `wcag-aaa-accessibility.output.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/wcag-aaa-accessibility.output.json |
+| `depression-sensitive-content.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/depression-sensitive-content.input.json |
+| `depression-sensitive-content.output.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/depression-sensitive-content.output.json |
+| `supportive-conversation.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/supportive-conversation.input.json |
+| `supportive-conversation.output.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/supportive-conversation.output.json |
+| `cognitive-accessibility.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/cognitive-accessibility.input.json |
+| `cognitive-accessibility.output.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/cognitive-accessibility.output.json |
+| `cultural-sensitivity.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/cultural-sensitivity.input.json |
+| `cultural-sensitivity.output.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/cultural-sensitivity.output.json |
+| `conflict-de-escalation.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/conflict-de-escalation.input.json |
+| `conflict-de-escalation.output.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/conflict-de-escalation.output.json |
+| `empathetic-communication.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/empathetic-communication.input.json |
+| `empathetic-communication.output.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/empathetic-communication.output.json |
+| `grief-loss-support.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/grief-loss-support.input.json |
+| `grief-loss-support.output.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/grief-loss-support.output.json |
+| `neurodiversity-aware-design.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/neurodiversity-aware-design.input.json |
+| `neurodiversity-aware-design.output.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/neurodiversity-aware-design.output.json |
+| `age-inclusive-design.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/age-inclusive-design.input.json |
+| `age-inclusive-design.output.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/age-inclusive-design.output.json |
+
+---
+
+## 8. Documentation
+
+- **Documentation Index**: https://raw.githubusercontent.com/humanity4ai/project_human/development/docs/README.md
+- **Protocol Specification**: https://raw.githubusercontent.com/humanity4ai/project_human/development/docs/protocol.md
+- **Agent Adapter Guide**: https://raw.githubusercontent.com/humanity4ai/project_human/development/docs/agent-adapters.md
+- **Quality Gates**: https://raw.githubusercontent.com/humanity4ai/project_human/development/docs/quality-gates.md
+- **Worked Example**: https://raw.githubusercontent.com/humanity4ai/project_human/development/docs/worked-example.md
+- **Manifesto**: https://raw.githubusercontent.com/humanity4ai/project_human/development/docs/manifesto.md
+- **Release Process**: https://raw.githubusercontent.com/humanity4ai/project_human/development/docs/release-process.md
+- **Package Release**: https://raw.githubusercontent.com/humanity4ai/project_human/development/docs/package-release.md

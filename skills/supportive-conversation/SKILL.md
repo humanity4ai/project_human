@@ -188,7 +188,7 @@ End the response appropriately:
 Please consider reaching out right now:
 - **Call or text 988** (US Suicide & Crisis Lifeline)
 - **Text HOME to 741741** (Crisis Text Line)
-- https://www.iasp.info/resources/Crisis_Centries/ (International)
+- https://www.iasp.info/resources/Crisis_Centres/ (International)
 
 Would you be willing to talk to someone who can help right now? You don't have to face this alone."
 
