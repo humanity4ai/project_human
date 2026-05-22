@@ -19,3 +19,18 @@ scenarios:
     prompt: Improve onboarding pacing for mixed digital literacy.
   - id: aid-10
     prompt: Audit notification settings for user control.
+
+  - id: aid-11
+    title: "Design for multigenerational household digital tool (South Asian context)"
+    input: { ui_description: "A family finance app used by grandparents, parents, and teenagers in a joint family household", age_groups: ["older adults", "young adults", "youth"] }
+    expected: { recommendations_count_gte: 3 }
+
+  - id: aid-12
+    title: "Digital literacy gap for elderly in rural Global South"
+    input: { ui_description: "A mobile health appointment system with QR code check-in for rural clinic patients", age_groups: ["older adults"] }
+    expected: { recommendations_count_gte: 3 }
+
+  - id: aid-13
+    title: "Age-inclusive design for formal, respect-based UI (East Asian elderly)"
+    input: { ui_description: "A government services portal where elders expect formal addressing and hierarchical navigation", age_groups: ["older adults"] }
+    expected: { recommendations_count_gte: 3 }

@@ -19,3 +19,28 @@ scenarios:
     prompt: Refine chatbot greeting for cross-border usage.
   - id: cs-10
     prompt: Add uncertainty note where audience context is unknown.
+
+  - id: cs-11
+    title: "Arabic RTL content with formal addressing"
+    input: { message: "Dear customer, your subscription renews next month", audience: "general", region: "Middle East" }
+    expected: { adapted_message_contains: "[Adapted for general audience, Middle East]", notes_contains: "RTL text direction" }
+
+  - id: cs-12
+    title: "East Asian hierarchy-sensitive content review"
+    input: { message: "Hey there! Just wanted to follow up on your application", audience: "job applicants", region: "Japan" }
+    expected: { adapted_message_contains: "[Adapted for job applicants audience, Japan]", notes_contains: "hierarchy" }
+
+  - id: cs-13
+    title: "Latin American warm, relationship-first tone"
+    input: { message: "Your account has been updated. Have a good day.", audience: "new users", region: "Latin America" }
+    expected: { adapted_message_contains: "[Adapted for new users audience, Latin America]", notes_contains: "warm" }
+
+  - id: cs-14
+    title: "Indian multilingual diversity consideration"
+    input: { message: "Welcome to our platform. Please verify your email.", audience: "all users", region: "India" }
+    expected: { adapted_message_contains: "[Adapted for all users audience, India]", notes_contains: "diversity" }
+
+  - id: cs-15
+    title: "Sub-Saharan African community-oriented framing"
+    input: { message: "Your personal results are ready to view.", audience: "healthcare patients", region: "Sub-Saharan Africa" }
+    expected: { adapted_message_contains: "[Adapted for healthcare patients audience, Sub-Saharan Africa]", notes_contains: "community" }
