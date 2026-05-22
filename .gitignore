@@ -3,4 +3,9 @@ dist/
 coverage/
 *.log
 *.tgz
+*.tsbuildinfo
+.env
+.DS_Store
+Thumbs.db
+reports/
 AGENTS.md

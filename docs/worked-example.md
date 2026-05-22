@@ -43,7 +43,7 @@ In a second terminal:
 
 ```bash
 echo '{"id":"1","type":"list_actions"}' \
-  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Response: a JSON array of 10 action contracts, each with `skill`, `action`, `inputSchemaPath`, `outputSchemaPath`, `safetyBoundary`.
@@ -62,7 +62,7 @@ echo '{
     "action":"wcagaaa_check",
     "input":{"target":"https://example.com/signup","level":"AAA"}
   }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `findings[]` with severity, issue, and fix for each accessibility problem.
@@ -82,7 +82,7 @@ echo '{
       "mode":"rewrite"
     }
   }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `result` (rewritten text), `safety_flags[]`, `review_recommended`.
@@ -99,7 +99,7 @@ echo '{
     "action":"supportive_reply",
     "input":{"message":"I feel overwhelmed and stuck","risk_level":"medium"}
   }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `reply`, `escalation_guidance[]`, `boundaries_notice`.
@@ -119,7 +119,7 @@ echo '{
       "target_context":"insurance claim form"
     }
   }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `findings[]`, `recommendations[]`.
@@ -140,7 +140,7 @@ echo '{
       "region":"Japan"
     }
   }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `adapted_message`, `notes[]`, `uncertainty`.
@@ -160,7 +160,7 @@ echo '{
       "intensity":"high"
     }
   }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `plan[]` (step-by-step), `risk_notes[]`.
@@ -180,7 +180,7 @@ echo '{
       "tone":"warm"
     }
   }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `reframed_message`, `rationale[]`, `escalation_guidance[]`.
@@ -200,7 +200,7 @@ echo '{
       "support_mode":"presence"
     }
   }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `reply`, `care_notes[]`, `escalation_guidance[]`.
@@ -220,7 +220,7 @@ echo '{
       "focus":["adhd","sensory"]
     }
   }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `recommendations[]`, `tradeoffs[]`.
@@ -240,7 +240,7 @@ echo '{
       "age_groups":["older adults","seniors"]
     }
   }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `recommendations[]`, `access_notes[]`.
@@ -259,7 +259,7 @@ echo '{
     "action":"supportive_reply",
     "input":{}
   }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Response:
