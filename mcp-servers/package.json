@@ -4,6 +4,11 @@
   "version": "0.1.0",
   "type": "module",
   "description": "MCP contracts and runtime server for Humanity4AI skills",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=10"
+  },
+  "engineStrict": true,
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -54,16 +59,10 @@
     "./schemas/*": "./schemas/*"
   },
   "files": [
-    "dist/bin.js",
-    "dist/index.js",
-    "dist/index.d.ts",
-    "dist/handlers.js",
-    "dist/handlers.d.ts",
-    "dist/types.js",
-    "dist/types.d.ts",
-    "dist/validate.js",
-    "dist/validate.d.ts",
-    "dist/mcp-server.js",
+    "dist/*.js",
+    "dist/*.d.ts",
+    "dist/*.d.ts.map",
+    "dist/*.js.map",
     "schemas",
     "README.md"
   ],
