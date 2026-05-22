@@ -70,6 +70,8 @@ This skill is grounded in the Humanity4AI core principles and the following skil
 - Low context: explicit communication (Western cultures)
 - Adjust communication style
 
+**Limitations of Hofstede's framework**: The cultural dimensions presented here are derived from IBM employee surveys conducted between 1967-1973, primarily in Western corporate settings. Key critiques include: (1) Ecological fallacy — applying national averages to individuals within those nations (McSweeney, 2002); (2) Western bias in dimension selection — the dimensions were designed from a Western research perspective (Ailon, 2008); (3) The framework does not capture within-country cultural diversity, Indigenous cultural frameworks, or cultural change over time. These dimensions should be used as starting points for inquiry, not deterministic labels.
+
 ## Boundaries
 
 ### Always

@@ -21,5 +21,11 @@ uncertainty:
   cultural_scope: global
 provenance:
   sources:
-    - internal-curation
+    - w3c-coga-usable
+    - microsoft-inclusive-design-cognition
   license: MIT
+references:
+  - name: "W3C COGA — Making Content Usable for People with Cognitive and Learning Disabilities"
+    url: "https://www.w3.org/TR/coga-usable/"
+  - name: "Microsoft Inclusive Design for Cognition"
+    url: "https://inclusive.microsoft.design/"

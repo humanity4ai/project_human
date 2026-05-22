@@ -20,5 +20,14 @@ uncertainty:
   cultural_scope: global
 provenance:
   sources:
-    - internal-curation
+    - iso-25556-2025
+    - iso-guide-71-2014
+    - wcag-22
   license: MIT
+references:
+  - name: "ISO 25556:2025 — Ageing societies — General requirements and guidelines for age-inclusive digital economy"
+    url: "https://www.iso.org/standard/82945.html"
+  - name: "ISO/IEC Guide 71:2014 — Guide for addressing accessibility in standards"
+    url: "https://www.iso.org/standard/57385.html"
+  - name: "WCAG 2.2"
+    url: "https://www.w3.org/TR/WCAG22/"

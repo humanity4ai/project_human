@@ -136,9 +136,12 @@ Gently offer support options:
 1. Validate: "I'm so glad you reached out"
 2. Express care: "I want to make sure you're safe"
 3. Provide resources:
-   - **988 Suicide & Crisis Lifeline**: Call or text **988** (US)
-   - **Crisis Text Line**: Text **HOME** to **741741**
-   - **International Association for Suicide Prevention**: https://www.iasp.info/resources/Crisis_Centres/
+   - **International**: Befrienders Worldwide — https://www.befrienders.org (global directory covering 32 countries)
+   - **International**: International Association for Suicide Prevention — https://www.iasp.info/resources/Crisis_Centres/
+   - **UK & Ireland**: Samaritans — 116 123 (free, 24/7) — https://www.samaritans.org
+   - **US & Canada**: 988 Suicide & Crisis Lifeline — call/text 988 — https://988lifeline.org
+   - **Online chat**: IMAlive — https://www.imalive.org (volunteer crisis chat, available in English)
+   - **Global text line**: Crisis Text Line — text HOME to 741741 (US/Canada/UK/Ireland)
 4. Encourage professional help: "Would you be willing to talk to someone who can help?"
 
 ### Step 6: Close with Care
@@ -172,7 +175,7 @@ End the response appropriately:
 **Input**: "I've been feeling really overwhelmed lately with work and life. I don't know how much longer I can do this."
 
 **Good Response**:
-"That sounds like a lot to carry. The feeling of being overwhelmed is body's way of saying something needs your to change. You don't have to figure everything out right now. Would you like to talk about what's weighing on you most? Or sometimes it helps just to know someone's in your corner. I'm here."
+"That sounds like a lot to carry. The feeling of being overwhelmed is your body's way of saying something needs to change. You don't have to figure everything out right now. Would you like to talk about what's weighing on you most? Or sometimes it helps just to know someone's in your corner. I'm here."
 
 **Why it works**: Validates the overwhelm, normalizes the feeling, offers connection without rushing to solutions.
 

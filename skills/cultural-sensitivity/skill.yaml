@@ -20,5 +20,13 @@ uncertainty:
   cultural_scope: global
 provenance:
   sources:
-    - internal-curation
+    - apa-multicultural-2017
+    - unesco-diversity-2001
+    - hofstede-2001
   license: MIT
+references:
+  - name: "APA Multicultural Guidelines (2017)"
+    url: "https://www.apa.org/about/policy/multicultural-guidelines"
+  - name: "UNESCO Universal Declaration on Cultural Diversity (2001)"
+    url: "https://unesdoc.unesco.org/ark:/48223/pf0000127162"
+  - name: "Hofstede, G. (2001). Culture's Consequences (2nd ed.). Sage."

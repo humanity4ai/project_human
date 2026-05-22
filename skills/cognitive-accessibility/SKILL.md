@@ -20,7 +20,7 @@ tags:
 
 ## Purpose
 
-Improves content and workflows for users with varied attention, memory, and executive function profiles. Applies cognitive load theory, chunking strategies, and clear information architecture.
+Improves content and workflows for users with varied attention, memory, and executive function profiles. Applies cognitive load theory (Sweller, 1988), chunking strategies, and clear information architecture.
 
 ## When to Use
 
@@ -117,6 +117,8 @@ Suggest:
 - **[references/quick-reference.md](references/quick-reference.md)** - Quick reference
 
 ## Cognitive Load Theory
+
+Note: Cognitive Load Theory was originally developed for instructional design; its application to user interface and content design is an extrapolation supported by subsequent HCI research (Hollender et al., 2010; Paas et al., 2003).
 
 ### Types of Cognitive Load
 

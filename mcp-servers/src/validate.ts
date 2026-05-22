@@ -14,12 +14,17 @@ type ValidationResult =
   | { valid: true }
   | { valid: false; errors: string[] };
 
-function loadSchema(schemaPath: string): Record<string, unknown> | null {
+function loadSchema(schemaPath: string): { schema: Record<string, unknown> | null; error?: string } {
   try {
     const full = join(dirname(fileURLToPath(import.meta.url)), "..", schemaPath);
-    return JSON.parse(readFileSync(full, "utf8")) as Record<string, unknown>;
-  } catch {
-    return null;
+    const raw = readFileSync(full, "utf8");
+    const schema = JSON.parse(raw) as Record<string, unknown>;
+    return { schema };
+  } catch (err) {
+    if (err instanceof SyntaxError) {
+      return { schema: null, error: `Schema file '${schemaPath}' contains invalid JSON` };
+    }
+    return { schema: null, error: `Schema file '${schemaPath}' not found or unreadable` };
   }
 }
 
@@ -37,8 +42,29 @@ function validateField(
     return;
   }
 
-  if (type === "string" && typeof value !== "string") {
-    errors.push(`'${fieldName}' must be a string`);
+  if (type === "string") {
+    if (typeof value !== "string") {
+      errors.push(`'${fieldName}' must be a string`);
+      return;
+    }
+    const minLength = spec["minLength"] as number | undefined;
+    const maxLength = spec["maxLength"] as number | undefined;
+    const pattern = spec["pattern"] as string | undefined;
+    if (minLength !== undefined && value.length < minLength) {
+      errors.push(`'${fieldName}' must be at least ${minLength} characters`);
+    }
+    if (maxLength !== undefined && value.length > maxLength) {
+      errors.push(`'${fieldName}' must be at most ${maxLength} characters`);
+    }
+    if (pattern !== undefined) {
+      try {
+        if (!new RegExp(pattern).test(value)) {
+          errors.push(`'${fieldName}' does not match required pattern`);
+        }
+      } catch {
+        errors.push(`'${fieldName}' schema pattern is invalid`);
+      }
+    }
   } else if (type === "number" && typeof value !== "number") {
     errors.push(`'${fieldName}' must be a number`);
   } else if (type === "boolean" && typeof value !== "boolean") {
@@ -54,10 +80,9 @@ export function validateInput(
   schemaPath: string,
   input: Record<string, unknown>
 ): ValidationResult {
-  const schema = loadSchema(schemaPath);
+  const { schema, error } = loadSchema(schemaPath);
   if (!schema) {
-    // If schema cannot be loaded, pass through with a warning assumption
-    return { valid: true };
+    return { valid: false, errors: [error ?? "Schema validation error"] };
   }
 
   const errors: string[] = [];

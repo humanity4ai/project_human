@@ -31,14 +31,16 @@ describe("loadSchema via validateInput", () => {
     expect(result.valid).toBe(true);
   });
 
-  it("V-2: non-existent schema path returns valid:true (silent pass-through)", () => {
+  it("V-2: non-existent schema path returns valid:false with error message", () => {
     const result = validateInput("schemas/does-not-exist.json", {});
-    expect(result.valid).toBe(true);
+    expect(result.valid).toBe(false);
+    expect((result as { errors: string[] }).errors[0]).toContain("not found");
   });
 
-  it("V-3: malformed schema path returns valid:true (silent pass-through)", () => {
+  it("V-3: malformed schema path returns valid:false with error message", () => {
     const result = validateInput("schemas/../../../etc/passwd", {});
-    expect(result.valid).toBe(true);
+    expect(result.valid).toBe(false);
+    expect((result as { errors: string[] }).errors[0]).toContain("not found");
   });
 });
 

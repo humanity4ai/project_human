@@ -19,5 +19,13 @@ uncertainty:
   cultural_scope: global
 provenance:
   sources:
-    - internal-curation
+    - samhsa-crisis-care
+    - who-psychological-first-aid
+    - miller-rollnick-2013
   license: MIT
+references:
+  - name: "SAMHSA National Guidelines for Behavioral Health Crisis Care"
+    url: "https://www.samhsa.gov/resource/ebp/national-guidelines-behavioral-health-crisis-care-best-practice-toolkit"
+  - name: "WHO Psychological First Aid: Guide for Field Workers (2011)"
+    url: "https://www.who.int/publications/i/item/9789241548205"
+  - name: "Miller, W.R. & Rollnick, S. (2013). Motivational Interviewing (3rd ed.). Guilford Press."

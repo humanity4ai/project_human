@@ -65,7 +65,7 @@
 ## Quick Check
 
 - [ ] Are animations optional/reduceable?
-- [ ] Is audio/video autoplay可控?
+- [ ] Is audio/video autoplay controllable/user-configurable?
 - [ ] Are tasks broken into simple steps?
 - [ ] Is text dyslexia-friendly (sans-serif, adequate spacing)?
 - [ ] Is navigation predictable?

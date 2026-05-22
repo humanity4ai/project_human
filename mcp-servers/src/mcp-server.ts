@@ -20,7 +20,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import { invokeAction } from "./handlers.js";
 
-export const VERSION = "0.1.0";
+export const VERSION = "0.2.0";
 
 // ── Helper: convert invokeAction result to MCP CallToolResult ────────────────
 

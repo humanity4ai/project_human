@@ -27,11 +27,14 @@ uncertainty:
   contested: true
   cultural_scope: region
 references:
-  - name: APA Grief Guidelines
-    url: https://www.apa.org/topics/grief
-  - name: SAMHSA Bereavement
-    url: https://www.samhsa.gov/
+  - name: "Stroebe, M. & Schut, H. (1999). The dual process model of coping with bereavement. Death Studies, 23(3), 197-224."
+    url: "https://doi.org/10.1080/074811899201046"
+  - name: "Neimeyer, R.A. (2001). Meaning Reconstruction and the Experience of Loss. APA."
+  - name: "APA Guidelines for Working with Grief and Bereavement"
+    url: "https://www.apa.org/topics/grief"
 provenance:
   sources:
-    - internal-curation
+    - stroebe-schut-1999
+    - neimeyer-2001
+    - apa-grief-guidelines
   license: MIT

@@ -23,5 +23,10 @@ uncertainty:
   cultural_scope: global
 provenance:
   sources:
-    - internal-curation
+    - iso-21801-2020
+    - sweller-1988
   license: MIT
+references:
+  - name: "ISO 21801-1:2020 — Cognitive accessibility"
+    url: "https://www.iso.org/standard/82943.html"
+  - name: "Sweller, J. (1988). Cognitive load during problem solving. Cognitive Science, 12(2), 257-285."

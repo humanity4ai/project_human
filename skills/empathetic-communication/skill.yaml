@@ -19,5 +19,11 @@ uncertainty:
   cultural_scope: global
 provenance:
   sources:
-    - internal-curation
+    - rogers-1961
+    - decety-jackson-2004
+    - singer-klimecki-2014
   license: MIT
+references:
+  - name: "Rogers, C. (1961). On Becoming a Person. Houghton Mifflin."
+  - name: "Decety, J. & Jackson, P.L. (2004). The functional architecture of human empathy. Behavioral and Cognitive Neuroscience Reviews, 3(2), 71-100."
+  - name: "Singer, T. & Klimecki, O.M. (2014). Empathy and compassion. Current Biology, 24(18), R875-R878."

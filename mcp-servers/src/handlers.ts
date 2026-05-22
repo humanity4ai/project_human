@@ -126,7 +126,7 @@ function handleDepressionSensitiveRewrite(input: Record<string, unknown>, bounda
     // Rewrite mode — apply structured rewrite principles
     result = text
       // Remove blame framing
-      .replace(/you (failed|must|should have)/gi, "let's")
+      .replace(/\byou (failed|must|should have)\b/gi, "let's")
       // Soften urgency
       .replace(/last chance|act now/gi, "when you are ready")
       .replace(/limited time/gi, "available for a period")
@@ -268,8 +268,13 @@ function handleCulturalContext(input: Record<string, unknown>, boundaryNotice: s
     notes.push("Use concrete, action-oriented language that works in direct translation");
   }
 
+  const strippedTerms: string[] = [];
+  const stripped = message.replace(/\b(guys|dude|hey)\b/gi, (match) => {
+    strippedTerms.push(match.toLowerCase());
+    return "";
+  }).trim();
   const adaptedMessage = message.length > 0
-    ? `[Adapted for ${audience} audience, ${region}]: ${message.replace(/\b(guys|dude|hey)\b/gi, "").trim()}`
+    ? `[Adapted for ${audience} audience, ${region}]: ${stripped || "(message contained only informal terms)"}`
     : "No message provided — please include a 'message' field in your input";
 
   return {
@@ -287,6 +292,7 @@ function handleCulturalContext(input: Record<string, unknown>, boundaryNotice: s
       output: {
         adapted_message: adaptedMessage,
         notes,
+        removed_terms: strippedTerms,
         uncertainty: "Cultural guidance represents tendencies, not rules — context always varies"
       }
     }
@@ -434,17 +440,17 @@ function handleGriefSupport(input: Record<string, unknown>, boundaryNotice: stri
   let reply: string;
 
   if (supportMode === "presence") {
-    reply = `I hear you, and I am here with you. You shared: "${message}". There is no need to have the right words or to be okay right now. Grief has its own pace, and whatever you are feeling is valid.`;
+    reply = "I hear you, and I am here with you. There is no need to have the right words or to be okay right now. Grief has its own pace, and whatever you are feeling is valid.";
     careNotes.push("Presence-first response — prioritises being heard over problem-solving");
     careNotes.push("Avoid offering silver linings or comparisons to others' experiences");
     careNotes.push("Hold space — short, warm responses often feel safer than long explanations");
   } else if (supportMode === "practical") {
-    reply = `I am so sorry for what you are going through. You mentioned: "${message}". If it helps to think about one small thing, I am here to assist with whatever feels manageable right now — there is no pressure to do more than that.`;
+    reply = "I am so sorry for what you are going through. If it helps to think about one small thing, I am here to assist with whatever feels manageable right now — there is no pressure to do more than that.";
     careNotes.push("Practical mode — offers help without imposing a to-do list");
     careNotes.push("Keep any suggested actions small, concrete, and optional");
     careNotes.push("Check in before offering advice — ask 'Would it help if I suggested some options?' first");
   } else {
-    reply = `You shared: "${message}". Grief often does not follow a straight line. What you are feeling — even if it surprises you — is part of how we process loss. There is no right or wrong way to grieve.`;
+    reply = "Grief often does not follow a straight line. What you are feeling — even if it surprises you — is part of how we process loss. There is no right or wrong way to grieve.";
     careNotes.push("Reflection mode — validates the non-linear nature of grief");
     careNotes.push("Avoid timelines or stages — grief does not follow a fixed sequence");
     careNotes.push("Normalising unexpected emotions (relief, anger, numbness) can reduce shame");
@@ -604,6 +610,49 @@ function handleAgeInclusiveDesign(input: Record<string, unknown>, boundaryNotice
 }
 
 // ─────────────────────────────────────────────
+// Handler: supportive_reply
+// ─────────────────────────────────────────────
+function handleSupportiveReply(input: Record<string, unknown>, boundaryNotice: string): HandlerResult {
+  const riskLevel = str(input, "risk_level", "low");
+  const escalation =
+    riskLevel === "high"
+      ? [
+          "If you or someone else may be in immediate danger, contact emergency services now",
+          "Contact a local crisis line — trained counsellors are available 24/7",
+          "In the UK: Samaritans 116 123 | US: 988 Suicide & Crisis Lifeline | International: findahelpline.com",
+          "Reach out to a trusted person nearby"
+        ]
+      : riskLevel === "medium"
+      ? [
+          "If things feel harder over time, consider speaking with a mental health professional",
+          "You can contact a support line any time, even just to talk"
+        ]
+      : [
+          "Professional support is available any time you need it"
+        ];
+
+  return {
+    ok: true,
+    data: {
+      action: "supportive_reply",
+      boundaryNotice,
+      uncertainty: "medium",
+      assumptions: [
+        `Risk level: ${riskLevel} (self-reported or system-assessed)`,
+        "Non-clinical support only — not a substitute for professional mental health care"
+      ],
+      output: {
+        reply:
+          "I hear you, and I am glad you reached out. It makes sense that things feel heavy right now. " +
+          "You do not have to have it all figured out — let us focus on one small step at a time.",
+        escalation_guidance: escalation,
+        boundaries_notice: boundaryNotice
+      }
+    }
+  };
+}
+
+// ─────────────────────────────────────────────
 // Main dispatch
 // ─────────────────────────────────────────────
 export function invokeAction(
@@ -650,45 +699,8 @@ export function invokeAction(
       return handleNeurodiversityDesign(input, boundaryNotice);
     case "age_inclusive_design_check":
       return handleAgeInclusiveDesign(input, boundaryNotice);
-    case "supportive_reply": {
-      const riskLevel = str(input, "risk_level", "low");
-      const escalation =
-        riskLevel === "high"
-          ? [
-              "If you or someone else may be in immediate danger, contact emergency services now",
-              "Contact a local crisis line — trained counsellors are available 24/7",
-              "In the UK: Samaritans 116 123 | US: 988 Suicide & Crisis Lifeline | International: findahelpline.com",
-              "Reach out to a trusted person nearby"
-            ]
-          : riskLevel === "medium"
-          ? [
-              "If things feel harder over time, consider speaking with a mental health professional",
-              "You can contact a support line any time, even just to talk"
-            ]
-          : [
-              "Professional support is available any time you need it"
-            ];
-
-      return {
-        ok: true,
-        data: {
-          action: "supportive_reply",
-          boundaryNotice,
-          uncertainty: "medium",
-          assumptions: [
-            `Risk level: ${riskLevel} (self-reported or system-assessed)`,
-            "Non-clinical support only — not a substitute for professional mental health care"
-          ],
-          output: {
-            reply:
-              "I hear you, and I am glad you reached out. It makes sense that things feel heavy right now. " +
-              "You do not have to have it all figured out — let us focus on one small step at a time.",
-            escalation_guidance: escalation,
-            boundaries_notice: boundaryNotice
-          }
-        }
-      };
-    }
+    case "supportive_reply":
+      return handleSupportiveReply(input, boundaryNotice);
     default:
       return {
         ok: false,

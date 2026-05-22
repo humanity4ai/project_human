@@ -27,7 +27,7 @@ This skill is critical for preventing violence and ensuring safety in high-stres
 
 Use this skill when:
 - Someone is increasingly agitated or angry
-- becoming You need to respond to an angry customer, client, or colleague
+- You need to respond to an angry customer, client, or colleague
 - A conversation is becoming tense or hostile
 - You need to calm a volatile situation
 - Dealing with someone in emotional distress
@@ -270,7 +270,13 @@ Some conflicts may indicate deeper issues. Watch for:
 2. Do not engage in debate
 3. Set clear boundaries
 4. Call security/authorities if immediate danger
-5. If suicide mentioned, follow crisis protocols (provide 988, Crisis Text Line)
+5. If suicide mentioned, follow crisis protocols. Provide crisis resources:
+   - **International**: Befrienders Worldwide — https://www.befrienders.org (global directory covering 32 countries)
+   - **International**: International Association for Suicide Prevention — https://www.iasp.info/resources/Crisis_Centres/
+   - **UK & Ireland**: Samaritans — 116 123 (free, 24/7) — https://www.samaritans.org
+   - **US & Canada**: 988 Suicide & Crisis Lifeline — call/text 988 — https://988lifeline.org
+   - **Online chat**: IMAlive — https://www.imalive.org (volunteer crisis chat, available in English)
+   - **Global text line**: Crisis Text Line — text HOME to 741741 (US/Canada/UK/Ireland)
 
 ## Cultural Considerations
 
