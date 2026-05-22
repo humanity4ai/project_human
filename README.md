@@ -104,3 +104,144 @@ pnpm install
 pnpm check
 pnpm evals
 ```
+```
+
+### For AI Agents — Standard MCP SDK (JSON-RPC 2.0)
+
+Start the standard MCP server compatible with Claude Code, Copilot, Manus AI, OpenCode, and any MCP SDK client:
+
+```bash
+pnpm start
+```
+
+Configure your agent by adding this to your MCP client config:
+
+```json
+{
+  "mcpServers": {
+    "humanity4ai": {
+      "command": "pnpm",
+      "args": ["--filter", "@humanity4ai/mcp-servers", "start"],
+      "cwd": "/path/to/project_human"
+    }
+  }
+}
+```
+
+All 10 humanity skills are discoverable via `tools/list` and invocable via `tools/call`.
+See [`mcp-servers/README.md`](mcp-servers/README.md) for full protocol details and tool reference.
+
+Full install and deploy guide: [`INSTALL.md`](INSTALL.md)
+
+## Docker (one command)
+
+```bash
+docker compose up
+```
+
+## MCP Runtime (v0.1)
+
+`mcp-servers` exposes all 10 skill actions via the standard MCP SDK JSON-RPC 2.0 protocol:
+
+| Server | Command | Protocol |
+|--------|---------|----------|
+| **Standard MCP SDK** | `pnpm start` | JSON-RPC 2.0 over stdio |
+
+All tools include input validation, structured responses, safety boundaries, and uncertainty disclosure.
+See [`mcp-servers/README.md`](mcp-servers/README.md) for the full tool reference.
+
+## Alternative: Prompt Engineering
+
+If your AI agent doesn't support MCP or skills, you can still use Humanity4AI by providing project content directly in the conversation context. This is less reliable than the MCP server but provides a good fallback.
+
+### How It Works
+
+You (the user) manually share the relevant file contents with your LLM. The LLM then applies those principles when responding to you. The best way to do this is to point the LLM to the `llms.txt` file.
+
+### What to Share
+
+Tell your LLM:
+
+> "You are an AI assistant with the Humanity4AI skillset. Your primary goal is to interact with users in a humane, ethical, and context-aware manner. Start by reading the `llms.txt` file at the root of this repository to understand your capabilities, then apply the principles and skills you find there in our conversation."
+
+Alternatively, you can provide the full context in one go:
+
+> "Here is the full context for the Humanity4AI skillset. Apply these principles and skills in our conversation:
+> 
+> [Paste the entire content of `llms-full.txt` here]"
+
+## Integrations
+
+- OpenCode
+- Claude Code
+- Microsoft Copilot ecosystem
+- Manus AI
+- OpenClaw
+
+See implementation notes in `docs/integrations.md` and `docs/agent-adapters.md`.
+
+## Contribute in 10 Minutes
+
+**Step 1 — Pick a task**
+
+Browse [open starter issues](https://github.com/humanity4ai/project_human/issues/new/choose) or see `docs/good-first-issues.md` for curated tasks.
+
+**Step 2 — Fork, branch, and implement**
+
+```bash
+# Clone your fork
+git clone https://github.com/<your-username>/project_human.git
+cd project_human
+
+# Branch from development (the default branch)
+git checkout development
+git checkout -b my-contribution
+
+# Copy the skill template if adding a new skill
+cp -r templates/skill skills/my-skill-name
+
+# Run all checks before opening a PR
+pnpm check && pnpm evals && pnpm test
+```
+
+**Step 3 — Open a PR targeting `development`**
+
+```bash
+gh pr create \
+  --base development \
+  --title "Add: my contribution" \
+  --body "Closes #<issue-number>"
+```
+
+Or open via GitHub UI — the default base branch is `development`.
+
+**Troubleshooting**
+
+| Error | Fix |
+|-------|-----|
+| `ERR_PNPM_OUTDATED_LOCKFILE` | Run `pnpm install` (without `--frozen-lockfile`) to update the lockfile, then commit `pnpm-lock.yaml` |
+| `pnpm: command not found` | Run `npm install -g pnpm` |
+| `pnpm evals` fails | Run `EVAL_REPORT=1 pnpm evals` — the report at `evals/reports/latest.md` shows which gates failed and why |
+
+## Traction and Roadmap
+
+- 14-day launch cadence: `docs/traction-14-day.md`
+- Quality gates: `docs/quality-gates.md`
+- Release roadmap: `ROADMAP.md`
+
+## How To Help This Week
+
+- Good first issues: https://github.com/humanity4ai/project_human/issues?q=is%3Aopen+label%3A%22good+first+issue%22
+- Help wanted: https://github.com/humanity4ai/project_human/issues?q=is%3Aopen+label%3A%22help+wanted%22
+
+## Package Release
+
+`mcp-servers` is now prepared as a publishable package with build artifacts and schema exports.
+
+- Build package: `pnpm --filter @humanity4ai/mcp-servers build`
+- Create tarball: `pnpm --filter @humanity4ai/mcp-servers pack`
+- Release guide: `docs/package-release.md`
+
+## Safety Position
+
+Humanity4AI includes non-clinical support-oriented skills. It does not provide diagnosis, treatment, or professional medical/legal advice.
