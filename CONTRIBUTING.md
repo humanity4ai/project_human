@@ -141,15 +141,7 @@ Add an entry to `actionContracts` in `mcp-servers/src/index.ts`:
 }
 ```
 
-### Step 3: Regenerate the contracts snapshot
-
-```bash
-pnpm --filter @humanity4ai/mcp-servers build:contracts
-```
-
-This updates `mcp-servers/src/contracts.json`, which is used by the eval harness.
-
-### Step 4: Implement the handler
+### Step 3: Implement the handler
 
 Add a handler case in `mcp-servers/src/handlers.ts`:
 
@@ -182,7 +174,7 @@ function handleYourAction(
 }
 ```
 
-### Step 5: Update `skills/index.yaml`
+### Step 4: Update `skills/index.yaml`
 
 Add your skill to the index:
 
@@ -223,15 +215,12 @@ cp -r templates/skill skills/my-skill-name
 # 4. Implement your changes
 # ... edit skill files, add handler, add schemas ...
 
-# 5. Regenerate contracts if you added a new action
-pnpm --filter @humanity4ai/mcp-servers build:contracts
-
-# 6. Run all checks — all must pass
+# 5. Run all checks — all must pass
 pnpm check
 pnpm evals
 pnpm test
 
-# 7. Open a pull request targeting development — fill every section of the template
+# 6. Open a pull request targeting development — fill every section of the template
 ```
 
 All three checks must pass and appear in the PR test evidence section before a review begins.
