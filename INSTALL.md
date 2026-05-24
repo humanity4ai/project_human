@@ -51,7 +51,7 @@ All 11 checks passed.
 ### 4. Start the MCP server
 
 ```bash
-pnpm start:mcp
+pnpm start
 ```
 
 The server will print a startup banner to stderr:
@@ -59,8 +59,8 @@ The server will print a startup banner to stderr:
 ```
 Humanity4AI MCP Server v0.1.0
 Actions: 10 registered
-Protocol: line-delimited JSON (see docs/protocol.md)
-Ready — waiting for requests on stdin
+Transport: stdio (MCP JSON-RPC 2.0)
+Ready
 ```
 
 ### 5. Send your first request
@@ -69,7 +69,7 @@ Open a second terminal and run:
 
 ```bash
 echo '{"id":"1","type":"list_actions"}' \
-  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 You should receive a JSON response listing all 10 registered actions.
@@ -78,7 +78,7 @@ You should receive a JSON response listing all 10 registered actions.
 
 ```bash
 echo '{"id":"2","type":"invoke","payload":{"action":"supportive_reply","input":{"message":"I feel overwhelmed","risk_level":"medium"}}}' \
-  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 ---
@@ -104,7 +104,7 @@ docker compose up --build
 
 ```bash
 echo '{"id":"1","type":"list_actions"}' \
-  | docker compose exec -T mcp-server node dist/server.js
+  | docker compose exec -T mcp-server node dist/mcp-server.js
 ```
 
 ### 4. Run in background
@@ -181,10 +181,10 @@ node --version  # should be v20.x or higher
 The server reads from stdin and writes to stdout. Pipe your request correctly:
 
 ```bash
-echo '{"id":"1","type":"list_actions"}' | pnpm start:mcp
+echo '{"id":"1","type":"list_actions"}' | pnpm start
 ```
 
-Do not run `pnpm start:mcp` interactively without piping input — it will wait silently.
+Do not run `pnpm start` interactively without piping input — it will wait silently.
 
 ### Docker: `port already in use`
 
@@ -201,6 +201,6 @@ pnpm install           # Dependencies installed
 pnpm check             # TypeScript passes
 pnpm build             # Package builds cleanly
 pnpm evals             # All 11 quality gates pass
-echo '{"id":"1","type":"list_actions"}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/server.ts
+echo '{"id":"1","type":"list_actions"}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 # Should return JSON with 10 actions
 ```
