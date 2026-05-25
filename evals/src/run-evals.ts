@@ -1,3 +1,12 @@
+// NOTE: Known eval system limitations (see specs/fix/comprehensive-audit-2026-05):
+// - Does not validate Python scripts vs TypeScript handlers for pattern consistency.
+//   Python scripts exist in skills/<skill>/scripts/ but are not invoked or compared.
+// - Does not validate handler output at runtime against declared output JSON schemas.
+//   Only checks that schemas exist and are valid JSON. Runtime validation is manual.
+// - Escalation check uses substring match ("escalat") in boundaries text — does not
+//   verify actual crisis resources (988, 741741, IASP URL) are present in handler output.
+// - Handler output schema validation and crisis resource checks are planned for a
+//   future eval enhancement (see AC-4.1, AC-4.2 in comprehensive audit spec).
 import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { basename, dirname, join, normalize } from "node:path";
 import { parse } from "yaml";

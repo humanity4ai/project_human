@@ -320,7 +320,6 @@ body {
 - **[references/stereotypes.md](references/stereotypes.md)** - Age stereotypes to avoid
 - **[references/font-guidelines.md](references/font-guidelines.md)** - Typography guidelines
 - **[references/interaction.md](references/interaction.md)** - Interaction design
-- **[references/navigation.md](references/navigation.md)** - Navigation patterns
 - **[references/checklist.md](references/checklist.md)** - Implementation checklist
 - **[references/examples.md](references/examples.md)** - Good and bad examples
 

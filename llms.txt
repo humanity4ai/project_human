@@ -42,7 +42,7 @@ server. The server is published to npm and can be run with `npx`.
 | Action | Description | Required Input | Optional Input | Output Fields |
 |---|---|---|---|---|
 | `wcagaaa_check` | WCAG 2.2 AAA accessibility audit | `target`, `level` | `context` | `findings`, `summary`, `assumptions` |
-| `rewrite_depression_sensitive_content` | Rewrite content for emotional safety | `text`, `mode` | `domain` | `result`, `safety_flags`, `uncertainty` |
+| `rewrite_depression_sensitive_content` | Rewrite content for emotional safety | `text` | `mode`, `domain` | `result`, `safety_flags`, `pattern_count`, `review_recommended`, `crisis_resources` |
 | `supportive_reply` | Generate a supportive, non-clinical reply | `message`, `risk_level` | `locale` | `reply`, `escalation_guidance`, `boundaries_notice` |
 | `cognitive_accessibility_audit` | Audit content for cognitive accessibility | `content` | `target_context` | `findings`, `recommendations` |
 | `cultural_context_check` | Adapt a message for cultural context | `message`, `audience` | `region` | `adapted_message`, `notes`, `uncertainty` |

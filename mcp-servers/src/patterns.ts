@@ -48,6 +48,188 @@ export const CRISIS_SIGNAL_PATTERNS = [
   "kill myself",
   "want to die",
   "better off dead",
+  "take my life",
+  "hurt myself",
+  "cut myself",
+  "end it all",
+  "make it stop",
+  "life isn't worth",
+  "can't go on",
+  "everyone would be better",
+  "no point living",
+  "can't cope",
+  "can't take",
+  "overwhelmed",
+] as const;
+
+/** Stigma/discrimination patterns (depression) */
+export const STIGMA_PATTERNS = [
+  "crazy",
+  "insane",
+  "psycho",
+  "nut",
+  "loony",
+  "weak",
+  "weak minded",
+  "weakness",
+] as const;
+
+/** Medical claim patterns (depression — flag content making unsupported medical assertions) */
+export const MEDICAL_CLAIM_PATTERNS = [
+  "cure",
+  "diagnos",
+  "diagnosis",
+  "diagnosed",
+  "diagnosing",
+  "prescri",
+  "prescribe",
+  "prescription",
+  "prescribed",
+  "medication without doctor",
+  "home remedy",
+  "guaranteed to treat",
+] as const;
+
+/** Minimizing/invalidating patterns (depression + grief) */
+export const MINIMIZING_PATTERNS = [
+  "just get over it",
+  "snap out of it",
+  "it's all in your head",
+  "just think positive",
+  "make up your mind",
+  "pull yourself together",
+  "cheer up",
+  "stop feeling sorry",
+] as const;
+
+/** Judgmental language patterns (depression) */
+export const JUDGMENTAL_PATTERNS = [
+  "poor compliance",
+  "non-compliant",
+  "non compliant",
+  "not trying",
+  "lazy",
+] as const;
+
+/** Stigmatizing verb patterns (depression — person is framed as victim/sufferer) */
+export const STIGMATIZING_VERB_PATTERNS = [
+  "suffering from",
+  "afflicted with",
+  "victim of",
+  "depressive person",
+] as const;
+
+/** Crisis language patterns (depression — specific stigmatizing crisis framing) */
+export const CRISIS_LANGUAGE_PATTERNS = [
+  "committed suicide",
+] as const;
+
+/** Grief cliche patterns — platitudes that minimize or invalidate grief */
+export const GRIEF_CLICHE_PATTERNS = [
+  "they're in a better place",
+  "they are in a better place",
+  "time heals all wounds",
+  "i know how you feel",
+  "at least",
+  "should be over it",
+  "be strong",
+  "move on",
+  "it could be worse",
+  "they lived a long life",
+  "god has a plan",
+  "everything happens for a reason",
+] as const;
+
+/** Grief rushing patterns — language that pressures the bereaved */
+export const GRIEF_RUSHING_PATTERNS = [
+  "should be over it",
+  "move on",
+  "time heals",
+  "get over it",
+  "get past this",
+] as const;
+
+/** Supportive conversation — emotion category: fear/anxiety */
+export const FEAR_ANXIETY_PATTERNS = [
+  "scared",
+  "terrified",
+  "anxious",
+  "worried",
+  "afraid",
+  "nervous",
+  "panic",
+] as const;
+
+/** Supportive conversation — emotion category: sadness/grief */
+export const SADNESS_GRIEF_PATTERNS = [
+  "sad",
+  "grief",
+  "loss",
+  "crying",
+  "heartbroken",
+  "devastated",
+  "miss",
+  "missing",
+] as const;
+
+/** Supportive conversation — emotion category: anger/frustration */
+export const ANGER_FRUSTRATION_PATTERNS = [
+  "angry",
+  "furious",
+  "frustrated",
+  "annoyed",
+  "irritated",
+  "rage",
+  "mad",
+] as const;
+
+/** Supportive conversation — emotion category: loneliness/isolation */
+export const LONELINESS_ISOLATION_PATTERNS = [
+  "lonely",
+  "alone",
+  "isolated",
+  "nobody",
+  "no one",
+  "disconnected",
+  "abandoned",
+] as const;
+
+/** Supportive conversation — emotion category: shame/guilt */
+export const SHAME_GUILT_PATTERNS = [
+  "ashamed",
+  "guilty",
+  "embarrassed",
+  "humiliated",
+  "regret",
+  "my fault",
+  "i should have",
+] as const;
+
+/** Supportive conversation — emotion category: love/connection */
+export const LOVE_CONNECTION_PATTERNS = [
+  "love",
+  "grateful",
+  "thankful",
+  "appreciate",
+  "connected",
+  "supported",
+  "cared for",
+] as const;
+
+/** Supportive conversation — boundary violation patterns (content that oversteps) */
+export const BOUNDARY_VIOLATION_PATTERNS = [
+  "you should",
+  "you need to listen",
+  "i promise",
+  "i guarantee",
+  "trust me",
+  "believe me",
+  "you'll be fine",
+  "it's not that bad",
+  "don't worry",
+  "calm down",
+  "relax",
+  "stop overreacting",
 ] as const;
 
 /** Blame/failure patterns for empathetic reframe */

@@ -22,3 +22,6 @@ provenance:
   sources:
     - internal-curation
   license: MIT
+references:
+  - name: APA Cultural Competency
+    url: https://www.apa.org/topics/cultural-competency
