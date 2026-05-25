@@ -67,3 +67,10 @@ Validating feelings from most to least effective:
 - Crisis Text Line: Text HOME to 741741
 - International Association for Suicide Prevention: https://www.iasp.info/resources/Crisis_Centres/
 - National Institute of Mental Health: https://www.nimh.nih.gov/health/find-help
+
+## Peer-Reviewed Research
+
+- Miller, W.R. & Rollnick, S. (2013). Motivational Interviewing: Helping People Change (3rd ed.). Guilford Press. — Evidence-based framework for non-directive supportive communication (OARS: Open questions, Affirmation, Reflective listening, Summarising).
+- Rogers, C.R. (1957). The necessary and sufficient conditions of therapeutic personality change. Journal of Consulting Psychology, 21(2), 95-103. — Core conditions: unconditional positive regard, empathic understanding, congruence.
+- Hobfoll, S.E. et al. (2007). Five essential elements of immediate and mid-term mass trauma intervention: Empirical evidence. Psychiatry, 70(4), 283-315. — Evidence for psychological first aid principles (safety, calming, self-efficacy, connectedness, hope).
+- Evans, C. et al. (2015). The impact of digital empathy: A systematic review of the effectiveness of empathic computer-based interactions. Journal of Medical Internet Research, 17(5), e113. — Evidence that digital empathy (even automated) has measurable positive effects.
