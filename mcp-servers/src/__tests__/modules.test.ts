@@ -4,6 +4,7 @@
  */
 import { describe, it, expect } from "vitest";
 import { detectCrisisSignals, detectSafetySignals } from "../crisis-detection.js";
+import { detectEmotion } from "../emotion-detection.js";
 import {
   crisisEscalationHigh,
   crisisEscalationMedium,
@@ -180,5 +181,55 @@ describe("detectSafetySignals", () => {
   });
   it("returns false for empty string", () => {
     expect(detectSafetySignals("")).toBe(false);
+  });
+});
+
+// ─── emotion-detection.ts ─────────────────────────────────────────────────
+
+describe("detectEmotion", () => {
+  it("returns none for empty string", () => {
+    const result = detectEmotion("");
+    expect(result.category).toBe("none");
+    expect(result.confidence).toBe(0);
+  });
+
+  it("detects fear_anxiety", () => {
+    const result = detectEmotion("I am scared and anxious");
+    expect(result.category).toBe("fear_anxiety");
+  });
+
+  it("detects sadness_grief", () => {
+    const result = detectEmotion("I feel so sad and I miss them");
+    expect(result.category).toBe("sadness_grief");
+  });
+
+  it("detects anger_frustration", () => {
+    const result = detectEmotion("I am so angry and frustrated");
+    expect(result.category).toBe("anger_frustration");
+  });
+
+  it("detects loneliness_isolation", () => {
+    const result = detectEmotion("I feel lonely and alone");
+    expect(result.category).toBe("loneliness_isolation");
+  });
+
+  it("detects shame_guilt", () => {
+    const result = detectEmotion("I am ashamed and guilty");
+    expect(result.category).toBe("shame_guilt");
+  });
+
+  it("detects love_connection", () => {
+    const result = detectEmotion("I am grateful and feel loved");
+    expect(result.category).toBe("love_connection");
+  });
+
+  it("returns none for neutral text", () => {
+    const result = detectEmotion("The weather is fine today");
+    expect(result.category).toBe("none");
+  });
+
+  it("picks dominant emotion with most matches", () => {
+    const result = detectEmotion("I am scared and terrified and also a bit sad");
+    expect(result.category).toBe("fear_anxiety"); // 2 fear vs 1 sadness
   });
 });
