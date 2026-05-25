@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["aggregate_score", "level", "criteria", "summary"],
+  "properties": {
+    "aggregate_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "level": {
+      "type": "string",
+      "enum": ["AA", "AAA"]
+    },
+    "heuristic": {
+      "type": "boolean"
+    },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["category", "score", "findings", "recommendations"],
+        "properties": {
+          "category": { "type": "string" },
+          "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+          "passCount": { "type": "integer" },
+          "failCount": { "type": "integer" },
+          "findings": { "type": "array", "items": { "type": "string" } },
+          "recommendations": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "summary": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/wcag-aa-accessibility.output.json"
+}

@@ -1,0 +1,29 @@
+name: wcag-aa-accessibility
+version: 0.1.0
+status: active
+category: accessibility
+summary: Real WCAG AA accessibility audit with per-criterion scoring (0-100)
+tags:
+  - wcag
+  - accessibility
+  - aa
+  - audit
+  - scoring
+  - html-analysis
+boundaries:
+  - Compliance guidance only; does not replace legal review
+actions:
+  - id: wcagaa_check
+    input_schema: ../../mcp-servers/schemas/wcag-aa-accessibility.input.json
+    output_schema: ../../mcp-servers/schemas/wcag-aa-accessibility.output.json
+uncertainty:
+  confidence: medium
+  contested: false
+  cultural_scope: global
+provenance:
+  sources:
+    - wcag-2.2-aa-standards
+  license: MIT
+references:
+  - name: WCAG 2.2 AA Standards
+    url: https://www.w3.org/TR/WCAG22/

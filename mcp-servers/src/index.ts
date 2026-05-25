@@ -93,6 +93,14 @@ export const actionContracts: ActionContract[] = [
     inputSchemaPath: "schemas/age-inclusive-design.input.json",
     outputSchemaPath: "schemas/age-inclusive-design.output.json",
     safetyBoundary: "Inclusive design guidance only"
+  },
+  {
+    skill: "wcag-aa-accessibility",
+    action: "wcagaa_check",
+    description: "Real WCAG AA accessibility audit with per-criterion scoring (0-100). Analyses HTML input for colour contrast, keyboard navigation, semantic HTML, ARIA attributes, form labels, heading structure, and focus order. Safety boundary: compliance guidance only; does not replace legal review.",
+    inputSchemaPath: "schemas/wcag-aa-accessibility.input.json",
+    outputSchemaPath: "schemas/wcag-aa-accessibility.output.json",
+    safetyBoundary: "Compliance guidance only; does not replace legal review"
   }
 ];
 

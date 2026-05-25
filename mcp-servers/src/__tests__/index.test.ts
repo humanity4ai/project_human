@@ -19,18 +19,18 @@ const EXPECTED_ACTIONS = [
 ];
 
 describe("actionContracts registry", () => {
-  it("I-1: has exactly 10 entries", () => {
-    expect(actionContracts).toHaveLength(10);
+  it("I-1: has exactly 11 entries", () => {
+    expect(actionContracts).toHaveLength(11);
   });
 
   it("I-2: all action IDs are unique", () => {
     const actions = actionContracts.map(c => c.action);
-    expect(new Set(actions).size).toBe(10);
+    expect(new Set(actions).size).toBe(11);
   });
 
   it("I-3: all skill names are unique", () => {
     const skills = actionContracts.map(c => c.skill);
-    expect(new Set(skills).size).toBe(10);
+    expect(new Set(skills).size).toBe(11);
   });
 
   it("I-4: all inputSchemaPath values start with schemas/", () => {

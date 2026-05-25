@@ -5,6 +5,8 @@
 import { describe, it, expect } from "vitest";
 import { detectCrisisSignals, detectSafetySignals } from "../crisis-detection.js";
 import { detectEmotion } from "../emotion-detection.js";
+import { assessAccessibility } from "../accessibility-engine.js";
+import { normalizeLocale, getSupportiveReply, getLocalizedCrisisResources, getLocalizedCategory, SUPPORTED_LOCALES } from "../i18n.js";
 import {
   crisisEscalationHigh,
   crisisEscalationMedium,
@@ -231,5 +233,101 @@ describe("detectEmotion", () => {
   it("picks dominant emotion with most matches", () => {
     const result = detectEmotion("I am scared and terrified and also a bit sad");
     expect(result.category).toBe("fear_anxiety"); // 2 fear vs 1 sadness
+  });
+});
+
+// ─── accessibility-engine.ts ─────────────────────────────────────────────────
+
+describe("assessAccessibility", () => {
+  it("returns heuristic=true for non-HTML input", () => {
+    const result = assessAccessibility("A login form with username and password", "AA");
+    expect(result.heuristic).toBe(true);
+    expect(result.criteria).toHaveLength(0);
+  });
+
+  it("returns scored criteria for HTML input", () => {
+    const result = assessAccessibility("<html><body><main><h1>Title</h1><p>Text</p></main></body></html>", "AA");
+    expect(result.heuristic).toBe(false);
+    expect(result.criteria.length).toBeGreaterThan(0);
+  });
+
+  it("returns aggregate score 0-100", () => {
+    const result = assessAccessibility("<div><h1>Test</h1></div>", "AA");
+    expect(result.aggregateScore).toBeGreaterThanOrEqual(0);
+    expect(result.aggregateScore).toBeLessThanOrEqual(100);
+  });
+
+  it("AA mode vs AAA mode both work", () => {
+    const aa = assessAccessibility("<div>test</div>", "AA");
+    const aaa = assessAccessibility("<div>test</div>", "AAA");
+    expect(aa.level).toBe("AA");
+    expect(aaa.level).toBe("AAA");
+  });
+
+  it("good semantic HTML scores high", () => {
+    const result = assessAccessibility("<html><head><title>T</title></head><body><a href='#main' class='skip-link'>Skip</a><header><nav>Nav</nav></header><main id='main'><section aria-label='Main'><h1>Title</h1><h2>Sub</h2></section></main><footer>Foot</footer></body></html>", "AA");
+    expect(result.aggregateScore).toBeGreaterThan(50);
+  });
+
+  it("poor HTML with inline styles scores lower", () => {
+    const result = assessAccessibility("<div style='color:#ccc;background:#fff'>text</div>", "AA");
+    expect(result.aggregateScore).toBeLessThan(80);
+  });
+
+  it("returns summary string", () => {
+    const result = assessAccessibility("<div>test</div>", "AA");
+    expect(typeof result.summary).toBe("string");
+    expect(result.summary.length).toBeGreaterThan(10);
+  });
+});
+
+// ─── i18n.ts ──────────────────────────────────────────────────────────────────
+
+describe("i18n", () => {
+  it("SUPPORTED_LOCALES has 9 entries", () => {
+    expect(SUPPORTED_LOCALES).toHaveLength(9);
+  });
+
+  it("normalizeLocale returns en for unknown locale", () => {
+    expect(normalizeLocale("xx")).toBe("en");
+    expect(normalizeLocale("")).toBe("en");
+  });
+
+  it("normalizeLocale maps zh-CN to zh", () => {
+    expect(normalizeLocale("zh-CN")).toBe("zh");
+    expect(normalizeLocale("zh-TW")).toBe("zh");
+  });
+
+  it("normalizeLocale maps es-MX to es", () => {
+    expect(normalizeLocale("es-MX")).toBe("es");
+  });
+
+  it("getSupportiveReply returns localized text for ja", () => {
+    const reply = getSupportiveReply("test", "ja");
+    expect(reply.length).toBeGreaterThan(20);
+    expect(reply).not.toBe(getSupportiveReply("test", "en"));
+  });
+
+  it("getSupportiveReply returns English for unknown locale", () => {
+    const reply = getSupportiveReply("test", "en");
+    expect(reply).toContain("I hear you");
+  });
+
+  it("getLocalizedCrisisResources returns correct locale crisis info", () => {
+    const jp = getLocalizedCrisisResources("ja");
+    expect(jp.primary).toContain("いのちの電話");
+
+    const br = getLocalizedCrisisResources("pt");
+    expect(br.primary).toContain("CVV");
+  });
+
+  it("getLocalizedCategory translates color contrast to French", () => {
+    const category = getLocalizedCategory("colorContrast", "fr");
+    expect(category).toContain("Couleurs");
+  });
+
+  it("getLocalizedCategory falls back to English for missing locale", () => {
+    const category = getLocalizedCategory("score", "en");
+    expect(category).toBe("Accessibility Score");
   });
 });

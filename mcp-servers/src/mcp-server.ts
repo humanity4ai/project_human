@@ -368,6 +368,26 @@ server.tool(
   handleAgeInclusiveDesignCheck
 );
 
+server.tool(
+  "wcagaa_check",
+  descFor("wcagaa_check"),
+  {
+    target: z.string().describe("URL or HTML input to audit for WCAG AA accessibility"),
+    level: z
+      .enum(["AA", "AAA"])
+      .default("AA")
+      .describe("WCAG compliance level"),
+    locale: z
+      .string()
+      .optional()
+      .default("en")
+      .describe("BCP 47 locale code for localized output"),
+  },
+  async ({ target, level, locale }) => {
+    return toMcpResult(invokeAction("wcagaa_check", { target, level, locale }));
+  }
+);
+
 // ── Start server ──────────────────────────────────────────────────────────────
 
 export async function main(): Promise<void> {
@@ -375,7 +395,7 @@ export async function main(): Promise<void> {
   await server.connect(transport);
   process.stderr.write(
     `Humanity4AI MCP Server v${VERSION} (JSON-RPC 2.0)\n` +
-      `Tools: 10 registered\n` +
+      `Tools: 11 registered\n` +
       `Transport: stdio (MCP SDK)\n` +
       `Ready — waiting for MCP client connections\n`
   );
