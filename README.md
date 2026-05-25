@@ -7,16 +7,38 @@ Humanity4AI is an open, community-driven project that provides reusable "humanit
 [![Issues](https://img.shields.io/github/issues/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/issues)
 [![Contributors](https://img.shields.io/github/contributors/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/graphs/contributors)
 [![Pages](https://img.shields.io/badge/docs-GitHub%20Pages-1f2937)](https://humanity4ai.github.io/project_human/)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-0f766e)](https://github.com/humanity4ai/project_human)
 
-## Contents
+## Get Started in 3 Steps
 
-- [Three Ways to Use Humanity4AI Skills](#three-ways-to-use-humanity4ai-skills)
-- [Get Involved](#get-involved)
-- [Prerequisites](#prerequisites)
-- [Quick Start](#quick-start-for-local-development)
-- [Contribute in 10 Minutes](#contribute-in-10-minutes)
-- [Safety Position](#safety-position)
+**Prerequisites:** Node.js >= 20 | pnpm >= 10 | Windows, macOS, or Linux
 
+```bash
+# Step 1 — Install & Verify
+git clone https://github.com/humanity4ai/project_human.git && cd project_human && pnpm install && pnpm check && pnpm evals
+
+# Step 2 — Start the MCP server
+pnpm start
+
+# Step 3 — Configure your agent
+```
+Add to your MCP client config:
+
+```json
+{
+  "mcpServers": {
+    "humanity4ai": {
+      "command": "pnpm",
+      "args": ["--filter", "@humanity4ai/mcp-servers", "start"],
+      "cwd": "/path/to/project_human"
+    }
+  }
+}
+```
+
+All 10 humanity skills are now discoverable via `tools/list` and invocable via `tools/call`.
+
+---
 ## Three Ways to Use Humanity4AI Skills
 
 This repository provides **10 Humanity Skills** — reusable, testable specifications for humane AI behaviour covering empathy, accessibility, grief support, cultural sensitivity, and more. There are three distinct ways to access these skills, depending on your AI platform and its capabilities.

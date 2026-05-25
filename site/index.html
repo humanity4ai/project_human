@@ -55,7 +55,7 @@
 
     <header class="hero" role="banner">
       <div class="hero-inner">
-        <p class="kicker">Humanity4AI</p>
+        <p class="kicker">Humanity4AI <span class="platform-badge">Windows · macOS · Linux</span></p>
         <h1>Humane AI skills, structured for real agents</h1>
         <p class="lead">
           Open skill packs with explicit safety boundaries, MCP action contracts, and quality gates for
@@ -71,6 +71,28 @@
     </header>
 
     <main id="main-content" class="content">
+      <section class="quickstart" aria-label="Get started in 3 steps">
+        <h2>Get Started in 3 Steps</h2>
+        <p>Windows, macOS, or Linux — Node.js ≥ 20 + pnpm ≥ 10 required.</p>
+        <pre><code># Step 1 — Install &amp; Verify
+git clone https://github.com/humanity4ai/project_human.git
+cd project_human &amp;&amp; pnpm install &amp;&amp; pnpm check &amp;&amp; pnpm evals
+
+# Step 2 — Start the MCP server
+pnpm start</code></pre>
+        <p><strong>Step 3 — Configure your agent</strong> by adding this to your MCP client config:</p>
+        <pre><code>{
+  "mcpServers": {
+    "humanity4ai": {
+      "command": "pnpm",
+      "args": ["--filter", "@humanity4ai/mcp-servers", "start"],
+      "cwd": "/path/to/project_human"
+    }
+  }
+}</code></pre>
+        <p>All 10 skills are now available via <code>tools/list</code> and <code>tools/call</code>.</p>
+      </section>
+
       <section class="manifesto" aria-label="Manifesto">
         <h2>The Soul of New Machines: Last Epigone</h2>
         <p>

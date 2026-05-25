@@ -17,7 +17,7 @@ For LLM-native discovery, start with [`/llms.txt`](../llms.txt) at the repositor
 | See all 10 tool signatures | [llms.txt — Tool Signatures](../llms.txt#tool-signatures) |
 | Integrate with Claude / Cursor / n8n | [Agent Adapter Guide](./agent-adapters.md) |
 | Read a specific skill specification | [Skill Reference](#skill-reference) below |
-| Contribute a new skill | [Contributing Guide](../CONTRIBUTING.md) |
+| Contribute a new skill | [Contributing Guide](CONTRIBUTING.md) |
 | Find a starter task | [Good First Issues](./good-first-issues.md) |
 
 ---
@@ -87,11 +87,11 @@ These files are designed for LLM consumption and provide structured, machine-rea
 
 | Document | Description |
 |---|---|
-| [Contributing Guide](../CONTRIBUTING.md) | How to contribute a new skill or improvement. |
+| [Contributing Guide](CONTRIBUTING.md) | How to contribute a new skill or improvement. |
 | [Good First Issues](./good-first-issues.md) | A curated list of starter tasks for new contributors. |
 | [Governance](../GOVERNANCE.md) | Project governance model and decision-making process. |
 | [Code of Conduct](../CODE_OF_CONDUCT.md) | Community standards and expectations. |
-| [Security Policy](../SECURITY.md) | How to report security vulnerabilities. |
+| [Security Policy](SECURITY.md) | How to report security vulnerabilities. |
 | [Maintainers](../MAINTAINERS.md) | Current project maintainers and their responsibilities. |
 
 ---
@@ -100,7 +100,7 @@ These files are designed for LLM consumption and provide structured, machine-rea
 
 | Document | Description |
 |---|---|
-| [Install Guide](../INSTALL.md) | How to install and run the project locally. |
+| [Install Guide](docs/INSTALL.md) | How to install and run the project locally. |
 | [Operations Guide](../OPERATIONS.md) | Operational runbook for maintainers. |
 | [Release Notes](../RELEASE_NOTES.md) | Changelog for all releases. |
 | [Roadmap](../ROADMAP.md) | Planned features and milestones. |

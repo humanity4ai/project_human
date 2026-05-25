@@ -102,6 +102,16 @@ textarea:focus-visible {
   margin: 0 0 0.75rem;
 }
 
+.platform-badge {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 0.65rem;
+  color: var(--muted);
+  display: inline-block;
+  vertical-align: middle;
+}
+
 h1 {
   font-size: clamp(2rem, 4vw, 3.3rem);
   line-height: 1.05;
