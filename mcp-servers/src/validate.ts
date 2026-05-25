@@ -48,6 +48,18 @@ function validateField(
   } else if (type === "object" && (typeof value !== "object" || value === null || Array.isArray(value))) {
     errors.push(`'${fieldName}' must be an object`);
   }
+
+  // minLength / maxLength validation for strings
+  if (type === "string" && typeof value === "string") {
+    const minLength = spec["minLength"];
+    const maxLength = spec["maxLength"];
+    if (typeof minLength === "number" && value.length < minLength) {
+      errors.push(`'${fieldName}' must be at least ${minLength} characters`);
+    }
+    if (typeof maxLength === "number" && value.length > maxLength) {
+      errors.push(`'${fieldName}' must be at most ${maxLength} characters`);
+    }
+  }
 }
 
 export function validateInput(
@@ -56,8 +68,7 @@ export function validateInput(
 ): ValidationResult {
   const schema = loadSchema(schemaPath);
   if (!schema) {
-    // If schema cannot be loaded, pass through with a warning assumption
-    return { valid: true };
+    return { valid: false, errors: [`Schema not found: ${schemaPath}`] };
   }
 
   const errors: string[] = [];

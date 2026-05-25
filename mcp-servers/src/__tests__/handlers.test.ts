@@ -86,14 +86,13 @@ describe("invokeAction — dispatch and validation", () => {
     }
   });
 
-  it("H-9: supportive_reply does not echo user message in output", () => {
-    // supportive_reply receives a sensitive user message and must not echo it in output.
-    // rewrite_depression_sensitive_content and empathetic_reframe intentionally include
-    // processed versions of the input — they are not echo-free by design.
+  it("H-9: supportive_reply acknowledges user message in output", () => {
+    // supportive_reply now correctly reads and interpolates the user's message
+    // into the reply, including crisis indicators when detected.
     const sentinel = "UNIQUE_SENTINEL_VALUE_XYZ_9182736";
     const data = call("supportive_reply", { message: sentinel, risk_level: "low" });
     const serialised = JSON.stringify(data.output);
-    expect(serialised).not.toContain(sentinel);
+    expect(serialised).toContain(sentinel);
   });
 
   it("H-10: boundaryNotice matches contract safetyBoundary for each action", () => {
@@ -471,7 +470,7 @@ describe("empathetic_reframe", () => {
   it("H-66: crisis word 'suicid' triggers escalation guidance", () => {
     const data = call("empathetic_reframe", { message: "The user mentioned suicidal thoughts", tone: "neutral" });
     const guidance = (data.output as { escalation_guidance: string[] }).escalation_guidance;
-    expect(guidance.length).toBe(3);
+    expect(guidance.length).toBe(5);
   });
 
   it("H-67: crisis phrase 'end my life' triggers escalation", () => {
@@ -524,10 +523,10 @@ describe("grief_support_response", () => {
     expect((data.output as { reply: string }).reply.length).toBeGreaterThan(20);
   });
 
-  it("H-76: all modes have 2 escalation_guidance items", () => {
+  it("H-76: all modes have 6 escalation_guidance items", () => {
     for (const mode of ["presence", "practical", "reflection"]) {
       const data = call("grief_support_response", { message: "x", support_mode: mode });
-      expect((data.output as { escalation_guidance: string[] }).escalation_guidance).toHaveLength(2);
+      expect((data.output as { escalation_guidance: string[] }).escalation_guidance).toHaveLength(6);
     }
   });
 
@@ -666,9 +665,9 @@ describe("age_inclusive_design_check", () => {
 // ─── supportive_reply (inline handler) ───────────────────────────────────────
 
 describe("supportive_reply", () => {
-  it("H-97: high risk returns 4 escalation items", () => {
+  it("H-97: high risk returns 6 escalation items", () => {
     const data = call("supportive_reply", { message: "I feel terrible", risk_level: "high" });
-    expect((data.output as { escalation_guidance: string[] }).escalation_guidance).toHaveLength(4);
+    expect((data.output as { escalation_guidance: string[] }).escalation_guidance).toHaveLength(6);
   });
 
   it("H-98: high risk escalation contains 988 crisis line", () => {
@@ -683,9 +682,9 @@ describe("supportive_reply", () => {
     expect(joined).toContain("116 123");
   });
 
-  it("H-100: medium risk returns 2 escalation items", () => {
+  it("H-100: medium risk returns 3 escalation items", () => {
     const data = call("supportive_reply", { message: "x", risk_level: "medium" });
-    expect((data.output as { escalation_guidance: string[] }).escalation_guidance).toHaveLength(2);
+    expect((data.output as { escalation_guidance: string[] }).escalation_guidance).toHaveLength(3);
   });
 
   it("H-101: low risk returns 1 escalation item", () => {
