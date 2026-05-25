@@ -1,0 +1,184 @@
+/**
+ * Unit tests for crisis-detection.ts and crisis-resources.ts
+ * Copyright (c) 2026 Ascent Partners Foundation. MIT License.
+ */
+import { describe, it, expect } from "vitest";
+import { detectCrisisSignals, detectSafetySignals } from "../crisis-detection.js";
+import {
+  crisisEscalationHigh,
+  crisisEscalationMedium,
+  crisisEscalationLow,
+  CRISIS_LINE_UK,
+  CRISIS_LINE_US,
+  CRISIS_TEXT_US,
+  CRISIS_URL_INTERNATIONAL,
+  CRISIS_URL_IASP,
+} from "../crisis-resources.js";
+import {
+  SHAME_PATTERNS,
+  URGENCY_PATTERNS,
+  COGNITIVE_LOAD_PATTERNS,
+  JARGON_TERMS,
+  CRISIS_SIGNAL_PATTERNS,
+} from "../patterns.js";
+import {
+  MAX_WORDS_PER_SENTENCE,
+  MAX_CONTENT_WORDS,
+  MIN_STEPS_SEQUENCE_THRESHOLD,
+  MIN_TOUCH_TARGET_PX,
+  MIN_BODY_FONT_PX,
+} from "../constants.js";
+
+// ─── constants.ts ────────────────────────────────────────────────────────────
+
+describe("constants", () => {
+  it("MAX_WORDS_PER_SENTENCE is 20", () => {
+    expect(MAX_WORDS_PER_SENTENCE).toBe(20);
+  });
+  it("MAX_CONTENT_WORDS is 150", () => {
+    expect(MAX_CONTENT_WORDS).toBe(150);
+  });
+  it("MIN_STEPS_SEQUENCE_THRESHOLD is 50", () => {
+    expect(MIN_STEPS_SEQUENCE_THRESHOLD).toBe(50);
+  });
+  it("MIN_TOUCH_TARGET_PX is 44", () => {
+    expect(MIN_TOUCH_TARGET_PX).toBe(44);
+  });
+  it("MIN_BODY_FONT_PX is 16", () => {
+    expect(MIN_BODY_FONT_PX).toBe(16);
+  });
+});
+
+// ─── patterns.ts ─────────────────────────────────────────────────────────────
+
+describe("patterns", () => {
+  it("SHAME_PATTERNS includes expected terms", () => {
+    expect(SHAME_PATTERNS).toContain("you failed");
+    expect(SHAME_PATTERNS).toContain("your fault");
+  });
+  it("URGENCY_PATTERNS includes expected terms", () => {
+    expect(URGENCY_PATTERNS).toContain("last chance");
+    expect(URGENCY_PATTERNS).toContain("limited time");
+  });
+  it("COGNITIVE_LOAD_PATTERNS includes expected terms", () => {
+    expect(COGNITIVE_LOAD_PATTERNS).toContain("please complete all");
+    expect(COGNITIVE_LOAD_PATTERNS).toContain("required steps");
+  });
+  it("JARGON_TERMS includes expected terms", () => {
+    expect(JARGON_TERMS).toContain("pursuant");
+    expect(JARGON_TERMS).toContain("heretofore");
+  });
+  it("CRISIS_SIGNAL_PATTERNS includes expected terms", () => {
+    expect(CRISIS_SIGNAL_PATTERNS).toContain("suicid");
+    expect(CRISIS_SIGNAL_PATTERNS).toContain("self-harm");
+    expect(CRISIS_SIGNAL_PATTERNS).toContain("end my life");
+  });
+});
+
+// ─── crisis-resources.ts ─────────────────────────────────────────────────────
+
+describe("crisis-resources", () => {
+  it("exports UK crisis line", () => {
+    expect(CRISIS_LINE_UK).toContain("Samaritans");
+    expect(CRISIS_LINE_UK).toContain("116 123");
+  });
+  it("exports US crisis line", () => {
+    expect(CRISIS_LINE_US).toContain("988");
+    expect(CRISIS_LINE_US).toContain("Lifeline");
+  });
+  it("exports US crisis text line", () => {
+    expect(CRISIS_TEXT_US).toContain("741741");
+  });
+  it("exports international URL", () => {
+    expect(CRISIS_URL_INTERNATIONAL).toContain("findahelpline");
+  });
+  it("exports IASP URL", () => {
+    expect(CRISIS_URL_IASP).toContain("iasp");
+  });
+
+  it("crisisEscalationHigh returns array with crisis numbers", () => {
+    const high = crisisEscalationHigh();
+    expect(high.length).toBeGreaterThanOrEqual(4);
+    expect(high.some((s) => s.includes("988"))).toBe(true);
+    expect(high.some((s) => s.includes("116 123"))).toBe(true);
+  });
+
+  it("crisisEscalationMedium returns array with crisis numbers", () => {
+    const medium = crisisEscalationMedium();
+    expect(medium.length).toBeGreaterThanOrEqual(2);
+    expect(medium.some((s) => s.includes("988"))).toBe(true);
+  });
+
+  it("crisisEscalationLow returns non-empty array", () => {
+    const low = crisisEscalationLow();
+    expect(low.length).toBeGreaterThanOrEqual(1);
+  });
+});
+
+// ─── crisis-detection.ts ─────────────────────────────────────────────────────
+
+describe("detectCrisisSignals", () => {
+  it("returns detected:false for empty string", () => {
+    const result = detectCrisisSignals("");
+    expect(result.detected).toBe(false);
+    expect(result.matchedPatterns).toEqual([]);
+  });
+
+  it("returns detected:true for 'suicidal' text", () => {
+    const result = detectCrisisSignals("I am feeling suicidal");
+    expect(result.detected).toBe(true);
+    expect(result.matchedPatterns).toContain("suicid");
+  });
+
+  it("returns detected:true for 'self-harm' text", () => {
+    const result = detectCrisisSignals("thoughts of self-harm persist");
+    expect(result.detected).toBe(true);
+    expect(result.matchedPatterns).toContain("self-harm");
+  });
+
+  it("returns detected:true for 'end my life' text", () => {
+    const result = detectCrisisSignals("I want to end my life");
+    expect(result.detected).toBe(true);
+    expect(result.matchedPatterns).toContain("end my life");
+  });
+
+  it("returns detected:true for 'no point' text", () => {
+    const result = detectCrisisSignals("there is no point in continuing");
+    expect(result.detected).toBe(true);
+    expect(result.matchedPatterns).toContain("no point");
+  });
+
+  it("returns detected:true for 'kill myself' text", () => {
+    const result = detectCrisisSignals("I want to kill myself");
+    expect(result.detected).toBe(true);
+    expect(result.matchedPatterns).toContain("kill myself");
+  });
+
+  it("returns detected:false for normal text", () => {
+    const result = detectCrisisSignals("I am having a bad day");
+    expect(result.detected).toBe(false);
+  });
+
+  it("case-insensitive matching", () => {
+    const result = detectCrisisSignals("SUICIDAL THOUGHTS");
+    expect(result.detected).toBe(true);
+  });
+});
+
+describe("detectSafetySignals", () => {
+  it("returns true for threat", () => {
+    expect(detectSafetySignals("there is a threat")).toBe(true);
+  });
+  it("returns true for harm", () => {
+    expect(detectSafetySignals("potential harm")).toBe(true);
+  });
+  it("returns true for legal", () => {
+    expect(detectSafetySignals("legal issue")).toBe(true);
+  });
+  it("returns false for normal situation", () => {
+    expect(detectSafetySignals("team disagreement")).toBe(false);
+  });
+  it("returns false for empty string", () => {
+    expect(detectSafetySignals("")).toBe(false);
+  });
+});

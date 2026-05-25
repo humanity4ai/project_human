@@ -15,6 +15,18 @@
         "type": "string"
       }
     },
+    "pattern_count": {
+      "type": "integer"
+    },
+    "review_recommended": {
+      "type": "boolean"
+    },
+    "crisis_resources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "uncertainty": {
       "type": "string"
     }

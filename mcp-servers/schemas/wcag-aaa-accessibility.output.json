@@ -36,6 +36,9 @@
     "summary": {
       "type": "string"
     },
+    "next_step": {
+      "type": "string"
+    },
     "assumptions": {
       "type": "array",
       "items": {

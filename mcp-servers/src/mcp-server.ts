@@ -15,12 +15,16 @@
  * Copyright (c) 2026 Ascent Partners Foundation. MIT License.
  */
 
+import { readFileSync } from "node:fs";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import { invokeAction } from "./handlers.js";
 
-export const VERSION = "0.1.0";
+const pkg = JSON.parse(
+  readFileSync(new URL("../package.json", import.meta.url), "utf8")
+) as { version: string };
+export const VERSION: string = pkg.version;
 
 // ── Helper: convert invokeAction result to MCP CallToolResult ────────────────
 

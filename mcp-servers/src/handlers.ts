@@ -5,9 +5,13 @@
  *
  * Copyright (c) 2026 Ascent Partners Foundation. MIT License.
  */
-import { actionContracts } from "./index.js";
+import { actionContracts, KNOWN_ACTIONS } from "./index.js";
 import { validateInput } from "./validate.js";
 import type { InvokeResponse } from "./types.js";
+import { SHAME_PATTERNS, URGENCY_PATTERNS, COGNITIVE_LOAD_PATTERNS, JARGON_TERMS, FIXED_ORDER_PATTERNS } from "./patterns.js";
+import { MAX_WORDS_PER_SENTENCE, MAX_CONTENT_WORDS, MIN_STEPS_SEQUENCE_THRESHOLD } from "./constants.js";
+import { CRISIS_LINE_UK, CRISIS_LINE_US, CRISIS_TEXT_US, CRISIS_URL_INTERNATIONAL, CRISIS_URL_IASP } from "./crisis-resources.js";
+import { detectCrisisSignals, detectSafetySignals } from "./crisis-detection.js";
 
 type HandlerResult =
   | { ok: true; data: InvokeResponse }
@@ -25,7 +29,7 @@ function inputSchemaPathForAction(action: string): string | null {
 }
 
 function isKnownAction(action: string): boolean {
-  return actionContracts.some((item) => item.action === action);
+  return KNOWN_ACTIONS.has(action);
 }
 
 function str(input: Record<string, unknown>, key: string, fallback = ""): string {
@@ -100,11 +104,11 @@ function handleDepressionSensitiveRewrite(input: Record<string, unknown>, bounda
 
   const safetyFlags: string[] = [];
 
-  // Detect high-risk patterns
+  // Detect high-risk patterns using shared modules
   const lowerText = text.toLowerCase();
-  const shamePatterns = ["you failed", "you must", "you should have", "try harder", "your fault"];
-  const urgencyPatterns = ["last chance", "act now", "don't miss out", "limited time"];
-  const cognitiveLoadPatterns = ["please complete all", "required steps", "do not proceed unless"];
+  const shamePatterns = [...SHAME_PATTERNS];
+  const urgencyPatterns = [...URGENCY_PATTERNS];
+  const cognitiveLoadPatterns = [...COGNITIVE_LOAD_PATTERNS];
 
   for (const p of shamePatterns) {
     if (lowerText.includes(p)) safetyFlags.push(`Shame/blame language detected: "${p}"`);
@@ -143,6 +147,17 @@ function handleDepressionSensitiveRewrite(input: Record<string, unknown>, bounda
     }
   }
 
+  // Detect crisis signals (suicide/self-harm)
+  const crisis = detectCrisisSignals(text);
+  const crisisResources: string[] = [];
+  if (crisis.detected) {
+    crisisResources.push("Content contains potential crisis indicators — do not publish without escalation resources");
+    crisisResources.push(`In the UK: ${CRISIS_LINE_UK} | US: ${CRISIS_LINE_US}`);
+    crisisResources.push(`${CRISIS_TEXT_US}`);
+    crisisResources.push(`International: ${CRISIS_URL_INTERNATIONAL}`);
+    safetyFlags.push(`Crisis indicators detected: ${crisis.matchedPatterns.join(", ")}`);
+  }
+
   return {
     ok: true,
     data: {
@@ -153,13 +168,15 @@ function handleDepressionSensitiveRewrite(input: Record<string, unknown>, bounda
         `Mode: ${mode}`,
         `Domain: ${domain}`,
         "Pattern matching is heuristic — human review recommended for production content",
-        "Non-clinical tool — does not assess clinical risk of content"
+        "Non-clinical tool — does not assess clinical risk of content",
+        crisis.detected ? "Crisis indicators detected — escalate to qualified human support" : "No crisis indicators detected"
       ],
       output: {
         result,
         safety_flags: safetyFlags,
         pattern_count: safetyFlags.length,
-        review_recommended: safetyFlags.length > 0
+        review_recommended: safetyFlags.length > 0,
+        crisis_resources: crisisResources
       }
     }
   };
@@ -179,17 +196,17 @@ function handleCognitiveAccessibility(input: Record<string, unknown>, boundaryNo
   const findings: string[] = [];
   const recommendations: string[] = [];
 
-  if (avgWordsPerSentence > 20) {
+  if (avgWordsPerSentence > MAX_WORDS_PER_SENTENCE) {
     findings.push(`Average sentence length is ${avgWordsPerSentence} words — may strain working memory`);
-    recommendations.push("Break sentences longer than 20 words into two shorter sentences");
+    recommendations.push(`Break sentences longer than ${MAX_WORDS_PER_SENTENCE} words into two shorter sentences`);
   }
 
-  if (wordCount > 150) {
+  if (wordCount > MAX_CONTENT_WORDS) {
     findings.push(`Content is ${wordCount} words — consider chunking into sections with clear headings`);
     recommendations.push("Use headings and bullet points to reduce linear reading demand");
   }
 
-  const jargonTerms = ["pursuant", "notwithstanding", "thereto", "heretofore", "aforementioned", "herein"];
+  const jargonTerms = [...JARGON_TERMS];
   const found = jargonTerms.filter(t => content.toLowerCase().includes(t));
   if (found.length > 0) {
     findings.push(`Legal/technical jargon detected: ${found.join(", ")}`);
@@ -197,7 +214,7 @@ function handleCognitiveAccessibility(input: Record<string, unknown>, boundaryNo
   }
 
   const hasNumberedSteps = /\d+\.\s/.test(content);
-  if (!hasNumberedSteps && wordCount > 50) {
+  if (!hasNumberedSteps && wordCount > MIN_STEPS_SEQUENCE_THRESHOLD) {
     recommendations.push("Consider numbering sequential steps to reduce sequencing burden");
   }
 
@@ -326,8 +343,7 @@ function handleDeescalation(input: Record<string, unknown>, boundaryNotice: stri
 
   plan.push("End with a clear, agreed next step and timeline — ambiguity sustains conflict");
 
-  const lowerSituation = situation.toLowerCase();
-  if (lowerSituation.includes("threat") || lowerSituation.includes("harm") || lowerSituation.includes("legal")) {
+  if (detectSafetySignals(situation)) {
     riskNotes.push("ALERT: Situation description contains potential safety/legal signals — involve qualified personnel immediately");
   }
 
@@ -386,16 +402,13 @@ function handleEmpatheticReframe(input: Record<string, unknown>, boundaryNotice:
     rationale.push("Neutral tone applied — minimal reframing; content structure preserved");
   }
 
-  const lowerMessage = message.toLowerCase();
-  if (
-    lowerMessage.includes("suicid") ||
-    lowerMessage.includes("self-harm") ||
-    lowerMessage.includes("end my life") ||
-    lowerMessage.includes("no point")
-  ) {
+  const crisis = detectCrisisSignals(message);
+  if (crisis.detected) {
     escalationGuidance.push("Message contains potential crisis indicators — do not respond with automated content");
     escalationGuidance.push("Route immediately to a trained human responder or crisis line");
-    escalationGuidance.push("In the UK: Samaritans 116 123 | US: 988 Suicide & Crisis Lifeline | International: findahelpline.com");
+    escalationGuidance.push(`UK: ${CRISIS_LINE_UK} | US: ${CRISIS_LINE_US}`);
+    escalationGuidance.push(`${CRISIS_TEXT_US}`);
+    escalationGuidance.push(`International: ${CRISIS_URL_INTERNATIONAL}`);
   }
 
   return {
@@ -428,6 +441,10 @@ function handleGriefSupport(input: Record<string, unknown>, boundaryNotice: stri
   const careNotes: string[] = [];
   const escalationGuidance: string[] = [
     "If the person expresses thoughts of self-harm, contact emergency services or a crisis line immediately",
+    `US: ${CRISIS_LINE_US}`,
+    `${CRISIS_TEXT_US}`,
+    `UK: ${CRISIS_LINE_UK}`,
+    `International: ${CRISIS_URL_IASP}`,
     "This skill provides non-clinical support patterns only — do not use as a substitute for professional grief counselling"
   ];
 
@@ -651,23 +668,33 @@ export function invokeAction(
     case "age_inclusive_design_check":
       return handleAgeInclusiveDesign(input, boundaryNotice);
     case "supportive_reply": {
+      const message = str(input, "message");
       const riskLevel = str(input, "risk_level", "low");
+      const locale = str(input, "locale", "en");
+
       const escalation =
         riskLevel === "high"
           ? [
               "If you or someone else may be in immediate danger, contact emergency services now",
-              "Contact a local crisis line — trained counsellors are available 24/7",
-              "In the UK: Samaritans 116 123 | US: 988 Suicide & Crisis Lifeline | International: findahelpline.com",
+              `UK: ${CRISIS_LINE_UK} | US: ${CRISIS_LINE_US}`,
+              `${CRISIS_TEXT_US}`,
+              `International: ${CRISIS_URL_INTERNATIONAL}`,
+              `IASP: ${CRISIS_URL_IASP}`,
               "Reach out to a trusted person nearby"
             ]
           : riskLevel === "medium"
           ? [
               "If things feel harder over time, consider speaking with a mental health professional",
-              "You can contact a support line any time, even just to talk"
+              "You can contact a support line any time, even just to talk",
+              `UK: ${CRISIS_LINE_UK} | US: ${CRISIS_LINE_US}`
             ]
           : [
               "Professional support is available any time you need it"
             ];
+
+      const replyText = message
+        ? `I hear you, and I am glad you reached out. You shared: "${message}". It makes sense that things feel heavy right now. You do not have to have it all figured out — let us focus on one small step at a time.`
+        : "I hear you, and I am glad you reached out. It makes sense that things feel heavy right now. You do not have to have it all figured out — let us focus on one small step at a time.";
 
       return {
         ok: true,
@@ -677,12 +704,11 @@ export function invokeAction(
           uncertainty: "medium",
           assumptions: [
             `Risk level: ${riskLevel} (self-reported or system-assessed)`,
+            `Locale: ${locale}`,
             "Non-clinical support only — not a substitute for professional mental health care"
           ],
           output: {
-            reply:
-              "I hear you, and I am glad you reached out. It makes sense that things feel heavy right now. " +
-              "You do not have to have it all figured out — let us focus on one small step at a time.",
+            reply: replyText,
             escalation_guidance: escalation,
             boundaries_notice: boundaryNotice
           }

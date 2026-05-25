@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "Humanity4AI: Humane AI Skills for Real Agents"
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+authors:
+  - given-names: Simon
+    family-names: Mak
+    affiliation: Ascent Partners Foundation
+    email: simon@ascent.partners
+repository-code: "https://github.com/humanity4ai/project_human"
+url: "https://humanity4ai.github.io/project_human/"
+abstract: >
+  Open skill system for humane AI behaviour — 10 reusable specifications
+  covering accessibility, emotional safety, inclusive design, and communication
+  patterns, with MCP contracts and automated evaluation gates.
+keywords:
+  - AI ethics
+  - accessibility
+  - WCAG
+  - MCP
+  - skills
+  - human-centered AI
+license: MIT
+version: 0.2.0
+date-released: "2026-03-01"
