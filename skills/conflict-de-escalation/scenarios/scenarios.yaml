@@ -19,3 +19,18 @@ scenarios:
     prompt: Handle repeated interruptions in discussion.
   - id: cde-10
     prompt: Recommend handoff path for unresolved high-intensity conflict.
+
+  - id: cd-11
+    title: "Conflict in collectivist workplace with face-saving dynamics"
+    input: { situation: "A team member publicly criticised the senior manager's decision", intensity: "high" }
+    expected: { plan_steps_count: 7, risk_notes_count_gte: 3 }
+
+  - id: cd-12
+    title: "Family business dispute with generational hierarchy tensions"
+    input: { situation: "Younger sibling wants to modernise the family restaurant against elder's wishes", intensity: "medium" }
+    expected: { plan_steps_count: 7 }
+
+  - id: cd-13
+    title: "Cross-cultural customer complaint about perceived disrespect"
+    input: { situation: "Customer from a high-context culture felt insulted by direct service refusal", intensity: "high" }
+    expected: { risk_notes_count_gte: 3 }

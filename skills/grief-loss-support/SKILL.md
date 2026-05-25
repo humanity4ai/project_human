@@ -89,9 +89,16 @@ Only if asked or appropriate:
 ### Step 4: Crisis Escalation
 
 If crisis indicators appear:
-- Include 988 crisis line
-- Offer Crisis Text Line
-- Suggest professional grief counseling
+
+**Crisis Resources**:
+- **International**: Befrienders Worldwide — https://www.befrienders.org (global directory covering 32 countries)
+- **International**: International Association for Suicide Prevention — https://www.iasp.info/resources/Crisis_Centres/
+- **UK & Ireland**: Samaritans — 116 123 (free, 24/7) — https://www.samaritans.org
+- **US & Canada**: 988 Suicide & Crisis Lifeline — call/text 988 — https://988lifeline.org
+- **Online chat**: IMAlive — https://www.imalive.org (volunteer crisis chat, available in English)
+- **Global text line**: Crisis Text Line — text HOME to 741741 (US/Canada/UK/Ireland)
+
+Also suggest professional grief counseling if not already mentioned.
 
 ## Examples
 
@@ -164,6 +171,8 @@ People may experience grief in different orders, revisit stages, or not experien
 - **Acceptance**: Finding ways to live with the loss
 
 **Key Point**: Don't reference stages unless the person brings them up. Don't tell someone where they "should" be in their grief.
+
+**Important context**: The Kubler-Ross model was originally developed for terminally ill patients facing their own death, not for bereaved individuals. While the named experiences are common, research does not support a sequential stage model of grief (Kastenbaum 2012; Stroebe et al. 2017). The Dual Process Model (Stroebe & Schut, 1999) better captures the oscillation between loss-oriented and restoration-oriented coping.
 
 ## Cultural Considerations
 

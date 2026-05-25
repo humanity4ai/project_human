@@ -19,3 +19,18 @@ scenarios:
     prompt: User wants to message a friend for help.
   - id: sc-10
     prompt: User uses high-risk language requiring escalation cue.
+
+  - id: sc-11
+    title: "Support for someone in a collectivist culture feeling family pressure"
+    input: { message: "My family arranged my career and marriage; I feel trapped but I cannot disappoint them", risk_level: "medium" }
+    expected: { escalation_guidance_count: 2 }
+
+  - id: sc-12
+    title: "Immigrant experiencing isolation and cultural dislocation"
+    input: { message: "I moved here two years ago and still feel like I don't belong anywhere", risk_level: "medium" }
+    expected: { escalation_guidance_count: 2 }
+
+  - id: sc-13
+    title: "Elder seeking support after losing lifelong partner in Buddhist context"
+    input: { message: "I visit the temple every morning but the silence feels heavier now", risk_level: "low" }
+    expected: { escalation_guidance_count: 1 }
