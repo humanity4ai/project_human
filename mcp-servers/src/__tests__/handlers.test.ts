@@ -500,8 +500,8 @@ describe("empathetic_reframe", () => {
     expect(joined).toContain("116 123");
   });
 
-  it("H-72: uncertainty is always low", () => {
-    expect(call("empathetic_reframe", { message: "we cannot help", tone: "warm" }).uncertainty).toBe("low");
+  it("H-72: uncertainty is always medium", () => {
+    expect(call("empathetic_reframe", { message: "we cannot help", tone: "warm" }).uncertainty).toBe("medium");
   });
 });
 
@@ -665,9 +665,9 @@ describe("age_inclusive_design_check", () => {
 // ─── supportive_reply (inline handler) ───────────────────────────────────────
 
 describe("supportive_reply", () => {
-  it("H-97: high risk returns 6 escalation items", () => {
+  it("H-97: high risk returns 7 escalation items", () => {
     const data = call("supportive_reply", { message: "I feel terrible", risk_level: "high" });
-    expect((data.output as { escalation_guidance: string[] }).escalation_guidance).toHaveLength(6);
+    expect((data.output as { escalation_guidance: string[] }).escalation_guidance).toHaveLength(7);
   });
 
   it("H-98: high risk escalation contains 988 crisis line", () => {

@@ -8,10 +8,11 @@
 import { actionContracts, KNOWN_ACTIONS } from "./index.js";
 import { validateInput } from "./validate.js";
 import type { InvokeResponse } from "./types.js";
-import { SHAME_PATTERNS, URGENCY_PATTERNS, COGNITIVE_LOAD_PATTERNS, JARGON_TERMS, FIXED_ORDER_PATTERNS } from "./patterns.js";
+import { SHAME_PATTERNS, URGENCY_PATTERNS, COGNITIVE_LOAD_PATTERNS, JARGON_TERMS, FIXED_ORDER_PATTERNS, STIGMA_PATTERNS, MEDICAL_CLAIM_PATTERNS, MINIMIZING_PATTERNS, JUDGMENTAL_PATTERNS, STIGMATIZING_VERB_PATTERNS, CRISIS_LANGUAGE_PATTERNS, GRIEF_CLICHE_PATTERNS, BOUNDARY_VIOLATION_PATTERNS } from "./patterns.js";
 import { MAX_WORDS_PER_SENTENCE, MAX_CONTENT_WORDS, MIN_STEPS_SEQUENCE_THRESHOLD } from "./constants.js";
 import { CRISIS_LINE_UK, CRISIS_LINE_US, CRISIS_TEXT_US, CRISIS_URL_INTERNATIONAL, CRISIS_URL_IASP } from "./crisis-resources.js";
 import { detectCrisisSignals, detectSafetySignals } from "./crisis-detection.js";
+import { detectEmotion } from "./emotion-detection.js";
 
 type HandlerResult =
   | { ok: true; data: InvokeResponse }
@@ -118,6 +119,24 @@ function handleDepressionSensitiveRewrite(input: Record<string, unknown>, bounda
   }
   for (const p of cognitiveLoadPatterns) {
     if (lowerText.includes(p)) safetyFlags.push(`High cognitive load pattern detected: "${p}"`);
+  }
+  for (const p of STIGMA_PATTERNS) {
+    if (lowerText.includes(p)) safetyFlags.push(`Stigmatizing language detected: "${p}"`);
+  }
+  for (const p of MEDICAL_CLAIM_PATTERNS) {
+    if (lowerText.includes(p)) safetyFlags.push(`Potential medical claim detected: "${p}"`);
+  }
+  for (const p of MINIMIZING_PATTERNS) {
+    if (lowerText.includes(p)) safetyFlags.push(`Minimizing/invalidating language detected: "${p}"`);
+  }
+  for (const p of JUDGMENTAL_PATTERNS) {
+    if (lowerText.includes(p)) safetyFlags.push(`Judgmental language detected: "${p}"`);
+  }
+  for (const p of STIGMATIZING_VERB_PATTERNS) {
+    if (lowerText.includes(p)) safetyFlags.push(`Stigmatizing framing detected: "${p}"`);
+  }
+  for (const p of CRISIS_LANGUAGE_PATTERNS) {
+    if (lowerText.includes(p)) safetyFlags.push(`Crisis language framing detected: "${p}"`);
   }
 
   let result: string;
@@ -416,7 +435,7 @@ function handleEmpatheticReframe(input: Record<string, unknown>, boundaryNotice:
     data: {
       action: "empathetic_reframe",
       boundaryNotice,
-      uncertainty: "low",
+      uncertainty: "medium",
       assumptions: [
         `Tone: ${tone}`,
         "Reframe applies pattern-based rules — human review recommended for high-stakes communications",
@@ -439,6 +458,24 @@ function handleGriefSupport(input: Record<string, unknown>, boundaryNotice: stri
   const supportMode = str(input, "support_mode", "presence");
 
   const careNotes: string[] = [];
+
+  // Detect crisis signals in message content
+  const crisis = detectCrisisSignals(message);
+  const hasCrisis = crisis.detected;
+
+  // Detect grief cliches that may minimize/invalidate
+  const lowerMessage = message.toLowerCase();
+  const clichesFound: string[] = [];
+  for (const cliche of GRIEF_CLICHE_PATTERNS) {
+    if (lowerMessage.includes(cliche)) {
+      clichesFound.push(cliche);
+    }
+  }
+  if (clichesFound.length > 0) {
+    careNotes.push(`Detected potential minimizing platitudes: ${clichesFound.join(", ")}`);
+    careNotes.push("Avoid these — they dismiss the person's unique grief experience");
+  }
+
   const escalationGuidance: string[] = [
     "If the person expresses thoughts of self-harm, contact emergency services or a crisis line immediately",
     `US: ${CRISIS_LINE_US}`,
@@ -447,6 +484,13 @@ function handleGriefSupport(input: Record<string, unknown>, boundaryNotice: stri
     `International: ${CRISIS_URL_IASP}`,
     "This skill provides non-clinical support patterns only — do not use as a substitute for professional grief counselling"
   ];
+
+  // If crisis signals detected, add specific crisis warning to care notes
+  if (hasCrisis) {
+    careNotes.unshift("CRISIS WARNING: Message contains potential crisis indicators. Prioritize safety over support mode.");
+    careNotes.push(`Crisis signals detected: ${crisis.matchedPatterns.join(", ")}`);
+    careNotes.push("Route immediately to crisis resources — do not provide only template support");
+  }
 
   let reply: string;
 
@@ -669,14 +713,39 @@ export function invokeAction(
       return handleAgeInclusiveDesign(input, boundaryNotice);
     case "supportive_reply": {
       const message = str(input, "message");
-      const riskLevel = str(input, "risk_level", "low");
+      let riskLevel = str(input, "risk_level", "low");
       const locale = str(input, "locale", "en");
+
+      // Auto-assess risk from message content — override caller risk_level if crisis detected
+      const crisis = detectCrisisSignals(message);
+      const autoEscalated = crisis.detected && riskLevel !== "high";
+      if (crisis.detected && riskLevel !== "high") {
+        riskLevel = "high";
+      }
+
+      // Detect emotions in message for adaptive reply
+      const emotion = detectEmotion(message);
+
+      // Detect boundary violations (dismissive/minimizing language)
+      const lowerMessage = message.toLowerCase();
+      const boundaryFlags: string[] = [];
+      for (const p of BOUNDARY_VIOLATION_PATTERNS) {
+        if (lowerMessage.includes(p)) {
+          boundaryFlags.push(p);
+        }
+      }
+
+      // Locale-driven crisis resource selection
+      const isUK = locale.toLowerCase().startsWith("en-gb") || locale.toLowerCase() === "gb";
+      const primaryCrisis = isUK ? CRISIS_LINE_UK : CRISIS_LINE_US;
+      const secondaryCrisis = isUK ? `US: ${CRISIS_LINE_US}` : `UK: ${CRISIS_LINE_UK}`;
 
       const escalation =
         riskLevel === "high"
           ? [
               "If you or someone else may be in immediate danger, contact emergency services now",
-              `UK: ${CRISIS_LINE_UK} | US: ${CRISIS_LINE_US}`,
+              primaryCrisis,
+              secondaryCrisis,
               `${CRISIS_TEXT_US}`,
               `International: ${CRISIS_URL_INTERNATIONAL}`,
               `IASP: ${CRISIS_URL_IASP}`,
@@ -686,15 +755,32 @@ export function invokeAction(
           ? [
               "If things feel harder over time, consider speaking with a mental health professional",
               "You can contact a support line any time, even just to talk",
-              `UK: ${CRISIS_LINE_UK} | US: ${CRISIS_LINE_US}`
+              primaryCrisis,
             ]
           : [
               "Professional support is available any time you need it"
             ];
 
-      const replyText = message
-        ? `I hear you, and I am glad you reached out. You shared: "${message}". It makes sense that things feel heavy right now. You do not have to have it all figured out — let us focus on one small step at a time.`
-        : "I hear you, and I am glad you reached out. It makes sense that things feel heavy right now. You do not have to have it all figured out — let us focus on one small step at a time.";
+      // Build adaptive reply based on detected emotion
+      let replyText: string;
+      if (message) {
+        if (emotion.category !== "none") {
+          const emotionLabels: Record<string, string> = {
+            fear_anxiety: "anxious or afraid",
+            sadness_grief: "sad or grieving",
+            anger_frustration: "angry or frustrated",
+            loneliness_isolation: "lonely or isolated",
+            shame_guilt: "ashamed or guilty",
+            love_connection: "grateful or connected",
+          };
+          const label = emotionLabels[emotion.category] || "overwhelmed";
+          replyText = `I hear you, and I am glad you reached out. It sounds like you are feeling ${label}. You shared: "${message}". You do not have to have it all figured out — let us focus on one small step at a time.`;
+        } else {
+          replyText = `I hear you, and I am glad you reached out. You shared: "${message}". It makes sense that things feel heavy right now. You do not have to have it all figured out — let us focus on one small step at a time.`;
+        }
+      } else {
+        replyText = "I hear you, and I am glad you reached out. It makes sense that things feel heavy right now. You do not have to have it all figured out — let us focus on one small step at a time.";
+      }
 
       return {
         ok: true,
@@ -703,8 +789,10 @@ export function invokeAction(
           boundaryNotice,
           uncertainty: "medium",
           assumptions: [
-            `Risk level: ${riskLevel} (self-reported or system-assessed)`,
+            `Risk level: ${riskLevel}${autoEscalated ? " (auto-escalated from caller-provided level due to detected crisis signals)" : ""}`,
             `Locale: ${locale}`,
+            `Detected emotion: ${emotion.category} (confidence: ${emotion.confidence.toFixed(1)})`,
+            boundaryFlags.length > 0 ? `Boundary flags: ${boundaryFlags.join(", ")}` : "No boundary violations detected",
             "Non-clinical support only — not a substitute for professional mental health care"
           ],
           output: {

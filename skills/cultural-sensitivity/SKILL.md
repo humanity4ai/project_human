@@ -19,7 +19,7 @@ tags:
 
 ## Purpose
 
-This skill helps create culturally inclusive digital experiences that respect diverse backgrounds, avoid bias, and work across different cultural contexts. Based on APA cultural competency guidelines and Hofstede's cultural dimensions.
+This skill helps create culturally inclusive digital experiences that respect diverse backgrounds, avoid bias, and work across different cultural contexts. Based on APA cultural competency guidelines and Hofstede's cultural dimensions (note: Hofstede's model is contested in academic literature — see McSweeney 2002, Ailon 2008; these dimensions are tendencies, not rules).
 
 ## When to Use
 
