@@ -249,7 +249,7 @@ This skill includes validation scripts in the `scripts/` folder:
 python3 scripts/detect_risk.py --input "message.txt" --format json
 
 # Validate a response
-python3 scripts/validate_compassionate.py --input response.txt
+python3 scripts/validate_compassion.py --input response.txt
 ```
 
 ---

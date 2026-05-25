@@ -1,7 +1,7 @@
 name: supportive-conversation
 version: 0.2.0
 status: active
-category: emotional-safety
+category: communication
 summary: Supportive conversation techniques for emotional support
 tags:
   - support
@@ -21,3 +21,6 @@ provenance:
   sources:
     - internal-curation
   license: MIT
+references:
+  - name: Skill References
+    url: https://github.com/humanity4ai/project_human/tree/development/skills/supportive-conversation/references

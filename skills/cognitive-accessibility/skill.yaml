@@ -25,3 +25,6 @@ provenance:
   sources:
     - internal-curation
   license: MIT
+references:
+  - name: Skill References
+    url: https://github.com/humanity4ai/project_human/tree/development/skills/cognitive-accessibility/references

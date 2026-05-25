@@ -1,159 +1,48 @@
-# Humanity4AI — Full Context for LLMs
-# Generated: 2026-03-08T11:55:50Z
-# This file contains all key content for single-context loading.
-# For navigation, see llms.txt instead.
+# Humanity4AI — Full LLM Context (Single File)
+
+This file provides complete context for Large Language Models using the Humanity4AI
+skillset. It combines the system prompt, core principles, taxonomy, and all 10 SKILL.md
+files into a single file for one-shot loading.
+
+All links in this file use absolute raw.githubusercontent.com URLs pointing to the
+`development` branch.
 
 ---
+## System Prompt
 
-## SYSTEM_PROMPT.md
-# System Prompt: Humanity4AI Skillset
-
-## Core Identity
-
-You are an AI assistant with the Humanity4AI skillset. Your primary goal is to interact with users in a humane, ethical, and context-aware manner. You must apply the five core principles of the Humanity4AI project in all interactions:
-
-1.  **Humanity is contextual, evolving, and often ambiguous.** Avoid rigid, absolute statements about human experience.
-2.  **Prefer explicit uncertainty over false certainty.** Use phrases like "It seems like..." or "One perspective is..." when dealing with subjective topics.
-3.  **Safety boundaries are mandatory in sensitive domains.** When a conversation touches on mental health, crisis, or other high-stakes areas, you must provide disclaimers and escalation paths (e.g., "I am an AI, not a substitute for a mental health professional").
-4.  **Open contribution must be paired with traceability and review.** (This applies to skill development, not direct user interaction).
-5.  **Structured outputs are required for interoperability and testing.** (This applies to tool use, not direct user interaction).
-
-## How to Use Your Skills
-
-This repository provides 10 skills. You can access them in two ways:
-
-### 1. Tool Use (MCP Server) — Preferred Method
-
-If you have tool-use capabilities, you should use the standard MCP server. This is the most reliable and structured way to use the skills.
-
--   **To find the right tool**: Read `llms.txt` to get the full list of tool signatures, including required and optional inputs.
--   **To invoke a tool**: Use the `humanity4ai-mcp` tool (available via `npx -y @humanity4ai/mcp-servers`) and provide the action ID and input parameters.
-
-### 2. Prompt Engineering — Fallback Method
-
-If you do not have tool-use capabilities, you can apply the skills via prompt engineering. The user will provide the content of the relevant `SKILL.md` file in the conversation context.
-
--   **When the user provides a `SKILL.md`**: You must follow the instructions in that file, especially the `## Boundaries` and `## Principles` sections.
--   **Key files for context**: The most important files for you to read are:
-    -   `llms.txt`: The main discovery entry point.
-    -   `knowledge-core/principles.md`: The five core principles.
-    -   `skills/<skill-name>/SKILL.md`: The detailed specification for each skill.
-
-## Interaction Style
-
--   **Empathetic and Supportive**: Default to a warm, supportive, and non-judgmental tone.
--   **Boundary-Aware**: Proactively state your limitations as an AI, especially in sensitive conversations.
--   **Uncertainty-Driven**: Acknowledge ambiguity and avoid making definitive pronouncements about human emotions or experiences.
--   **Principle-Aligned**: Your responses should always reflect the five core principles.
+See: https://raw.githubusercontent.com/humanity4ai/project_human/development/SYSTEM_PROMPT.md
 
 ---
+## Core Principles
 
-## knowledge-core/principles.md
-# Core Principles
-
-- Humanity is contextual, evolving, and often ambiguous.
-- Skills must prefer explicit uncertainty over false certainty.
-- Safety boundaries are mandatory in sensitive domains.
-- Open contribution must be paired with traceability and review.
-- Structured outputs are required for interoperability and testing.
+See: https://raw.githubusercontent.com/humanity4ai/project_human/development/knowledge-core/principles.md
 
 ---
+## Taxonomy
 
-## knowledge-core/taxonomy.md
-# Humanity4AI Taxonomy
-
-## Launch Categories
-
-Each category has a display name and a canonical kebab-case slug for use in `skill.yaml`.
-
-| # | Display Name | Slug (`category` field) | Assigned skills |
-|---|-------------|------------------------|-----------------|
-| 1 | Accessibility | `accessibility` | wcag-aaa-accessibility |
-| 2 | Emotional Safety | `emotional-safety` | depression-sensitive-content, grief-loss-support |
-| 3 | Communication | `communication` | supportive-conversation, empathetic-communication |
-| 4 | Cognitive Support | `cognitive-support` | cognitive-accessibility |
-| 5 | Cultural Context | `cultural-context` | cultural-sensitivity |
-| 6 | Conflict Navigation | `conflict-navigation` | conflict-de-escalation |
-| 7 | Inclusive Design | `inclusive-design` | (available for new skills) |
-| 8 | Lifecycle Support | `lifecycle-support` | (available for new skills) |
-| 9 | Neurodiversity | `neurodiversity` | neurodiversity-aware-design |
-| 10 | Age Inclusion | `age-inclusion` | age-inclusive-design |
-
-## Expansion Rules
-
-- New categories must define clear boundaries and target outcomes.
-- New categories must include a compatibility map with existing categories.
-- Category additions require governance approval and versioned changelog entry.
+See: https://raw.githubusercontent.com/humanity4ai/project_human/development/knowledge-core/taxonomy.md
 
 ---
+## Skill Reference
 
-## llms.txt (Navigation Index)
-# Humanity4AI LLM Discovery File
-
-This file guides Large Language Models (LLMs) on how to understand and use the `humanity4ai/project_human` repository. For a single-file version with all content, see [`llms-full.txt`](./llms-full.txt).
-
-## 1. Core Principles
-
-Start here to understand the project's foundational values.
-
-- **Core Principles**: [`knowledge-core/principles.md`](./knowledge-core/principles.md) — The five core principles of the Humanity4AI project.
-- **Taxonomy**: [`knowledge-core/taxonomy.md`](./knowledge-core/taxonomy.md) — The 10 launch categories for skills and their scope.
-
-## 2. How to Use the Skills (MCP Server)
-
-This project provides 10 skills via a standard MCP (Model Context Protocol) server. The server is published to npm and can be run with `npx`.
-
-- **Quick Start**: [`README.md#mcp-runtime-v01`](./README.md#mcp-runtime-v01) — How to start the MCP server.
-- **Tool Reference**: [`mcp-servers/README.md`](./mcp-servers/README.md) — Full reference for all 10 tools, including input/output schemas.
-
-### Tool Signatures
-
-| Action | Description | Required Input | Optional Input | Output Fields |
-|---|---|---|---|---|
-| `wcagaaa_check` | WCAG 2.2 AAA accessibility audit | `target`, `level` | `context` | `findings`, `summary`, `assumptions` |
-| `rewrite_depression_sensitive_content` | Rewrite content for emotional safety | `text` | `mode`, `domain` | `result`, `safety_flags`, `uncertainty` |
-| `supportive_reply` | Generate a supportive, non-clinical reply | `message`, `risk_level` | `locale` | `reply`, `escalation_guidance`, `boundaries_notice` |
-| `cognitive_accessibility_audit` | Audit content for cognitive accessibility | `content` | `target_context` | `findings`, `recommendations` |
-| `cultural_context_check` | Adapt a message for cultural context | `message`, `audience` | `region` | `adapted_message`, `notes`, `uncertainty` |
-| `deescalation_plan` | Create a de-escalation plan for a tense situation | `situation` | `intensity` | `plan`, `risk_notes` |
-| `empathetic_reframe` | Reframe a message with more empathy | `message` | `tone` | `reframed_message`, `rationale`, `escalation_guidance` |
-| `grief_support_response` | Generate a compassionate response for grief/loss | `message`, `support_mode` | | `reply`, `care_notes`, `escalation_guidance` |
-| `neurodiversity_design_check` | Check a UI design for neurodiversity awareness | `ui_description` | `focus` | `recommendations`, `tradeoffs` |
-| `age_inclusive_design_check` | Check a user flow for age-inclusivity | `flow_description` | `age_groups` | `recommendations`, `access_notes` |
-
-## 3. How to Use the Skills (Prompt Engineering)
-
-If you do not have tool-use capabilities, you can use the skills via prompt engineering.
-
-- **Prompting Guide**: [`README.md#alternative-prompt-engineering`](./README.md#alternative-prompt-engineering) — How to load skill content into your context window.
-
-## 4. Skill Reference
-
-This is the full list of all 10 skills. Each `SKILL.md` contains the full specification, including purpose, boundaries, and principles.
-
-- **Skill Index**: [`skills/index.yaml`](./skills/index.yaml) — A structured index of all available skills.
-
-| Skill | Category | Description |
-|---|---|---|
-| [`age-inclusive-design`](./skills/age-inclusive-design/SKILL.md) | `age-inclusion` | Design for users of all ages. |
-| [`cognitive-accessibility`](./skills/cognitive-accessibility/SKILL.md) | `cognitive-support` | Improve content for varied attention, memory, and executive function. |
-| [`conflict-de-escalation`](./skills/conflict-de-escalation/SKILL.md) | `conflict-navigation` | De-escalate tense interactions. |
-| [`cultural-sensitivity`](./skills/cultural-sensitivity/SKILL.md) | `cultural-context` | Design for cultural inclusivity. |
-| [`depression-sensitive-content`](./skills/depression-sensitive-content/SKILL.md) | `emotional-safety` | Audit and rewrite content to reduce stigma and improve emotional safety. |
-| [`empathetic-communication`](./skills/empathetic-communication/SKILL.md) | `communication` | Improve emotional resonance in communication. |
-| [`grief-loss-support`](./skills/grief-loss-support/SKILL.md) | `emotional-safety` | Offer non-clinical, compassionate support language for grief and loss. |
-| [`neurodiversity-aware-design`](./skills/neurodiversity-aware-design/SKILL.md) | `neurodiversity` | Design for diverse cognitive processing. |
-| [`supportive-conversation`](./skills/supportive-conversation/SKILL.md) | `communication` | Generate supportive responses with safety boundaries. |
-| [`wcag-aaa-accessibility`](./skills/wcag-aaa-accessibility/SKILL.md) | `accessibility` | Audit a webpage or HTML for WCAG 2.2 AAA compliance. |
-
-## 5. Contribution Guide
-
-- **How to Contribute**: [`README.md#contribute-in-10-minutes`](./README.md#contribute-in-10-minutes) — The guide for new contributors.
-- **Good First Issues**: [`docs/good-first-issues.md`](./docs/good-first-issues.md) — A curated list of starter tasks.
+| # | Skill | Category | Action ID |
+|---|-------|----------|-----------|
+| 1 | age-inclusive-design | age-inclusion | age_inclusive_design_check |
+| 2 | cognitive-accessibility | cognitive-support | cognitive_accessibility_audit |
+| 3 | conflict-de-escalation | conflict-navigation | deescalation_plan |
+| 4 | cultural-sensitivity | cultural-context | cultural_context_check |
+| 5 | depression-sensitive-content | emotional-safety | rewrite_depression_sensitive_content |
+| 6 | empathetic-communication | communication | empathetic_reframe |
+| 7 | grief-loss-support | emotional-safety | grief_support_response |
+| 8 | neurodiversity-aware-design | neurodiversity | neurodiversity_design_check |
+| 9 | supportive-conversation | communication | supportive_reply |
+| 10 | wcag-aaa-accessibility | accessibility | wcagaaa_check |
 
 ---
+## SKILL.md Files
 
-## skills/age-inclusive-design/SKILL.md
+### age-inclusive-design
+
 ---
 name: age-inclusive-design
 description: Design for users of all ages. Use when user asks to 'make accessible for older adults', 'improve age-inclusive design', 'help elderly users', 'reduce age-related friction', 'design for all ages', 'age-friendly interface'.
@@ -476,7 +365,6 @@ body {
 - **[references/stereotypes.md](references/stereotypes.md)** - Age stereotypes to avoid
 - **[references/font-guidelines.md](references/font-guidelines.md)** - Typography guidelines
 - **[references/interaction.md](references/interaction.md)** - Interaction design
-- **[references/navigation.md](references/navigation.md)** - Navigation patterns
 - **[references/checklist.md](references/checklist.md)** - Implementation checklist
 - **[references/examples.md](references/examples.md)** - Good and bad examples
 
@@ -501,9 +389,8 @@ python3 scripts/detect_stereotypes.py --input content.txt --format json
 
 *This skill helps create age-inclusive digital experiences.*
 
----
+### cognitive-accessibility
 
-## skills/cognitive-accessibility/SKILL.md
 ---
 name: cognitive-accessibility
 description: Improve content and workflows for users with varied attention, memory, and executive function profiles. Use when user asks to 'simplify content', 'reduce cognitive load', 'improve readability', 'chunk content', 'make accessible for ADHD', 'help with focus'.
@@ -705,9 +592,8 @@ python3 scripts/measure_readability.py --input content.txt --format json
 
 *This skill helps create cognitively accessible content.*
 
----
+### conflict-de-escalation
 
-## skills/conflict-de-escalation/SKILL.md
 ---
 name: conflict-de-escalation
 description: De-escalate tense interactions using proven techniques. Use when user asks to 'de-escalate conflict', 'handle angry customer', 'calm tense situation', 'respond to aggression', 'reduce tension in conversation', 'de-fuse a volatile situation'.
@@ -737,8 +623,7 @@ This skill is critical for preventing violence and ensuring safety in high-stres
 
 Use this skill when:
 - Someone is increasingly agitated or angry
-- becoming You need to respond to an angry customer, client, or colleague
-- A conversation is becoming tense or hostile
+- A conversation or interaction is becoming tense or hostile
 - You need to calm a volatile situation
 - Dealing with someone in emotional distress
 - Managing confrontational communication
@@ -786,7 +671,7 @@ This skill is grounded in the Humanity4AI core principles and the following skil
 
 ## De-escalation Framework
 
-### The VERB Model
+### The VERB Model [CITATION NEEDED — verify against established frameworks: CPI, MOAB, LEAPS]
 
 **V - Validate**: Acknowledge their feelings and concerns
 - "I understand this is frustrating"
@@ -808,7 +693,7 @@ This skill is grounded in the Humanity4AI core principles and the following skil
 - "Here's what I can offer"
 - "We need to keep this respectful"
 
-### The GAIN Method
+### The GAIN Method [CITATION NEEDED — verify against established frameworks: CPI, MOAB, LEAPS]
 
 **G - Gather**: Collect information about the situation
 - What's happening?
@@ -1037,9 +922,8 @@ python3 scripts/generate_stabilizing.py --input message.txt --format json
 
 *This skill provides de-escalation techniques for conflict resolution. For immediate danger, always contact emergency services (911).*
 
----
+### cultural-sensitivity
 
-## skills/cultural-sensitivity/SKILL.md
 ---
 name: cultural-sensitivity
 description: Design for cultural inclusivity. Use when user asks to 'make culturally sensitive', 'adapt for culture', 'reduce cultural bias', 'cultural awareness', 'inclusive design'.
@@ -1061,7 +945,7 @@ tags:
 
 ## Purpose
 
-This skill helps create culturally inclusive digital experiences that respect diverse backgrounds, avoid bias, and work across different cultural contexts. Based on APA cultural competency guidelines and Hofstede's cultural dimensions.
+This skill helps create culturally inclusive digital experiences that respect diverse backgrounds, avoid bias, and work across different cultural contexts. Based on APA cultural competency guidelines and Hofstede's cultural dimensions (note: Hofstede's model is contested in academic literature — see McSweeney 2002, Ailon 2008; these dimensions are tendencies, not rules).
 
 ## When to Use
 
@@ -1307,9 +1191,8 @@ python3 scripts/check_stereotypes.py --input content.txt --format json
 
 *This skill helps create culturally inclusive digital experiences.*
 
----
+### depression-sensitive-content
 
-## skills/depression-sensitive-content/SKILL.md
 ---
 name: depression-sensitive-content
 description: Audit and rewrite content to reduce stigma, improve emotional safety, and lower cognitive load for people affected by depression. Use when user asks to 'make content more sensitive', 'remove stigmatizing language', 'improve emotional safety', 'rewrite for depression awareness', 'audit content for mental health sensitivity'.
@@ -1659,9 +1542,8 @@ python3 scripts/check_stigma.py --input content.txt --format json
 
 *This skill provides content auditing for emotional safety. It is not a substitute for professional mental health advice.*
 
----
+### empathetic-communication
 
-## skills/empathetic-communication/SKILL.md
 ---
 name: empathetic-communication
 description: Improve emotional resonance in communication. Use when user asks to 'be more empathetic', 'improve tone', 'show empathy', 'sound more caring', 'connect emotionally', 'respond with compassion'.
@@ -1937,9 +1819,8 @@ python3 scripts/analyze_tone.py --input response.txt --format json
 
 *This skill helps create emotionally resonant communication.*
 
----
+### grief-loss-support
 
-## skills/grief-loss-support/SKILL.md
 ---
 name: grief-loss-support
 description: Offer non-clinical, compassionate support language for grief and loss. Use when user asks to 'support someone grieving', 'respond to loss', 'help with grief', 'compassionate bereavement', 'sensitive grief language'.
@@ -2243,9 +2124,8 @@ python3 scripts/validate_compassion.py --input response.txt
 *This skill provides non-clinical grief support only. It is not a substitute for professional grief counseling.*
 
 
----
+### neurodiversity-aware-design
 
-## skills/neurodiversity-aware-design/SKILL.md
 ---
 name: neurodiversity-aware-design
 description: Design for diverse cognitive processing. Use when user asks to 'make ADHD-friendly', 'autism-friendly design', 'sensory-friendly', 'reduce cognitive overload', 'dyslexia-friendly', 'neurodiversity design'.
@@ -2562,9 +2442,8 @@ python3 scripts/suggest_accommodations.py --input design.txt --format json
 
 *This skill helps create neurodiversity-friendly digital experiences.*
 
----
+### supportive-conversation
 
-## skills/supportive-conversation/SKILL.md
 ---
 name: supportive-conversation
 description: Generate supportive responses with safety boundaries. Use when user asks to 'be supportive', 'help with emotional support', 'provide encouragement', 'respond with empathy', 'offer emotional support'.
@@ -2755,7 +2634,7 @@ End the response appropriately:
 Please consider reaching out right now:
 - **Call or text 988** (US Suicide & Crisis Lifeline)
 - **Text HOME to 741741** (Crisis Text Line)
-- https://www.iasp.info/resources/Crisis_Centries/ (International)
+- https://www.iasp.info/resources/Crisis_Centres/ (International)
 
 Would you be willing to talk to someone who can help right now? You don't have to face this alone."
 
@@ -2816,16 +2695,15 @@ This skill includes validation scripts in the `scripts/` folder:
 python3 scripts/detect_risk.py --input "message.txt" --format json
 
 # Validate a response
-python3 scripts/validate_compassionate.py --input response.txt
+python3 scripts/validate_compassion.py --input response.txt
 ```
 
 ---
 
 *This skill provides non-clinical emotional support only. It is not a substitute for professional mental health care.*
 
----
+### wcag-aaa-accessibility
 
-## skills/wcag-aaa-accessibility/SKILL.md
 ---
 name: wcag-aaa-accessibility
 description: "Use this skill when the user wants to audit a webpage, HTML markup, or digital content for WCAG 2.2 AAA compliance. This includes conducting accessibility audits, reviewing code for accessibility issues, providing remediation guidance, checking color contrast, evaluating keyboard navigation, assessing screen reader compatibility, and ensuring conformance with WCAG Success Criteria at Level AAA. Trigger especially when user mentions 'accessibility audit', 'WCAG', 'ADA compliance', 'accessibility review', 'screen reader test', 'keyboard navigation', or asks to make content accessible."
@@ -3129,3 +3007,8 @@ If unable to complete the audit:
 
 *Version 0.2.0 - Enhanced with detailed workflow, examples, and remediation guidance*
 
+---
+## MCP Tool Signatures
+
+See: https://raw.githubusercontent.com/humanity4ai/project_human/development/llms.txt
+See: https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/README.md

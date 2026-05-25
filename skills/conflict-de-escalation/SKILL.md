@@ -27,8 +27,7 @@ This skill is critical for preventing violence and ensuring safety in high-stres
 
 Use this skill when:
 - Someone is increasingly agitated or angry
-- becoming You need to respond to an angry customer, client, or colleague
-- A conversation is becoming tense or hostile
+- A conversation or interaction is becoming tense or hostile
 - You need to calm a volatile situation
 - Dealing with someone in emotional distress
 - Managing confrontational communication
@@ -76,7 +75,7 @@ This skill is grounded in the Humanity4AI core principles and the following skil
 
 ## De-escalation Framework
 
-### The VERB Model
+### The VERB Model [CITATION NEEDED — verify against established frameworks: CPI, MOAB, LEAPS]
 
 **V - Validate**: Acknowledge their feelings and concerns
 - "I understand this is frustrating"
@@ -98,7 +97,7 @@ This skill is grounded in the Humanity4AI core principles and the following skil
 - "Here's what I can offer"
 - "We need to keep this respectful"
 
-### The GAIN Method
+### The GAIN Method [CITATION NEEDED — verify against established frameworks: CPI, MOAB, LEAPS]
 
 **G - Gather**: Collect information about the situation
 - What's happening?

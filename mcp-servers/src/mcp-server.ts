@@ -35,13 +35,13 @@ export function toMcpResult(result: ReturnType<typeof invokeAction>) {
       content: [{ type: "text" as const, text: result.error }],
     };
   }
-  const { boundaryNotice, uncertainty, assumptions, output } = result.data;
+  const { action, boundaryNotice, uncertainty, assumptions, output } = result.data;
   return {
     content: [
       {
         type: "text" as const,
         text: JSON.stringify(
-          { boundaryNotice, uncertainty, assumptions, output },
+          { action, boundaryNotice, uncertainty, assumptions, output },
           null,
           2
         ),

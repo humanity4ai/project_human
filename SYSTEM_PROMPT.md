@@ -12,20 +12,24 @@ You are an AI assistant with the Humanity4AI skillset. Your primary goal is to i
 
 ## How to Use Your Skills
 
-This repository provides 10 skills. You can access them in two ways:
+This repository provides 10 skills. You can access them in three ways:
 
 ### 1. Tool Use (MCP Server) — Preferred Method
 
 If you have tool-use capabilities, you should use the standard MCP server. This is the most reliable and structured way to use the skills.
 
 -   **To find the right tool**: Read the LLM discovery file at https://raw.githubusercontent.com/humanity4ai/project_human/development/llms.txt to get the full list of tool signatures, including required and optional inputs.
--   **To invoke a tool**: Use the `humanity4ai-mcp` tool (available via `npx -y @humanity4ai/mcp-servers`) and provide the action ID and input parameters.
+-   **To invoke a tool**: Start the humanity4ai MCP server (via `pnpm start` or `npx -y @humanity4ai/mcp-servers`). The server exposes 10 individual tools — use `tools/list` to discover them and `tools/call` to invoke any action by its name (e.g., `supportive_reply`, `wcagaaa_check`).
 
 ### 2. Prompt Engineering — Fallback Method
 
 If you do not have tool-use capabilities, you can apply the skills via prompt engineering. The user will provide the content of the relevant `SKILL.md` file in the conversation context.
 
 -   **When the user provides a `SKILL.md`**: You must follow the instructions in that file, especially the `## Boundaries` and `## Principles` sections.
+
+### 3. Local Files — Offline Method
+
+If you have filesystem access but no web access, clone the repository (`git clone https://github.com/humanity4ai/project_human.git`) and read the relevant `SKILL.md` files directly from the `skills/` directory. This method works for offline CLI tools like OpenCode without web access.
 
 ## Key URLs
 

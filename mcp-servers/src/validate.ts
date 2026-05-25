@@ -45,6 +45,16 @@ function validateField(
     errors.push(`'${fieldName}' must be a boolean`);
   } else if (type === "array" && !Array.isArray(value)) {
     errors.push(`'${fieldName}' must be an array`);
+  } else if (type === "array" && Array.isArray(value)) {
+    // Validate array items against items schema
+    const items = spec["items"] as Record<string, unknown> | undefined;
+    if (items && items["type"] === "string") {
+      for (let i = 0; i < value.length; i++) {
+        if (typeof value[i] !== "string") {
+          errors.push(`'${fieldName}[${i}]' must be a string`);
+        }
+      }
+    }
   } else if (type === "object" && (typeof value !== "object" || value === null || Array.isArray(value))) {
     errors.push(`'${fieldName}' must be an object`);
   }
@@ -76,6 +86,9 @@ export function validateInput(
   const properties = (schema["properties"] as Record<string, Record<string, unknown>> | undefined) ?? {};
 
   for (const field of required) {
+    // NOTE: Empty strings are treated as missing values — stricter than JSON Schema
+    // spec which allows empty strings for type:string. This is intentional to catch
+    // blank required inputs that would produce meaningless handler output.
     if (!(field in input) || input[field] === undefined || input[field] === null || input[field] === "") {
       errors.push(`Required field '${field}' is missing or empty`);
     }
