@@ -29,13 +29,10 @@ Not everything belongs in an issue tracker. Use the right channel:
 Humanity4AI uses a two-tier branching strategy:
 
 ```
-feature/* ──► development  (all contributor code — this is the default branch)
-                  │
-                  ▼  planned releases only, by @simonplmak-cloud or @humanity4ai
-                main  (stable, production-ready releases)
+feature/* ──► main  (all contributor code — this is the default branch)
 ```
 
-**All pull requests from contributors must target `development`.** Pull requests targeting `main` are restricted to maintainers and represent planned releases only.
+**All pull requests from contributors must target `main`.** Pull requests targeting `main` are restricted to maintainers and represent planned releases only.
 
 ---
 
@@ -45,17 +42,17 @@ feature/* ──► development  (all contributor code — this is the default b
 Have an idea?
   └─► Discuss first in GitHub Discussions (Skill Ideas or Integration Help)
         └─► Ready to build? Open an Issue (skill-proposal or integration-request)
-              └─► Fork the repo and create a branch from development
+              └─► Fork the repo and create a branch from main
                     └─► Implement your changes
                           └─► Run: pnpm check && pnpm evals && pnpm test
-                                └─► Open a PR targeting development (use the PR template)
+                                └─► Open a PR targeting main (use the PR template)
                                       └─► CI runs automatically
                                             └─► Maintainer reviews
-                                                  └─► Approved + CI green = Merged into development
+                                                  └─► Approved + CI green = Merged into main
                                                         └─► Branch auto-deleted
 ```
 
-When the `development` branch is ready for release, maintainers open a promotion PR from `development → main`. See `docs/release-process.md` for the full process.
+CI runs automatically on `main`. Merged branches are auto-deleted.
 
 ---
 
@@ -205,8 +202,8 @@ Valid category slugs: `accessibility`, `emotional-safety`, `communication`, `cog
 git clone https://github.com/<your-username>/project_human.git
 cd project_human
 
-# 2. Create a branch from development (the default branch)
-git checkout development
+# 2. Create a branch from main (the default branch)
+git checkout main
 git checkout -b add-my-skill
 
 # 3. Copy the template
@@ -220,7 +217,7 @@ pnpm check
 pnpm evals
 pnpm test
 
-# 6. Open a pull request targeting development — fill every section of the template
+# 6. Open a pull request targeting main — fill every section of the template
 ```
 
 All three checks must pass and appear in the PR test evidence section before a review begins.
@@ -240,9 +237,7 @@ EVAL_REPORT=1 pnpm evals
 
 ## Branch Protection
 
-Both `development` and `main` are protected branches.
-
-### `development` (default — target all contributor PRs here)
+`main` is a protected branch.
 
 - Direct pushes are blocked
 - 1 approving review required
@@ -250,14 +245,6 @@ Both `development` and `main` are protected branches.
 - CI must pass (`pnpm check`, `pnpm build`, `pnpm evals`, `pnpm test`)
 - Branch must be up to date before merge
 - Force pushes blocked
-
-### `main` (stable releases — maintainers only)
-
-- Only `@simonplmak-cloud` and `@humanity4ai` may open PRs targeting `main`
-- 1 approving review required
-- CI re-runs as a final release gate (Option A)
-- Force pushes blocked
-- Direct commits blocked for everyone
 
 Merged branches are auto-deleted. Keep feature branches short-lived and focused.
 

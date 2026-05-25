@@ -18,7 +18,7 @@ This repository provides 10 skills. You can access them in three ways:
 
 If you have tool-use capabilities, you should use the standard MCP server. This is the most reliable and structured way to use the skills.
 
--   **To find the right tool**: Read the LLM discovery file at https://raw.githubusercontent.com/humanity4ai/project_human/development/llms.txt to get the full list of tool signatures, including required and optional inputs.
+-   **To find the right tool**: Read the LLM discovery file at https://raw.githubusercontent.com/humanity4ai/project_human/main/llms.txt to get the full list of tool signatures, including required and optional inputs.
 -   **To invoke a tool**: Start the humanity4ai MCP server (via `pnpm start` or `npx -y @humanity4ai/mcp-servers`). The server exposes 10 individual tools — use `tools/list` to discover them and `tools/call` to invoke any action by its name (e.g., `supportive_reply`, `wcagaaa_check`).
 
 ### 2. Prompt Engineering — Fallback Method
@@ -37,19 +37,19 @@ The following are the most important files for LLM context. You can fetch any of
 
 | File | Purpose | URL |
 |---|---|---|
-| `llms.txt` | Main LLM discovery entry point | https://raw.githubusercontent.com/humanity4ai/project_human/development/llms.txt |
-| `llms-full.txt` | Single-file full context for LLMs | https://raw.githubusercontent.com/humanity4ai/project_human/development/llms-full.txt |
-| `knowledge-core/principles.md` | The five core principles | https://raw.githubusercontent.com/humanity4ai/project_human/development/knowledge-core/principles.md |
-| `skills/age-inclusive-design/SKILL.md` | Age-inclusive design skill | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/age-inclusive-design/SKILL.md |
-| `skills/cognitive-accessibility/SKILL.md` | Cognitive accessibility skill | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/cognitive-accessibility/SKILL.md |
-| `skills/conflict-de-escalation/SKILL.md` | Conflict de-escalation skill | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/conflict-de-escalation/SKILL.md |
-| `skills/cultural-sensitivity/SKILL.md` | Cultural sensitivity skill | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/cultural-sensitivity/SKILL.md |
-| `skills/depression-sensitive-content/SKILL.md` | Depression-sensitive content skill | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/depression-sensitive-content/SKILL.md |
-| `skills/empathetic-communication/SKILL.md` | Empathetic communication skill | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/empathetic-communication/SKILL.md |
-| `skills/grief-loss-support/SKILL.md` | Grief and loss support skill | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/grief-loss-support/SKILL.md |
-| `skills/neurodiversity-aware-design/SKILL.md` | Neurodiversity-aware design skill | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/neurodiversity-aware-design/SKILL.md |
-| `skills/supportive-conversation/SKILL.md` | Supportive conversation skill | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/supportive-conversation/SKILL.md |
-| `skills/wcag-aaa-accessibility/SKILL.md` | WCAG AAA accessibility skill | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/wcag-aaa-accessibility/SKILL.md |
+| `llms.txt` | Main LLM discovery entry point | https://raw.githubusercontent.com/humanity4ai/project_human/main/llms.txt |
+| `llms-full.txt` | Single-file full context for LLMs | https://raw.githubusercontent.com/humanity4ai/project_human/main/llms-full.txt |
+| `knowledge-core/principles.md` | The five core principles | https://raw.githubusercontent.com/humanity4ai/project_human/main/knowledge-core/principles.md |
+| `skills/age-inclusive-design/SKILL.md` | Age-inclusive design skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/age-inclusive-design/SKILL.md |
+| `skills/cognitive-accessibility/SKILL.md` | Cognitive accessibility skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/cognitive-accessibility/SKILL.md |
+| `skills/conflict-de-escalation/SKILL.md` | Conflict de-escalation skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/conflict-de-escalation/SKILL.md |
+| `skills/cultural-sensitivity/SKILL.md` | Cultural sensitivity skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/cultural-sensitivity/SKILL.md |
+| `skills/depression-sensitive-content/SKILL.md` | Depression-sensitive content skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/depression-sensitive-content/SKILL.md |
+| `skills/empathetic-communication/SKILL.md` | Empathetic communication skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/empathetic-communication/SKILL.md |
+| `skills/grief-loss-support/SKILL.md` | Grief and loss support skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/grief-loss-support/SKILL.md |
+| `skills/neurodiversity-aware-design/SKILL.md` | Neurodiversity-aware design skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/neurodiversity-aware-design/SKILL.md |
+| `skills/supportive-conversation/SKILL.md` | Supportive conversation skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/supportive-conversation/SKILL.md |
+| `skills/wcag-aaa-accessibility/SKILL.md` | WCAG AAA accessibility skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/wcag-aaa-accessibility/SKILL.md |
 
 ## Interaction Style
 

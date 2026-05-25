@@ -201,8 +201,8 @@ Browse [open starter issues](https://github.com/humanity4ai/project_human/issues
 git clone https://github.com/<your-username>/project_human.git
 cd project_human
 
-# Branch from development (the default branch)
-git checkout development
+# Branch from main (the default branch)
+git checkout main
 git checkout -b my-contribution
 
 # Copy the skill template if adding a new skill
@@ -212,16 +212,16 @@ cp -r templates/skill skills/my-skill-name
 pnpm check && pnpm evals && pnpm test
 ```
 
-**Step 3 — Open a PR targeting `development`**
+**Step 3 — Open a PR targeting `main`**
 
 ```bash
 gh pr create \
-  --base development \
+  --base main \
   --title "Add: my contribution" \
   --body "Closes #<issue-number>"
 ```
 
-Or open via GitHub UI — the default base branch is `development`.
+Or open via GitHub UI — the default base branch is `main`.
 
 **Troubleshooting**
 

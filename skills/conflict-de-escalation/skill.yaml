@@ -23,4 +23,4 @@ provenance:
   license: MIT
 references:
   - name: Skill References
-    url: https://github.com/humanity4ai/project_human/tree/development/skills/conflict-de-escalation/references
+    url: https://github.com/humanity4ai/project_human/tree/main/skills/conflict-de-escalation/references
