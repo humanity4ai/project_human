@@ -20,11 +20,16 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import { invokeAction } from "./handlers.js";
+import { actionContracts } from "./index.js";
 
 const pkg = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf8")
 ) as { version: string };
 export const VERSION: string = pkg.version;
+
+function descFor(action: string): string {
+  return actionContracts.find(c => c.action === action)?.description ?? "";
+}
 
 // ── Helper: convert invokeAction result to MCP CallToolResult ────────────────
 
@@ -195,9 +200,7 @@ const server = new McpServer(
 
 server.tool(
   "wcagaaa_check",
-  "Audit a URL or HTML snippet for WCAG 2.2 accessibility compliance at Level A, AA, or AAA. " +
-    "Returns structured findings with severity ratings and actionable fixes. " +
-    "Safety boundary: compliance guidance only; does not replace legal review.",
+  descFor("wcagaaa_check"),
   {
     target: z.string().describe("URL or HTML input to audit"),
     level: z
@@ -214,9 +217,7 @@ server.tool(
 
 server.tool(
   "rewrite_depression_sensitive_content",
-  "Audit or rewrite text to be sensitive to depression and mental health. " +
-    "Removes harmful language patterns and replaces them with supportive, non-stigmatising alternatives. " +
-    "Safety boundary: non-clinical UX/content guidance only.",
+  descFor("rewrite_depression_sensitive_content"),
   {
     text: z.string().describe("The text content to audit or rewrite"),
     mode: z
@@ -233,9 +234,7 @@ server.tool(
 
 server.tool(
   "supportive_reply",
-  "Generate a supportive, non-clinical reply to a message from someone in distress. " +
-    "Includes escalation guidance calibrated to the assessed risk level. " +
-    "Safety boundary: non-clinical support only; must escalate when risk is elevated.",
+  descFor("supportive_reply"),
   {
     message: z.string().describe("The message from the person in distress"),
     risk_level: z
@@ -254,9 +253,7 @@ server.tool(
 
 server.tool(
   "cognitive_accessibility_audit",
-  "Audit content for cognitive accessibility — plain language, reading level, structure, and clarity. " +
-    "Returns actionable recommendations to reduce cognitive load. " +
-    "Safety boundary: design guidance only.",
+  descFor("cognitive_accessibility_audit"),
   {
     content: z
       .string()
@@ -273,9 +270,7 @@ server.tool(
 
 server.tool(
   "cultural_context_check",
-  "Check a message for cultural sensitivity issues for a given audience or region. " +
-    "Returns flags, concerns, and suggested alternatives with uncertainty disclosure. " +
-    "Safety boundary: context-sensitive recommendations with uncertainty disclosure.",
+  descFor("cultural_context_check"),
   {
     message: z.string().describe("The message or content to check"),
     audience: z
@@ -293,9 +288,7 @@ server.tool(
 
 server.tool(
   "deescalation_plan",
-  "Generate a structured de-escalation plan for a conflict or tense situation. " +
-    "Returns step-by-step guidance calibrated to the intensity of the conflict. " +
-    "Safety boundary: no coercive tactics.",
+  descFor("deescalation_plan"),
   {
     situation: z
       .string()
@@ -310,9 +303,7 @@ server.tool(
 
 server.tool(
   "empathetic_reframe",
-  "Reframe a message with genuine empathy — acknowledging emotions, validating experience, and offering presence. " +
-    "Detects and replaces hollow empathy phrases with authentic alternatives. " +
-    "Safety boundary: no manipulation or deceptive empathy.",
+  descFor("empathetic_reframe"),
   {
     message: z.string().describe("The message to reframe with empathy"),
     tone: z
@@ -325,9 +316,7 @@ server.tool(
 
 server.tool(
   "grief_support_response",
-  "Generate a compassionate, non-clinical response to someone experiencing grief or loss. " +
-    "Supports three modes: presence (emotional companionship), practical (next steps), reflection (meaning-making). " +
-    "Safety boundary: non-clinical bereavement support only.",
+  descFor("grief_support_response"),
   {
     message: z
       .string()
@@ -343,9 +332,7 @@ server.tool(
 
 server.tool(
   "neurodiversity_design_check",
-  "Audit a UI description for neurodiversity-aware design — covering ADHD, autism, dyslexia, and sensory sensitivities. " +
-    "Returns targeted recommendations for inclusive design. " +
-    "Safety boundary: inclusive design guidance only.",
+  descFor("neurodiversity_design_check"),
   {
     ui_description: z
       .string()
@@ -364,9 +351,7 @@ server.tool(
 
 server.tool(
   "age_inclusive_design_check",
-  "Audit a user flow or interface for age-inclusive design — covering children, adults, and older users. " +
-    "Returns recommendations to remove age-related barriers and improve usability across generations. " +
-    "Safety boundary: inclusive design guidance only.",
+  descFor("age_inclusive_design_check"),
   {
     flow_description: z
       .string()

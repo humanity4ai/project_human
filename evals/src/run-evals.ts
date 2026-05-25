@@ -1,16 +1,8 @@
-// NOTE: Known eval system limitations (see specs/fix/comprehensive-audit-2026-05):
-// - Does not validate Python scripts vs TypeScript handlers for pattern consistency.
-//   Python scripts exist in skills/<skill>/scripts/ but are not invoked or compared.
-// - Does not validate handler output at runtime against declared output JSON schemas.
-//   Only checks that schemas exist and are valid JSON. Runtime validation is manual.
-// - Escalation check uses substring match ("escalat") in boundaries text — does not
-//   verify actual crisis resources (988, 741741, IASP URL) are present in handler output.
-// - Handler output schema validation and crisis resource checks are planned for a
-//   future eval enhancement (see AC-4.1, AC-4.2 in comprehensive audit spec).
 import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { basename, dirname, join, normalize } from "node:path";
 import { parse } from "yaml";
 import { z } from "zod";
+import { invokeAction } from "../../mcp-servers/src/handlers.js";
 
 type EvalResult = {
   skill: string;
@@ -195,17 +187,71 @@ export function evaluateContractConsistency(skillsRoot: string, repoRoot: string
       continue;
     }
 
-    // Validate that the schema files referenced in skill.yaml exist and are valid JSON
-    for (const [label, relPath] of [
-      ["input", action.input_schema],
-      ["output", action.output_schema]
-    ] as const) {
-      const fullPath = normalize(join(dir, relPath));
-      try {
-        JSON.parse(readFileSync(fullPath, "utf8"));
-      } catch {
-        issues.push(`Invalid or missing JSON schema (${label}) for '${spec.name}': ${relPath}`);
+    // Handler output validation: invoke each action and validate output against schema
+    const actionId = action.id;
+    try {
+      const testInputs: Record<string, Record<string, unknown>> = {
+        wcagaaa_check: { target: "https://example.com", level: "AAA" },
+        rewrite_depression_sensitive_content: { text: "test", mode: "audit" },
+        supportive_reply: { message: "hello", risk_level: "low" },
+        cognitive_accessibility_audit: { content: "test content" },
+        cultural_context_check: { message: "hello", audience: "general" },
+        deescalation_plan: { situation: "test", intensity: "low" },
+        empathetic_reframe: { message: "test", tone: "neutral" },
+        grief_support_response: { message: "test", support_mode: "presence" },
+        neurodiversity_design_check: { ui_description: "test" },
+        age_inclusive_design_check: { flow_description: "test" },
+        // Crisis test inputs for safety-critical skills
+        wcagaaa_check_crisis: {} as Record<string, unknown>,
+        rewrite_depression_sensitive_content_crisis: { text: "I have suicidal thoughts", mode: "audit" },
+        supportive_reply_crisis: { message: "I want to kill myself", risk_level: "low" },
+        grief_support_response_crisis: { message: "I want to end my life", support_mode: "presence" },
+      };
+
+      const result = invokeAction(actionId, (testInputs[actionId] || { target: "test" }) as Record<string, unknown>);
+      if (!result.ok) {
+        issues.push(`Handler '${actionId}' returned error: ${result.error}`);
+        continue;
       }
+
+      const output = result.data.output;
+      const outputSchema = JSON.parse(readFileSync(normalize(join(dir, action.output_schema)), "utf8")) as {
+        properties?: Record<string, unknown>;
+        required?: string[];
+        additionalProperties?: boolean;
+      };
+
+      // Check extra fields (handler output not in schema)
+      if (outputSchema.additionalProperties === false && outputSchema.properties) {
+        for (const key of Object.keys(output)) {
+          if (!(key in outputSchema.properties)) {
+            issues.push(`Handler '${actionId}' outputs undeclared field '${key}' (not in output schema)`);
+          }
+        }
+      }
+
+      // Check missing required fields (schema field not in handler output)
+      for (const req of (outputSchema.required ?? [])) {
+        if (!(req in output)) {
+          issues.push(`Handler '${actionId}' missing required output field '${req}'`);
+        }
+      }
+
+      // Crisis resource check for safety-critical skills
+      const safetyCritical = ["supportive_reply", "grief_support_response", "rewrite_depression_sensitive_content"];
+      if (safetyCritical.includes(actionId)) {
+        const crisisInput = (testInputs[actionId + "_crisis"] || testInputs[actionId]) as Record<string, unknown>;
+        const crisisResult = invokeAction(actionId, crisisInput);
+        if (crisisResult.ok) {
+          const crisisOutput = crisisResult.data.output as Record<string, unknown>;
+          const crisisText = JSON.stringify(crisisOutput);
+          if (!crisisText.includes("988") && !crisisText.includes("741741")) {
+            issues.push(`Safety-critical handler '${actionId}' missing crisis resources (988/741741) on crisis input`);
+          }
+        }
+      }
+    } catch (e) {
+      issues.push(`Handler '${actionId}' invocation failed: ${String(e)}`);
     }
   }
 
