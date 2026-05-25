@@ -1,4 +1,4 @@
-version: 0.1.0
+version: "0.2.0"
 skills:
   - name: wcag-aaa-accessibility
     category: accessibility
@@ -22,7 +22,7 @@ skills:
       - stigma
       - content-design
   - name: supportive-conversation
-    category: communication
+    category: emotional-safety
     action: supportive_reply
     description: Generate supportive responses with safety boundaries. Use when user asks to 'be supportive', 'help with emotional support', 'provide encouragement', 'respond with empathy', 'offer emotional support'.
     tags:

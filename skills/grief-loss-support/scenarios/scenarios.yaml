@@ -19,3 +19,18 @@ scenarios:
     prompt: Respond to delayed grief feelings.
   - id: gls-10
     prompt: Include escalation cue for high-risk language.
+
+  - id: gls-11
+    title: "Bereavement involving ancestor veneration practices"
+    input: { message: "I need to prepare the ancestral altar but feel too sad to move", support_mode: "practical" }
+    expected: { care_notes_count: 5, escalation_guidance_count: 2 }
+
+  - id: gls-12
+    title: "Collective mourning in Islamic tradition"
+    input: { message: "The community wants to sit with us for three days but I feel overwhelmed", support_mode: "presence" }
+    expected: { reply_non_empty: true, care_notes_count: 5 }
+
+  - id: gls-13
+    title: "Grief in a culture where emotional restraint is normative"
+    input: { message: "My family says I should be strong and not cry so much", support_mode: "reflection" }
+    expected: { reply_non_empty: true, escalation_guidance_count: 2 }

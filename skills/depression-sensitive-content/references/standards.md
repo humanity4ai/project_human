@@ -64,3 +64,9 @@ Guidelines on communicating about mental health:
 - SPRC Recommendations
 - WCAG 2.1 Cognitive Accessibility
 - ISO 26000 Social Responsibility
+
+## Peer-Reviewed Research
+
+- Granello, D.H. & Gibbs, T.A. (2016). The power of language and labels: "The Mentally Ill" versus "People With Mental Illnesses". Journal of Counseling & Development, 94(1), 31-40. — Evidence that person-first language reduces stigma in clinical contexts.
+- Dunn, D.S. & Andrews, E.E. (2015). Person-first and identity-first language: Developing psychologists' cultural competence using disability language. American Psychologist, 70(3), 255-264. — Foundational paper on person-first vs identity-first language debate.
+- Niederkrotenthaler, T. et al. (2010). Role of media reports in completed and prevented suicide: Werther v. Papageno effects. British Journal of Psychiatry, 197(3), 234-243. — Evidence that media language affects suicide rates (Papageno effect).
