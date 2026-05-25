@@ -257,10 +257,8 @@ This skill includes validation scripts:
 
 ```bash
 # Detect cultural issues
-python3 scripts/detect_issues.py --input content.txt --format json
 
 # Check for stereotypes
-python3 scripts/check_stereotypes.py --input content.txt --format json
 ```
 
 ---

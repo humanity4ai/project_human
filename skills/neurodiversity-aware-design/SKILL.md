@@ -304,10 +304,8 @@ This skill includes validation scripts:
 
 ```bash
 # Check for sensory triggers
-python3 scripts/sensory_check.py --input design.txt --format json
 
 # Suggest accommodations
-python3 scripts/suggest_accommodations.py --input design.txt --format json
 ```
 
 ---

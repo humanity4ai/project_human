@@ -276,10 +276,8 @@ This skill includes validation scripts:
 
 ```bash
 # Validate empathy
-python3 scripts/validate_empathy.py --input response.txt --format json
 
 # Analyze tone
-python3 scripts/analyze_tone.py --input response.txt --format json
 ```
 
 ---

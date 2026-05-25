@@ -296,13 +296,10 @@ This skill includes validation scripts in the `scripts/` folder:
 
 ```bash
 # Detect risk in user message
-python3 scripts/detect_crisis.py --input "message.txt" --format json
 
 # Generate acknowledgment
-python3 scripts/acknowledge_loss.py --input "message.txt" --format json
 
 # Validate a response
-python3 scripts/validate_compassion.py --input response.txt
 ```
 
 ---
