@@ -13,6 +13,8 @@ import { MAX_WORDS_PER_SENTENCE, MAX_CONTENT_WORDS, MIN_STEPS_SEQUENCE_THRESHOLD
 import { CRISIS_LINE_UK, CRISIS_LINE_US, CRISIS_TEXT_US, CRISIS_URL_INTERNATIONAL, CRISIS_URL_IASP } from "./crisis-resources.js";
 import { detectCrisisSignals, detectSafetySignals } from "./crisis-detection.js";
 import { detectEmotion } from "./emotion-detection.js";
+import { assessAccessibility } from "./accessibility-engine.js";
+import { normalizeLocale, getSupportiveReply, getLocalizedCrisisResources, getLocalizedCategory } from "./i18n.js";
 
 type HandlerResult =
   | { ok: true; data: InvokeResponse }
@@ -36,6 +38,47 @@ function isKnownAction(action: string): boolean {
 function str(input: Record<string, unknown>, key: string, fallback = ""): string {
   const v = input[key];
   return typeof v === "string" ? v.trim() : fallback;
+}
+
+// ─────────────────────────────────────────────
+// Handler: wcagaa_check
+// ─────────────────────────────────────────────
+function handleWcagAaCheck(input: Record<string, unknown>, boundaryNotice: string): HandlerResult {
+  const target = str(input, "target");
+  const level = (str(input, "level", "AA") === "AAA" ? "AAA" : "AA") as "AA" | "AAA";
+  const locale = str(input, "locale", "en");
+  const loc = normalizeLocale(locale);
+
+  const scoreResult = assessAccessibility(target, level);
+
+  // Localize category names
+  const localizedCriteria = scoreResult.criteria.map(c => ({
+    ...c,
+    category: getLocalizedCategory(c.category, loc),
+  }));
+
+  return {
+    ok: true,
+    data: {
+      action: "wcagaa_check",
+      boundaryNotice,
+      uncertainty: scoreResult.heuristic ? "high" : "medium",
+      assumptions: [
+        `Level: WCAG 2.2 ${level}`,
+        `Input type: ${scoreResult.heuristic ? "description (heuristic)" : "HTML (analysed)"}`,
+        `Locale: ${locale}`,
+        "Automated scoring covers ~60% of WCAG criteria — manual review required for full compliance",
+        scoreResult.heuristic ? "Heuristic mode: scores are estimates based on best practices, not parsed HTML analysis" : "HTML-based analysis: scores are computed from actual markup patterns"
+      ],
+      output: {
+        aggregate_score: scoreResult.aggregateScore,
+        level,
+        heuristic: scoreResult.heuristic,
+        criteria: localizedCriteria,
+        summary: scoreResult.summary
+      }
+    }
+  };
 }
 
 // ─────────────────────────────────────────────
@@ -693,6 +736,8 @@ export function invokeAction(
   const boundaryNotice = boundaryForAction(action);
 
   switch (action) {
+    case "wcagaa_check":
+      return handleWcagAaCheck(input, boundaryNotice);
     case "wcagaaa_check":
       return handleWcagCheck(input, boundaryNotice);
     case "rewrite_depression_sensitive_content":
@@ -715,6 +760,8 @@ export function invokeAction(
       const message = str(input, "message");
       let riskLevel = str(input, "risk_level", "low");
       const locale = str(input, "locale", "en");
+      const loc = normalizeLocale(locale);
+      const localizedCrisis = getLocalizedCrisisResources(loc);
 
       // Auto-assess risk from message content — override caller risk_level if crisis detected
       const crisis = detectCrisisSignals(message);
@@ -736,9 +783,8 @@ export function invokeAction(
       }
 
       // Locale-driven crisis resource selection
-      const isUK = locale.toLowerCase().startsWith("en-gb") || locale.toLowerCase() === "gb";
-      const primaryCrisis = isUK ? CRISIS_LINE_UK : CRISIS_LINE_US;
-      const secondaryCrisis = isUK ? `US: ${CRISIS_LINE_US}` : `UK: ${CRISIS_LINE_UK}`;
+      const primaryCrisis = loc !== "en" ? localizedCrisis.primary : CRISIS_LINE_US;
+      const secondaryCrisis = loc !== "en" ? localizedCrisis.secondary : CRISIS_LINE_UK;
 
       const escalation =
         riskLevel === "high"
@@ -761,9 +807,11 @@ export function invokeAction(
               "Professional support is available any time you need it"
             ];
 
-      // Build adaptive reply based on detected emotion
+      // Build adaptive reply based on detected emotion, using i18n
       let replyText: string;
-      if (message) {
+      if (loc !== "en") {
+        replyText = getSupportiveReply(message, loc);
+      } else if (message) {
         if (emotion.category !== "none") {
           const emotionLabels: Record<string, string> = {
             fear_anxiety: "anxious or afraid",

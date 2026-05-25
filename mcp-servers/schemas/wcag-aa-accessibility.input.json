@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["target"],
+  "properties": {
+    "target": {
+      "type": "string",
+      "description": "URL or HTML input to audit for WCAG AA accessibility"
+    },
+    "level": {
+      "type": "string",
+      "enum": ["AA", "AAA"],
+      "default": "AA",
+      "description": "WCAG compliance level"
+    },
+    "locale": {
+      "type": "string",
+      "default": "en",
+      "description": "BCP 47 locale code for localized output"
+    }
+  },
+  "additionalProperties": false,
+  "$id": "https://humanity4ai.github.io/project_human/schemas/wcag-aa-accessibility.input.json"
+}
