@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f766e" />
     <title>Humanity4AI — Humane AI skills for real agents</title>
     <meta
       name="description"
@@ -21,7 +22,8 @@
     <meta name="twitter:image" content="https://humanity4ai.github.io/project_human/assets/hero-architecture.svg" />
     <!-- Canonical -->
     <link rel="canonical" href="https://humanity4ai.github.io/project_human/" />
-    <!-- Favicon placeholder -->
+    <!-- Favicon -->
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤝</text></svg>" />
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,7 +32,9 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <header class="hero">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="hero" role="banner">
       <div class="hero-inner">
         <p class="kicker">Humanity4AI</p>
         <h1>Humane AI skills, structured for real agents</h1>
@@ -44,11 +48,11 @@
           <a class="btn" href="https://github.com/humanity4ai/project_human/issues">Contribute</a>
         </div>
       </div>
-      <img class="hero-graphic" src="./assets/hero-architecture.svg" alt="Humanity4AI architecture" />
+      <img class="hero-graphic" src="./assets/hero-architecture.svg" alt="Humanity4AI architecture diagram showing skill packs, MCP server, and eval gates" />
     </header>
 
-    <main class="content">
-      <section class="manifesto">
+    <main id="main-content" class="content">
+      <section class="manifesto" aria-label="Manifesto">
         <h2>The Soul of New Machines: Last Epigone</h2>
         <p>
           Humanity4AI argues that intelligence without humanity is not progress. AI systems that influence human
@@ -62,7 +66,7 @@
         </div>
       </section>
 
-      <section>
+      <section aria-label="What ships now">
         <h2>What ships now</h2>
         <div class="grid three">
           <article class="card">
@@ -80,7 +84,7 @@
         </div>
       </section>
 
-      <section>
+      <section aria-label="Quick commands">
         <h2>Quick commands</h2>
         <pre><code>pnpm install
 pnpm check
@@ -88,7 +92,7 @@ pnpm evals
 pnpm start</code></pre>
       </section>
 
-      <section>
+      <section aria-label="First contribution">
         <h2>First contribution</h2>
         <p>Pick a starter task and open a PR in under 10 minutes.</p>
         <ul>
@@ -99,11 +103,11 @@ pnpm start</code></pre>
       </section>
     </main>
 
-    <footer style="text-align:center;padding:2rem 1rem;color:#6b7280;font-size:.9rem;border-top:1px solid #d1d5db;margin-top:2rem;">
+    <footer class="site-footer" role="contentinfo">
       <p>MIT License &bull; Copyright &copy; 2026 Ascent Partners Foundation &bull;
-        <a href="https://github.com/humanity4ai/project_human" rel="noopener noreferrer" style="color:#0f766e;">GitHub</a> &bull;
-        <a href="https://github.com/humanity4ai/project_human/blob/main/GOVERNANCE.md" rel="noopener noreferrer" style="color:#0f766e;">Governance</a> &bull;
-        <a href="https://github.com/humanity4ai/project_human/blob/main/SECURITY.md" rel="noopener noreferrer" style="color:#0f766e;">Security</a>
+        <a href="https://github.com/humanity4ai/project_human" rel="noopener noreferrer">GitHub</a> &bull;
+        <a href="https://github.com/humanity4ai/project_human/blob/main/GOVERNANCE.md" rel="noopener noreferrer">Governance</a> &bull;
+        <a href="https://github.com/humanity4ai/project_human/blob/main/SECURITY.md" rel="noopener noreferrer">Security</a>
       </p>
     </footer>
   </body>

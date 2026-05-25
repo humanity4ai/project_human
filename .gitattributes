@@ -14,3 +14,7 @@
 
 # Lock files and generated
 pnpm-lock.yaml text=auto eol=lf
+
+# Linguist overrides — force TypeScript detection over Python
+*.py linguist-vendored
+*.ts linguist-detectable

@@ -10,6 +10,8 @@ export const actionContractSchema = z.object({
 
 export type ActionContract = z.infer<typeof actionContractSchema>;
 
+export const KNOWN_ACTIONS: Set<string> = new Set();
+
 export const actionContracts: ActionContract[] = [
   {
     skill: "wcag-aaa-accessibility",
@@ -82,6 +84,11 @@ export const actionContracts: ActionContract[] = [
     safetyBoundary: "Inclusive design guidance only"
   }
 ];
+
+// Pre-build O(1) lookup set for isKnownAction
+for (const c of actionContracts) {
+  KNOWN_ACTIONS.add(c.action);
+}
 
 export function validateContracts(contracts: ActionContract[]): ActionContract[] {
   return contracts.map((contract) => actionContractSchema.parse(contract));

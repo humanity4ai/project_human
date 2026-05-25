@@ -8,6 +8,15 @@ Humanity4AI is an open, community-driven project that provides reusable "humanit
 [![Contributors](https://img.shields.io/github/contributors/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/graphs/contributors)
 [![Pages](https://img.shields.io/badge/docs-GitHub%20Pages-1f2937)](https://humanity4ai.github.io/project_human/)
 
+## Contents
+
+- [Three Ways to Use Humanity4AI Skills](#three-ways-to-use-humanity4ai-skills)
+- [Get Involved](#get-involved)
+- [Prerequisites](#prerequisites)
+- [Quick Start](#quick-start-for-local-development)
+- [Contribute in 10 Minutes](#contribute-in-10-minutes)
+- [Safety Position](#safety-position)
+
 ## Three Ways to Use Humanity4AI Skills
 
 This repository provides **10 Humanity Skills** — reusable, testable specifications for humane AI behaviour covering empathy, accessibility, grief support, cultural sensitivity, and more. There are three distinct ways to access these skills, depending on your AI platform and its capabilities.
@@ -104,7 +113,6 @@ pnpm install
 pnpm check
 pnpm evals
 ```
-```
 
 ### For AI Agents — Standard MCP SDK (JSON-RPC 2.0)
 
@@ -139,7 +147,7 @@ Full install and deploy guide: [`INSTALL.md`](INSTALL.md)
 docker compose up
 ```
 
-## MCP Runtime (v0.1)
+## MCP Runtime
 
 `mcp-servers` exposes all 10 skill actions via the standard MCP SDK JSON-RPC 2.0 protocol:
 
