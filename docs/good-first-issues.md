@@ -56,8 +56,8 @@ Use this implementation map when proposing issues: `docs/manifesto-roadmap-map.m
 git clone https://github.com/<your-username>/project_human.git
 cd project_human
 
-# 2. Branch from development (the default branch)
-git checkout development
+# 2. Branch from main (the default branch)
+git checkout main
 git checkout -b my-contribution
 
 # 3. Make your changes
@@ -65,8 +65,8 @@ git checkout -b my-contribution
 # 4. Run all checks — all must pass
 pnpm check && pnpm evals && pnpm test
 
-# 5. Open a PR targeting development
-gh pr create --base development --title "Add: ..." --body "Closes #<issue>"
+# 5. Open a PR targeting main
+gh pr create --base main --title "Add: ..." --body "Closes #<issue>"
 ```
 
 ---
