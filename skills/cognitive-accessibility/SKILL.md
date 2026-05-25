@@ -191,10 +191,8 @@ This skill includes validation scripts:
 
 ```bash
 # Analyze cognitive load
-python3 scripts/analyze_load.py --input content.txt --format json
 
 # Measure readability
-python3 scripts/measure_readability.py --input content.txt --format json
 ```
 
 ---

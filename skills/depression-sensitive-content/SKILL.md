@@ -138,20 +138,6 @@ When uncertain:
 - Flag for human review if clinical terminology is needed
 
 ## Available Scripts
-
-- **`scripts/audit.py`** — Scans content for stigmatizing phrases
-- **`scripts/detect_harmful.py`** — Identifies harmful or dangerous language
-- **`scripts/detect_cognitive.py`** — Detects cognitive friction
-- **`scripts/classify_severity.py`** — Classifies issues by severity
-- **`scripts/suggest_alternatives.py`** — Generates alternative phrasing
-- **`scripts/validate_safe.py`** — Validates content is safe
-- **`scripts/categorize_issues.py`** — Categorizes issues by type
-- **`scripts/check_medical.py`** — Checks for medical claims
-- **`scripts/check_stigma.py`** — Checks for stigma patterns
-- **`scripts/suggest_gentle.py`** — Suggests gentler language
-- **`scripts/check_escalation.py`** — Checks escalation needs
-- **`scripts/generate_rationale.py`** — Generates rewrite rationale
-
 ## Additional Resources
 
 - **[references/standards.md](references/standards.md)** - APA and clinical guidelines
@@ -324,31 +310,3 @@ When uncertain:
 ---
 
 ## Available Scripts
-
-- **`scripts/audit.py`** — Scans content for stigmatizing phrases
-- **`scripts/detect_harmful.py`** — Identifies harmful or dangerous language
-- **`scripts/detect_cognitive.py`** — Detects cognitive friction
-- **`scripts/classify_severity.py`** — Classifies issues by severity
-- **`scripts/suggest_alternatives.py`** — Generates alternative phrasing
-- **`scripts/validate_safe.py`** — Validates content is safe
-- **`scripts/categorize_issues.py`** — Categorizes issues by type
-- **`scripts/check_medical.py`** — Checks for medical claims
-- **`scripts/check_stigma.py`** — Checks for stigma patterns
-- **`scripts/suggest_gentle.py`** — Suggests gentler language
-- **`scripts/check_escalation.py`** — Checks escalation needs
-- **`scripts/generate_rationale.py`** — Generates rewrite rationale
-
-```bash
-# Audit content
-python3 scripts/audit.py --input content.txt --format json
-
-# Suggest alternatives
-python3 scripts/suggest_alternatives.py --input content.txt --format json
-
-# Check for stigma
-python3 scripts/check_stigma.py --input content.txt --format json
-```
-
----
-
-*This skill provides content auditing for emotional safety. It is not a substitute for professional mental health advice.*

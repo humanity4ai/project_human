@@ -30,3 +30,192 @@ All notable changes to the Humanity4AI project will be documented in this file.
 - Eval harness with 11 automated quality gates
 - GitHub Pages site
 - Knowledge core: principles, taxonomy, uncertainty schema
+## Per-Skill Changes
+
+### age-inclusive-design
+# Changelog
+
+## [0.2.0] — 2026-05-23
+
+### Added
+- ISO 25556:2025 Ageing Societies framework integration
+- ISO/IEC Guide 71:2014 for accessibility in standards
+- Vision, motor, cognitive, and technology comfort dimensions
+- Typography, touch targets, navigation, and form design guidelines
+- NIST usability guidelines for older adults reference
+- Cross-cultural scenarios: multigenerational households (South Asia), rural digital literacy (Global South), formal UI expectations (East Asia)
+
+### Changed
+- Provenance updated from internal-curation to ISO 25556, ISO Guide 71, WCAG 2.2
+- Expanded from 4 to 10+ design recommendations across age groups
+
+### cognitive-accessibility
+# Changelog
+
+## [0.2.0] — 2026-05-23
+
+### Added
+- Sweller's Cognitive Load Theory (1988) with full citation and CTL-to-UI extrapolation note
+- Intrinsic, extraneous, and germane cognitive load distinctions
+- Sentence length, paragraph structure, and task design guidelines
+- ISO 21801-1:2020 cognitive accessibility standard reference
+- Readability and plain language principles
+
+### Changed
+- Provenance updated from internal-curation to ISO 21801-1 + Sweller (1988)
+- Cultural scope updated to global
+
+### conflict-de-escalation
+# Changelog
+
+## [0.2.0] — 2026-05-23
+
+### Added
+- VERB (Validate, Empathise, Reframe, Boundaries) and GAIN (Ground, Acknowledge, Inform, Next) de-escalation frameworks
+- Crisis indicators section (threats, self-harm, harm to others, legal escalation)
+- Cultural considerations: eye contact norms, personal space, direct vs. indirect communication, hierarchy, voice volume across 5 named cultural contexts
+- International crisis resources: Befrienders Worldwide, Samaritans, 988, IMAlive
+- CISA 2024 de-escalation guidelines reference
+- Price & Baker (2012) peer-reviewed de-escalation meta-analysis reference
+
+### Changed
+- Provenance updated from internal-curation to CISA + academic sources
+
+### cultural-sensitivity
+# Changelog
+
+## [0.2.0] — 2026-05-23
+
+### Added
+- Hofstede's 6 cultural dimensions with critical limitations section (McSweeney 2002, Ailon 2008)
+- APA Multicultural Guidelines (2017) reference
+- UNESCO Universal Declaration on Cultural Diversity (2001) reference
+- Schwartz Value Theory and World Values Survey as alternative frameworks
+- GLOBE Study (House et al., 2004) 9-dimension framework reference
+- Multi-regional color semiotics (Western, East Asian, South Asian, African, Middle Eastern, Indigenous Australian)
+- CARE Principles for Indigenous Data Governance
+- Ubuntu philosophy (Southern African communal framework)
+- 5 cross-cultural scenarios (Arabic RTL, Japanese hierarchy, Latin American warmth, Indian multilingual, Sub-Saharan African community-oriented)
+
+### Changed
+- Provenance updated from internal-curation to APA + UNESCO + Hofstede
+- References/standards.md expanded from 7 lines to 80+ lines
+
+### depression-sensitive-content
+# Changelog
+
+## 0.2.0
+
+- Expanded SKILL.md with detailed workflow and examples
+- Added references/ with 8 reference files:
+  - standards.md (APA, DBS Alliance, SPRC guidelines)
+  - patterns.md (phrases to avoid)
+  - checklist.md (audit checklist)
+  - clinical-guidelines.md (professional boundaries)
+  - crisis-resources.md (escalation resources)
+  - examples.md (good/bad examples)
+  - alternatives.md (alternative phrases)
+  - quick-reference.md (quick reference)
+- Added scripts/ with 12 validation/analysis scripts:
+  - audit.py, detect_harmful.py, detect_cognitive.py
+  - classify_severity.py, suggest_alternatives.py, validate_safe.py
+  - categorize_issues.py, check_medical.py, check_stigma.py
+  - suggest_gentle.py, check_escalation.py, generate_rationale.py
+- Enhanced skill.yaml with tags and metadata
+- Expanded rubric.md with scoring criteria
+
+## 0.1.0
+
+- Initial launch version.
+
+### empathetic-communication
+# Changelog
+
+## 0.2.0
+
+- Expanded SKILL.md
+- Added references/
+- Added scripts/
+- Enhanced metadata
+
+## 0.1.0
+
+- Initial version
+### grief-loss-support
+# Changelog
+
+## 0.2.0
+
+- Expanded SKILL.md with detailed workflow and examples
+- Added references/ with 8 reference files
+- Added scripts/ with 10 validation/analysis scripts
+- Enhanced skill.yaml with tags and metadata
+- Expanded rubric.md with scoring criteria
+
+## 0.1.0
+
+- Initial launch version.
+
+### neurodiversity-aware-design
+# Changelog
+
+## [0.2.0] — 2026-05-23
+
+### Added
+- ADHD, autism, and dyslexia design implications tables
+- Sensory processing and executive function design considerations
+- DSM-5-TR diagnostic context references (for design context, not clinical use)
+- W3C COGA guidelines — Making Content Usable reference
+- Microsoft Inclusive Design for Cognition framework
+- Cross-cultural neurodiversity notes (ADHD diagnostic variation by country, dyslexia in non-alphabetic scripts)
+- Participatory design principle: Nothing About Us Without Us
+
+### Changed
+- Provenance updated from internal-curation to COGA + Microsoft Inclusive Design
+- Cultural scope changed to global
+- Fixed untranslated Chinese character in rubric (autoplay controllable)
+
+### supportive-conversation
+# Changelog
+
+## 0.2.0
+
+- Expanded SKILL.md
+- Added references/
+- Added scripts/
+- Enhanced metadata
+
+## 0.1.0
+
+- Initial version
+### wcag-aaa-accessibility
+# Changelog
+
+## 0.2.0
+
+### Added
+- Expanded SKILL.md with detailed workflow and decision points
+- Added explicit trigger phrases for better skill activation
+- Added comprehensive WCAG 2.2 Success Criteria coverage (Levels A, AA, AAA)
+- Added "Boundaries" section with Always/Ask First/Never rules
+- Added detailed examples with Input/Output/Explanation format
+- Added references/ folder with:
+  - standards.md (WCAG criteria, ISO standards, regulatory references)
+  - patterns.md (common accessibility patterns and anti-patterns)
+- Added scripts/ folder with:
+  - analyze.py (automated HTML accessibility analysis)
+  - validate.py (validate accessibility fixes)
+- Enhanced skill.yaml with tags, author, compatibility, allowed-tools, references
+
+### Enhanced
+- Expanded rubric.md with scoring criteria matrix
+- Added good/poor examples with explanations
+- Expanded README.md with usage examples and script documentation
+
+### Changed
+- Target conformance level: WCAG 2.2 Level AAA (was generic WCAG)
+- Workflow now includes decision points for different input types
+
+## 0.1.0
+
+- Initial launch version

@@ -334,10 +334,8 @@ This skill includes validation scripts:
 
 ```bash
 # Audit assumptions
-python3 scripts/audit_assumptions.py --input design.txt --format json
 
 # Detect stereotypes
-python3 scripts/detect_stereotypes.py --input content.txt --format json
 ```
 
 ---

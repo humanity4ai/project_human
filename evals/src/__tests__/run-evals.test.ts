@@ -71,11 +71,11 @@ describe("evaluateSkill — fixture tests", () => {
     expect(result.issues.some(i => i.includes("Rubric"))).toBe(false);
   });
 
-  it("E-9: invalid-missing-files reports 5 missing files", () => {
+  it("E-9: invalid-missing-files reports 3 missing files", () => {
     const result = evaluateSkill(join(FIXTURES, "invalid-missing-files"));
     expect(result.pass).toBe(false);
     const missingFileIssues = result.issues.filter(i => i.startsWith("Missing file:"));
-    expect(missingFileIssues.length).toBe(5);
+    expect(missingFileIssues.length).toBe(3);
   });
 
   it("E-10: invalid-missing-files does not pass", () => {

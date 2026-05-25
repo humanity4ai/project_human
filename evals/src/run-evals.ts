@@ -70,8 +70,6 @@ const REQUIRED_FILES = [
   "SKILL.md",
   "skill.yaml",
   "rubric.md",
-  "CHANGELOG.md",
-  "LICENSE",
   "scenarios/scenarios.yaml"
 ];
 

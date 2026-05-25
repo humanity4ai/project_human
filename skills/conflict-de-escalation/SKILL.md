@@ -313,13 +313,10 @@ This skill includes validation scripts in the `scripts/` folder:
 
 ```bash
 # Detect triggers
-python3 scripts/detect_triggers.py --input message.txt --format json
 
 # Assess intensity
-python3 scripts/assess_intensity.py --input message.txt --format json
 
 # Generate calming response
-python3 scripts/generate_stabilizing.py --input message.txt --format json
 ```
 
 ---
