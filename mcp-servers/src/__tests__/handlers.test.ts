@@ -225,6 +225,24 @@ describe("rewrite_depression_sensitive_content", () => {
     });
     expect((data.output as { result: string }).result).toBeDefined();
   });
+
+  it("H-27b: stigma pattern 'crazy' detected", () => {
+    const data = call("rewrite_depression_sensitive_content", { text: "that is crazy", mode: "audit" });
+    const flags = (data.output as { safety_flags: string[] }).safety_flags;
+    expect(flags.some(f => f.toLowerCase().includes("stigmatizing"))).toBe(true);
+  });
+
+  it("H-27c: medical claim pattern 'cure' detected", () => {
+    const data = call("rewrite_depression_sensitive_content", { text: "this will cure depression", mode: "audit" });
+    const flags = (data.output as { safety_flags: string[] }).safety_flags;
+    expect(flags.some(f => f.toLowerCase().includes("medical"))).toBe(true);
+  });
+
+  it("H-27d: minimizing pattern 'snap out of it' detected", () => {
+    const data = call("rewrite_depression_sensitive_content", { text: "just snap out of it", mode: "audit" });
+    const flags = (data.output as { safety_flags: string[] }).safety_flags;
+    expect(flags.some(f => f.toLowerCase().includes("minimizing"))).toBe(true);
+  });
 });
 
 // ─── handleCognitiveAccessibility ────────────────────────────────────────────
@@ -554,6 +572,18 @@ describe("grief_support_response", () => {
     const withDefault = call("grief_support_response", { message: "x", support_mode: "presence" });
     expect((withPresence.output as { reply: string }).reply).toBe((withDefault.output as { reply: string }).reply);
   });
+
+  it("H-80b: grief cliche 'they're in a better place' detected in care_notes", () => {
+    const data = call("grief_support_response", { message: "they're in a better place now", support_mode: "presence" });
+    const notes = (data.output as { care_notes: string[] }).care_notes;
+    expect(notes.some(n => n.toLowerCase().includes("platitude"))).toBe(true);
+  });
+
+  it("H-80c: crisis message triggers crisis warning in care_notes", () => {
+    const data = call("grief_support_response", { message: "I want to end my life", support_mode: "presence" });
+    const notes = (data.output as { care_notes: string[] }).care_notes;
+    expect(notes.some(n => n.toLowerCase().includes("crisis"))).toBe(true);
+  });
 });
 
 // ─── handleNeurodiversityDesign ───────────────────────────────────────────────
@@ -704,7 +734,18 @@ describe("supportive_reply", () => {
 
   it("H-104: boundaries_notice matches boundaryNotice", () => {
     const data = call("supportive_reply", { message: "x", risk_level: "low" });
-    const output = data.output as { boundaries_notice: string };
-    expect(output.boundaries_notice).toBe(data.boundaryNotice);
+    expect((data.output as { boundaries_notice: string }).boundaries_notice).toBe(data.boundaryNotice);
+  });
+
+  it("H-105: auto-escalates to high when crisis signals detected with low risk_level", () => {
+    const data = call("supportive_reply", { message: "I want to kill myself", risk_level: "low" });
+    const esc = (data.output as { escalation_guidance: string[] }).escalation_guidance;
+    expect(esc.length).toBe(7); // High risk escalation
+    expect(esc.some(e => e.includes("988"))).toBe(true);
+  });
+
+  it("H-106: emotion detected in assumptions", () => {
+    const data = call("supportive_reply", { message: "I am scared and anxious", risk_level: "medium" });
+    expect(data.assumptions.some(a => a.includes("Detected emotion"))).toBe(true);
   });
 });
