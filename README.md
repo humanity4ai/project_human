@@ -118,7 +118,7 @@ Follow the instructions for your specific tool to have it read the files from th
 
 - **Contributors**: [Contributing Guide](CONTRIBUTING.md)
 - **Integrators**: [Agent Adapter Guide](docs/agent-adapters.md)
-- **Team**: [Operations Plan](OPERATIONS.md)
+- **Team**: [Operations Plan](docs/OPERATIONS.md)
 - **Public Site**: <https://humanity4ai.github.io/project_human/>
 
 ## Prerequisites
@@ -161,7 +161,7 @@ Configure your agent by adding this to your MCP client config:
 All 10 humanity skills are discoverable via `tools/list` and invocable via `tools/call`.
 See [`mcp-servers/README.md`](mcp-servers/README.md) for full protocol details and tool reference.
 
-Full install and deploy guide: [`INSTALL.md`](INSTALL.md)
+Full install and deploy guide: [`INSTALL.md`](docs/INSTALL.md)
 
 ## Docker (one command)
 
@@ -257,7 +257,7 @@ Or open via GitHub UI — the default base branch is `main`.
 
 - 14-day launch cadence: `docs/traction-14-day.md`
 - Quality gates: `docs/quality-gates.md`
-- Release roadmap: `ROADMAP.md`
+- Release roadmap: `docs/ROADMAP.md`
 
 ## How To Help This Week
 
