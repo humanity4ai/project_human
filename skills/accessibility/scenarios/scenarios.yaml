@@ -1,0 +1,101 @@
+scenarios:
+  - id: acc-01
+    description: "Crawl mode — basic HTML page audit at AA level"
+    input:
+      mode: crawl
+      level: AA
+      pages:
+        - url: "https://example.com"
+          html: "<html lang='en'><head><title>Example</title></head><body><main><h1>Welcome</h1><p>Hello world</p></main></body></html>"
+    expected_output:
+      has_ranking: true
+      site_aggregate_range: [0, 100]
+
+  - id: acc-02
+    description: "Crawl mode — multi-page ranking at AA level"
+    input:
+      mode: crawl
+      level: AA
+      pages:
+        - url: "https://example.com/page1"
+          html: "<html lang='en'><head><title>Page 1</title></head><body><main><h1>Good</h1><p>content</p></main></body></html>"
+        - url: "https://example.com/page2"
+          html: "<div>no structure</div>"
+        - url: "https://example.com/page3"
+          html: "<html lang='en'><head><title>Page 3</title></head><body><header><nav>Menu</nav></header><main><h1>Title</h1><h2>Section</h2><p>text</p></main><footer>Footer</footer></body></html>"
+    expected_output:
+      has_ranking: true
+      ranking_length: 3
+      page3_highest: true
+
+  - id: acc-03
+    description: "Crawl mode — empty pages error"
+    input:
+      mode: crawl
+      pages: []
+    expected_output:
+      ok: false
+      error_contains: "at least 1 page"
+
+  - id: acc-04
+    description: "Crawl mode — heuristic fallback for non-HTML input"
+    input:
+      mode: crawl
+      level: AA
+      pages:
+        - url: "https://example.com"
+          html: "A login form with username and password fields"
+    expected_output:
+      heuristic: true
+
+  - id: acc-05
+    description: "Session mode — Level A checklist"
+    input:
+      mode: session
+      level: A
+    expected_output:
+      has_checklist: true
+      checklist_min_items: 25
+
+  - id: acc-06
+    description: "Session mode — Level AA checklist has more items than A"
+    input:
+      mode: session
+      level: AA
+    expected_output:
+      has_checklist: true
+      checklist_min_items: 40
+
+  - id: acc-07
+    description: "Session mode — Level AAA checklist has more items than AA"
+    input:
+      mode: session
+      level: AAA
+    expected_output:
+      has_checklist: true
+      checklist_min_items: 70
+
+  - id: acc-08
+    description: "Session mode — missing level error"
+    input:
+      mode: session
+    expected_output:
+      ok: false
+      error_contains: "level"
+
+  - id: acc-09
+    description: "Session mode — invalid level error"
+    input:
+      mode: session
+      level: "B"
+    expected_output:
+      ok: false
+      error_contains: "level"
+
+  - id: acc-10
+    description: "Session mode — checklist items sorted by principle"
+    input:
+      mode: session
+      level: AAA
+    expected_output:
+      checklist_sorted: true
