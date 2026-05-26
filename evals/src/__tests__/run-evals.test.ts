@@ -150,26 +150,26 @@ describe("evaluateSkill — fixture tests", () => {
 describe("evaluateContractConsistency — real corpus", () => {
   const skillsRoot = join(REPO_ROOT, "skills");
 
-  it("E-21: contract-consistency passes against real skill corpus", () => {
-    const result = evaluateContractConsistency(skillsRoot, REPO_ROOT);
+  it("E-21: contract-consistency passes against real skill corpus", async () => {
+    const result = await evaluateContractConsistency(skillsRoot, REPO_ROOT);
     expect(result.pass).toBe(true);
     expect(result.issues).toHaveLength(0);
   });
 
-  it("E-22: result skill name is contract-consistency", () => {
-    const result = evaluateContractConsistency(skillsRoot, REPO_ROOT);
+  it("E-22: result skill name is contract-consistency", async () => {
+    const result = await evaluateContractConsistency(skillsRoot, REPO_ROOT);
     expect(result.skill).toBe("contract-consistency");
   });
 
-  it("E-23: returns pass with empty skills directory", () => {
+  it("E-23: returns pass with empty skills directory", async () => {
     const fakeRoot = join(tmpdir(), `empty-skills-${Date.now()}`);
     mkdirSync(join(fakeRoot, "skills"), { recursive: true });
-    const result = evaluateContractConsistency(join(fakeRoot, "skills"), fakeRoot);
+    const result = await evaluateContractConsistency(join(fakeRoot, "skills"), fakeRoot);
     expect(result.pass).toBe(true);
     rmSync(fakeRoot, { recursive: true });
   });
 
-  it("E-24: reports folder/name mismatch when skill.yaml name differs from folder", () => {
+  it("E-24: reports folder/name mismatch when skill.yaml name differs from folder", async () => {
     const fakeRoot = join(tmpdir(), `mismatch-${Date.now()}`);
     const skillDir = join(fakeRoot, "skills", "my-skill");
     mkdirSync(skillDir, { recursive: true });
@@ -184,23 +184,23 @@ describe("evaluateContractConsistency — real corpus", () => {
       "uncertainty:\n  confidence: high\n  contested: false\n  cultural_scope: global",
       "provenance:\n  sources:\n    - internal\n  license: MIT"
     ].join("\n"));
-    const result = evaluateContractConsistency(join(fakeRoot, "skills"), fakeRoot);
+    const result = await evaluateContractConsistency(join(fakeRoot, "skills"), fakeRoot);
     expect(result.issues.some(i => i.includes("Contract/folder mismatch"))).toBe(true);
     rmSync(fakeRoot, { recursive: true });
   });
 
-  it("E-25: all 10 real skills have skill.yaml names matching folder names", () => {
-    const result = evaluateContractConsistency(skillsRoot, REPO_ROOT);
+  it("E-25: all 10 real skills have skill.yaml names matching folder names", async () => {
+    const result = await evaluateContractConsistency(skillsRoot, REPO_ROOT);
     expect(result.issues.some(i => i.includes("Contract/folder mismatch"))).toBe(false);
   });
 
-  it("E-26: all input schema files referenced in skill.yaml exist and are valid JSON", () => {
-    const result = evaluateContractConsistency(skillsRoot, REPO_ROOT);
+  it("E-26: all input schema files referenced in skill.yaml exist and are valid JSON", async () => {
+    const result = await evaluateContractConsistency(skillsRoot, REPO_ROOT);
     expect(result.issues.some(i => i.includes("Invalid or missing JSON schema (input)"))).toBe(false);
   });
 
-  it("E-27: all output schema files referenced in skill.yaml exist and are valid JSON", () => {
-    const result = evaluateContractConsistency(skillsRoot, REPO_ROOT);
+  it("E-27: all output schema files referenced in skill.yaml exist and are valid JSON", async () => {
+    const result = await evaluateContractConsistency(skillsRoot, REPO_ROOT);
     expect(result.issues.some(i => i.includes("Invalid or missing JSON schema (output)"))).toBe(false);
   });
 });

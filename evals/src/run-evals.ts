@@ -284,7 +284,7 @@ export function writeMarkdownReport(results: EvalResult[], outputPath: string): 
   writeFileSync(outputPath, lines.join("\n"), "utf8");
 }
 
-function main(): void {
+async function main(): Promise<void> {
   // When run via `pnpm evals` from the evals/ package, cwd is the evals/ directory
   // When run from the repo root, cwd is the repo root
   const cwd = process.cwd();
