@@ -5,6 +5,7 @@ Humanity4AI is an open, community-driven project that provides reusable "humanit
 [![CI](https://github.com/humanity4ai/project_human/actions/workflows/ci.yml/badge.svg)](https://github.com/humanity4ai/project_human/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/releases)
 [![npm](https://img.shields.io/npm/v/@humanity4ai/mcp-servers?color=0f766e)](https://www.npmjs.com/package/@humanity4ai/mcp-servers)
+[![npm](https://img.shields.io/npm/v/@humanity4ai/mcp-servers?color=0f766e)](https://www.npmjs.com/package/@humanity4ai/mcp-servers)
 [![License](https://img.shields.io/badge/license-MIT-0f766e)](LICENSE)
 [![Issues](https://img.shields.io/github/issues/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/issues)
 [![Contributors](https://img.shields.io/github/contributors/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/graphs/contributors)
