@@ -2,18 +2,18 @@
 
 ## v1.0 (Current)
 
-- 10 launch skills with structured artifacts
+- 11 launch skills with structured artifacts
 - MCP action contracts and schema set
-- Contract-first runtime server
+- Standard MCP SDK (JSON-RPC 2.0) implementation
 - Baseline evaluation harness and governance framework
 
-## v0.2 (Completed)
+## v1.1 (Next)
 
 - Platform adapters for OpenCode, Claude Code, and Copilot (MCP SDK server)
-- Standard MCP SDK (JSON-RPC 2.0) implementation
 - 11 automated quality gates
+- HTTP/SSE transport for remote MCP server deployments
 
-## v0.3
+## v2.0 (Future)
 
 - Rich scenario scoring beyond structural checks
 - Expanded multilingual scenario sets

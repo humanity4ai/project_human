@@ -15,7 +15,7 @@ This plan is designed to convert visitors into contributors and integrators.
 ## Week 2
 
 - Day 8: Skill spotlight 3 (`cultural-sensitivity`) and uncertainty handling.
-- Day 9: Open roadmap discussion issue for v0.2 priorities.
+- Day 9: Open roadmap discussion issue for v1.1 priorities.
 - Day 10: Integration spotlight for Claude Code or Copilot adapter.
 - Day 11: Contributor call with two "good first issues".
 - Day 12: Evals spotlight with sample pass/fail output.

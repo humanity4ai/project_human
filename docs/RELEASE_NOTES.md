@@ -2,7 +2,7 @@
 
 ## Highlights
 
-- Added 10 launch skill packs with required artifacts
+- Added 11 launch skill packs with required artifacts
 - Added MCP action contract registry and JSON schemas for all skills
 - Added contract-first runtime server with `tools/list` and `tools/call`
 - Added baseline eval harness and global rubric
@@ -11,5 +11,5 @@
 
 ## Known Limits
 
-- v1.0 is contract-first; full runtime adapters are planned for v1.1+
+- v1.0 ships a full MCP JSON-RPC 2.0 runtime server with 11 handlers and input validation
 - Evaluation is structural baseline and should be expanded with qualitative scoring suites

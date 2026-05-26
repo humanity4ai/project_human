@@ -18,7 +18,7 @@
 - A1: 7 daily gate checks + final launch signoff
 - A2: 6 governance documents and policy reviews
 - A3/A4/A5: 11 skills total, each with 6 mandatory artifacts
-- A6: 10 action contracts + 20 JSON schemas
+- A6: 11 action contracts + 22 JSON schemas
 - A7: 1 evaluation runner + 4 quality gate families
 - A8: 3 canonical knowledge docs
 - A9: 3 integration/adapter/quality documentation guides

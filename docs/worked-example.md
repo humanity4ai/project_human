@@ -55,192 +55,118 @@ Response: a JSON array of 11 action contracts, each with `skill`, `action`, `inp
 ### 4.1 WCAG AAA Accessibility
 
 ```bash
-echo '{
-  "id":"wcag-1",
-  "method":"tools/call",
-  "payload":{
-    "action":"wcagaaa_check",
-    "input":{"target":"https://example.com/signup","level":"AAA"}
-  }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
+echo '{"jsonrpc":"2.0","id":"wcag-1","method":"tools/call","params":{"name":"wcagaaa_check","arguments":{"target":"https://example.com/signup","level":"AAA"}}}' \
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `findings[]` with severity, issue, and fix for each accessibility problem.
 
 ---
 
-### 4.2 Depression-Sensitive Content
+### 4.2 WCAG AA Accessibility
 
 ```bash
-echo '{
-  "id":"dsc-1",
-  "method":"tools/call",
-  "payload":{
-    "action":"rewrite_depression_sensitive_content",
-    "input":{
-      "text":"You failed to complete your application. You must try again.",
-      "mode":"rewrite"
-    }
-  }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
+echo '{"jsonrpc":"2.0","id":"wcagaa-1","method":"tools/call","params":{"name":"wcagaa_check","arguments":{"target":"https://example.com","level":"AA"}}}' \
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
+```
+
+Returns: `aggregate_score` (0–100), `criteria[]` with per-category scores, and `summary`.
+
+---
+
+### 4.3 Depression-Sensitive Content
+
+```bash
+echo '{"jsonrpc":"2.0","id":"dsc-1","method":"tools/call","params":{"name":"rewrite_depression_sensitive_content","arguments":{"text":"You failed to complete your application. You must try again.","mode":"rewrite"}}}' \
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `result` (rewritten text), `safety_flags[]`, `review_recommended`.
 
 ---
 
-### 4.3 Supportive Conversation
+### 4.4 Supportive Conversation
 
 ```bash
-echo '{
-  "id":"sc-1",
-  "method":"tools/call",
-  "payload":{
-    "action":"supportive_reply",
-    "input":{"message":"I feel overwhelmed and stuck","risk_level":"medium"}
-  }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
+echo '{"jsonrpc":"2.0","id":"sc-1","method":"tools/call","params":{"name":"supportive_reply","arguments":{"message":"I feel overwhelmed and stuck","risk_level":"medium"}}}' \
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `reply`, `escalation_guidance[]`, `boundaries_notice`.
 
 ---
 
-### 4.4 Cognitive Accessibility Audit
+### 4.5 Cognitive Accessibility Audit
 
 ```bash
-echo '{
-  "id":"ca-1",
-  "method":"tools/call",
-  "payload":{
-    "action":"cognitive_accessibility_audit",
-    "input":{
-      "content":"Please complete all required fields in the form below. Pursuant to our terms, you must notwithstanding any prior agreements submit the form within 24 hours.",
-      "target_context":"insurance claim form"
-    }
-  }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
+echo '{"jsonrpc":"2.0","id":"ca-1","method":"tools/call","params":{"name":"cognitive_accessibility_audit","arguments":{"content":"Please complete all required fields in the form below. Pursuant to our terms, you must notwithstanding any prior agreements submit the form within 24 hours.","target_context":"insurance claim form"}}}' \
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `findings[]`, `recommendations[]`.
 
 ---
 
-### 4.5 Cultural Sensitivity
+### 4.6 Cultural Sensitivity
 
 ```bash
-echo '{
-  "id":"cs-1",
-  "method":"tools/call",
-  "payload":{
-    "action":"cultural_context_check",
-    "input":{
-      "message":"Hey guys, last chance to sign up before the deadline!",
-      "audience":"enterprise customers",
-      "region":"Japan"
-    }
-  }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
+echo '{"jsonrpc":"2.0","id":"cs-1","method":"tools/call","params":{"name":"cultural_context_check","arguments":{"message":"Hey guys, last chance to sign up before the deadline!","audience":"enterprise customers","region":"Japan"}}}' \
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `adapted_message`, `notes[]`, `uncertainty`.
 
 ---
 
-### 4.6 Conflict De-escalation
+### 4.7 Conflict De-escalation
 
 ```bash
-echo '{
-  "id":"cde-1",
-  "method":"tools/call",
-  "payload":{
-    "action":"deescalation_plan",
-    "input":{
-      "situation":"Customer is angry about a billing dispute and threatening to escalate publicly",
-      "intensity":"high"
-    }
-  }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
+echo '{"jsonrpc":"2.0","id":"cde-1","method":"tools/call","params":{"name":"deescalation_plan","arguments":{"situation":"Customer is angry about a billing dispute and threatening to escalate publicly","intensity":"high"}}}' \
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `plan[]` (step-by-step), `risk_notes[]`.
 
 ---
 
-### 4.7 Empathetic Communication
+### 4.8 Empathetic Communication
 
 ```bash
-echo '{
-  "id":"ec-1",
-  "method":"tools/call",
-  "payload":{
-    "action":"empathetic_reframe",
-    "input":{
-      "message":"We cannot process your refund. As per our policy you should have submitted within 30 days.",
-      "tone":"warm"
-    }
-  }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
+echo '{"jsonrpc":"2.0","id":"ec-1","method":"tools/call","params":{"name":"empathetic_reframe","arguments":{"message":"We cannot process your refund. As per our policy you should have submitted within 30 days.","tone":"warm"}}}' \
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `reframed_message`, `rationale[]`, `escalation_guidance[]`.
 
 ---
 
-### 4.8 Grief and Loss Support
+### 4.9 Grief and Loss Support
 
 ```bash
-echo '{
-  "id":"gls-1",
-  "method":"tools/call",
-  "payload":{
-    "action":"grief_support_response",
-    "input":{
-      "message":"My colleague just told me their parent passed away",
-      "support_mode":"presence"
-    }
-  }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
+echo '{"jsonrpc":"2.0","id":"gls-1","method":"tools/call","params":{"name":"grief_support_response","arguments":{"message":"My colleague just told me their parent passed away","support_mode":"presence"}}}' \
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `reply`, `care_notes[]`, `escalation_guidance[]`.
 
 ---
 
-### 4.9 Neurodiversity-Aware Design
+### 4.10 Neurodiversity-Aware Design
 
 ```bash
-echo '{
-  "id":"nd-1",
-  "method":"tools/call",
-  "payload":{
-    "action":"neurodiversity_design_check",
-    "input":{
-      "ui_description":"A multi-step form with animated progress bar, real-time validation alerts, and auto-playing tutorial video",
-      "focus":["adhd","sensory"]
-    }
-  }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
+echo '{"jsonrpc":"2.0","id":"nd-1","method":"tools/call","params":{"name":"neurodiversity_design_check","arguments":{"ui_description":"A multi-step form with animated progress bar, real-time validation alerts, and auto-playing tutorial video","focus":["adhd","sensory"]}}}' \
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `recommendations[]`, `tradeoffs[]`.
 
 ---
 
-### 4.10 Age-Inclusive Design
+### 4.11 Age-Inclusive Design
 
 ```bash
-echo '{
-  "id":"aid-1",
-  "method":"tools/call",
-  "payload":{
-    "action":"age_inclusive_design_check",
-    "input":{
-      "flow_description":"Online banking password reset flow with CAPTCHA and SMS verification",
-      "age_groups":["older adults","seniors"]
-    }
-  }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
+echo '{"jsonrpc":"2.0","id":"aid-1","method":"tools/call","params":{"name":"age_inclusive_design_check","arguments":{"flow_description":"Online banking password reset flow with CAPTCHA and SMS verification","age_groups":["older adults","seniors"]}}}' \
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Returns: `recommendations[]`, `access_notes[]`.
@@ -252,14 +178,8 @@ Returns: `recommendations[]`, `access_notes[]`.
 Input validation errors return `ok: false`:
 
 ```bash
-echo '{
-  "id":"err-1",
-  "method":"tools/call",
-  "payload":{
-    "action":"supportive_reply",
-    "input":{}
-  }
-}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
+echo '{"jsonrpc":"2.0","id":"err-1","method":"tools/call","params":{"name":"supportive_reply","arguments":{}}}' \
+  | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
 Response:

@@ -58,6 +58,7 @@ PASS  grief-loss-support
 PASS  neurodiversity-aware-design
 PASS  supportive-conversation
 PASS  wcag-aaa-accessibility
+PASS  wcag-aa-accessibility
 PASS  contract-consistency
 
 All 11 checks passed.

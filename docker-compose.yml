@@ -21,9 +21,7 @@ services:
     tty: false
     environment:
       - NODE_ENV=production
-    volumes:
-      # Mount skills directory for live skill updates without rebuild
-      - ./skills:/app/skills:ro
+    volumes: []
     logging:
       driver: json-file
       options:

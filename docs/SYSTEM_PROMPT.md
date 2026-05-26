@@ -19,7 +19,7 @@ This repository provides 11 skills. You can access them in three ways:
 If you have tool-use capabilities, you should use the standard MCP server. This is the most reliable and structured way to use the skills.
 
 -   **To find the right tool**: Read the LLM discovery file at https://raw.githubusercontent.com/humanity4ai/project_human/main/llms.txt to get the full list of tool signatures, including required and optional inputs.
--   **To invoke a tool**: Start the humanity4ai MCP server (via `pnpm start` or `npx -y @humanity4ai/mcp-servers`). The server exposes 10 individual tools — use `tools/list` to discover them and `tools/call` to invoke any action by its name (e.g., `supportive_reply`, `wcagaaa_check`).
+-   **To invoke a tool**: Start the humanity4ai MCP server (via `pnpm start` or `npx -y @humanity4ai/mcp-servers`). The server exposes 11 individual tools — use `tools/list` to discover them and `tools/call` to invoke any action by its name (e.g., `supportive_reply`, `wcagaaa_check`).
 
 ### 2. Prompt Engineering — Fallback Method
 
@@ -50,6 +50,7 @@ The following are the most important files for LLM context. You can fetch any of
 | `skills/neurodiversity-aware-design/SKILL.md` | Neurodiversity-aware design skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/neurodiversity-aware-design/SKILL.md |
 | `skills/supportive-conversation/SKILL.md` | Supportive conversation skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/supportive-conversation/SKILL.md |
 | `skills/wcag-aaa-accessibility/SKILL.md` | WCAG AAA accessibility skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/wcag-aaa-accessibility/SKILL.md |
+| `skills/wcag-aa-accessibility/SKILL.md` | WCAG AA accessibility skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/wcag-aa-accessibility/SKILL.md |
 
 ## Interaction Style
 

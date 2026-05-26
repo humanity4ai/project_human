@@ -1,0 +1,1 @@
+{"version":3,"file":"emotion-detection.d.ts","sourceRoot":"","sources":["../src/emotion-detection.ts"],"names":[],"mappings":"AAgBA,MAAM,WAAW,sBAAsB;IACrC,QAAQ,EAAE,MAAM,CAAC;IACjB,UAAU,EAAE,MAAM,CAAC;IACnB,OAAO,EAAE,MAAM,EAAE,CAAC;CACnB;AAED;;;GAGG;AACH,wBAAgB,aAAa,CAAC,IAAI,EAAE,MAAM,GAAG,sBAAsB,CAyClE"}
