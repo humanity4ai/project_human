@@ -247,5 +247,3 @@ EVAL_REPORT=1 pnpm evals
 - Force pushes blocked
 
 Merged branches are auto-deleted. Keep feature branches short-lived and focused.
-
-See `docs/release-process.md` for how `development` is promoted to `main`.
