@@ -25,8 +25,8 @@ function makeSchema(
 describe("loadSchema via validateInput", () => {
   it("V-1: valid schema path loads and validates correctly", () => {
     const result = validateInput(
-      "schemas/wcag-aaa-accessibility.input.json",
-      { target: "https://example.com", level: "AAA" }
+      "schemas/accessibility.input.json",
+      { mode: "session", level: "AAA" }
     );
     expect(result.valid).toBe(true);
   });
@@ -154,8 +154,8 @@ describe("validateInput — required field checks", () => {
 
   it("V-15: optional field wrong type returns valid:false", () => {
     const result = validateInput(
-      "schemas/wcag-aaa-accessibility.input.json",
-      { target: "https://example.com", level: 42 as unknown as string }
+      "schemas/accessibility.input.json",
+      { level: 42 as unknown as string }
     );
     // level has enum — will fail enum check
     expect(result.valid).toBe(false);
@@ -163,8 +163,8 @@ describe("validateInput — required field checks", () => {
 
   it("V-16: optional field absent — no error produced", () => {
     const result = validateInput(
-      "schemas/wcag-aaa-accessibility.input.json",
-      { target: "https://example.com", level: "AAA" }
+      "schemas/accessibility.input.json",
+      { mode: "session", level: "AAA" }
     );
     expect(result.valid).toBe(true);
   });
@@ -182,7 +182,7 @@ describe("validateInput — required field checks", () => {
 
   it("V-18: field with undefined value in input is skipped (no error)", () => {
     const result = validateInput(
-      "schemas/wcag-aaa-accessibility.input.json",
+      "schemas/accessibility.input.json",
       { target: "https://example.com", level: "AAA", context: undefined as unknown as string }
     );
     expect(result.valid).toBe(true);
@@ -191,22 +191,22 @@ describe("validateInput — required field checks", () => {
 
 // ─── validateInput — wcag schema specifics ───────────────────────────────────
 
-describe("validateInput — wcag-aaa-accessibility schema", () => {
+describe("validateInput — accessibility schema", () => {
   it("V-19: valid level AAA passes", () => {
-    expect(validateInput("schemas/wcag-aaa-accessibility.input.json", { target: "x", level: "AAA" }).valid).toBe(true);
+    expect(validateInput("schemas/accessibility.input.json", { mode: "session", level: "AAA" }).valid).toBe(true);
   });
 
   it("V-20: valid level A passes", () => {
-    expect(validateInput("schemas/wcag-aaa-accessibility.input.json", { target: "x", level: "A" }).valid).toBe(true);
+    expect(validateInput("schemas/accessibility.input.json", { mode: "session", level: "A" }).valid).toBe(true);
   });
 
   it("V-21: invalid level value fails", () => {
-    const result = validateInput("schemas/wcag-aaa-accessibility.input.json", { target: "x", level: "AAAA" });
+    const result = validateInput("schemas/accessibility.input.json", { mode: "session", level: "AAAA" });
     expect(result.valid).toBe(false);
   });
 
-  it("V-22: missing required target fails", () => {
-    const result = validateInput("schemas/wcag-aaa-accessibility.input.json", { level: "AAA" });
+  it("V-22: missing required mode fails", () => {
+    const result = validateInput("schemas/accessibility.input.json", { level: "AA" });
     expect(result.valid).toBe(false);
   });
 });
