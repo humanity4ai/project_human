@@ -2,7 +2,7 @@
 # Copyright (c) 2026 Ascent Partners Foundation. MIT License.
 #
 # Build:  docker build -t humanity4ai-mcp .
-# Run:    echo '{"id":"1","type":"list_actions"}' | docker run --rm -i humanity4ai-mcp
+# Run:    echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' | docker run --rm -i humanity4ai-mcp
 
 FROM node:22-alpine AS base
 WORKDIR /app
@@ -38,6 +38,6 @@ WORKDIR /app/mcp-servers
 # The server communicates via stdin/stdout — no ports exposed
 CMD ["node", "dist/mcp-server.js"]
 
-# Health check: start server and verify it responds
+# Health check: verify the server process is running
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-  CMD node dist/mcp-server.js < /dev/null 2>&1 | head -1 || exit 1
+  CMD pgrep -f "node dist/mcp-server.js" > /dev/null || exit 1
