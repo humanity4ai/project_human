@@ -5,7 +5,7 @@
 | Directory | Purpose |
 |-----------|---------|
 | `knowledge-core/` | Canonical principles, taxonomy, and uncertainty schema |
-| `skills/` | 11 launch skill packs |
+| `skills/` | 10 launch skill packs |
 | `mcp-servers/` | MCP action contracts, JSON schemas, and runtime server |
 | `evals/` | Baseline evaluation harness |
 | `templates/` | Contributor skill template |

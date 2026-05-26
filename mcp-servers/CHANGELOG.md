@@ -17,7 +17,7 @@ All notable changes to the @humanity4ai/mcp-servers package.
 - Tool descriptions single-sourced from index.ts contracts
 
 ### Changed
-- 11 skill packs (was 10 in v0.1.0) — added WCAG AA accessibility
+- 10 skill packs (was 10 in v0.1.0) — added WCAG AA accessibility
 - Centralized crisis detection — all handlers share crisis-detection.ts
 - Pattern arrays: all 16 categories in patterns.ts (no handler-local patterns)
 - Supportive conversation category: `communication` (not `emotional-safety`)

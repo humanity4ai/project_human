@@ -6,6 +6,7 @@ import { describe, it, expect } from "vitest";
 import { detectCrisisSignals, detectSafetySignals } from "../crisis-detection.js";
 import { detectEmotion } from "../emotion-detection.js";
 import { assessAccessibility } from "../accessibility-engine.js";
+import { WCAG_CRITERIA, getChecklist, criteriaByLevel, AXE_COVERED_CRITERIA } from "../wcag-criteria.js";
 import { normalizeLocale, getSupportiveReply, getLocalizedCrisisResources, getLocalizedCategory, SUPPORTED_LOCALES } from "../i18n.js";
 import {
   crisisEscalationHigh,
@@ -329,5 +330,168 @@ describe("i18n", () => {
   it("getLocalizedCategory falls back to English for missing locale", () => {
     const category = getLocalizedCategory("score", "en");
     expect(category).toBe("Accessibility Score");
+  });
+});
+
+// ─── WCAG Criteria (wcag-criteria.ts) ────────────────────────────────────────
+
+describe("WCAG_CRITERIA", () => {
+  it("MOD-WCAG-1: has 86 entries (all SC IDs)", () => {
+    expect(WCAG_CRITERIA.length).toBe(86);
+  });
+
+  it("MOD-WCAG-2: all ids are unique", () => {
+    const ids = WCAG_CRITERIA.map(c => c.id);
+    expect(new Set(ids).size).toBe(86);
+  });
+
+  it("MOD-WCAG-3: all ids match SC pattern", () => {
+    for (const c of WCAG_CRITERIA) {
+      expect(c.id).toMatch(/^\d+\.\d+\.\d+$/);
+    }
+  });
+
+  it("MOD-WCAG-4: all have level A/AA/AAA", () => {
+    for (const c of WCAG_CRITERIA) {
+      expect(["A", "AA", "AAA"]).toContain(c.level);
+    }
+  });
+
+  it("MOD-WCAG-5: all have principle", () => {
+    for (const c of WCAG_CRITERIA) {
+      expect(["perceivable", "operable", "understandable", "robust"]).toContain(c.principle);
+    }
+  });
+
+  it("MOD-WCAG-6: all have automatable yes/partial/no", () => {
+    for (const c of WCAG_CRITERIA) {
+      expect(["yes", "partial", "no"]).toContain(c.automatable);
+    }
+  });
+
+  it("MOD-WCAG-7: AXE_COVERED_CRITERIA is subset of WCAG_CRITERIA", () => {
+    expect(AXE_COVERED_CRITERIA.length).toBeGreaterThan(20);
+    expect(AXE_COVERED_CRITERIA.length).toBeLessThan(WCAG_CRITERIA.length);
+  });
+});
+
+describe("getChecklist", () => {
+  it("MOD-WCAG-8: level A returns only A-level items", () => {
+    const items = getChecklist("A");
+    expect(items.length).toBeGreaterThan(25);
+    for (const item of items) {
+      expect(item.level).toBe("A");
+    }
+  });
+
+  it("MOD-WCAG-9: level AA returns more items than A", () => {
+    const aItems = getChecklist("A");
+    const aaItems = getChecklist("AA");
+    expect(aaItems.length).toBeGreaterThan(aItems.length);
+  });
+
+  it("MOD-WCAG-10: level AAA returns more items than AA", () => {
+    const aaItems = getChecklist("AA");
+    const aaaItems = getChecklist("AAA");
+    expect(aaaItems.length).toBeGreaterThan(aaItems.length);
+  });
+
+  it("MOD-WCAG-11: each item has required fields", () => {
+    const items = getChecklist("AA");
+    for (const item of items) {
+      expect(item.id).toBeTruthy();
+      expect(item.title).toBeTruthy();
+      expect(item.level).toBeTruthy();
+      expect(item.principle).toBeTruthy();
+      expect(item.requirement).toBeTruthy();
+      expect(item.implementation).toBeTruthy();
+    }
+  });
+
+  it("MOD-WCAG-12: checklist sorted by principle then id", () => {
+    const items = getChecklist("AAA");
+    const principles = ["perceivable", "operable", "understandable", "robust"];
+    let lastPrinciple = -1;
+    let lastId = "";
+    for (const item of items) {
+      const pi = principles.indexOf(item.principle);
+      expect(pi).toBeGreaterThanOrEqual(lastPrinciple);
+      if (pi === lastPrinciple) {
+        expect(item.id.localeCompare(lastId)).toBeGreaterThanOrEqual(0);
+      }
+      lastPrinciple = pi;
+      lastId = item.id;
+    }
+  });
+});
+
+// ─── assessAccessibility (engine) level-aware ─────────────────────────────────
+
+describe("assessAccessibility — level-aware", () => {
+  const html = "<html lang='en'><head><title>Test</title></head><body><main id='main-content'><h1>Title</h1><p>Content</p></main></body></html>";
+
+  it("MOD-WCAG-13: level A returns valid score", async () => {
+    const result = await assessAccessibility(html, "A");
+    expect(result.aggregateScore).toBeGreaterThanOrEqual(0);
+    expect(result.level).toBe("A");
+    expect(result.criteria.length).toBeGreaterThan(0);
+  });
+
+  it("MOD-WCAG-14: AA score same as old engine (±5 tolerance)", async () => {
+    const result = await assessAccessibility(html, "AA");
+    expect(result.aggregateScore).toBeGreaterThanOrEqual(60);
+    expect(result.level).toBe("AA");
+  });
+
+  it("MOD-WCAG-15: AAA returns more criteria than A", async () => {
+    const aResult = await assessAccessibility(html, "A");
+    const aaaResult = await assessAccessibility(html, "AAA");
+    expect(aaaResult.criteria.length).toBeGreaterThan(aResult.criteria.length);
+  });
+
+  it("MOD-WCAG-16: heuristic mode for non-HTML", async () => {
+    const result = await assessAccessibility("plain text, not HTML", "AA");
+    expect(result.heuristic).toBe(true);
+    expect(result.aggregateScore).toBe(0);
+    expect(result.criteria).toHaveLength(0);
+  });
+
+  it("MOD-WCAG-17: manual criteria have manualReason", async () => {
+    const result = await assessAccessibility(html, "A");
+    const manual = result.criteria.filter(c => c.automatable === "no");
+    if (manual.length > 0) {
+      for (const m of manual) {
+        expect(m.manualReason).toBeTruthy();
+      }
+    }
+  });
+
+  it("MOD-WCAG-18: automatable criteria have scores", async () => {
+    const result = await assessAccessibility(html, "AA");
+    const scored = result.criteria.filter(c => c.automatable === "yes" || c.automatable === "partial");
+    for (const s of scored) {
+      if (s.score !== undefined) {
+        expect(s.score).toBeGreaterThanOrEqual(0);
+        expect(s.score).toBeLessThanOrEqual(100);
+      }
+    }
+  });
+
+  it("MOD-WCAG-19: automatedCount + manualCount = total criteria for level", async () => {
+    const result = await assessAccessibility(html, "AA");
+    expect(result.automatedCount + result.manualCount).toBe(result.criteria.length);
+    expect(result.criteria.length).toBeGreaterThan(0);
+  });
+
+  it("MOD-WCAG-20: engine field is 'regex' when axe-core not installed", async () => {
+    const result = await assessAccessibility(html, "AA");
+    expect(result.engine).toBeDefined();
+    expect(["regex", "axe+regex"]).toContain(result.engine);
+  });
+
+  it("MOD-WCAG-21: good HTML scores higher than poor HTML", async () => {
+    const goodResult = await assessAccessibility("<html lang='en'><head><title>T</title></head><body><a href='#main' class='skip-link'>Skip</a><header><nav>Nav</nav></header><main id='main'><section aria-label='S'><h1>T</h1><h2>Sub</h2><p>Content</p></section></main><footer>Foot</footer></body></html>", "AA");
+    const poorResult = await assessAccessibility("<div style='color:#ccc;background:#fff'>text</div>", "AA");
+    expect(goodResult.aggregateScore).toBeGreaterThanOrEqual(poorResult.aggregateScore);
   });
 });

@@ -38,10 +38,10 @@ server. The server is published to npm and can be run with `npx`.
   — All 10 action handler implementations.
 
 ### Tool Signatures
+| `accessibility_audit` | 2 modes: crawl (site-wide WCAG scoring) and session (WCAG checklist by level A/AA/AAA) |
 
 | Action | Description | Required Input | Optional Input | Output Fields |
 |---|---|---|---|---|
-| `wcagaaa_check` | WCAG 2.2 AAA accessibility audit | `target`, `level` | `context` | `findings`, `summary`, `assumptions` |
 | `rewrite_depression_sensitive_content` | Rewrite content for emotional safety | `text` | `mode`, `domain` | `result`, `safety_flags`, `pattern_count`, `review_recommended`, `crisis_resources` |
 | `supportive_reply` | Generate a supportive, non-clinical reply | `message`, `risk_level` | `locale` | `reply`, `escalation_guidance`, `boundaries_notice` |
 | `cognitive_accessibility_audit` | Audit content for cognitive accessibility | `content` | `target_context` | `findings`, `recommendations` |

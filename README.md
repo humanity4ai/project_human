@@ -39,16 +39,16 @@ Add to your MCP client config:
 }
 ```
 
-All 11 humanity skills are now discoverable via `tools/list` and invocable via `tools/call`.
+All 10 humanity skills are now discoverable via `tools/list` and invocable via `tools/call`.
 
 ---
 ## Three Ways to Use Humanity4AI Skills
 
-This repository provides **11 Humanity Skills** — reusable, testable specifications for humane AI behaviour covering empathy, accessibility, grief support, cultural sensitivity, and more. There are three distinct ways to access these skills, depending on your AI platform and its capabilities.
+This repository provides **10 Humanity Skills** — reusable, testable specifications for humane AI behaviour covering empathy, accessibility, grief support, cultural sensitivity, and more. There are three distinct ways to access these skills, depending on your AI platform and its capabilities.
 
 | Method | Skills Access | Best for... | How it Works |
 |---|---|---|---|
-| **1. MCP Server** | All 11 skills as invocable tools | Developer tools (VS Code, Cursor) and agents (Manus AI, OpenCode) | Run a local server that exposes all 11 skills as tools via the Model Context Protocol (MCP). |
+| **1. MCP Server** | All 10 skills as invocable tools | Developer tools (VS Code, Cursor) and agents (Manus AI, OpenCode) | Run a local server that exposes all 10 skills as tools via the Model Context Protocol (MCP). |
 | **2. LLM Prompting** | Any skill via context window | Web chat AIs (Claude, Gemini, ChatGPT) | Provide the content of `llms.txt` or a specific `SKILL.md` directly in the chat context. |
 | **3. Local Files** | Any skill via filesystem | CLI tools without web access (OpenCode) | Clone the repository and point the tool to the relevant `SKILL.md` file path. |
 
@@ -81,7 +81,7 @@ Add the following to your agent's MCP configuration file. See the [Agent Adapter
 }
 ```
 
-Once configured, all 11 skills are discoverable via `tools/list` and invocable via `tools/call`.
+Once configured, all 10 skills are discoverable via `tools/list` and invocable via `tools/call`.
 
 ---
 
@@ -161,7 +161,7 @@ Configure your agent by adding this to your MCP client config:
 }
 ```
 
-All 11 humanity skills are discoverable via `tools/list` and invocable via `tools/call`.
+All 10 humanity skills are discoverable via `tools/list` and invocable via `tools/call`.
 See [`mcp-servers/README.md`](mcp-servers/README.md) for full protocol details and tool reference.
 
 Full install and deploy guide: [`INSTALL.md`](docs/INSTALL.md)
@@ -174,7 +174,7 @@ docker compose up
 
 ## MCP Runtime
 
-`mcp-servers` exposes all 11 skill actions via the standard MCP SDK JSON-RPC 2.0 protocol:
+`mcp-servers` exposes all 10 skill actions via the standard MCP SDK JSON-RPC 2.0 protocol:
 
 | Server | Command | Protocol |
 |--------|---------|----------|
