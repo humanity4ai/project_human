@@ -68,7 +68,7 @@ Ready
 Open a second terminal and run:
 
 ```bash
-echo '{"id":"1","type":"list_actions"}' \
+echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' \
   | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
@@ -103,7 +103,7 @@ docker compose up --build
 ### 3. Send a request to the running container
 
 ```bash
-echo '{"id":"1","type":"list_actions"}' \
+echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' \
   | docker compose exec -T mcp-server node dist/mcp-server.js
 ```
 
@@ -181,7 +181,7 @@ node --version  # should be v20.x or higher
 The server reads from stdin and writes to stdout. Pipe your request correctly:
 
 ```bash
-echo '{"id":"1","type":"list_actions"}' | pnpm start
+echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' | pnpm start
 ```
 
 Do not run `pnpm start` interactively without piping input — it will wait silently.
@@ -201,6 +201,6 @@ pnpm install           # Dependencies installed
 pnpm check             # TypeScript passes
 pnpm build             # Package builds cleanly
 pnpm evals             # All 11 quality gates pass
-echo '{"id":"1","type":"list_actions"}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
+echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 # Should return JSON with 10 actions
 ```
