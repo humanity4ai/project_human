@@ -183,7 +183,7 @@ describe("validateInput — required field checks", () => {
   it("V-18: field with undefined value in input is skipped (no error)", () => {
     const result = validateInput(
       "schemas/accessibility.input.json",
-      { target: "https://example.com", level: "AAA", context: undefined as unknown as string }
+      { mode: "session", level: "AA", locale: undefined as unknown as string }
     );
     expect(result.valid).toBe(true);
   });
