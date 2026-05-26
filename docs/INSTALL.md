@@ -57,8 +57,8 @@ pnpm start
 The server will print a startup banner to stderr:
 
 ```
-Humanity4AI MCP Server v0.1.0
-Actions: 10 registered
+Humanity4AI MCP Server v1.0.0
+Actions: 11 registered
 Transport: stdio (MCP JSON-RPC 2.0)
 Ready
 ```
@@ -72,12 +72,11 @@ echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' \
   | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
-You should receive a JSON response listing all 10 registered actions.
+You should receive a JSON response listing all 11 registered actions.
 
 ### 6. Invoke a skill
 
 ```bash
-echo '{"id":"2","type":"invoke","payload":{"action":"supportive_reply","input":{"message":"I feel overwhelmed","risk_level":"medium"}}}' \
   | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
@@ -202,5 +201,5 @@ pnpm check             # TypeScript passes
 pnpm build             # Package builds cleanly
 pnpm evals             # All 11 quality gates pass
 echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
-# Should return JSON with 10 actions
+# Should return JSON with 11 actions
 ```

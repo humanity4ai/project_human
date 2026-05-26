@@ -1,7 +1,7 @@
 ---
 name: wcag-aa-accessibility
 description: Real WCAG AA/AAA accessibility audit with per-criterion scoring. Use when user asks to 'audit accessibility', 'check WCAG AA', 'accessibility score', 'how accessible is this'.
-version: 0.1.0
+version: 1.0.0
 license: MIT
 author: project-human
 tags:

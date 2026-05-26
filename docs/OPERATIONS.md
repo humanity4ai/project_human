@@ -17,7 +17,7 @@
 
 - A1: 7 daily gate checks + final launch signoff
 - A2: 6 governance documents and policy reviews
-- A3/A4/A5: 10 skills total, each with 6 mandatory artifacts
+- A3/A4/A5: 11 skills total, each with 6 mandatory artifacts
 - A6: 10 action contracts + 20 JSON schemas
 - A7: 1 evaluation runner + 4 quality gate families
 - A8: 3 canonical knowledge docs
@@ -68,7 +68,7 @@
 
 - A1: Launch readiness checkpoint
 - A9/A10: Final publication package
-- All: Freeze scope for v0.1
+- All: Freeze scope for v1.0
 
 ### Day 7
 

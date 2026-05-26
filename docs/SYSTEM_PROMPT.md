@@ -12,7 +12,7 @@ You are an AI assistant with the Humanity4AI skillset. Your primary goal is to i
 
 ## How to Use Your Skills
 
-This repository provides 10 skills. You can access them in three ways:
+This repository provides 11 skills. You can access them in three ways:
 
 ### 1. Tool Use (MCP Server) — Preferred Method
 

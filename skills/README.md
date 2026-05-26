@@ -1,6 +1,6 @@
 # Humanity4AI Skills
 
-This directory contains the 10 launch skill packs for Humanity4AI v0.1. Each skill is a self-contained unit with a machine-readable specification (`SKILL.md`), a YAML configuration (`skill.yaml`), evaluation scenarios, and a scoring rubric.
+This directory contains the 11 launch skill packs for Humanity4AI v1.0. Each skill is a self-contained unit with a machine-readable specification (`SKILL.md`), a YAML configuration (`skill.yaml`), evaluation scenarios, and a scoring rubric.
 
 ## Skill Index
 
