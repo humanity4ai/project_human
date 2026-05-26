@@ -19,3 +19,28 @@ scenarios:
     prompt: Prioritize errors on long forms.
   - id: ca-10
     prompt: Add orientation cues for multi-tab task.
+
+  - id: cog-split-attention
+    title: "Split attention — simultaneous audio and text overload"
+    input: { content: "Welcome to our comprehensive guide. First, read the instructions carefully. Then, listen to the audio recording while reading the transcript below. Finally, complete the assessment questions. It is important to process both visual and auditory information simultaneously to understand the key concepts of cognitive load theory and its application in user interface design and content strategy." }
+    expected: { findings_count_gte: 1 }
+
+  - id: cog-decision-fatigue
+    title: "Decision fatigue — too many choices presented at once"
+    input: { content: "Please select your preferred option from the following: Option A for basic coverage, Option B for standard coverage with additional benefits, Option C for premium coverage with all benefits, Option D for family coverage with dependents, Option E for business coverage with multiple users, Option F for enterprise coverage with custom pricing, Option G for student coverage with academic discount, Option H for senior coverage with age-based pricing." }
+    expected: { findings_count_gte: 1 }
+
+  - id: cog-jargon-overload
+    title: "Medical jargon creates cognitive barrier"
+    input: { content: "The patient presents with idiopathic thrombocytopenic purpura requiring immediate hematological consultation and corticosteroid administration pursuant to established protocols." }
+    expected: { findings_count_gte: 1 }
+
+  - id: cog-sensory-overload
+    title: "Sensory overload — auto-playing content without controls"
+    input: { content: "This interactive dashboard updates in real-time with streaming data from 15 simultaneous sources, auto-refreshing stock prices, weather alerts, news headlines, social media feeds, email notifications, calendar reminders, chat messages, system alerts, performance metrics, error logs, deployment status, CI/CD pipeline status, security scan results, customer service tickets, and team activity feed — all without user controls to pause or filter any feed." }
+    expected: { findings_count_gte: 1 }
+
+  - id: cog-ambiguous-cta
+    title: "Ambiguous CTAs — 'Click here' provides no context"
+    input: { content: "To proceed with the application, click here. To review your previous submissions, click here. To update your profile information, click here. To access support documentation, click here. To submit feedback, click here." }
+    expected: { findings_count_gte: 1 }

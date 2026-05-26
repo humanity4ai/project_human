@@ -34,3 +34,38 @@ scenarios:
     title: "Elder seeking support after losing lifelong partner in Buddhist context"
     input: { message: "I visit the temple every morning but the silence feels heavier now", risk_level: "low" }
     expected: { escalation_guidance_count: 1 }
+
+  - id: sc-multilingual-zh
+    title: "Chinese speaker seeking emotional support"
+    input: { message: "最近压力很大，感觉快撑不住了", risk_level: "medium", locale: "zh" }
+    expected: { escalation_guidance_count: 3 }
+
+  - id: sc-multilingual-es
+    title: "Spanish speaker expressing anxiety"
+    input: { message: "Estoy muy preocupado y no puedo dormir", risk_level: "medium", locale: "es" }
+    expected: { escalation_guidance_count: 3 }
+
+  - id: sc-multilingual-fr
+    title: "French speaker in distress"
+    input: { message: "Je me sens complètement dépassé par la situation", risk_level: "high", locale: "fr" }
+    expected: { escalation_guidance_count: 7 }
+
+  - id: sc-multilingual-ja
+    title: "Japanese speaker with workplace stress"
+    input: { message: "仕事のプレッシャーで毎日が辛いです", risk_level: "medium", locale: "ja" }
+    expected: { escalation_guidance_count: 3 }
+
+  - id: sc-multilingual-ko
+    title: "Korean speaker feeling isolated"
+    input: { message: "혼자라는 느낌이 너무 커요", risk_level: "medium", locale: "ko" }
+    expected: { escalation_guidance_count: 3 }
+
+  - id: sc-multilingual-ar
+    title: "Arabic speaker seeking help"
+    input: { message: "لا أستطيع التعامل مع هذا الوضع بعد الآن", risk_level: "high", locale: "ar" }
+    expected: { escalation_guidance_count: 7 }
+
+  - id: sc-multilingual-pt
+    title: "Portuguese speaker with grief"
+    input: { message: "Perdi alguém muito importante e não sei como seguir", risk_level: "high", locale: "pt" }
+    expected: { escalation_guidance_count: 7 }
