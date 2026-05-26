@@ -1,5 +1,5 @@
 name: wcag-aa-accessibility
-version: 0.1.0
+version: 1.0.0
 status: active
 category: accessibility
 summary: Real WCAG AA accessibility audit with per-criterion scoring (0-100)
