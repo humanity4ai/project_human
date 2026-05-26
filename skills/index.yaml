@@ -1,9 +1,9 @@
 version: "0.2.0"
 skills:
-  - name: wcag-aaa-accessibility
+  - name: accessibility
     category: accessibility
-    action: wcagaaa_check
-    description: "Use this skill when the user wants to audit a webpage, HTML markup, or digital content for WCAG 2.2 AAA compliance. This includes conducting accessibility audits, reviewing code for accessibility issues, providing remediation guidance, checking color contrast, evaluating keyboard navigation, assessing screen reader compatibility, and ensuring conformance with WCAG Success Criteria at Level AAA. Trigger especially when user mentions 'accessibility audit', 'WCAG', 'ADA compliance', 'accessibility review', 'screen reader test', 'keyboard navigation', or asks to make content accessible."
+    action: accessibility_audit
+    description: "Unified WCAG 2.2 accessibility audit covering all 78 success criteria. Crawl mode: score every page against automatable criteria with per-page ranking. Session mode: return complete WCAG checklist for the requested level (A/AA/AAA). Optional axe-core engine for ~80% automated coverage. Use when user asks for 'accessibility audit', 'WCAG compliance', 'ADA check', 'screen reader compatibility', 'keyboard navigation audit', or general accessibility review."
     tags:
       - accessibility
       - wcag
