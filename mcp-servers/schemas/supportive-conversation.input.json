@@ -20,6 +20,16 @@
     "locale": {
       "type": "string",
       "default": "en"
+    },
+    "support_mode": {
+      "type": "string",
+      "enum": [
+        "general",
+        "presence",
+        "practical",
+        "reflection"
+      ],
+      "default": "general"
     }
   },
   "additionalProperties": false,

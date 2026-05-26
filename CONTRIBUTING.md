@@ -62,7 +62,7 @@ CI runs automatically on `main`. Merged branches are auto-deleted.
 |------|-----------|-------|
 | Any file | `@simonplmak-cloud` | Global owner — all PRs |
 | `skills/supportive-conversation/` | `@simonplmak-cloud` | Safety-critical |
-| `skills/grief-loss-support/` | `@simonplmak-cloud` | Safety-critical |
+
 | `skills/depression-sensitive-content/` | `@simonplmak-cloud` | Safety-critical |
 | `mcp-servers/` | `@simonplmak-cloud` | Runtime and contracts |
 | `GOVERNANCE.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md` | `@simonplmak-cloud` | Policy files |
@@ -190,7 +190,7 @@ Valid category slugs: `accessibility`, `emotional-safety`, `communication`, `cog
 - Declare source provenance in `skill.yaml`
 - Include explicit boundaries and non-goals
 - Do not submit clinical diagnosis, treatment plans, or legal advice playbooks
-- Safety-critical skills (`supportive-conversation`, `grief-loss-support`, `depression-sensitive-content`) require escalation language in boundaries
+- Safety-critical skills (`supportive-conversation`, `depression-sensitive-content`) require escalation language in boundaries
 - Never reference specific individuals or organisations in scenarios without consent
 
 ---

@@ -46,7 +46,7 @@ The following are the most important files for LLM context. You can fetch any of
 | `skills/cultural-sensitivity/SKILL.md` | Cultural sensitivity skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/cultural-sensitivity/SKILL.md |
 | `skills/depression-sensitive-content/SKILL.md` | Depression-sensitive content skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/depression-sensitive-content/SKILL.md |
 | `skills/empathetic-communication/SKILL.md` | Empathetic communication skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/empathetic-communication/SKILL.md |
-| `skills/grief-loss-support/SKILL.md` | Grief and loss support skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/grief-loss-support/SKILL.md |
+| `skills/supportive-conversation/SKILL.md` | Supportive conversation (incl. grief) skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/supportive-conversation/SKILL.md |
 | `skills/neurodiversity-aware-design/SKILL.md` | Neurodiversity-aware design skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/neurodiversity-aware-design/SKILL.md |
 | `skills/supportive-conversation/SKILL.md` | Supportive conversation skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/supportive-conversation/SKILL.md |
 | `skills/wcag-aaa-accessibility/SKILL.md` | WCAG AAA accessibility skill | https://raw.githubusercontent.com/humanity4ai/project_human/main/skills/wcag-aaa-accessibility/SKILL.md |

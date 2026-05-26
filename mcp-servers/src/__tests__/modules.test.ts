@@ -239,43 +239,43 @@ describe("detectEmotion", () => {
 // ─── accessibility-engine.ts ─────────────────────────────────────────────────
 
 describe("assessAccessibility", () => {
-  it("returns heuristic=true for non-HTML input", () => {
-    const result = assessAccessibility("A login form with username and password", "AA");
+  it("returns heuristic=true for non-HTML input", async () => {
+    const result = await assessAccessibility("A login form with username and password", "AA");
     expect(result.heuristic).toBe(true);
     expect(result.criteria).toHaveLength(0);
   });
 
-  it("returns scored criteria for HTML input", () => {
-    const result = assessAccessibility("<html><body><main><h1>Title</h1><p>Text</p></main></body></html>", "AA");
+  it("returns scored criteria for HTML input", async () => {
+    const result = await assessAccessibility("<html><body><main><h1>Title</h1><p>Text</p></main></body></html>", "AA");
     expect(result.heuristic).toBe(false);
     expect(result.criteria.length).toBeGreaterThan(0);
   });
 
-  it("returns aggregate score 0-100", () => {
-    const result = assessAccessibility("<div><h1>Test</h1></div>", "AA");
+  it("returns aggregate score 0-100", async () => {
+    const result = await assessAccessibility("<div><h1>Test</h1></div>", "AA");
     expect(result.aggregateScore).toBeGreaterThanOrEqual(0);
     expect(result.aggregateScore).toBeLessThanOrEqual(100);
   });
 
-  it("AA mode vs AAA mode both work", () => {
-    const aa = assessAccessibility("<div>test</div>", "AA");
-    const aaa = assessAccessibility("<div>test</div>", "AAA");
+  it("AA mode vs AAA mode both work", async () => {
+    const aa = await assessAccessibility("<div>test</div>", "AA");
+    const aaa = await assessAccessibility("<div>test</div>", "AAA");
     expect(aa.level).toBe("AA");
     expect(aaa.level).toBe("AAA");
   });
 
-  it("good semantic HTML scores high", () => {
-    const result = assessAccessibility("<html><head><title>T</title></head><body><a href='#main' class='skip-link'>Skip</a><header><nav>Nav</nav></header><main id='main'><section aria-label='Main'><h1>Title</h1><h2>Sub</h2></section></main><footer>Foot</footer></body></html>", "AA");
+  it("good semantic HTML scores high", async () => {
+    const result = await assessAccessibility("<html><head><title>T</title></head><body><a href='#main' class='skip-link'>Skip</a><header><nav>Nav</nav></header><main id='main'><section aria-label='Main'><h1>Title</h1><h2>Sub</h2></section></main><footer>Foot</footer></body></html>", "AA");
     expect(result.aggregateScore).toBeGreaterThan(50);
   });
 
-  it("poor HTML with inline styles scores lower", () => {
-    const result = assessAccessibility("<div style='color:#ccc;background:#fff'>text</div>", "AA");
+  it("poor HTML with inline styles scores lower", async () => {
+    const result = await assessAccessibility("<div style='color:#ccc;background:#fff'>text</div>", "AA");
     expect(result.aggregateScore).toBeLessThan(80);
   });
 
-  it("returns summary string", () => {
-    const result = assessAccessibility("<div>test</div>", "AA");
+  it("returns summary string", async () => {
+    const result = await assessAccessibility("<div>test</div>", "AA");
     expect(typeof result.summary).toBe("string");
     expect(result.summary.length).toBeGreaterThan(10);
   });

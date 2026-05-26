@@ -15,11 +15,11 @@ export const KNOWN_ACTIONS: Set<string> = new Set();
 
 export const actionContracts: ActionContract[] = [
   {
-    skill: "wcag-aaa-accessibility",
-    action: "wcagaaa_check",
-    description: "Audit a URL or HTML snippet for WCAG 2.2 accessibility compliance at Level A, AA, or AAA. Returns structured findings with severity ratings and actionable fixes. Safety boundary: compliance guidance only; does not replace legal review.",
-    inputSchemaPath: "schemas/wcag-aaa-accessibility.input.json",
-    outputSchemaPath: "schemas/wcag-aaa-accessibility.output.json",
+    skill: "accessibility",
+    action: "accessibility_audit",
+    description: "Audit web pages for WCAG 2.2 compliance or set session WCAG level. Crawl mode: provide pages with URL+HTML for per-page scoring and ranking across all 78 success criteria. Session mode: returns the complete WCAG checklist for the requested level that the agent must enforce.",
+    inputSchemaPath: "schemas/accessibility.input.json",
+    outputSchemaPath: "schemas/accessibility.output.json",
     safetyBoundary: "Compliance guidance only; does not replace legal review"
   },
   {
@@ -33,7 +33,7 @@ export const actionContracts: ActionContract[] = [
   {
     skill: "supportive-conversation",
     action: "supportive_reply",
-    description: "Generate a supportive, non-clinical reply to a message from someone in distress. Includes escalation guidance calibrated to the assessed risk level. Safety boundary: non-clinical support only; must escalate when risk is elevated.",
+    description: "Generate a supportive, non-clinical reply to a message from someone in distress. Supports general emotional support and grief-specific modes (presence, practical, reflection). Includes escalation guidance calibrated to the assessed risk level. Safety boundary: non-clinical support only; must escalate when risk is elevated.",
     inputSchemaPath: "schemas/supportive-conversation.input.json",
     outputSchemaPath: "schemas/supportive-conversation.output.json",
     safetyBoundary: "Non-clinical support; must provide escalation cues when risk is elevated"
@@ -71,14 +71,6 @@ export const actionContracts: ActionContract[] = [
     safetyBoundary: "No manipulation or deceptive empathy"
   },
   {
-    skill: "grief-loss-support",
-    action: "grief_support_response",
-    description: "Generate a compassionate, non-clinical response to someone experiencing grief or loss. Supports three modes: presence (emotional companionship), practical (next steps), reflection (meaning-making). Safety boundary: non-clinical bereavement support only.",
-    inputSchemaPath: "schemas/grief-loss-support.input.json",
-    outputSchemaPath: "schemas/grief-loss-support.output.json",
-    safetyBoundary: "Non-clinical bereavement support only"
-  },
-  {
     skill: "neurodiversity-aware-design",
     action: "neurodiversity_design_check",
     description: "Audit a UI description for neurodiversity-aware design — covering ADHD, autism, dyslexia, and sensory sensitivities. Returns targeted recommendations for inclusive design. Safety boundary: inclusive design guidance only.",
@@ -93,14 +85,6 @@ export const actionContracts: ActionContract[] = [
     inputSchemaPath: "schemas/age-inclusive-design.input.json",
     outputSchemaPath: "schemas/age-inclusive-design.output.json",
     safetyBoundary: "Inclusive design guidance only"
-  },
-  {
-    skill: "wcag-aa-accessibility",
-    action: "wcagaa_check",
-    description: "Real WCAG AA accessibility audit with per-criterion scoring (0-100). Analyses HTML input for colour contrast, keyboard navigation, semantic HTML, ARIA attributes, form labels, heading structure, and focus order. Safety boundary: compliance guidance only; does not replace legal review.",
-    inputSchemaPath: "schemas/wcag-aa-accessibility.input.json",
-    outputSchemaPath: "schemas/wcag-aa-accessibility.output.json",
-    safetyBoundary: "Compliance guidance only; does not replace legal review"
   }
 ];
 

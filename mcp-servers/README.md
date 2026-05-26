@@ -69,7 +69,7 @@ Or use `npx` once published to npm (no local clone needed):
 | `cultural_context_check` | Cultural Sensitivity | Check a message for cultural sensitivity issues |
 | `deescalation_plan` | Conflict De-escalation | Generate a structured de-escalation plan |
 | `empathetic_reframe` | Empathetic Communication | Reframe a message with genuine empathy |
-| `grief_support_response` | Grief & Loss Support | Generate a compassionate grief support response |
+| `supportive_reply` (grief modes) | Grief & Loss Support | Generate compassionate grief support via `support_mode` param |
 | `neurodiversity_design_check` | Neurodiversity-Aware Design | Audit UI for ADHD, autism, dyslexia, and sensory sensitivities |
 | `age_inclusive_design_check` | Age-Inclusive Design | Audit a user flow for age-inclusive design |
 | `wcagaa_check` | WCAG AA Accessibility | Score UI for WCAG 2.2 AA compliance |
@@ -104,7 +104,7 @@ Every tool response includes a `boundaryNotice` field. Always surface this to us
 - `cultural_context_check` — Context-sensitive recommendations with uncertainty disclosure
 - `deescalation_plan` — No coercive tactics
 - `empathetic_reframe` — No manipulation or deceptive empathy
-- `grief_support_response` — Non-clinical bereavement support only
+- `supportive_reply` (grief modes) — Non-clinical bereavement support only
 - `neurodiversity_design_check` — Inclusive design guidance only
 - `age_inclusive_design_check` — Inclusive design guidance only
 
@@ -140,7 +140,7 @@ The `examples/` directory contains one complete request/response pair per action
 | `examples/cultural_context_check.example.json` | `cultural_context_check` |
 | `examples/deescalation_plan.example.json` | `deescalation_plan` |
 | `examples/empathetic_reframe.example.json` | `empathetic_reframe` |
-| `examples/grief_support_response.example.json` | `grief_support_response` |
+| `examples/supportive_reply_grief.example.json` | `supportive_reply` (grief mode) |
 | `examples/neurodiversity_design_check.example.json` | `neurodiversity_design_check` |
 | `examples/age_inclusive_design_check.example.json` | `age_inclusive_design_check` |
 

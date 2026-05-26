@@ -63,7 +63,7 @@ Each skill is defined by a `SKILL.md` file containing its purpose, boundaries, p
 | Cultural Sensitivity | `cultural-context` | [SKILL.md](../skills/cultural-sensitivity/SKILL.md) |
 | Depression-Sensitive Content | `emotional-safety` | [SKILL.md](../skills/depression-sensitive-content/SKILL.md) |
 | Empathetic Communication | `communication` | [SKILL.md](../skills/empathetic-communication/SKILL.md) |
-| Grief & Loss Support | `emotional-safety` | [SKILL.md](../skills/grief-loss-support/SKILL.md) |
+| Supportive Conversation (incl. grief) | `emotional-safety` | [SKILL.md](../skills/supportive-conversation/SKILL.md) |
 | Neurodiversity-Aware Design | `neurodiversity` | [SKILL.md](../skills/neurodiversity-aware-design/SKILL.md) |
 | Supportive Conversation | `communication` | [SKILL.md](../skills/supportive-conversation/SKILL.md) |
 | WCAG AAA Accessibility | `accessibility` | [SKILL.md](../skills/wcag-aaa-accessibility/SKILL.md) |

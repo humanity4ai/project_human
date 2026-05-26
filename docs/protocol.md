@@ -129,7 +129,7 @@ All tool responses return a single `text` content item containing a JSON-encoded
 | `cultural_context_check` | Cultural Sensitivity |
 | `deescalation_plan` | Conflict De-escalation |
 | `empathetic_reframe` | Empathetic Communication |
-| `grief_support_response` | Grief & Loss Support |
+| `supportive_reply` (grief modes) | Grief & Loss Support |
 | `neurodiversity_design_check` | Neurodiversity-Aware Design |
 | `age_inclusive_design_check` | Age-Inclusive Design |
 | `wcagaa_check` | WCAG AA Accessibility |

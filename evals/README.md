@@ -21,7 +21,7 @@ For each skill directory:
 
 ### Gate 2: Safety boundaries
 
-For safety-critical skills (`supportive-conversation`, `grief-loss-support`, `depression-sensitive-content`):
+For safety-critical skills (`supportive-conversation`, `depression-sensitive-content`):
 
 - `skill.yaml.boundaries` must include escalation language
 
@@ -55,7 +55,7 @@ PASS  conflict-de-escalation
 PASS  cultural-sensitivity
 PASS  depression-sensitive-content
 PASS  empathetic-communication
-PASS  grief-loss-support
+PASS  supportive-conversation
 PASS  neurodiversity-aware-design
 PASS  supportive-conversation
 PASS  wcag-aaa-accessibility

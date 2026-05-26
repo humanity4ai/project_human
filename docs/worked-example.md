@@ -143,7 +143,7 @@ Returns: `reframed_message`, `rationale[]`, `escalation_guidance[]`.
 ### 4.9 Grief and Loss Support
 
 ```bash
-echo '{"jsonrpc":"2.0","id":"gls-1","method":"tools/call","params":{"name":"grief_support_response","arguments":{"message":"My colleague just told me their parent passed away","support_mode":"presence"}}}' \
+echo '{"jsonrpc":"2.0","id":"gls-1","method":"tools/call","params":{"name":"supportive_reply","arguments":{"message":"My colleague just told me their parent passed away","risk_level":"low","support_mode":"presence"}}}' \
   | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 

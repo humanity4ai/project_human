@@ -24,13 +24,15 @@ skills:
   - name: supportive-conversation
     category: emotional-safety
     action: supportive_reply
-    description: Generate supportive responses with safety boundaries. Use when user asks to 'be supportive', 'help with emotional support', 'provide encouragement', 'respond with empathy', 'offer emotional support'.
+    description: Generate supportive responses with safety boundaries, including grief-specific support modes. Use when user asks to 'be supportive', 'help with emotional support', 'provide encouragement', 'respond with empathy', 'offer emotional support', 'support someone grieving', 'respond to loss', 'help with grief'.
     tags:
       - emotional-support
       - empathy
       - communication
       - active-listening
       - compassion
+      - grief-support
+      - bereavement
   - name: cognitive-accessibility
     category: cognitive-support
     action: cognitive_accessibility_audit
@@ -72,16 +74,6 @@ skills:
       - emotional-intelligence
       - active-listening
       - compassion
-  - name: grief-loss-support
-    category: emotional-safety
-    action: grief_support_response
-    description: Offer non-clinical, compassionate support language for grief and loss. Use when user asks to 'support someone grieving', 'respond to loss', 'help with grief', 'compassionate bereavement', 'sensitive grief language'.
-    tags:
-      - grief-support
-      - bereavement
-      - emotional-safety
-      - compassion
-      - empathy
   - name: neurodiversity-aware-design
     category: neurodiversity
     action: neurodiversity_design_check

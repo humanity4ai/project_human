@@ -33,7 +33,7 @@ See: https://raw.githubusercontent.com/humanity4ai/project_human/development/kno
 | 4 | cultural-sensitivity | cultural-context | cultural_context_check |
 | 5 | depression-sensitive-content | emotional-safety | rewrite_depression_sensitive_content |
 | 6 | empathetic-communication | communication | empathetic_reframe |
-| 7 | grief-loss-support | emotional-safety | grief_support_response |
+| 7 | supportive-conversation | emotional-safety | supportive_reply |
 | 8 | neurodiversity-aware-design | neurodiversity | neurodiversity_design_check |
 | 9 | supportive-conversation | communication | supportive_reply |
 | 10 | wcag-aaa-accessibility | accessibility | wcagaaa_check |
@@ -1819,10 +1819,7 @@ python3 scripts/analyze_tone.py --input response.txt --format json
 
 *This skill helps create emotionally resonant communication.*
 
-### grief-loss-support
-
----
-name: grief-loss-support
+### supportive-conversation (includes grief support)
 description: Offer non-clinical, compassionate support language for grief and loss. Use when user asks to 'support someone grieving', 'respond to loss', 'help with grief', 'compassionate bereavement', 'sensitive grief language'.
 version: 0.2.0
 license: MIT
