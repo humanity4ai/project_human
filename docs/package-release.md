@@ -38,5 +38,5 @@ pnpm --filter @humanity4ai/mcp-servers publish --access public
 
 ## Suggested first package line
 
-- `0.1.x` for contract-first early adopters
-- `0.2.x` once platform adapters stabilize
+- `1.0.x` for stable releases with full MCP runtime
+- `1.1.x` once platform adapters stabilize

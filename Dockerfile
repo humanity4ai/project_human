@@ -26,6 +26,8 @@ FROM node:22-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production
 
+RUN apk add --no-cache procps
+
 # Only copy what is needed to run the server
 COPY --from=builder /app/mcp-servers/dist ./mcp-servers/dist
 COPY --from=builder /app/mcp-servers/schemas ./mcp-servers/schemas

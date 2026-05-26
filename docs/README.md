@@ -13,11 +13,11 @@ For LLM-native discovery, start with [`/llms.txt`](../llms.txt) at the repositor
 | I want to... | Go to |
 |---|---|
 | Understand the project's values | [Core Principles](../knowledge-core/principles.md) |
-| Start the MCP server | [README — MCP Runtime v1.0](../README.md#mcp-runtime-v01) |
-| See all 10 tool signatures | [llms.txt — Tool Signatures](../llms.txt#tool-signatures) |
+| Start the MCP server | [README — MCP Runtime v1.0](../README.md#mcp-runtime) |
+| See all 11 tool signatures | [llms.txt — Tool Signatures](../llms.txt#tool-signatures) |
 | Integrate with Claude / Cursor / n8n | [Agent Adapter Guide](./agent-adapters.md) |
 | Read a specific skill specification | [Skill Reference](#skill-reference) below |
-| Contribute a new skill | [Contributing Guide](CONTRIBUTING.md) |
+| Contribute a new skill | [Contributing Guide](../CONTRIBUTING.md) |
 | Find a starter task | [Good First Issues](./good-first-issues.md) |
 
 ---
@@ -42,12 +42,12 @@ The MCP server is the primary runtime for all 11 skills. It implements the offic
 
 | Document | Description |
 |---|---|
-| [MCP Server README](../mcp-servers/README.md) | Full reference for all 10 tools, including input/output schemas. |
+| [MCP Server README](../mcp-servers/README.md) | Full reference for all 11 tools, including input/output schemas. |
 | [Agent Adapter Guide](./agent-adapters.md) | Step-by-step integration examples for all major agent platforms. |
 | [Protocol Specification](./protocol.md) | The formal protocol specification for the MCP server. |
-| [Action Contracts Source](../mcp-servers/src/index.ts) | TypeScript source for all 10 action contracts. |
+| [Action Contracts Source](../mcp-servers/src/index.ts) | TypeScript source for all 11 action contracts. |
 | [MCP Server Source](../mcp-servers/src/mcp-server.ts) | Full MCP server implementation with tool registrations. |
-| [Handler Source](../mcp-servers/src/handlers.ts) | All 10 action handler implementations. |
+| [Handler Source](../mcp-servers/src/handlers.ts) | All 11 action handler implementations. |
 
 ---
 
@@ -67,6 +67,7 @@ Each skill is defined by a `SKILL.md` file containing its purpose, boundaries, p
 | Neurodiversity-Aware Design | `neurodiversity` | [SKILL.md](../skills/neurodiversity-aware-design/SKILL.md) |
 | Supportive Conversation | `communication` | [SKILL.md](../skills/supportive-conversation/SKILL.md) |
 | WCAG AAA Accessibility | `accessibility` | [SKILL.md](../skills/wcag-aaa-accessibility/SKILL.md) |
+| WCAG AA Accessibility | `accessibility` | [SKILL.md](../skills/wcag-aa-accessibility/SKILL.md) |
 
 The full structured index of all skills is available at [`skills/index.yaml`](../skills/index.yaml).
 
@@ -87,12 +88,12 @@ These files are designed for LLM consumption and provide structured, machine-rea
 
 | Document | Description |
 |---|---|
-| [Contributing Guide](CONTRIBUTING.md) | How to contribute a new skill or improvement. |
+| [Contributing Guide](../CONTRIBUTING.md) | How to contribute a new skill or improvement. |
 | [Good First Issues](./good-first-issues.md) | A curated list of starter tasks for new contributors. |
-| [Governance](../GOVERNANCE.md) | Project governance model and decision-making process. |
+| [Governance](./GOVERNANCE.md) | Project governance model and decision-making process. |
 | [Code of Conduct](../CODE_OF_CONDUCT.md) | Community standards and expectations. |
-| [Security Policy](SECURITY.md) | How to report security vulnerabilities. |
-| [Maintainers](../MAINTAINERS.md) | Current project maintainers and their responsibilities. |
+| [Security Policy](../SECURITY.md) | How to report security vulnerabilities. |
+| [Maintainers](./MAINTAINERS.md) | Current project maintainers and their responsibilities. |
 
 ---
 
@@ -100,14 +101,14 @@ These files are designed for LLM consumption and provide structured, machine-rea
 
 | Document | Description |
 |---|---|
-| [Install Guide](docs/INSTALL.md) | How to install and run the project locally. |
-| [Operations Guide](../OPERATIONS.md) | Operational runbook for maintainers. |
-| [Release Notes](../RELEASE_NOTES.md) | Changelog for all releases. |
-| [Roadmap](../ROADMAP.md) | Planned features and milestones. |
+| [Install Guide](./INSTALL.md) | How to install and run the project locally. |
+| [Operations Guide](./OPERATIONS.md) | Operational runbook for maintainers. |
+| [Release Notes](./RELEASE_NOTES.md) | Changelog for all releases. |
+| [Roadmap](./ROADMAP.md) | Planned features and milestones. |
 | [Release Process](./release-process.md) | Step-by-step guide for cutting a new release. |
 | [Package Release](./package-release.md) | Guide for publishing the npm package. |
 | [Quality Gates](./quality-gates.md) | Automated and manual quality checks required before release. |
-| [Repository Map](../REPO_MAP.md) | A directory-level map of the entire repository. |
+| [Repository Map](./REPO_MAP.md) | A directory-level map of the entire repository. |
 
 ---
 

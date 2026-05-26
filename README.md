@@ -5,7 +5,6 @@ Humanity4AI is an open, community-driven project that provides reusable "humanit
 [![CI](https://github.com/humanity4ai/project_human/actions/workflows/ci.yml/badge.svg)](https://github.com/humanity4ai/project_human/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/releases)
 [![npm](https://img.shields.io/npm/v/@humanity4ai/mcp-servers?color=0f766e)](https://www.npmjs.com/package/@humanity4ai/mcp-servers)
-[![npm](https://img.shields.io/npm/v/@humanity4ai/mcp-servers?color=0f766e)](https://www.npmjs.com/package/@humanity4ai/mcp-servers)
 [![License](https://img.shields.io/badge/license-MIT-0f766e)](LICENSE)
 [![Issues](https://img.shields.io/github/issues/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/issues)
 [![Contributors](https://img.shields.io/github/contributors/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/graphs/contributors)
@@ -40,12 +39,12 @@ Add to your MCP client config:
 }
 ```
 
-All 10 humanity skills are now discoverable via `tools/list` and invocable via `tools/call`.
+All 11 humanity skills are now discoverable via `tools/list` and invocable via `tools/call`.
 
 ---
 ## Three Ways to Use Humanity4AI Skills
 
-This repository provides **10 Humanity Skills** — reusable, testable specifications for humane AI behaviour covering empathy, accessibility, grief support, cultural sensitivity, and more. There are three distinct ways to access these skills, depending on your AI platform and its capabilities.
+This repository provides **11 Humanity Skills** — reusable, testable specifications for humane AI behaviour covering empathy, accessibility, grief support, cultural sensitivity, and more. There are three distinct ways to access these skills, depending on your AI platform and its capabilities.
 
 | Method | Skills Access | Best for... | How it Works |
 |---|---|---|---|
@@ -162,7 +161,7 @@ Configure your agent by adding this to your MCP client config:
 }
 ```
 
-All 10 humanity skills are discoverable via `tools/list` and invocable via `tools/call`.
+All 11 humanity skills are discoverable via `tools/list` and invocable via `tools/call`.
 See [`mcp-servers/README.md`](mcp-servers/README.md) for full protocol details and tool reference.
 
 Full install and deploy guide: [`INSTALL.md`](docs/INSTALL.md)

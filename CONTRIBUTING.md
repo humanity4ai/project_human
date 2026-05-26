@@ -32,7 +32,7 @@ Humanity4AI uses a two-tier branching strategy:
 feature/* ──► main  (all contributor code — this is the default branch)
 ```
 
-**All pull requests from contributors must target `main`.** Pull requests targeting `main` are restricted to maintainers and represent planned releases only.
+**All pull requests from contributors must target `main`.** This is the default branch and the only branch that accepts contributions.
 
 ---
 

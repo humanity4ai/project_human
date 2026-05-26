@@ -2,7 +2,7 @@
 
 MCP action contracts and server runtime for Humanity4AI skills.
 
-All 10 humanity skills are exposed as standard MCP tools using the official `@modelcontextprotocol/sdk` JSON-RPC 2.0 protocol, natively compatible with Claude Code, Copilot, Manus AI, OpenCode, LangChain, and any other MCP SDK client.
+All 11 humanity skills are exposed as standard MCP tools using the official `@modelcontextprotocol/sdk` JSON-RPC 2.0 protocol, natively compatible with Claude Code, Copilot, Manus AI, OpenCode, LangChain, and any other MCP SDK client.
 
 ---
 
@@ -25,7 +25,7 @@ pnpm --filter @humanity4ai/mcp-servers start
 ```
 
 The server starts on **stdio** using the official MCP SDK JSON-RPC 2.0 protocol.
-All 10 humanity skills are registered as MCP tools and discoverable via `tools/list`.
+All 11 humanity skills are registered as MCP tools and discoverable via `tools/list`.
 
 ### 3. Configure your MCP client
 
@@ -72,6 +72,7 @@ Or use `npx` once published to npm (no local clone needed):
 | `grief_support_response` | Grief & Loss Support | Generate a compassionate grief support response |
 | `neurodiversity_design_check` | Neurodiversity-Aware Design | Audit UI for ADHD, autism, dyslexia, and sensory sensitivities |
 | `age_inclusive_design_check` | Age-Inclusive Design | Audit a user flow for age-inclusive design |
+| `wcagaa_check` | WCAG AA Accessibility | Score UI for WCAG 2.2 AA compliance |
 
 ---
 
@@ -145,7 +146,7 @@ The `examples/` directory contains one complete request/response pair per action
 
 ---
 
-## v0.2+ Roadmap
+## v1.1+ Roadmap
 
 - HTTP/SSE transport for remote MCP server deployments
 - Auth policies and rate controls

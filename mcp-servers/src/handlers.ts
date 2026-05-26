@@ -8,8 +8,8 @@
 import { actionContracts, KNOWN_ACTIONS } from "./index.js";
 import { validateInput } from "./validate.js";
 import type { InvokeResponse } from "./types.js";
-import { SHAME_PATTERNS, URGENCY_PATTERNS, COGNITIVE_LOAD_PATTERNS, JARGON_TERMS, FIXED_ORDER_PATTERNS, STIGMA_PATTERNS, MEDICAL_CLAIM_PATTERNS, MINIMIZING_PATTERNS, JUDGMENTAL_PATTERNS, STIGMATIZING_VERB_PATTERNS, CRISIS_LANGUAGE_PATTERNS, GRIEF_CLICHE_PATTERNS, BOUNDARY_VIOLATION_PATTERNS } from "./patterns.js";
-import { MAX_WORDS_PER_SENTENCE, MAX_CONTENT_WORDS, MIN_STEPS_SEQUENCE_THRESHOLD } from "./constants.js";
+import { SHAME_PATTERNS, URGENCY_PATTERNS, COGNITIVE_LOAD_PATTERNS, JARGON_TERMS, STIGMA_PATTERNS, MEDICAL_CLAIM_PATTERNS, MINIMIZING_PATTERNS, JUDGMENTAL_PATTERNS, STIGMATIZING_VERB_PATTERNS, CRISIS_LANGUAGE_PATTERNS, GRIEF_CLICHE_PATTERNS, BOUNDARY_VIOLATION_PATTERNS } from "./patterns.js";
+import { MAX_WORDS_PER_SENTENCE, MAX_CONTENT_WORDS, MIN_STEPS_SEQUENCE_THRESHOLD, MIN_BODY_FONT_PX, MIN_LINE_HEIGHT_FACTOR, MIN_TOUCH_TARGET_PX } from "./constants.js";
 import { CRISIS_LINE_UK, CRISIS_LINE_US, CRISIS_TEXT_US, CRISIS_URL_INTERNATIONAL, CRISIS_URL_IASP } from "./crisis-resources.js";
 import { detectCrisisSignals, detectSafetySignals } from "./crisis-detection.js";
 import { detectEmotion } from "./emotion-detection.js";
@@ -603,7 +603,7 @@ function handleNeurodiversityDesign(input: Record<string, unknown>, boundaryNoti
   }
 
   if (checkFocus("dyslexia") || checkFocus("reading") || lower.includes("text") || lower.includes("font")) {
-    recommendations.push("Use a minimum 16px body font size and 1.5× line height to improve readability");
+    recommendations.push(`Use a minimum ${MIN_BODY_FONT_PX}px body font size and ${MIN_LINE_HEIGHT_FACTOR}× line height to improve readability`);
     recommendations.push("Avoid fully justified text — ragged-right alignment is easier for dyslexic readers");
     recommendations.push("Sans-serif fonts (e.g. Open Sans, Atkinson Hyperlegible) are generally preferred over serif");
     recommendations.push("Offer a reading mode or high-contrast mode toggle");
@@ -658,7 +658,7 @@ function handleAgeInclusiveDesign(input: Record<string, unknown>, boundaryNotice
     groups.length === 0 || groups.some(g => g.includes(term));
 
   if (includesGroup("older") || includesGroup("senior") || includesGroup("elder") || includesGroup("60")) {
-    recommendations.push("Minimum touch target size of 44×44px — larger is better for reduced motor precision");
+    recommendations.push(`Minimum touch target size of ${MIN_TOUCH_TARGET_PX}×${MIN_TOUCH_TARGET_PX}px — larger is better for reduced motor precision`);
     recommendations.push("Avoid time-limited sessions or actions — older users may need more time to read and decide");
     recommendations.push("Provide large, high-contrast text options — default minimum 18px for body text");
     recommendations.push("Use plain language and avoid jargon, acronyms, and digital-native shorthand");

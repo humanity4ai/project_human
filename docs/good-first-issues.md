@@ -77,7 +77,7 @@ These were originally listed as good first issues and have since been resolved:
 
 | Issue | Title | Resolution |
 |-------|-------|------------|
-| [#12](https://github.com/humanity4ai/project_human/issues/12) | Add MCP schema examples for all actions | Done — `mcp-servers/examples/` has 10 complete request/response example files |
+| [#12](https://github.com/humanity4ai/project_human/issues/12) | Add MCP schema examples for all actions | Done — `mcp-servers/examples/` has 11 complete request/response example files |
 | [#13](https://github.com/humanity4ai/project_human/issues/13) | Generate markdown eval report output | Done — `EVAL_REPORT=1 pnpm evals` writes `evals/reports/latest.md`; documented in `evals/README.md` |
 | [#14](https://github.com/humanity4ai/project_human/issues/14) | Add new adapter walkthrough for one agent platform | Done — LangChain adapter walkthrough added to `docs/agent-adapters.md` |
 | [#15](https://github.com/humanity4ai/project_human/issues/15) | Improve README first-contribution flow | Done — README now has copy-paste git commands, branch instructions, and troubleshooting table |

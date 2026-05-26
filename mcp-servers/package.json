@@ -8,7 +8,7 @@
     "node": ">=20",
     "pnpm": ">=10"
   },
-  "engineStrict": true,
+
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -34,7 +34,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "publish-branch": "main",
+
   "bin": {
     "@humanity4ai/mcp-servers": "./dist/bin.js"
   },

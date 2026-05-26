@@ -1,0 +1,1 @@
+{"version":3,"file":"crisis-detection.d.ts","sourceRoot":"","sources":["../src/crisis-detection.ts"],"names":[],"mappings":"AAUA,MAAM,WAAW,qBAAqB;IACpC,QAAQ,EAAE,OAAO,CAAC;IAClB,eAAe,EAAE,MAAM,EAAE,CAAC;CAC3B;AAED;;;GAGG;AACH,wBAAgB,mBAAmB,CAAC,IAAI,EAAE,MAAM,GAAG,qBAAqB,CAgBvE;AAED;;;GAGG;AACH,wBAAgB,mBAAmB,CAAC,SAAS,EAAE,MAAM,GAAG,OAAO,CAQ9D"}

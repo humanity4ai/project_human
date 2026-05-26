@@ -118,7 +118,7 @@ All tool responses return a single `text` content item containing a JSON-encoded
 
 ---
 
-## Available Tools (10)
+## Available Tools (11)
 
 | Tool name | Skill |
 |-----------|-------|
@@ -132,5 +132,6 @@ All tool responses return a single `text` content item containing a JSON-encoded
 | `grief_support_response` | Grief & Loss Support |
 | `neurodiversity_design_check` | Neurodiversity-Aware Design |
 | `age_inclusive_design_check` | Age-Inclusive Design |
+| `wcagaa_check` | WCAG AA Accessibility |
 
 See [`mcp-servers/README.md`](../mcp-servers/README.md) for full tool reference and input/output schemas.
