@@ -1,0 +1,21 @@
+name: accessibility
+version: 1.0.0
+status: active
+category: accessibility
+summary: Unified WCAG 2.2 accessibility audit — site-wide crawl mode with per-page scoring and session mode with WCAG checklist enforcement
+boundaries:
+  - Compliance guidance only; does not replace legal review
+actions:
+  - id: accessibility_audit
+    input_schema: ./schemas/accessibility.input.json
+    output_schema: ./schemas/accessibility.output.json
+uncertainty:
+  confidence: medium
+  contested: false
+  cultural_scope: global
+provenance:
+  sources:
+    - internal
+    - wcag-aaa-accessibility
+    - wcag-aa-accessibility
+  license: MIT
