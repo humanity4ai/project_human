@@ -4,7 +4,7 @@
 
 - Added 10 launch skill packs with required artifacts
 - Added MCP action contract registry and JSON schemas for all skills
-- Added contract-first runtime server with `list_actions` and `invoke`
+- Added contract-first runtime server with `tools/list` and `tools/call`
 - Added baseline eval harness and global rubric
 - Added governance, contribution process, and issue/PR templates
 - Added launch communication assets and platform integration notes

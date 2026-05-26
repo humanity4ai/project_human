@@ -23,7 +23,7 @@ All 11 checks should pass.
 ## Step 2: Start the server
 
 ```bash
-pnpm start:mcp
+pnpm start
 ```
 
 You will see on stderr:
@@ -31,7 +31,7 @@ You will see on stderr:
 ```
 Humanity4AI MCP Server v0.1.0
 Actions: 10 registered
-Protocol: line-delimited JSON (see docs/protocol.md)
+Protocol: JSON-RPC 2.0 over stdio (see docs/protocol.md)
 Ready — waiting for requests on stdin
 ```
 
@@ -42,7 +42,7 @@ Ready — waiting for requests on stdin
 In a second terminal:
 
 ```bash
-echo '{"id":"1","type":"list_actions"}' \
+echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' \
   | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
@@ -57,7 +57,7 @@ Response: a JSON array of 10 action contracts, each with `skill`, `action`, `inp
 ```bash
 echo '{
   "id":"wcag-1",
-  "type":"invoke",
+  "method":"tools/call",
   "payload":{
     "action":"wcagaaa_check",
     "input":{"target":"https://example.com/signup","level":"AAA"}
@@ -74,7 +74,7 @@ Returns: `findings[]` with severity, issue, and fix for each accessibility probl
 ```bash
 echo '{
   "id":"dsc-1",
-  "type":"invoke",
+  "method":"tools/call",
   "payload":{
     "action":"rewrite_depression_sensitive_content",
     "input":{
@@ -94,7 +94,7 @@ Returns: `result` (rewritten text), `safety_flags[]`, `review_recommended`.
 ```bash
 echo '{
   "id":"sc-1",
-  "type":"invoke",
+  "method":"tools/call",
   "payload":{
     "action":"supportive_reply",
     "input":{"message":"I feel overwhelmed and stuck","risk_level":"medium"}
@@ -111,7 +111,7 @@ Returns: `reply`, `escalation_guidance[]`, `boundaries_notice`.
 ```bash
 echo '{
   "id":"ca-1",
-  "type":"invoke",
+  "method":"tools/call",
   "payload":{
     "action":"cognitive_accessibility_audit",
     "input":{
@@ -131,7 +131,7 @@ Returns: `findings[]`, `recommendations[]`.
 ```bash
 echo '{
   "id":"cs-1",
-  "type":"invoke",
+  "method":"tools/call",
   "payload":{
     "action":"cultural_context_check",
     "input":{
@@ -152,7 +152,7 @@ Returns: `adapted_message`, `notes[]`, `uncertainty`.
 ```bash
 echo '{
   "id":"cde-1",
-  "type":"invoke",
+  "method":"tools/call",
   "payload":{
     "action":"deescalation_plan",
     "input":{
@@ -172,7 +172,7 @@ Returns: `plan[]` (step-by-step), `risk_notes[]`.
 ```bash
 echo '{
   "id":"ec-1",
-  "type":"invoke",
+  "method":"tools/call",
   "payload":{
     "action":"empathetic_reframe",
     "input":{
@@ -192,7 +192,7 @@ Returns: `reframed_message`, `rationale[]`, `escalation_guidance[]`.
 ```bash
 echo '{
   "id":"gls-1",
-  "type":"invoke",
+  "method":"tools/call",
   "payload":{
     "action":"grief_support_response",
     "input":{
@@ -212,7 +212,7 @@ Returns: `reply`, `care_notes[]`, `escalation_guidance[]`.
 ```bash
 echo '{
   "id":"nd-1",
-  "type":"invoke",
+  "method":"tools/call",
   "payload":{
     "action":"neurodiversity_design_check",
     "input":{
@@ -232,7 +232,7 @@ Returns: `recommendations[]`, `tradeoffs[]`.
 ```bash
 echo '{
   "id":"aid-1",
-  "type":"invoke",
+  "method":"tools/call",
   "payload":{
     "action":"age_inclusive_design_check",
     "input":{
@@ -254,7 +254,7 @@ Input validation errors return `ok: false`:
 ```bash
 echo '{
   "id":"err-1",
-  "type":"invoke",
+  "method":"tools/call",
   "payload":{
     "action":"supportive_reply",
     "input":{}
@@ -274,7 +274,7 @@ Response:
 
 Before going live with any integration:
 
-- [ ] Confirm `list_actions` returns 10 actions
+- [ ] Confirm `tools/list` returns 11 tools
 - [ ] Test each action with a valid input — confirm `ok: true`
 - [ ] Test each action with missing required fields — confirm `ok: false` with descriptive error
 - [ ] Verify `boundaryNotice` is displayed or logged for all sensitive skill actions
