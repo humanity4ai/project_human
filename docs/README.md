@@ -13,7 +13,7 @@ For LLM-native discovery, start with [`/llms.txt`](../llms.txt) at the repositor
 | I want to... | Go to |
 |---|---|
 | Understand the project's values | [Core Principles](../knowledge-core/principles.md) |
-| Start the MCP server | [README — MCP Runtime v0.1](../README.md#mcp-runtime-v01) |
+| Start the MCP server | [README — MCP Runtime v1.0](../README.md#mcp-runtime-v01) |
 | See all 10 tool signatures | [llms.txt — Tool Signatures](../llms.txt#tool-signatures) |
 | Integrate with Claude / Cursor / n8n | [Agent Adapter Guide](./agent-adapters.md) |
 | Read a specific skill specification | [Skill Reference](#skill-reference) below |
@@ -38,7 +38,7 @@ The following files establish the foundational principles and vocabulary of the 
 
 ## MCP Server
 
-The MCP server is the primary runtime for all 10 skills. It implements the official `@modelcontextprotocol/sdk` JSON-RPC 2.0 protocol over stdio.
+The MCP server is the primary runtime for all 11 skills. It implements the official `@modelcontextprotocol/sdk` JSON-RPC 2.0 protocol over stdio.
 
 | Document | Description |
 |---|---|

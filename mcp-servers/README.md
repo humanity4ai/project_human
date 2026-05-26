@@ -58,7 +58,7 @@ Or use `npx` once published to npm (no local clone needed):
 
 ---
 
-## Available Tools (10 skills)
+## Available Tools (11 skills)
 
 | Tool name | Skill | Description |
 |-----------|-------|-------------|

@@ -1,4 +1,4 @@
-# Humanity4AI v0.1.0-alpha
+# Humanity4AI v1.0.0
 
 ## Highlights
 
@@ -11,5 +11,5 @@
 
 ## Known Limits
 
-- v0.1 is contract-first; full runtime adapters are planned for v0.2+
+- v1.0 is contract-first; full runtime adapters are planned for v1.1+
 - Evaluation is structural baseline and should be expanded with qualitative scoring suites

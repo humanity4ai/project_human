@@ -56,7 +56,7 @@ describe("invokeAction — dispatch and validation", () => {
     if (!result.ok) expect(result.error).toContain("Input validation failed");
   });
 
-  it("H-5: all 10 actions return ok:true with valid inputs", () => {
+  it("H-5: all 11 actions return ok:true with valid inputs", () => {
     for (const [action, input] of Object.entries(ALL_VALID_INPUTS)) {
       const result = callRaw(action, input);
       expect(result.ok, `action ${action} should return ok:true`).toBe(true);

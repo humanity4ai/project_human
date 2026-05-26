@@ -1,6 +1,6 @@
 # Integrations
 
-Humanity4AI is contract-first in v0.1. Runtime adapters can be implemented per platform using MCP action schemas in `mcp-servers/schemas/`.
+Humanity4AI is contract-first in v1.0. Runtime adapters can be implemented per platform using MCP action schemas in `mcp-servers/schemas/`.
 
 ## OpenCode
 

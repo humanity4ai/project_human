@@ -36,7 +36,7 @@
   },
   "publish-branch": "main",
   "bin": {
-    "humanity4ai-mcp": "./dist/bin.js"
+    "@humanity4ai/mcp-servers": "./dist/bin.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

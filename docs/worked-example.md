@@ -2,7 +2,7 @@
 
 **Copyright (c) 2026 Ascent Partners Foundation. MIT License.**
 
-This guide walks through a complete integration from install to invoking all 10 skill actions.
+This guide walks through a complete integration from install to invoking all 11 skill actions.
 
 ---
 
@@ -29,8 +29,8 @@ pnpm start
 You will see on stderr:
 
 ```
-Humanity4AI MCP Server v0.1.0
-Actions: 10 registered
+Humanity4AI MCP Server v1.0.0
+Actions: 11 registered
 Protocol: JSON-RPC 2.0 over stdio (see docs/protocol.md)
 Ready — waiting for requests on stdin
 ```
@@ -46,7 +46,7 @@ echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' \
   | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
-Response: a JSON array of 10 action contracts, each with `skill`, `action`, `inputSchemaPath`, `outputSchemaPath`, `safetyBoundary`.
+Response: a JSON array of 11 action contracts, each with `skill`, `action`, `inputSchemaPath`, `outputSchemaPath`, `safetyBoundary`.
 
 ---
 

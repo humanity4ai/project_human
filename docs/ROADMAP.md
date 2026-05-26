@@ -1,6 +1,6 @@
 # Roadmap
 
-## v0.1 (Completed)
+## v1.0 (Current)
 
 - 10 launch skills with structured artifacts
 - MCP action contracts and schema set

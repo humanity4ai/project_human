@@ -29,7 +29,7 @@ Before calling any tools, clients must send an `initialize` request:
 Response:
 
 ```json
-{"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2024-11-05","capabilities":{"tools":{}},"serverInfo":{"name":"humanity4ai-mcp","version":"0.1.0"}}}
+{"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2024-11-05","capabilities":{"tools":{}},"serverInfo":{"name":"humanity4ai-mcp","version":"1.0.0"}}}
 ```
 
 ---
@@ -40,7 +40,7 @@ Response:
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
 ```
 
-Response includes all 10 registered tools with their name, description, and input schema.
+Response includes all 11 registered tools with their name, description, and input schema.
 
 ---
 
