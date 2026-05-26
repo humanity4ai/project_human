@@ -2,7 +2,7 @@
 
 MCP action contracts and server runtime for Humanity4AI skills.
 
-All 11 humanity skills are exposed as standard MCP tools using the official `@modelcontextprotocol/sdk` JSON-RPC 2.0 protocol, natively compatible with Claude Code, Copilot, Manus AI, OpenCode, LangChain, and any other MCP SDK client.
+All 10 humanity skills are exposed as standard MCP tools using the official `@modelcontextprotocol/sdk` JSON-RPC 2.0 protocol, natively compatible with Claude Code, Copilot, Manus AI, OpenCode, LangChain, and any other MCP SDK client.
 
 ---
 
@@ -25,7 +25,7 @@ pnpm --filter @humanity4ai/mcp-servers start
 ```
 
 The server starts on **stdio** using the official MCP SDK JSON-RPC 2.0 protocol.
-All 11 humanity skills are registered as MCP tools and discoverable via `tools/list`.
+All 10 humanity skills are registered as MCP tools and discoverable via `tools/list`.
 
 ### 3. Configure your MCP client
 
@@ -58,7 +58,7 @@ Or use `npx` once published to npm (no local clone needed):
 
 ---
 
-## Available Tools (11 skills)
+## Available Tools (10 skills)
 
 | Tool name | Skill | Description |
 |-----------|-------|-------------|

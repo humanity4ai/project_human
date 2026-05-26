@@ -42,12 +42,12 @@ The MCP server is the primary runtime for all 11 skills. It implements the offic
 
 | Document | Description |
 |---|---|
-| [MCP Server README](../mcp-servers/README.md) | Full reference for all 11 tools, including input/output schemas. |
+| [MCP Server README](../mcp-servers/README.md) | Full reference for all 10 tools, including input/output schemas. |
 | [Agent Adapter Guide](./agent-adapters.md) | Step-by-step integration examples for all major agent platforms. |
 | [Protocol Specification](./protocol.md) | The formal protocol specification for the MCP server. |
-| [Action Contracts Source](../mcp-servers/src/index.ts) | TypeScript source for all 11 action contracts. |
+| [Action Contracts Source](../mcp-servers/src/index.ts) | TypeScript source for all 10 action contracts. |
 | [MCP Server Source](../mcp-servers/src/mcp-server.ts) | Full MCP server implementation with tool registrations. |
-| [Handler Source](../mcp-servers/src/handlers.ts) | All 11 action handler implementations. |
+| [Handler Source](../mcp-servers/src/handlers.ts) | All 10 action handler implementations. |
 
 ---
 

@@ -118,7 +118,7 @@ All tool responses return a single `text` content item containing a JSON-encoded
 
 ---
 
-## Available Tools (11)
+## Available Tools (10)
 
 | Tool name | Skill |
 |-----------|-------|
