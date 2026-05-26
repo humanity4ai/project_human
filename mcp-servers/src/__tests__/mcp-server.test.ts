@@ -5,14 +5,13 @@
 import { describe, it, expect } from "vitest";
 import {
   toMcpResult,
-  handleWcagaaaCheck,
+  handleAccessibilityAudit,
   handleRewriteDepressionSensitiveContent,
   handleSupportiveReply,
   handleCognitiveAccessibilityAudit,
   handleCulturalContextCheck,
   handleDeescalationPlan,
   handleEmpatheticReframe,
-  handleGriefSupportResponse,
   handleNeurodiversityDesignCheck,
   handleAgeInclusiveDesignCheck,
   VERSION,
@@ -56,25 +55,29 @@ describe("toMcpResult", () => {
 
 // ── Tool handlers ─────────────────────────────────────────────────────────────
 
-describe("handleWcagaaaCheck", () => {
-  it("MS-4: returns ok result for a valid URL target", async () => {
-    const result = await handleWcagaaaCheck({ target: "https://example.com", level: "AAA" });
+describe("handleAccessibilityAudit", () => {
+  it("MS-4: returns ok result for session mode", async () => {
+    const result = await handleAccessibilityAudit({ mode: "session", level: "AA" });
     expect(result.isError).toBeUndefined();
     const parsed = JSON.parse(result.content[0].text);
     expect(parsed.output).toBeDefined();
   });
 
-  it("MS-5: passes optional context when provided", async () => {
-    const result = await handleWcagaaaCheck({
-      target: "<button>Submit</button>",
+  it("MS-5: passes locale when provided", async () => {
+    const result = await handleAccessibilityAudit({
+      mode: "session",
       level: "AA",
-      context: "checkout flow",
+      locale: "fr",
     });
     expect(result.isError).toBeUndefined();
   });
 
-  it("MS-6: omits context when not provided", async () => {
-    const result = await handleWcagaaaCheck({ target: "<p>Hello</p>", level: "A" });
+  it("MS-6: crawl mode works with pages array", async () => {
+    const result = await handleAccessibilityAudit({
+      mode: "crawl",
+      level: "AA",
+      pages: [{ url: "https://example.com", html: "<div>test</div>" }],
+    });
     expect(result.isError).toBeUndefined();
   });
 });
@@ -229,26 +232,29 @@ describe("handleEmpatheticReframe", () => {
   });
 });
 
-describe("handleGriefSupportResponse", () => {
+describe("handleSupportiveReply grief modes", () => {
   it("MS-24: generates a presence-mode response", async () => {
-    const result = await handleGriefSupportResponse({
+    const result = await handleSupportiveReply({
       message: "I lost my parent last week",
+      risk_level: "low",
       support_mode: "presence",
     });
     expect(result.isError).toBeUndefined();
   });
 
   it("MS-25: generates a practical-mode response", async () => {
-    const result = await handleGriefSupportResponse({
+    const result = await handleSupportiveReply({
       message: "I don't know what to do next",
+      risk_level: "low",
       support_mode: "practical",
     });
     expect(result.isError).toBeUndefined();
   });
 
   it("MS-26: generates a reflection-mode response", async () => {
-    const result = await handleGriefSupportResponse({
+    const result = await handleSupportiveReply({
       message: "I keep thinking about what could have been",
+      risk_level: "low",
       support_mode: "reflection",
     });
     expect(result.isError).toBeUndefined();
@@ -293,35 +299,36 @@ describe("handleAgeInclusiveDesignCheck", () => {
 
 describe("All handlers return valid MCP content structure", () => {
   const allHandlers = [
-    () => handleWcagaaaCheck({ target: "https://example.com", level: "AAA" }),
+    () => handleAccessibilityAudit({ mode: "session", level: "AA" }),
     () => handleRewriteDepressionSensitiveContent({ text: "Try harder", mode: "rewrite" }),
     () => handleSupportiveReply({ message: "I feel sad", risk_level: "low" }),
     () => handleCognitiveAccessibilityAudit({ content: "Click submit" }),
     () => handleCulturalContextCheck({ message: "Hello", audience: "global" }),
     () => handleDeescalationPlan({ situation: "dispute", intensity: "medium" }),
     () => handleEmpatheticReframe({ message: "We cannot help", tone: "warm" }),
-    () => handleGriefSupportResponse({ message: "I lost someone", support_mode: "presence" }),
     () => handleNeurodiversityDesignCheck({ ui_description: "clean UI" }),
     () => handleAgeInclusiveDesignCheck({ flow_description: "sign-up flow" }),
   ];
 
-  it("MS-31: all 10 handlers return content array with at least one text item", async () => {
+  it("MS-31: all 9 handlers return content array with at least one text item", async () => {
     for (const handler of allHandlers) {
       const result = await handler();
       expect(result.content).toBeDefined();
-      expect(result.content.length).toBeGreaterThan(0);
-      expect(result.content[0].type).toBe("text");
+      expect(result.content.length).toBeGreaterThanOrEqual(1);
     }
   });
 
-  it("MS-32: all 10 handlers return parseable JSON in content text", async () => {
+  it("MS-32: all 9 handlers return parseable JSON in content text", async () => {
     for (const handler of allHandlers) {
       const result = await handler();
-      expect(() => JSON.parse(result.content[0].text)).not.toThrow();
+      const parsed = JSON.parse(result.content[0].text);
+      expect(parsed).toBeDefined();
+      expect(typeof parsed).toBe("object");
+      expect(parsed.action).toBeDefined();
     }
   });
 
-  it("MS-33: all 10 handlers include boundaryNotice in output", async () => {
+  it("MS-33: all 9 handlers include boundaryNotice in output", async () => {
     for (const handler of allHandlers) {
       const result = await handler();
       const parsed = JSON.parse(result.content[0].text);

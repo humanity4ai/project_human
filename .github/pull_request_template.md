@@ -48,7 +48,7 @@ $ pnpm test
 - [ ] No clinical diagnosis, treatment plans, or medical advice content
 - [ ] No legal advice content
 - [ ] Safety boundaries are explicit in all modified `skill.yaml` files
-- [ ] Safety-critical skills (`supportive-conversation`, `grief-loss-support`, `depression-sensitive-content`) include escalation language in boundaries
+- [ ] Safety-critical skills (`supportive-conversation`, `depression-sensitive-content`) include escalation language in boundaries
 - [ ] Crisis-adjacent content routes to professional resources, not AI responses
 
 ## Quality Checklist

@@ -176,7 +176,7 @@ Graduation from development to stable. 11 skills, 236 MCP tests, 32 eval tests.
 ## 0.1.0
 
 - Initial version
-### grief-loss-support
+### supportive-conversation (merged grief-loss-support)
 # Changelog
 
 ## 0.2.0

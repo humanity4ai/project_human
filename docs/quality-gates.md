@@ -29,7 +29,7 @@ For each skill in `skills/`:
 These 3 skills require additional escalation language in boundaries:
 
 - `supportive-conversation`
-- `grief-loss-support`
+- `supportive-conversation`
 - `depression-sensitive-content`
 
 For safety-critical skills, `skill.yaml.boundaries` must include escalation language.
@@ -54,7 +54,7 @@ PASS  conflict-de-escalation
 PASS  cultural-sensitivity
 PASS  depression-sensitive-content
 PASS  empathetic-communication
-PASS  grief-loss-support
+PASS  supportive-conversation
 PASS  neurodiversity-aware-design
 PASS  supportive-conversation
 PASS  wcag-aaa-accessibility

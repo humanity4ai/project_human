@@ -7,7 +7,7 @@ Each category has a display name and a canonical kebab-case slug for use in `ski
 | # | Display Name | Slug (`category` field) | Assigned skills |
 |---|-------------|------------------------|-----------------|
 | 1 | Accessibility | `accessibility` | wcag-aaa-accessibility |
-| 2 | Emotional Safety | `emotional-safety` | depression-sensitive-content, grief-loss-support, supportive-conversation |
+| 2 | Emotional Safety | `emotional-safety` | depression-sensitive-content, supportive-conversation |
 | 3 | Communication | `communication` | empathetic-communication |
 | 4 | Cognitive Support | `cognitive-support` | cognitive-accessibility |
 | 5 | Cultural Context | `cultural-context` | cultural-sensitivity |

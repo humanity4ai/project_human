@@ -4,7 +4,7 @@ This map translates manifesto principles into concrete repository work.
 
 ## 1) Dignity and non-exploitation
 
-- **Repository artifacts**: `skills/supportive-conversation/`, `skills/depression-sensitive-content/`, `skills/grief-loss-support/`
+- **Repository artifacts**: `skills/supportive-conversation/`, `skills/depression-sensitive-content/`
 - **Implementation focus**: refine language boundaries to avoid coercion, manipulation, and pseudo-clinical authority.
 - **Acceptance criteria**:
   - boundary language explicitly forbids diagnosis and legal advice

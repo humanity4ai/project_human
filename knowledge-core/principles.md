@@ -36,7 +36,7 @@ generalizations. These judgment calls are context-dependent.
 contexts must include explicit boundaries, escalation paths, and crisis resources.
 
 **Implementation**: Each action contract declares a `safetyBoundary`. Three safety-critical
-skills (supportive-conversation, grief-loss-support, depression-sensitive-content)
+skills (supportive-conversation, depression-sensitive-content)
 include crisis detection and escalation. Crisis resources are centralised in
 `crisis-resources.ts`.
 

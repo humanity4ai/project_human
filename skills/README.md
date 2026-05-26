@@ -12,7 +12,7 @@ This directory contains the 11 launch skill packs for Humanity4AI v1.0. Each ski
 | [`cultural-sensitivity`](./cultural-sensitivity/) | `cultural-context` | Design for cultural inclusivity. |
 | [`depression-sensitive-content`](./depression-sensitive-content/) | `emotional-safety` | Audit and rewrite content to reduce stigma and improve emotional safety. |
 | [`empathetic-communication`](./empathetic-communication/) | `communication` | Improve emotional resonance in communication. |
-| [`grief-loss-support`](./grief-loss-support/) | `emotional-safety` | Offer non-clinical, compassionate support language for grief and loss. |
+| [`supportive-conversation`](./supportive-conversation/) | `emotional-safety` | Offer non-clinical, compassionate support language for grief, loss, and emotional distress. |
 | [`neurodiversity-aware-design`](./neurodiversity-aware-design/) | `neurodiversity` | Design for diverse cognitive processing. |
 | [`supportive-conversation`](./supportive-conversation/) | `communication` | Generate supportive responses with safety boundaries. |
 | [`wcag-aaa-accessibility`](./wcag-aaa-accessibility/) | `accessibility` | Audit a webpage or HTML for WCAG 2.2 AAA compliance. |

@@ -18,6 +18,13 @@
     "boundaries_notice": {
       "type": "string",
       "description": "Safety boundary notice for this action"
+    },
+    "care_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Care notes specific to grief support modes (presence, practical, reflection)"
     }
   },
   "additionalProperties": false,

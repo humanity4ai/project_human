@@ -1,11 +1,17 @@
 name: supportive-conversation
-version: 0.2.0
+version: 0.3.0
 status: active
-category: communication
-summary: Supportive conversation techniques for emotional support
+category: emotional-safety
+summary: Supportive conversation techniques for emotional support, including grief-specific modes
 tags:
   - support
   - conversation
+  - grief
+  - bereavement
+  - loss
+  - emotional-support
+  - compassionate
+  - non-clinical
 boundaries:
   - Non-therapeutic support only
   - Escalate to professional help when risk signals detected
@@ -15,11 +21,14 @@ actions:
     output_schema: ../../mcp-servers/schemas/supportive-conversation.output.json
 uncertainty:
   confidence: medium
-  contested: false
+  contested: true
   cultural_scope: global
 provenance:
   sources:
     - internal-curation
+    - stroebe-schut-1999
+    - neimeyer-2001
+    - apa-grief-guidelines
   license: MIT
 references:
   - name: Skill References

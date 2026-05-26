@@ -27,7 +27,6 @@ const VALID_CATEGORIES = new Set([
 // Skills that must include escalation language in boundaries
 const ESCALATION_REQUIRED_SKILLS = new Set([
   "supportive-conversation",
-  "grief-loss-support",
   "depression-sensitive-content"
 ]);
 
@@ -153,7 +152,7 @@ export function evaluateSkill(skillDir: string): EvalResult {
   return { skill: skillName, pass: issues.length === 0, issues };
 }
 
-export function evaluateContractConsistency(skillsRoot: string, repoRoot: string): EvalResult {
+export async function evaluateContractConsistency(skillsRoot: string, repoRoot: string): Promise<EvalResult> {
   const issues: string[] = [];
 
   const skillDirs = readdirSync(skillsRoot)
@@ -191,24 +190,22 @@ export function evaluateContractConsistency(skillsRoot: string, repoRoot: string
     const actionId = action.id;
     try {
       const testInputs: Record<string, Record<string, unknown>> = {
-        wcagaaa_check: { target: "https://example.com", level: "AAA" },
+        accessibility_audit: { mode: "crawl", pages: [{ url: "https://example.com", html: "<html lang='en'><head><title>Test</title></head><body><main id='main-content'><h1>Hello</h1></main></body></html>" }], level: "AA" },
         rewrite_depression_sensitive_content: { text: "test", mode: "audit" },
         supportive_reply: { message: "hello", risk_level: "low" },
         cognitive_accessibility_audit: { content: "test content" },
         cultural_context_check: { message: "hello", audience: "general" },
         deescalation_plan: { situation: "test", intensity: "low" },
         empathetic_reframe: { message: "test", tone: "neutral" },
-        grief_support_response: { message: "test", support_mode: "presence" },
         neurodiversity_design_check: { ui_description: "test" },
         age_inclusive_design_check: { flow_description: "test" },
         // Crisis test inputs for safety-critical skills
         wcagaaa_check_crisis: {} as Record<string, unknown>,
         rewrite_depression_sensitive_content_crisis: { text: "I have suicidal thoughts", mode: "audit" },
         supportive_reply_crisis: { message: "I want to kill myself", risk_level: "low" },
-        grief_support_response_crisis: { message: "I want to end my life", support_mode: "presence" },
       };
 
-      const result = invokeAction(actionId, (testInputs[actionId] || { target: "test" }) as Record<string, unknown>);
+      const result = await invokeAction(actionId, (testInputs[actionId] || { target: "test" }) as Record<string, unknown>);
       if (!result.ok) {
         issues.push(`Handler '${actionId}' returned error: ${result.error}`);
         continue;
@@ -238,10 +235,10 @@ export function evaluateContractConsistency(skillsRoot: string, repoRoot: string
       }
 
       // Crisis resource check for safety-critical skills
-      const safetyCritical = ["supportive_reply", "grief_support_response", "rewrite_depression_sensitive_content"];
+      const safetyCritical = ["supportive_reply", "rewrite_depression_sensitive_content"];
       if (safetyCritical.includes(actionId)) {
         const crisisInput = (testInputs[actionId + "_crisis"] || testInputs[actionId]) as Record<string, unknown>;
-        const crisisResult = invokeAction(actionId, crisisInput);
+        const crisisResult = await invokeAction(actionId, crisisInput);
         if (crisisResult.ok) {
           const crisisOutput = crisisResult.data.output as Record<string, unknown>;
           const crisisText = JSON.stringify(crisisOutput);
@@ -300,7 +297,7 @@ function main(): void {
     .filter((fullPath: string) => statSync(fullPath).isDirectory());
 
   const results = skillDirs.map(evaluateSkill);
-  results.push(evaluateContractConsistency(skillsRoot, repoRoot));
+  results.push(await evaluateContractConsistency(skillsRoot, repoRoot));
 
   const failures = results.filter((r: EvalResult) => !r.pass);
 

@@ -231,21 +231,21 @@ describe("validateInput — cultural-sensitivity schema", () => {
   });
 });
 
-// ─── validateInput — grief-loss-support schema ───────────────────────────────
+// ─── validateInput — supportive-conversation support_mode ─────────────────
 
-describe("validateInput — grief-loss-support schema", () => {
-  it("V-25: valid support_mode presence passes", () => {
+describe("validateInput — supportive-conversation support_mode", () => {
+  it("V-25: valid grief support_mode presence passes", () => {
     const result = validateInput(
-      "schemas/grief-loss-support.input.json",
-      { message: "I lost my parent", support_mode: "presence" }
+      "schemas/supportive-conversation.input.json",
+      { message: "I lost my parent", risk_level: "low", support_mode: "presence" }
     );
     expect(result.valid).toBe(true);
   });
 
   it("V-26: invalid support_mode fails enum check", () => {
     const result = validateInput(
-      "schemas/grief-loss-support.input.json",
-      { message: "I lost my parent", support_mode: "therapy" }
+      "schemas/supportive-conversation.input.json",
+      { message: "I lost my parent", risk_level: "low", support_mode: "therapy" }
     );
     expect(result.valid).toBe(false);
     if (!result.valid) {
@@ -255,8 +255,8 @@ describe("validateInput — grief-loss-support schema", () => {
 
   it("V-27: empty support_mode fails", () => {
     const result = validateInput(
-      "schemas/grief-loss-support.input.json",
-      { message: "x", support_mode: "" }
+      "schemas/supportive-conversation.input.json",
+      { message: "x", risk_level: "low", support_mode: "" }
     );
     expect(result.valid).toBe(false);
   });

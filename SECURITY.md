@@ -34,7 +34,7 @@ Do not open a public GitHub issue for safety-critical reports. Use email only.
 The following skills require additional scrutiny before modification:
 
 - `supportive-conversation` — crisis-adjacent support patterns
-- `grief-loss-support` — bereavement-sensitive content
+- `supportive-conversation` (grief modes) — bereavement-sensitive content
 - `depression-sensitive-content` — emotional safety in UX
 
 Changes to these skills require explicit safety review and two maintainer approvals before merge.
