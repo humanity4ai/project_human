@@ -34,6 +34,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "publish-branch": "main",
   "bin": {
     "humanity4ai-mcp": "./dist/bin.js"
   },
