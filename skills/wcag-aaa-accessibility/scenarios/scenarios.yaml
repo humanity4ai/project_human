@@ -19,3 +19,28 @@ scenarios:
     prompt: Check skip links and landmark structure.
   - id: wcag-10
     prompt: Assess responsive layout for touch targets.
+
+  - id: a11y-ambiguous-color
+    title: "Ambiguous colour — cultural interpretation matters"
+    input: { target: "<div style='color:red;background:white'>Error</div>", level: "AA" }
+    expected: { findings_count: 5 }
+
+  - id: a11y-tradeoff-animation
+    title: "Tradeoff: animation helps dyslexia but harms motion sensitivity"
+    input: { target: "<div class='animated-guide' aria-label='Step-by-step guide'>Content</div>", level: "AAA" }
+    expected: { findings_count: 5 }
+
+  - id: a11y-rtr-arabic
+    title: "Right-to-left layout — Arabic support"
+    input: { target: "<html dir='rtl' lang='ar'><body><div>محتوى</div></body></html>", level: "AA" }
+    expected: { findings_count: 5 }
+
+  - id: a11y-high-contrast-vs-readability
+    title: "Tradeoff: high contrast helps low vision, may cause glare for some"
+    input: { target: "<div style='color:#000;background:#fff'>Maximum contrast text</div>", level: "AAA" }
+    expected: { findings_count: 5 }
+
+  - id: a11y-captcha-accessibility
+    title: "CAPTCHA creates barrier for multiple disability types"
+    input: { target: "<form><img src='captcha.png' alt='CAPTCHA'><input type='text' name='captcha'></form>", level: "AA" }
+    expected: { findings_count: 5 }
