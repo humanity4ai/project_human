@@ -1,6 +1,41 @@
 # Changelog
 
-All notable changes to the Humanity4AI project will be documented in this file.
+## [1.0.0] — 2026-05-26
+
+### Stable Release
+
+Graduation from development to stable. 11 skills, 236 MCP tests, 32 eval tests.
+
+### Skills
+- 10 original skills: WCAG AAA, depression-sensitive, supportive, cognitive, cultural, de-escalation, empathetic, grief, neurodiversity, age-inclusive
+- 1 new skill: WCAG AA (real scoring engine with 7 criteria, 0-100 per criterion)
+- All 11 skills have ≥ 10 scenarios each
+
+### Accessibility
+- WCAG AAA-compliant GitHub Pages site (skip-link, AAA contrast, prefers-reduced-motion, semantic landmarks)
+- WCAG AA scoring engine: colour contrast, keyboard nav, semantic HTML, ARIA, forms, headings, focus order
+
+### Safety
+- Centralised crisis resources (all phone numbers in single source of truth)
+- Shared crisis detection across 3 safety-critical handlers
+- Auto-risk assessment + emotion detection for supportive replies
+- Depression handler: 7 pattern categories (was 3)
+
+### Internationalisation
+- 9-language support: English, Chinese, Spanish, French, German, Japanese, Korean, Arabic, Portuguese
+- Localized replies, crisis resources, and WCAG category names
+
+### Developer Experience
+- 3-step onboarding (Install → Start → Configure)
+- Cross-platform: Windows, macOS, Linux, Android, iOS
+- Branch model: feature/* → main (single branch)
+- 220 MCP tests, 32 eval tests, 12 eval checks
+- CodeQL scanning, dependency review, enforce_admins branch protection
+
+### Repo
+- Directory restructured (docs/, consolidated root files, gitignored legacy/)
+- 19 GitHub topics, social preview, JSON-LD structured data
+- 27 issue labels, 4 milestones
 
 ## [0.2.0] — 2026-05-24 (in development)
 
