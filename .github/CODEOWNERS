@@ -1,6 +1,5 @@
 # Branch model:
-#   feature/* ──► development  (all contributor code — default branch)
-#   development ──► main        (planned releases only, by @simonplmak-cloud or @humanity4ai)
+#   feature/* → main  (all contributor code — default branch)
 #
 # CODEOWNERS applies to PRs targeting both development and main.
 
