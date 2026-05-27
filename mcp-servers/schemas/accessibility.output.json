@@ -60,9 +60,6 @@
     },
     "summary": {
       "type": "string"
-    },
-    "heuristic": {
-      "type": "boolean"
     }
   },
   "additionalProperties": false

@@ -26,9 +26,6 @@
       "items": {
         "type": "string"
       }
-    },
-    "uncertainty": {
-      "type": "string"
     }
   },
   "additionalProperties": false,

@@ -41,9 +41,13 @@ server. The server is published to npm and can be run with `npx`.
 | `accessibility_audit` | 2 modes: crawl (site-wide WCAG scoring) and session (WCAG checklist by level A/AA/AAA) |
 
 | Action | Description | Required Input | Optional Input | Output Fields |
-|---|---|---|---|---|
+|---|---|---|---|---|---|
 | `rewrite_depression_sensitive_content` | Rewrite content for emotional safety | `text` | `mode`, `domain` | `result`, `safety_flags`, `pattern_count`, `review_recommended`, `crisis_resources` |
 | `supportive_reply` | Generate a supportive, non-clinical reply with escalation guidance; includes grief support modes | `message`, `risk_level` | `locale`, `support_mode` | `reply`, `escalation_guidance`, `boundaries_notice`, `care_notes` |
+| `cognitive_accessibility_audit` | Audit content for cognitive accessibility | `content` | `target_context` | `findings`, `recommendations` |
+| `cultural_context_check` | Check a message for cultural sensitivity | `message`, `audience` | `region` | `adapted_message`, `notes`, `uncertainty` |
+| `deescalation_plan` | Generate a structured de-escalation plan | `situation` | `intensity` | `plan`, `risk_notes` |
+| `empathetic_reframe` | Reframe a message with genuine empathy | `message` | `tone` | `reframed_message`, `rationale`, `escalation_guidance` |
 | `neurodiversity_design_check` | Check a UI design for neurodiversity awareness | `ui_description` | `focus` | `recommendations`, `tradeoffs` |
 | `age_inclusive_design_check` | Check a user flow for age-inclusivity | `flow_description` | `age_groups` | `recommendations`, `access_notes` |
 
@@ -77,8 +81,7 @@ specification, including purpose, boundaries, and principles.
 | `empathetic-communication` | `communication` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/empathetic-communication/SKILL.md |
 | `supportive-conversation` | `emotional-safety` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/supportive-conversation/SKILL.md |
 | `neurodiversity-aware-design` | `neurodiversity` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/neurodiversity-aware-design/SKILL.md |
-| `supportive-conversation` | `communication` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/supportive-conversation/SKILL.md |
-| `wcag-aaa-accessibility` | `accessibility` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/wcag-aaa-accessibility/SKILL.md |
+| `accessibility` | `accessibility` | https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/accessibility/SKILL.md |
 
 ---
 
@@ -108,12 +111,12 @@ specification, including purpose, boundaries, and principles.
 
 ## 7. MCP Schemas
 
-All JSON input/output schemas for the 10 actions are available at:
+All JSON input/output schemas for the 9 actions are available at:
 
 | Schema | URL |
 |---|---|
-| `wcag-aaa-accessibility.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/wcag-aaa-accessibility.input.json |
-| `wcag-aaa-accessibility.output.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/wcag-aaa-accessibility.output.json |
+| `accessibility.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/accessibility.input.json |
+| `accessibility.output.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/accessibility.output.json |
 | `depression-sensitive-content.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/depression-sensitive-content.input.json |
 | `depression-sensitive-content.output.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/depression-sensitive-content.output.json |
 | `supportive-conversation.input.json` | https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/schemas/supportive-conversation.input.json |

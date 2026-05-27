@@ -4,8 +4,6 @@ description: Design for users of all ages. Use when user asks to 'make accessibl
 version: 0.2.0
 license: MIT
 author: project-human
-compatibility: Requires Python 3.8+
-allowed-tools: Bash(python3:*), Read, Write
 tags:
   - age-inclusive
   - elderly

@@ -4,8 +4,6 @@ description: Audit and rewrite content to reduce stigma, improve emotional safet
 version: 0.2.0
 license: MIT
 author: project-human
-compatibility: Requires Python 3.8+
-allowed-tools: Bash(python3:*), Read, Write
 tags:
   - mental-health
   - emotional-safety

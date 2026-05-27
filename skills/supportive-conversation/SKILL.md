@@ -4,8 +4,6 @@ description: Generate supportive responses with safety boundaries. Use when user
 version: 0.2.0
 license: MIT
 author: project-human
-compatibility: Requires Python 3.8+
-allowed-tools: Bash(python3:*), Read, Write
 tags:
   - support
   - conversation

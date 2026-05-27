@@ -38,12 +38,6 @@
       "type": "string",
       "default": "en",
       "description": "BCP 47 locale code"
-    },
-    "max_pages": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 100,
-      "description": "Maximum number of pages to process (truncates input)"
     }
   },
   "allOf": [

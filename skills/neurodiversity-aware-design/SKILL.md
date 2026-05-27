@@ -4,8 +4,6 @@ description: Design for diverse cognitive processing. Use when user asks to 'mak
 version: 0.2.0
 license: MIT
 author: project-human
-compatibility: Requires Python 3.8+
-allowed-tools: Bash(python3:*), Read, Write
 tags:
   - neurodiversity
   - ADHD
