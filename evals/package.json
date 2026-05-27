@@ -1,6 +1,10 @@
 {
   "name": "@humanity4ai/evals",
   "private": true,
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=10"
+  },
   "version": "0.1.0",
   "type": "module",
   "scripts": {
