@@ -1,0 +1,50 @@
+{
+  "request": {
+    "id": "a11y-example-1",
+    "type": "invoke",
+    "payload": {
+      "action": "accessibility_audit",
+      "input": {
+        "mode": "crawl",
+        "level": "AA",
+        "pages": [
+          {
+            "url": "https://example.com/signup",
+            "html": "<html lang='en'><head><title>Sign Up</title></head><body><main id='main'><h1>Create Account</h1><form><input type='text' placeholder='Name'><input type='email' placeholder='Email'><button>Submit</button></form></main></body></html>"
+          }
+        ]
+      }
+    }
+  },
+  "response": {
+    "id": "a11y-example-1",
+    "ok": true,
+    "data": {
+      "action": "accessibility_audit",
+      "boundaryNotice": "Compliance guidance only; does not replace legal review",
+      "uncertainty": "medium",
+      "assumptions": [
+        "WCAG 2.2 AA conformance level",
+        "Engine: regex-based heuristics (axe-core not installed)",
+        "Page count: 1",
+        "Automated checks cover ~40% of WCAG criteria — manual review required for full compliance"
+      ],
+      "output": {
+        "pages": [
+          {
+            "url": "https://example.com/signup",
+            "score": 55,
+            "findings": [
+              { "severity": "high", "issue": "Form inputs missing visible labels", "fix": "Add <label for='name'> or aria-label to each input" },
+              { "severity": "medium", "issue": "Missing skip navigation link", "fix": "Add <a href='#main' class='skip-link'>Skip to main content</a>" },
+              { "severity": "low", "issue": "Placeholder used as sole label", "fix": "Add visible <label> elements; placeholder is not a substitute for labels" }
+            ]
+          }
+        ],
+        "aggregateScore": 55,
+        "level": "AA",
+        "summary": "1 page scored at WCAG 2.2 AA. Aggregate score: 55/100. Manual review recommended."
+      }
+    }
+  }
+}

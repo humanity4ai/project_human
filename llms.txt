@@ -21,21 +21,21 @@ Start here to understand the project's foundational values.
 
 ## 2. How to Use the Skills (MCP Server)
 
-This project provides 10 skills via a standard MCP (Model Context Protocol)
+This project provides 9 skills via a standard MCP (Model Context Protocol)
 server. The server is published to npm and can be run with `npx`.
 
 - **Quick Start**: https://raw.githubusercontent.com/humanity4ai/project_human/development/README.md
   — How to start the MCP server (see section: MCP Runtime v0.1).
 - **Tool Reference**: https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/README.md
-  — Full reference for all 10 tools, including input/output schemas.
+  — Full reference for all 9 tools, including input/output schemas.
 - **Agent Adapter Guide**: https://raw.githubusercontent.com/humanity4ai/project_human/development/docs/agent-adapters.md
   — Integration examples for OpenCode, Claude, Cursor, Copilot, Manus AI, n8n, and LangChain.
 - **Action Contracts**: https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/src/index.ts
-  — TypeScript source for all 10 action contracts.
+  — TypeScript source for all 9 action contracts.
 - **MCP Server Source**: https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/src/mcp-server.ts
   — Full MCP server implementation with tool registrations.
 - **Handler Source**: https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/src/handlers.ts
-  — All 10 action handler implementations.
+  — All 9 action handler implementations.
 
 ### Tool Signatures
 | `accessibility_audit` | 2 modes: crawl (site-wide WCAG scoring) and session (WCAG checklist by level A/AA/AAA) |
@@ -43,12 +43,7 @@ server. The server is published to npm and can be run with `npx`.
 | Action | Description | Required Input | Optional Input | Output Fields |
 |---|---|---|---|---|
 | `rewrite_depression_sensitive_content` | Rewrite content for emotional safety | `text` | `mode`, `domain` | `result`, `safety_flags`, `pattern_count`, `review_recommended`, `crisis_resources` |
-| `supportive_reply` | Generate a supportive, non-clinical reply | `message`, `risk_level` | `locale` | `reply`, `escalation_guidance`, `boundaries_notice` |
-| `cognitive_accessibility_audit` | Audit content for cognitive accessibility | `content` | `target_context` | `findings`, `recommendations` |
-| `cultural_context_check` | Adapt a message for cultural context | `message`, `audience` | `region` | `adapted_message`, `notes`, `uncertainty` |
-| `deescalation_plan` | Create a de-escalation plan for a tense situation | `situation` | `intensity` | `plan`, `risk_notes` |
-| `empathetic_reframe` | Reframe a message with more empathy | `message` | `tone` | `reframed_message`, `rationale`, `escalation_guidance` |
-| `supportive_reply` (grief) | Generate a compassionate grief/loss response | `message`, `risk_level`, `support_mode` | `locale?` | `reply`, `care_notes`, `escalation_guidance` |
+| `supportive_reply` | Generate a supportive, non-clinical reply with escalation guidance; includes grief support modes | `message`, `risk_level` | `locale`, `support_mode` | `reply`, `escalation_guidance`, `boundaries_notice`, `care_notes` |
 | `neurodiversity_design_check` | Check a UI design for neurodiversity awareness | `ui_description` | `focus` | `recommendations`, `tradeoffs` |
 | `age_inclusive_design_check` | Check a user flow for age-inclusivity | `flow_description` | `age_groups` | `recommendations`, `access_notes` |
 
@@ -66,7 +61,7 @@ engineering.
 
 ## 4. Skill Reference
 
-This is the full list of all 10 skills. Each `SKILL.md` contains the full
+This is the full list of all 9 skills. Each `SKILL.md` contains the full
 specification, including purpose, boundaries, and principles.
 
 - **Skill Index**: https://raw.githubusercontent.com/humanity4ai/project_human/development/skills/index.yaml

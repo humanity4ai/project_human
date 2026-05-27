@@ -1,7 +1,7 @@
 # Humanity4AI — Full LLM Context (Single File)
 
 This file provides complete context for Large Language Models using the Humanity4AI
-skillset. It combines the system prompt, core principles, taxonomy, and all 10 SKILL.md
+skillset. It combines the system prompt, core principles, taxonomy, and all 9 SKILL.md
 files into a single file for one-shot loading.
 
 All links in this file use absolute raw.githubusercontent.com URLs pointing to the
@@ -35,8 +35,7 @@ See: https://raw.githubusercontent.com/humanity4ai/project_human/development/kno
 | 6 | empathetic-communication | communication | empathetic_reframe |
 | 7 | supportive-conversation | emotional-safety | supportive_reply |
 | 8 | neurodiversity-aware-design | neurodiversity | neurodiversity_design_check |
-| 9 | supportive-conversation | communication | supportive_reply |
-| 10 | wcag-aaa-accessibility | accessibility | wcagaaa_check |
+| 9 | accessibility | accessibility | accessibility_audit |
 
 ---
 ## SKILL.md Files

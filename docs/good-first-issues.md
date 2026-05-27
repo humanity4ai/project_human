@@ -41,7 +41,7 @@ Add 5+ new edge-case and ambiguity scenarios to 4 skills: `cultural-sensitivity`
 
 ## Manifesto-aligned Starter Ideas
 
-- Manifesto coverage audit across all 11 skills (docs + rubric links)
+- Manifesto coverage audit across all 9 skills (docs + rubric links)
 - Improve uncertainty signaling examples in supportive and conflict scenarios
 - Add contributor-facing checklist for manifesto-related PRs and tests
 
