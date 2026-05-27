@@ -21,6 +21,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import { invokeAction } from "./handlers.js";
 import { actionContracts } from "./index.js";
+import { SERVER_INSTRUCTIONS } from "./instructions.js";
 
 const pkg = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf8")
@@ -184,11 +185,7 @@ const server = new McpServer(
   },
   {
     capabilities: { tools: {} },
-    instructions:
-      "Humanity4AI provides reusable 'humanity skills' for AI agents. " +
-      "Each tool enforces safety boundaries and discloses uncertainty. " +
-      "Always surface the boundaryNotice and uncertainty fields to users. " +
-      "These skills are non-clinical — escalate to qualified professionals when risk is elevated.",
+    instructions: SERVER_INSTRUCTIONS,
   }
 );
 

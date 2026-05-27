@@ -1,7 +1,7 @@
 {
   "name": "@humanity4ai/mcp-servers",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "description": "MCP contracts and runtime server for Humanity4AI skills",
   "engines": {
