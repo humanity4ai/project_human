@@ -58,21 +58,19 @@ Or use `npx` once published to npm (no local clone needed):
 
 ---
 
-## Available Tools (10 skills)
+## Available Tools (9 skills)
 
 | Tool name | Skill | Description |
 |-----------|-------|-------------|
-| `wcagaaa_check` | WCAG AAA Accessibility | Audit a URL or HTML snippet for WCAG 2.2 compliance |
+| `accessibility_audit` | WCAG Accessibility Audit | Audit web pages for WCAG 2.2 compliance (crawl) or set session WCAG level |
 | `rewrite_depression_sensitive_content` | Depression-Sensitive Content | Audit or rewrite text for mental health sensitivity |
-| `supportive_reply` | Supportive Conversation | Generate a supportive, non-clinical reply with escalation guidance |
+| `supportive_reply` | Supportive Conversation | Generate a supportive, non-clinical reply with escalation guidance; includes grief support modes (presence, practical, reflection) |
 | `cognitive_accessibility_audit` | Cognitive Accessibility | Audit content for cognitive load and plain-language compliance |
 | `cultural_context_check` | Cultural Sensitivity | Check a message for cultural sensitivity issues |
 | `deescalation_plan` | Conflict De-escalation | Generate a structured de-escalation plan |
 | `empathetic_reframe` | Empathetic Communication | Reframe a message with genuine empathy |
-| `supportive_reply` (grief modes) | Grief & Loss Support | Generate compassionate grief support via `support_mode` param |
 | `neurodiversity_design_check` | Neurodiversity-Aware Design | Audit UI for ADHD, autism, dyslexia, and sensory sensitivities |
 | `age_inclusive_design_check` | Age-Inclusive Design | Audit a user flow for age-inclusive design |
-| `wcagaa_check` | WCAG AA Accessibility | Score UI for WCAG 2.2 AA compliance |
 
 ---
 

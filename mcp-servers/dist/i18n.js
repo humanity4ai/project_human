@@ -1,6 +1,6 @@
 /**
  * Multi-language support framework for Humanity4AI MCP handlers.
- * Provides locale-aware reply templates for all 11 skills.
+ * Provides locale-aware reply templates for all 9 skills.
  *
  * Copyright (c) 2026 Ascent Partners Foundation. MIT License.
  */

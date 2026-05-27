@@ -12,8 +12,9 @@ import { MAX_WORDS_PER_SENTENCE, MAX_CONTENT_WORDS, MIN_STEPS_SEQUENCE_THRESHOLD
 import { CRISIS_LINE_UK, CRISIS_LINE_US, CRISIS_TEXT_US, CRISIS_URL_INTERNATIONAL, CRISIS_URL_IASP } from "./crisis-resources.js";
 import { detectCrisisSignals, detectSafetySignals } from "./crisis-detection.js";
 import { detectEmotion } from "./emotion-detection.js";
+import { normalizeLocale, getSupportiveReply, getLocalizedCrisisResources } from "./i18n.js";
+import { getChecklist } from "./wcag-criteria.js";
 import { assessAccessibility } from "./accessibility-engine.js";
-import { normalizeLocale, getSupportiveReply, getLocalizedCrisisResources, getLocalizedCategory } from "./i18n.js";
 function boundaryForAction(action) {
     const contract = actionContracts.find((item) => item.action === action);
     if (!contract)
@@ -32,94 +33,91 @@ function str(input, key, fallback = "") {
     return typeof v === "string" ? v.trim() : fallback;
 }
 // ─────────────────────────────────────────────
-// Handler: wcagaa_check
+// Handler: accessibility_audit (unified WCAG)
 // ─────────────────────────────────────────────
-function handleWcagAaCheck(input, boundaryNotice) {
-    const target = str(input, "target");
-    const level = (str(input, "level", "AA") === "AAA" ? "AAA" : "AA");
+async function handleAccessibilityAudit(input, boundaryNotice) {
+    const mode = str(input, "mode", "crawl");
+    const rawLevel = str(input, "level", "AA").toUpperCase();
+    const level = rawLevel === "A" ? "A" : rawLevel === "AAA" ? "AAA" : "AA";
     const locale = str(input, "locale", "en");
-    const loc = normalizeLocale(locale);
-    const scoreResult = assessAccessibility(target, level);
-    // Localize category names
-    const localizedCriteria = scoreResult.criteria.map(c => ({
-        ...c,
-        category: getLocalizedCategory(c.category, loc),
+    if (mode !== "crawl" && mode !== "session") {
+        return { ok: false, error: `Invalid mode '${mode}'. Valid modes are 'crawl' and 'session'.` };
+    }
+    // ── Session mode ────────────────────────────────────────────────────────
+    if (mode === "session") {
+        if (!rawLevel || !["A", "AA", "AAA"].includes(rawLevel)) {
+            return { ok: false, error: `Invalid level '${rawLevel || "(missing)"}'. Valid levels are A, AA, AAA. Level is required for session mode.` };
+        }
+        const checklist = getChecklist(level);
+        const levelCounts = { A: checklist.filter(c => c.level === "A").length, AA: checklist.filter(c => c.level === "AA").length, AAA: checklist.filter(c => c.level === "AAA").length };
+        return {
+            ok: true,
+            data: {
+                action: "accessibility_audit",
+                boundaryNotice,
+                uncertainty: "low",
+                assumptions: [
+                    `Level: WCAG 2.2 ${level}`,
+                    `Mode: session`,
+                    `Locale: ${locale}`,
+                    "Checklist is guidance — not a substitute for WCAG specification review",
+                ],
+                output: {
+                    mode: "session",
+                    level,
+                    checklist,
+                    criteria_count: { total: checklist.length, ...levelCounts },
+                    session_notice: `All UI/UX generated in this session will comply with WCAG 2.2 ${level}. Apply these criteria to every component, page, and interaction.`,
+                },
+            },
+        };
+    }
+    // ── Crawl mode ──────────────────────────────────────────────────────────
+    const pages = Array.isArray(input["pages"]) ? input["pages"] : [];
+    if (pages.length === 0) {
+        return { ok: false, error: "Crawl mode requires at least 1 page in 'pages' array with 'url' and 'html' fields." };
+    }
+    if (pages.length > 100) {
+        return { ok: false, error: "Crawl mode supports up to 100 pages. Use max_pages parameter to limit." };
+    }
+    const pageResults = await Promise.all(pages.map(async (page) => {
+        const scoreResult = await assessAccessibility(page.html, level);
+        return {
+            url: page.url,
+            aggregate_score: scoreResult.aggregateScore,
+            automated: scoreResult.automatedCount,
+            manual: scoreResult.manualCount,
+            total: scoreResult.automatedCount + scoreResult.manualCount,
+            criteria: scoreResult.criteria,
+            heuristic: scoreResult.heuristic,
+        };
     }));
+    const siteAggregate = pageResults.length > 0
+        ? Math.round(pageResults.reduce((sum, r) => sum + r.aggregate_score, 0) / pageResults.length)
+        : 0;
+    const ranking = [...pageResults].sort((a, b) => b.aggregate_score - a.aggregate_score);
+    const tierLabel = siteAggregate >= 80 ? "Good baseline" : siteAggregate >= 60 ? "Moderate — targeted fixes needed" : "Significant improvements needed";
     return {
         ok: true,
         data: {
-            action: "wcagaa_check",
+            action: "accessibility_audit",
             boundaryNotice,
-            uncertainty: scoreResult.heuristic ? "high" : "medium",
+            uncertainty: pageResults.some(r => r.heuristic) ? "high" : "medium",
             assumptions: [
                 `Level: WCAG 2.2 ${level}`,
-                `Input type: ${scoreResult.heuristic ? "description (heuristic)" : "HTML (analysed)"}`,
+                `Mode: crawl (${pages.length} pages)`,
                 `Locale: ${locale}`,
-                "Automated scoring covers ~60% of WCAG criteria — manual review required for full compliance",
-                scoreResult.heuristic ? "Heuristic mode: scores are estimates based on best practices, not parsed HTML analysis" : "HTML-based analysis: scores are computed from actual markup patterns"
+                `Engine: ${pageResults[0]?.criteria[0] ? "see per-criterion results" : "regex"}`,
+                pageResults.some(r => r.heuristic) ? "Heuristic mode: some pages scored via non-HTML input" : "HTML-based analysis: scores computed from actual markup patterns",
             ],
             output: {
-                aggregate_score: scoreResult.aggregateScore,
+                mode: "crawl",
                 level,
-                heuristic: scoreResult.heuristic,
-                criteria: localizedCriteria,
-                summary: scoreResult.summary
-            }
-        }
-    };
-}
-// ─────────────────────────────────────────────
-// Handler: wcagaaa_check
-// ─────────────────────────────────────────────
-function handleWcagCheck(input, boundaryNotice) {
-    const target = str(input, "target", "(no target provided)");
-    const level = str(input, "level", "AAA");
-    const context = str(input, "context");
-    const findings = [
-        {
-            severity: "high",
-            issue: "Missing skip navigation link — keyboard users cannot bypass repeated navigation",
-            fix: "Add <a href='#main-content' class='skip-link'>Skip to main content</a> as first focusable element"
+                site_aggregate: siteAggregate,
+                ranking,
+                summary: `${siteAggregate}/100 — ${tierLabel} (${pages.length} pages analysed at WCAG 2.2 ${level})`,
+            },
         },
-        {
-            severity: "high",
-            issue: "Interactive elements may lack sufficient colour contrast for Level AAA (7:1 for normal text)",
-            fix: "Verify all text/background combinations meet 7:1 contrast ratio using a colour contrast analyser"
-        },
-        {
-            severity: "medium",
-            issue: "Form inputs should include visible labels associated via for/id or aria-labelledby",
-            fix: "Add <label for='field-id'> or aria-labelledby pointing to visible label element"
-        },
-        {
-            severity: "medium",
-            issue: "Images and icons require descriptive alt text; decorative images require alt=''",
-            fix: "Audit all <img> elements — add meaningful alt text or alt='' for decorative usage"
-        },
-        {
-            severity: "low",
-            issue: "External links should indicate they open in a new tab for Level AAA compliance",
-            fix: "Add rel='noopener noreferrer' and a screen-reader announcement such as '(opens in new tab)'"
-        }
-    ];
-    return {
-        ok: true,
-        data: {
-            action: "wcagaaa_check",
-            boundaryNotice,
-            uncertainty: "medium",
-            assumptions: [
-                `Target: ${target}`,
-                `Compliance level: WCAG 2.2 ${level}`,
-                context ? `Context: ${context}` : "No additional context provided",
-                "Automated checks cover ~40% of WCAG criteria — manual review required for full compliance"
-            ],
-            output: {
-                summary: `Found ${findings.length} potential issues. Manual audit required for full WCAG 2.2 ${level} compliance.`,
-                findings,
-                next_step: "Run manual keyboard-only navigation and screen reader test against each finding"
-            }
-        }
     };
 }
 // ─────────────────────────────────────────────
@@ -449,78 +447,6 @@ function handleEmpatheticReframe(input, boundaryNotice) {
     };
 }
 // ─────────────────────────────────────────────
-// Handler: grief_support_response
-// ─────────────────────────────────────────────
-function handleGriefSupport(input, boundaryNotice) {
-    const message = str(input, "message");
-    const supportMode = str(input, "support_mode", "presence");
-    const careNotes = [];
-    // Detect crisis signals in message content
-    const crisis = detectCrisisSignals(message);
-    const hasCrisis = crisis.detected;
-    // Detect grief cliches that may minimize/invalidate
-    const lowerMessage = message.toLowerCase();
-    const clichesFound = [];
-    for (const cliche of GRIEF_CLICHE_PATTERNS) {
-        if (lowerMessage.includes(cliche)) {
-            clichesFound.push(cliche);
-        }
-    }
-    if (clichesFound.length > 0) {
-        careNotes.push(`Detected potential minimizing platitudes: ${clichesFound.join(", ")}`);
-        careNotes.push("Avoid these — they dismiss the person's unique grief experience");
-    }
-    const escalationGuidance = [
-        "If the person expresses thoughts of self-harm, contact emergency services or a crisis line immediately",
-        `US: ${CRISIS_LINE_US}`,
-        `${CRISIS_TEXT_US}`,
-        `UK: ${CRISIS_LINE_UK}`,
-        `International: ${CRISIS_URL_IASP}`,
-        "This skill provides non-clinical support patterns only — do not use as a substitute for professional grief counselling"
-    ];
-    // If crisis signals detected, add specific crisis warning to care notes
-    if (hasCrisis) {
-        careNotes.unshift("CRISIS WARNING: Message contains potential crisis indicators. Prioritize safety over support mode.");
-        careNotes.push(`Crisis signals detected: ${crisis.matchedPatterns.join(", ")}`);
-        careNotes.push("Route immediately to crisis resources — do not provide only template support");
-    }
-    let reply;
-    if (supportMode === "presence") {
-        reply = `I hear you, and I am here with you. You shared: "${message}". There is no need to have the right words or to be okay right now. Grief has its own pace, and whatever you are feeling is valid.`;
-        careNotes.push("Presence-first response — prioritises being heard over problem-solving");
-        careNotes.push("Avoid offering silver linings or comparisons to others' experiences");
-        careNotes.push("Hold space — short, warm responses often feel safer than long explanations");
-    }
-    else if (supportMode === "practical") {
-        reply = `I am so sorry for what you are going through. You mentioned: "${message}". If it helps to think about one small thing, I am here to assist with whatever feels manageable right now — there is no pressure to do more than that.`;
-        careNotes.push("Practical mode — offers help without imposing a to-do list");
-        careNotes.push("Keep any suggested actions small, concrete, and optional");
-        careNotes.push("Check in before offering advice — ask 'Would it help if I suggested some options?' first");
-    }
-    else {
-        reply = `You shared: "${message}". Grief often does not follow a straight line. What you are feeling — even if it surprises you — is part of how we process loss. There is no right or wrong way to grieve.`;
-        careNotes.push("Reflection mode — validates the non-linear nature of grief");
-        careNotes.push("Avoid timelines or stages — grief does not follow a fixed sequence");
-        careNotes.push("Normalising unexpected emotions (relief, anger, numbness) can reduce shame");
-    }
-    careNotes.push("Never use platitudes: 'they are in a better place', 'time heals all wounds', 'at least...'");
-    careNotes.push("Cultural variation in grieving is significant — follow the person's lead on ritual and meaning");
-    return {
-        ok: true,
-        data: {
-            action: "grief_support_response",
-            boundaryNotice,
-            uncertainty: "medium",
-            assumptions: [
-                `Support mode: ${supportMode}`,
-                "Non-clinical tool — not a substitute for professional grief counselling",
-                "Cultural context of grief varies significantly — adapt to cues from the person"
-            ],
-            output: { reply, care_notes: careNotes, escalation_guidance: escalationGuidance }
-        }
-    };
-}
-// ─────────────────────────────────────────────
 // Handler: neurodiversity_design_check
 // ─────────────────────────────────────────────
 function handleNeurodiversityDesign(input, boundaryNotice) {
@@ -635,7 +561,7 @@ function handleAgeInclusiveDesign(input, boundaryNotice) {
 // ─────────────────────────────────────────────
 // Main dispatch
 // ─────────────────────────────────────────────
-export function invokeAction(action, input) {
+export async function invokeAction(action, input) {
     if (!isKnownAction(action)) {
         return {
             ok: false,
@@ -655,10 +581,8 @@ export function invokeAction(action, input) {
     }
     const boundaryNotice = boundaryForAction(action);
     switch (action) {
-        case "wcagaa_check":
-            return handleWcagAaCheck(input, boundaryNotice);
-        case "wcagaaa_check":
-            return handleWcagCheck(input, boundaryNotice);
+        case "accessibility_audit":
+            return handleAccessibilityAudit(input, boundaryNotice);
         case "rewrite_depression_sensitive_content":
             return handleDepressionSensitiveRewrite(input, boundaryNotice);
         case "cognitive_accessibility_audit":
@@ -669,8 +593,6 @@ export function invokeAction(action, input) {
             return handleDeescalation(input, boundaryNotice);
         case "empathetic_reframe":
             return handleEmpatheticReframe(input, boundaryNotice);
-        case "grief_support_response":
-            return handleGriefSupport(input, boundaryNotice);
         case "neurodiversity_design_check":
             return handleNeurodiversityDesign(input, boundaryNotice);
         case "age_inclusive_design_check":
@@ -679,6 +601,8 @@ export function invokeAction(action, input) {
             const message = str(input, "message");
             let riskLevel = str(input, "risk_level", "low");
             const locale = str(input, "locale", "en");
+            const supportMode = str(input, "support_mode", "general");
+            const isGriefMode = supportMode === "presence" || supportMode === "practical" || supportMode === "reflection";
             const loc = normalizeLocale(locale);
             const localizedCrisis = getLocalizedCrisisResources(loc);
             // Auto-assess risk from message content — override caller risk_level if crisis detected
@@ -695,6 +619,25 @@ export function invokeAction(action, input) {
             for (const p of BOUNDARY_VIOLATION_PATTERNS) {
                 if (lowerMessage.includes(p)) {
                     boundaryFlags.push(p);
+                }
+            }
+            // Grief support mode: detect grief cliches and build care_notes
+            const careNotes = [];
+            if (isGriefMode) {
+                const clichesFound = [];
+                for (const cliche of GRIEF_CLICHE_PATTERNS) {
+                    if (lowerMessage.includes(cliche)) {
+                        clichesFound.push(cliche);
+                    }
+                }
+                if (clichesFound.length > 0) {
+                    careNotes.push(`Detected potential minimizing platitudes: ${clichesFound.join(", ")}`);
+                    careNotes.push("Avoid these — they dismiss the person's unique grief experience");
+                }
+                if (crisis.detected) {
+                    careNotes.unshift("CRISIS WARNING: Message contains potential crisis indicators. Prioritize safety over support mode.");
+                    careNotes.push(`Crisis signals detected: ${crisis.matchedPatterns.join(", ")}`);
+                    careNotes.push("Route immediately to crisis resources — do not provide only template support");
                 }
             }
             // Locale-driven crisis resource selection
@@ -719,9 +662,31 @@ export function invokeAction(action, input) {
                     : [
                         "Professional support is available any time you need it"
                     ];
-            // Build adaptive reply based on detected emotion, using i18n
+            // Build reply: grief-mode templates take priority, then i18n, then emotion-based
             let replyText;
-            if (loc !== "en") {
+            if (isGriefMode) {
+                if (supportMode === "presence") {
+                    replyText = `I hear you, and I am here with you. You shared: "${message}". There is no need to have the right words or to be okay right now. Grief has its own pace, and whatever you are feeling is valid.`;
+                    careNotes.push("Presence-first response — prioritises being heard over problem-solving");
+                    careNotes.push("Avoid offering silver linings or comparisons to others' experiences");
+                    careNotes.push("Hold space — short, warm responses often feel safer than long explanations");
+                }
+                else if (supportMode === "practical") {
+                    replyText = `I am so sorry for what you are going through. You mentioned: "${message}". If it helps to think about one small thing, I am here to assist with whatever feels manageable right now — there is no pressure to do more than that.`;
+                    careNotes.push("Practical mode — offers help without imposing a to-do list");
+                    careNotes.push("Keep any suggested actions small, concrete, and optional");
+                    careNotes.push("Check in before offering advice — ask 'Would it help if I suggested some options?' first");
+                }
+                else {
+                    replyText = `You shared: "${message}". Grief often does not follow a straight line. What you are feeling — even if it surprises you — is part of how we process loss. There is no right or wrong way to grieve.`;
+                    careNotes.push("Reflection mode — validates the non-linear nature of grief");
+                    careNotes.push("Avoid timelines or stages — grief does not follow a fixed sequence");
+                    careNotes.push("Normalising unexpected emotions (relief, anger, numbness) can reduce shame");
+                }
+                careNotes.push("Never use platitudes: 'they are in a better place', 'time heals all wounds', 'at least...'");
+                careNotes.push("Cultural variation in grieving is significant — follow the person's lead on ritual and meaning");
+            }
+            else if (loc !== "en") {
                 replyText = getSupportiveReply(message, loc);
             }
             else if (message) {
@@ -744,6 +709,14 @@ export function invokeAction(action, input) {
             else {
                 replyText = "I hear you, and I am glad you reached out. It makes sense that things feel heavy right now. You do not have to have it all figured out — let us focus on one small step at a time.";
             }
+            const output = {
+                reply: replyText,
+                escalation_guidance: escalation,
+                boundaries_notice: boundaryNotice
+            };
+            if (isGriefMode) {
+                output["care_notes"] = careNotes;
+            }
             return {
                 ok: true,
                 data: {
@@ -754,14 +727,11 @@ export function invokeAction(action, input) {
                         `Risk level: ${riskLevel}${autoEscalated ? " (auto-escalated from caller-provided level due to detected crisis signals)" : ""}`,
                         `Locale: ${locale}`,
                         `Detected emotion: ${emotion.category} (confidence: ${emotion.confidence.toFixed(1)})`,
+                        isGriefMode ? `Support mode: ${supportMode}` : "Support mode: general",
                         boundaryFlags.length > 0 ? `Boundary flags: ${boundaryFlags.join(", ")}` : "No boundary violations detected",
                         "Non-clinical support only — not a substitute for professional mental health care"
                     ],
-                    output: {
-                        reply: replyText,
-                        escalation_guidance: escalation,
-                        boundaries_notice: boundaryNotice
-                    }
+                    output
                 }
             };
         }

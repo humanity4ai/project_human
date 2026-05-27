@@ -44,56 +44,57 @@ export function toMcpResult(result) {
     };
 }
 // ── Tool handlers (exported for testability) ─────────────────────────────────
-export async function handleWcagaaaCheck({ target, level, context, }) {
-    const input = { target, level };
-    if (context !== undefined)
-        input.context = context;
-    return toMcpResult(invokeAction("wcagaaa_check", input));
+export async function handleAccessibilityAudit({ mode, level, pages, locale, }) {
+    const input = { mode, level };
+    if (pages !== undefined)
+        input.pages = pages;
+    if (locale !== undefined)
+        input.locale = locale;
+    return toMcpResult(await invokeAction("accessibility_audit", input));
 }
 export async function handleRewriteDepressionSensitiveContent({ text, mode, domain, }) {
     const input = { text, mode };
     if (domain !== undefined)
         input.domain = domain;
-    return toMcpResult(invokeAction("rewrite_depression_sensitive_content", input));
+    return toMcpResult(await invokeAction("rewrite_depression_sensitive_content", input));
 }
-export async function handleSupportiveReply({ message, risk_level, locale, }) {
+export async function handleSupportiveReply({ message, risk_level, locale, support_mode, }) {
     const input = { message, risk_level };
     if (locale !== undefined)
         input.locale = locale;
-    return toMcpResult(invokeAction("supportive_reply", input));
+    if (support_mode !== undefined)
+        input.support_mode = support_mode;
+    return toMcpResult(await invokeAction("supportive_reply", input));
 }
 export async function handleCognitiveAccessibilityAudit({ content, target_context, }) {
     const input = { content };
     if (target_context !== undefined)
         input.target_context = target_context;
-    return toMcpResult(invokeAction("cognitive_accessibility_audit", input));
+    return toMcpResult(await invokeAction("cognitive_accessibility_audit", input));
 }
 export async function handleCulturalContextCheck({ message, audience, region, }) {
     const input = { message, audience };
     if (region !== undefined)
         input.region = region;
-    return toMcpResult(invokeAction("cultural_context_check", input));
+    return toMcpResult(await invokeAction("cultural_context_check", input));
 }
 export async function handleDeescalationPlan({ situation, intensity, }) {
-    return toMcpResult(invokeAction("deescalation_plan", { situation, intensity }));
+    return toMcpResult(await invokeAction("deescalation_plan", { situation, intensity }));
 }
 export async function handleEmpatheticReframe({ message, tone, }) {
-    return toMcpResult(invokeAction("empathetic_reframe", { message, tone }));
-}
-export async function handleGriefSupportResponse({ message, support_mode, }) {
-    return toMcpResult(invokeAction("grief_support_response", { message, support_mode }));
+    return toMcpResult(await invokeAction("empathetic_reframe", { message, tone }));
 }
 export async function handleNeurodiversityDesignCheck({ ui_description, focus, }) {
     const input = { ui_description };
     if (focus !== undefined)
         input.focus = focus;
-    return toMcpResult(invokeAction("neurodiversity_design_check", input));
+    return toMcpResult(await invokeAction("neurodiversity_design_check", input));
 }
 export async function handleAgeInclusiveDesignCheck({ flow_description, age_groups, }) {
     const input = { flow_description };
     if (age_groups !== undefined)
         input.age_groups = age_groups;
-    return toMcpResult(invokeAction("age_inclusive_design_check", input));
+    return toMcpResult(await invokeAction("age_inclusive_design_check", input));
 }
 // ── Server setup ─────────────────────────────────────────────────────────────
 const server = new McpServer({
@@ -107,17 +108,24 @@ const server = new McpServer({
         "These skills are non-clinical — escalate to qualified professionals when risk is elevated.",
 });
 // ── Tool registrations ────────────────────────────────────────────────────────
-server.tool("wcagaaa_check", descFor("wcagaaa_check"), {
-    target: z.string().describe("URL or HTML input to audit"),
+server.tool("accessibility_audit", descFor("accessibility_audit"), {
+    mode: z
+        .enum(["crawl", "session"])
+        .describe("crawl: score pages against all 78 WCAG 2.2 criteria. session: return WCAG checklist for this session."),
     level: z
         .enum(["A", "AA", "AAA"])
-        .default("AAA")
-        .describe("WCAG compliance level to check against"),
-    context: z
+        .default("AA")
+        .describe("WCAG conformance level"),
+    pages: z
+        .array(z.object({ url: z.string(), html: z.string() }))
+        .optional()
+        .describe("Array of crawled pages with URL and HTML content (required for crawl mode)"),
+    locale: z
         .string()
         .optional()
-        .describe("Optional additional context about the page or component"),
-}, handleWcagaaaCheck);
+        .default("en")
+        .describe("BCP 47 locale code"),
+}, handleAccessibilityAudit);
 server.tool("rewrite_depression_sensitive_content", descFor("rewrite_depression_sensitive_content"), {
     text: z.string().describe("The text content to audit or rewrite"),
     mode: z
@@ -139,6 +147,11 @@ server.tool("supportive_reply", descFor("supportive_reply"), {
         .optional()
         .default("en")
         .describe("BCP 47 locale code for the response language (default: 'en')"),
+    support_mode: z
+        .enum(["general", "presence", "practical", "reflection"])
+        .optional()
+        .default("general")
+        .describe("Support mode: 'general' for default emotional support, 'presence'/'practical'/'reflection' for grief support"),
 }, handleSupportiveReply);
 server.tool("cognitive_accessibility_audit", descFor("cognitive_accessibility_audit"), {
     content: z
@@ -175,14 +188,6 @@ server.tool("empathetic_reframe", descFor("empathetic_reframe"), {
         .default("warm")
         .describe("Desired tone of the empathetic reframe"),
 }, handleEmpatheticReframe);
-server.tool("grief_support_response", descFor("grief_support_response"), {
-    message: z
-        .string()
-        .describe("The message from the person experiencing grief or loss"),
-    support_mode: z
-        .enum(["presence", "practical", "reflection"])
-        .describe("'presence' for emotional companionship, 'practical' for next steps, 'reflection' for meaning-making"),
-}, handleGriefSupportResponse);
 server.tool("neurodiversity_design_check", descFor("neurodiversity_design_check"), {
     ui_description: z
         .string()
@@ -201,26 +206,12 @@ server.tool("age_inclusive_design_check", descFor("age_inclusive_design_check"),
         .optional()
         .describe("Optional list of age groups to focus on (e.g. ['children', 'elderly', 'teenagers'])"),
 }, handleAgeInclusiveDesignCheck);
-server.tool("wcagaa_check", descFor("wcagaa_check"), {
-    target: z.string().describe("URL or HTML input to audit for WCAG AA accessibility"),
-    level: z
-        .enum(["AA", "AAA"])
-        .default("AA")
-        .describe("WCAG compliance level"),
-    locale: z
-        .string()
-        .optional()
-        .default("en")
-        .describe("BCP 47 locale code for localized output"),
-}, async ({ target, level, locale }) => {
-    return toMcpResult(invokeAction("wcagaa_check", { target, level, locale }));
-});
 // ── Start server ──────────────────────────────────────────────────────────────
 export async function main() {
     const transport = new StdioServerTransport();
     await server.connect(transport);
     process.stderr.write(`Humanity4AI MCP Server v${VERSION} (JSON-RPC 2.0)\n` +
-        `Tools: 11 registered\n` +
+        `Tools: 9 registered\n` +
         `Transport: stdio (MCP SDK)\n` +
         `Ready — waiting for MCP client connections\n`);
 }

@@ -17,7 +17,7 @@ function makeSchema(required, properties) {
 // ─── loadSchema (tested via validateInput behaviour) ──────────────────────────
 describe("loadSchema via validateInput", () => {
     it("V-1: valid schema path loads and validates correctly", () => {
-        const result = validateInput("schemas/wcag-aaa-accessibility.input.json", { target: "https://example.com", level: "AAA" });
+        const result = validateInput("schemas/accessibility.input.json", { mode: "session", level: "AAA" });
         expect(result.valid).toBe(true);
     });
     it("V-2: non-existent schema path returns valid:false with error", () => {
@@ -94,12 +94,12 @@ describe("validateInput — required field checks", () => {
         expect(result.valid).toBe(false);
     });
     it("V-15: optional field wrong type returns valid:false", () => {
-        const result = validateInput("schemas/wcag-aaa-accessibility.input.json", { target: "https://example.com", level: 42 });
+        const result = validateInput("schemas/accessibility.input.json", { level: 42 });
         // level has enum — will fail enum check
         expect(result.valid).toBe(false);
     });
     it("V-16: optional field absent — no error produced", () => {
-        const result = validateInput("schemas/wcag-aaa-accessibility.input.json", { target: "https://example.com", level: "AAA" });
+        const result = validateInput("schemas/accessibility.input.json", { mode: "session", level: "AAA" });
         expect(result.valid).toBe(true);
     });
     it("V-17: multiple missing required fields — all reported", () => {
@@ -110,24 +110,24 @@ describe("validateInput — required field checks", () => {
         }
     });
     it("V-18: field with undefined value in input is skipped (no error)", () => {
-        const result = validateInput("schemas/wcag-aaa-accessibility.input.json", { target: "https://example.com", level: "AAA", context: undefined });
+        const result = validateInput("schemas/accessibility.input.json", { mode: "session", level: "AA", locale: undefined });
         expect(result.valid).toBe(true);
     });
 });
 // ─── validateInput — wcag schema specifics ───────────────────────────────────
-describe("validateInput — wcag-aaa-accessibility schema", () => {
+describe("validateInput — accessibility schema", () => {
     it("V-19: valid level AAA passes", () => {
-        expect(validateInput("schemas/wcag-aaa-accessibility.input.json", { target: "x", level: "AAA" }).valid).toBe(true);
+        expect(validateInput("schemas/accessibility.input.json", { mode: "session", level: "AAA" }).valid).toBe(true);
     });
     it("V-20: valid level A passes", () => {
-        expect(validateInput("schemas/wcag-aaa-accessibility.input.json", { target: "x", level: "A" }).valid).toBe(true);
+        expect(validateInput("schemas/accessibility.input.json", { mode: "session", level: "A" }).valid).toBe(true);
     });
     it("V-21: invalid level value fails", () => {
-        const result = validateInput("schemas/wcag-aaa-accessibility.input.json", { target: "x", level: "AAAA" });
+        const result = validateInput("schemas/accessibility.input.json", { mode: "session", level: "AAAA" });
         expect(result.valid).toBe(false);
     });
-    it("V-22: missing required target fails", () => {
-        const result = validateInput("schemas/wcag-aaa-accessibility.input.json", { level: "AAA" });
+    it("V-22: missing required mode fails", () => {
+        const result = validateInput("schemas/accessibility.input.json", { level: "AA" });
         expect(result.valid).toBe(false);
     });
 });
@@ -142,21 +142,21 @@ describe("validateInput — cultural-sensitivity schema", () => {
         expect(result.valid).toBe(false);
     });
 });
-// ─── validateInput — grief-loss-support schema ───────────────────────────────
-describe("validateInput — grief-loss-support schema", () => {
-    it("V-25: valid support_mode presence passes", () => {
-        const result = validateInput("schemas/grief-loss-support.input.json", { message: "I lost my parent", support_mode: "presence" });
+// ─── validateInput — supportive-conversation support_mode ─────────────────
+describe("validateInput — supportive-conversation support_mode", () => {
+    it("V-25: valid grief support_mode presence passes", () => {
+        const result = validateInput("schemas/supportive-conversation.input.json", { message: "I lost my parent", risk_level: "low", support_mode: "presence" });
         expect(result.valid).toBe(true);
     });
     it("V-26: invalid support_mode fails enum check", () => {
-        const result = validateInput("schemas/grief-loss-support.input.json", { message: "I lost my parent", support_mode: "therapy" });
+        const result = validateInput("schemas/supportive-conversation.input.json", { message: "I lost my parent", risk_level: "low", support_mode: "therapy" });
         expect(result.valid).toBe(false);
         if (!result.valid) {
             expect(result.errors.some(e => e.includes("must be one of"))).toBe(true);
         }
     });
     it("V-27: empty support_mode fails", () => {
-        const result = validateInput("schemas/grief-loss-support.input.json", { message: "x", support_mode: "" });
+        const result = validateInput("schemas/supportive-conversation.input.json", { message: "x", risk_level: "low", support_mode: "" });
         expect(result.valid).toBe(false);
     });
 });

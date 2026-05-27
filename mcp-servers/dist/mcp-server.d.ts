@@ -16,7 +16,7 @@
  */
 import { invokeAction } from "./handlers.js";
 export declare const VERSION: string;
-export declare function toMcpResult(result: ReturnType<typeof invokeAction>): {
+export declare function toMcpResult(result: Awaited<ReturnType<typeof invokeAction>>): {
     isError: boolean;
     content: {
         type: "text";
@@ -29,10 +29,14 @@ export declare function toMcpResult(result: ReturnType<typeof invokeAction>): {
     }[];
     isError?: undefined;
 };
-export declare function handleWcagaaaCheck({ target, level, context, }: {
-    target: string;
+export declare function handleAccessibilityAudit({ mode, level, pages, locale, }: {
+    mode: "crawl" | "session";
     level: "A" | "AA" | "AAA";
-    context?: string;
+    pages?: Array<{
+        url: string;
+        html: string;
+    }>;
+    locale?: string;
 }): Promise<{
     isError: boolean;
     content: {
@@ -63,10 +67,11 @@ export declare function handleRewriteDepressionSensitiveContent({ text, mode, do
     }[];
     isError?: undefined;
 }>;
-export declare function handleSupportiveReply({ message, risk_level, locale, }: {
+export declare function handleSupportiveReply({ message, risk_level, locale, support_mode, }: {
     message: string;
     risk_level: "low" | "medium" | "high";
     locale?: string;
+    support_mode?: "general" | "presence" | "practical" | "reflection";
 }): Promise<{
     isError: boolean;
     content: {
@@ -132,22 +137,6 @@ export declare function handleDeescalationPlan({ situation, intensity, }: {
 export declare function handleEmpatheticReframe({ message, tone, }: {
     message: string;
     tone: "neutral" | "warm" | "formal";
-}): Promise<{
-    isError: boolean;
-    content: {
-        type: "text";
-        text: string;
-    }[];
-} | {
-    content: {
-        type: "text";
-        text: string;
-    }[];
-    isError?: undefined;
-}>;
-export declare function handleGriefSupportResponse({ message, support_mode, }: {
-    message: string;
-    support_mode: "presence" | "practical" | "reflection";
 }): Promise<{
     isError: boolean;
     content: {
