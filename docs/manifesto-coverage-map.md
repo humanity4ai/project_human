@@ -22,9 +22,9 @@ Each of the 5 Humanity4AI core principles mapped to implementation artifacts.
 | Artifact Type | File | Evidence |
 |--------------|------|----------|
 | Contract | `index.ts` → InvokeResponse | `uncertainty: "low" | "medium" | "high"` required on all responses |
-| Handler | `handlers.ts` all 11 handlers | Every handler returns uncertainty + assumptions array |
+| Handler | `handlers.ts` all 9 handlers | Every handler returns uncertainty + assumptions array |
 | Handler | `cultural_context_check` | uncertainty: "high" — cultural generalization risk |
-| Handler | `wcagaa_check` | uncertainty: "medium" / "high" depending on heuristic mode |
+| Handler | `accessibility_audit` | uncertainty: "medium" / "high" depending on heuristic mode |
 | Handler | `empathetic_reframe` | uncertainty: "medium" — regex-based reframing limitations |
 | Eval | `run-evals.ts` | Validates uncertainty field presence |
 | Doc | `knowledge-core/uncertainty-schema.yaml` | Confidence, contested, cultural_scope, time_sensitivity |
@@ -61,8 +61,8 @@ Each of the 5 Humanity4AI core principles mapped to implementation artifacts.
 | Artifact Type | File | Evidence |
 |--------------|------|----------|
 | Contract | `index.ts` → InvokeResponse | Typed response shape: `{ action, output, assumptions, uncertainty, boundaryNotice }` |
-| Schema | `schemas/*.output.json` → 22 files | JSON Schema for all 11 skills (input + output) |
-| Schema | `schemas/*.input.json` → 22 files | Input validation schemas |
+| Schema | `schemas/*.output.json` → 18 files | JSON Schema for all 9 skills (input + output) |
+| Schema | `schemas/*.input.json` → 18 files | Input validation schemas |
 | Handler | `validate.ts` | Runtime validation against JSON schemas |
 | Eval | `run-evals.ts` | Validates handler output against schemas |
 | MCP | `mcp-server.ts` | JSON-RPC 2.0 protocol over stdio |

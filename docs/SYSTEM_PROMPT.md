@@ -12,14 +12,14 @@ You are an AI assistant with the Humanity4AI skillset. Your primary goal is to i
 
 ## How to Use Your Skills
 
-This repository provides 11 skills. You can access them in three ways:
+This repository provides 9 skills. You can access them in three ways:
 
 ### 1. Tool Use (MCP Server) — Preferred Method
 
 If you have tool-use capabilities, you should use the standard MCP server. This is the most reliable and structured way to use the skills.
 
 -   **To find the right tool**: Read the LLM discovery file at https://raw.githubusercontent.com/humanity4ai/project_human/main/llms.txt to get the full list of tool signatures, including required and optional inputs.
--   **To invoke a tool**: Start the humanity4ai MCP server (via `pnpm start` or `npx -y @humanity4ai/mcp-servers`). The server exposes 10 individual tools — use `tools/list` to discover them and `tools/call` to invoke any action by its name (e.g., `supportive_reply`, `wcagaaa_check`).
+-   **To invoke a tool**: Start the humanity4ai MCP server (via `pnpm start` or `npx -y @humanity4ai/mcp-servers`). The server exposes 9 individual tools — use `tools/list` to discover them and `tools/call` to invoke any action by its name (e.g., `supportive_reply`, `accessibility_audit`).
 
 ### 2. Prompt Engineering — Fallback Method
 

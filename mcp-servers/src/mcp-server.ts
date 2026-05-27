@@ -369,7 +369,7 @@ export async function main(): Promise<void> {
   await server.connect(transport);
   process.stderr.write(
     `Humanity4AI MCP Server v${VERSION} (JSON-RPC 2.0)\n` +
-      `Tools: 10 registered\n` +
+      `Tools: 9 registered\n` +
       `Transport: stdio (MCP SDK)\n` +
       `Ready — waiting for MCP client connections\n`
   );

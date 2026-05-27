@@ -6,7 +6,7 @@ import { describe, it, expect } from "vitest";
 import { detectCrisisSignals, detectSafetySignals } from "../crisis-detection.js";
 import { detectEmotion } from "../emotion-detection.js";
 import { assessAccessibility } from "../accessibility-engine.js";
-import { WCAG_CRITERIA, getChecklist, criteriaByLevel, AXE_COVERED_CRITERIA } from "../wcag-criteria.js";
+import { WCAG_CRITERIA, getChecklist, criteriaByLevel, AXE_COVERED_CRITERIA, ALL_CRITERIA } from "../wcag-criteria.js";
 import { normalizeLocale, getSupportiveReply, getLocalizedCrisisResources, getLocalizedCategory, SUPPORTED_LOCALES } from "../i18n.js";
 import {
   crisisEscalationHigh,
@@ -423,6 +423,34 @@ describe("getChecklist", () => {
       lastId = item.id;
     }
   });
+  it("MOD-WCAG-22: criteriaByLevel('A') returns only A-level criteria", () => {
+    const items = criteriaByLevel("A");
+    expect(items.length).toBeGreaterThan(0);
+    for (const item of items) {
+      expect(item.level).toBe("A");
+    }
+  });
+
+  it("MOD-WCAG-23: criteriaByLevel('AA') returns A + AA criteria, no AAA", () => {
+    const items = criteriaByLevel("AA");
+    expect(items.length).toBeGreaterThan(0);
+    for (const item of items) {
+      expect(item.level).not.toBe("AAA");
+    }
+    const aItems = items.filter(i => i.level === "A");
+    const aaItems = items.filter(i => i.level === "AA");
+    expect(aItems.length).toBeGreaterThan(0);
+    expect(aaItems.length).toBeGreaterThan(0);
+  });
+
+  it("MOD-WCAG-24: criteriaByLevel('AAA') returns all criteria", () => {
+    const items = criteriaByLevel("AAA");
+    expect(items.length).toBe(ALL_CRITERIA.length);
+    const levels = new Set(items.map(i => i.level));
+    expect(levels.has("A")).toBe(true);
+    expect(levels.has("AA")).toBe(true);
+    expect(levels.has("AAA")).toBe(true);
+  });
 });
 
 // ─── assessAccessibility (engine) level-aware ─────────────────────────────────
@@ -493,5 +521,73 @@ describe("assessAccessibility — level-aware", () => {
     const goodResult = await assessAccessibility("<html lang='en'><head><title>T</title></head><body><a href='#main' class='skip-link'>Skip</a><header><nav>Nav</nav></header><main id='main'><section aria-label='S'><h1>T</h1><h2>Sub</h2><p>Content</p></section></main><footer>Foot</footer></body></html>", "AA");
     const poorResult = await assessAccessibility("<div style='color:#ccc;background:#fff'>text</div>", "AA");
     expect(goodResult.aggregateScore).toBeGreaterThanOrEqual(poorResult.aggregateScore);
+  });
+});
+
+// ─── i18n — locale-aware functions ─────────────────────────────────────────
+
+describe("i18n — locale-aware functions", () => {
+  it("MOD-I18N-1: normalizeLocale returns en for unknown locale", () => {
+    expect(normalizeLocale("xx")).toBe("en");
+    expect(normalizeLocale("")).toBe("en");
+  });
+
+  it("MOD-I18N-2: normalizeLocale returns correct locale for known prefixes", () => {
+    expect(normalizeLocale("zh-CN")).toBe("zh");
+    expect(normalizeLocale("zh-TW")).toBe("zh");
+    expect(normalizeLocale("es-MX")).toBe("es");
+    expect(normalizeLocale("fr-CA")).toBe("fr");
+    expect(normalizeLocale("ja-JP")).toBe("ja");
+    expect(normalizeLocale("ko-KR")).toBe("ko");
+    expect(normalizeLocale("ar-SA")).toBe("ar");
+    expect(normalizeLocale("pt-BR")).toBe("pt");
+    expect(normalizeLocale("de-DE")).toBe("de");
+    expect(normalizeLocale("en-US")).toBe("en");
+  });
+
+  it("MOD-I18N-3: all 9 supported locales return non-empty replies", () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      const reply = getSupportiveReply("test message", locale);
+      expect(reply).toBeTruthy();
+      expect(reply.length).toBeGreaterThan(0);
+      expect(reply).toContain("test message");
+    }
+  });
+
+  it("MOD-I18N-4: all 9 supported locales return crisis resources", () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      const resources = getLocalizedCrisisResources(locale);
+      expect(resources.primary).toBeTruthy();
+      expect(resources.secondary).toBeTruthy();
+    }
+  });
+
+  it("MOD-I18N-5: all 9 supported locales return localized categories", () => {
+    const categories = ["colorContrast", "keyboardNav", "score"];
+    for (const locale of SUPPORTED_LOCALES) {
+      for (const cat of categories) {
+        const label = getLocalizedCategory(cat, locale);
+        expect(label).toBeTruthy();
+        expect(label.length).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it("MOD-I18N-6: getLocalizedCategory returns raw key for unknown category", () => {
+    const label = getLocalizedCategory("nonexistent", "en");
+    expect(label).toBe("nonexistent");
+  });
+
+  it("MOD-I18N-7: SUPPORTED_LOCALES has exactly 9 entries", () => {
+    expect(SUPPORTED_LOCALES.length).toBe(9);
+    expect(SUPPORTED_LOCALES).toContain("en");
+    expect(SUPPORTED_LOCALES).toContain("zh");
+    expect(SUPPORTED_LOCALES).toContain("es");
+    expect(SUPPORTED_LOCALES).toContain("fr");
+    expect(SUPPORTED_LOCALES).toContain("de");
+    expect(SUPPORTED_LOCALES).toContain("ja");
+    expect(SUPPORTED_LOCALES).toContain("ko");
+    expect(SUPPORTED_LOCALES).toContain("ar");
+    expect(SUPPORTED_LOCALES).toContain("pt");
   });
 });

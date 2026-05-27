@@ -2,7 +2,7 @@
 
 MCP action contracts and server runtime for Humanity4AI skills.
 
-All 10 humanity skills are exposed as standard MCP tools using the official `@modelcontextprotocol/sdk` JSON-RPC 2.0 protocol, natively compatible with Claude Code, Copilot, Manus AI, OpenCode, LangChain, and any other MCP SDK client.
+All 9 humanity skills are exposed as standard MCP tools using the official `@modelcontextprotocol/sdk` JSON-RPC 2.0 protocol, natively compatible with Claude Code, Copilot, Manus AI, OpenCode, LangChain, and any other MCP SDK client.
 
 ---
 
@@ -25,7 +25,7 @@ pnpm --filter @humanity4ai/mcp-servers start
 ```
 
 The server starts on **stdio** using the official MCP SDK JSON-RPC 2.0 protocol.
-All 10 humanity skills are registered as MCP tools and discoverable via `tools/list`.
+All 9 humanity skills are registered as MCP tools and discoverable via `tools/list`.
 
 ### 3. Configure your MCP client
 
@@ -58,21 +58,19 @@ Or use `npx` once published to npm (no local clone needed):
 
 ---
 
-## Available Tools (10 skills)
+## Available Tools (9 skills)
 
 | Tool name | Skill | Description |
 |-----------|-------|-------------|
-| `wcagaaa_check` | WCAG AAA Accessibility | Audit a URL or HTML snippet for WCAG 2.2 compliance |
+| `accessibility_audit` | WCAG Accessibility Audit | Audit web pages for WCAG 2.2 compliance (crawl) or set session WCAG level |
 | `rewrite_depression_sensitive_content` | Depression-Sensitive Content | Audit or rewrite text for mental health sensitivity |
-| `supportive_reply` | Supportive Conversation | Generate a supportive, non-clinical reply with escalation guidance |
+| `supportive_reply` | Supportive Conversation | Generate a supportive, non-clinical reply with escalation guidance; includes grief support modes (presence, practical, reflection) |
 | `cognitive_accessibility_audit` | Cognitive Accessibility | Audit content for cognitive load and plain-language compliance |
 | `cultural_context_check` | Cultural Sensitivity | Check a message for cultural sensitivity issues |
 | `deescalation_plan` | Conflict De-escalation | Generate a structured de-escalation plan |
 | `empathetic_reframe` | Empathetic Communication | Reframe a message with genuine empathy |
-| `supportive_reply` (grief modes) | Grief & Loss Support | Generate compassionate grief support via `support_mode` param |
 | `neurodiversity_design_check` | Neurodiversity-Aware Design | Audit UI for ADHD, autism, dyslexia, and sensory sensitivities |
 | `age_inclusive_design_check` | Age-Inclusive Design | Audit a user flow for age-inclusive design |
-| `wcagaa_check` | WCAG AA Accessibility | Score UI for WCAG 2.2 AA compliance |
 
 ---
 
@@ -97,14 +95,13 @@ The server uses the official `@modelcontextprotocol/sdk` and communicates via **
 
 Every tool response includes a `boundaryNotice` field. Always surface this to users:
 
-- `wcagaaa_check` — Compliance guidance only; does not replace legal review
+- `accessibility_audit` — Compliance guidance only; does not replace legal review
 - `rewrite_depression_sensitive_content` — Non-clinical UX/content guidance only
-- `supportive_reply` — Non-clinical support; must escalate when risk is elevated
+- `supportive_reply` — Non-clinical support; must escalate when risk is elevated (includes grief support modes)
 - `cognitive_accessibility_audit` — Design guidance only
 - `cultural_context_check` — Context-sensitive recommendations with uncertainty disclosure
 - `deescalation_plan` — No coercive tactics
 - `empathetic_reframe` — No manipulation or deceptive empathy
-- `supportive_reply` (grief modes) — Non-clinical bereavement support only
 - `neurodiversity_design_check` — Inclusive design guidance only
 - `age_inclusive_design_check` — Inclusive design guidance only
 
@@ -133,14 +130,13 @@ The `examples/` directory contains one complete request/response pair per action
 
 | File | Action |
 |------|--------|
-| `examples/wcagaaa_check.example.json` | `wcagaaa_check` |
+| `examples/accessibility_audit.example.json` | `accessibility_audit` |
 | `examples/rewrite_depression_sensitive_content.example.json` | `rewrite_depression_sensitive_content` |
 | `examples/supportive_reply.example.json` | `supportive_reply` |
 | `examples/cognitive_accessibility_audit.example.json` | `cognitive_accessibility_audit` |
 | `examples/cultural_context_check.example.json` | `cultural_context_check` |
 | `examples/deescalation_plan.example.json` | `deescalation_plan` |
 | `examples/empathetic_reframe.example.json` | `empathetic_reframe` |
-| `examples/supportive_reply_grief.example.json` | `supportive_reply` (grief mode) |
 | `examples/neurodiversity_design_check.example.json` | `neurodiversity_design_check` |
 | `examples/age_inclusive_design_check.example.json` | `age_inclusive_design_check` |
 

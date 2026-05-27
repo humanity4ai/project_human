@@ -6,6 +6,6 @@ type HandlerResult = {
     ok: false;
     error: string;
 };
-export declare function invokeAction(action: string, input: Record<string, unknown>): HandlerResult;
+export declare function invokeAction(action: string, input: Record<string, unknown>): Promise<HandlerResult>;
 export {};
 //# sourceMappingURL=handlers.d.ts.map

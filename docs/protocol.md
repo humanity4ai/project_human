@@ -118,20 +118,18 @@ All tool responses return a single `text` content item containing a JSON-encoded
 
 ---
 
-## Available Tools (10)
+## Available Tools (9)
 
 | Tool name | Skill |
 |-----------|-------|
-| `wcagaaa_check` | WCAG AAA Accessibility |
+| `accessibility_audit` | WCAG Accessibility Audit |
 | `rewrite_depression_sensitive_content` | Depression-Sensitive Content |
 | `supportive_reply` | Supportive Conversation |
 | `cognitive_accessibility_audit` | Cognitive Accessibility |
 | `cultural_context_check` | Cultural Sensitivity |
 | `deescalation_plan` | Conflict De-escalation |
 | `empathetic_reframe` | Empathetic Communication |
-| `supportive_reply` (grief modes) | Grief & Loss Support |
 | `neurodiversity_design_check` | Neurodiversity-Aware Design |
 | `age_inclusive_design_check` | Age-Inclusive Design |
-| `wcagaa_check` | WCAG AA Accessibility |
 
 See [`mcp-servers/README.md`](../mcp-servers/README.md) for full tool reference and input/output schemas.

@@ -1,6 +1,6 @@
 # Quality Gates
 
-The evaluation harness runs **11 automated checks** — one for each of the 11 skills plus contract consistency.
+The evaluation harness runs **10 automated checks** — one for each of the 9 skills plus contract consistency.
 
 ## Gates 1-10: Skill Completeness (per skill)
 

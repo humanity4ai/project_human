@@ -5,28 +5,27 @@
 import { describe, it, expect } from "vitest";
 import { actionContracts, validateContracts } from "../index.js";
 const EXPECTED_ACTIONS = [
-    "wcagaaa_check",
+    "accessibility_audit",
     "rewrite_depression_sensitive_content",
     "supportive_reply",
     "cognitive_accessibility_audit",
     "cultural_context_check",
     "deescalation_plan",
     "empathetic_reframe",
-    "grief_support_response",
     "neurodiversity_design_check",
     "age_inclusive_design_check"
 ];
 describe("actionContracts registry", () => {
-    it("I-1: has exactly 11 entries", () => {
-        expect(actionContracts).toHaveLength(11);
+    it("I-1: has exactly 9 entries", () => {
+        expect(actionContracts).toHaveLength(9);
     });
     it("I-2: all action IDs are unique", () => {
         const actions = actionContracts.map(c => c.action);
-        expect(new Set(actions).size).toBe(11);
+        expect(new Set(actions).size).toBe(9);
     });
     it("I-3: all skill names are unique", () => {
         const skills = actionContracts.map(c => c.skill);
-        expect(new Set(skills).size).toBe(11);
+        expect(new Set(skills).size).toBe(9);
     });
     it("I-4: all inputSchemaPath values start with schemas/", () => {
         for (const c of actionContracts) {

@@ -14,7 +14,7 @@ For LLM-native discovery, start with [`/llms.txt`](../llms.txt) at the repositor
 |---|---|
 | Understand the project's values | [Core Principles](../knowledge-core/principles.md) |
 | Start the MCP server | [README — MCP Runtime v1.0](../README.md#mcp-runtime) |
-| See all 11 tool signatures | [llms.txt — Tool Signatures](../llms.txt#tool-signatures) |
+| See all 9 tool signatures | [llms.txt — Tool Signatures](../llms.txt#tool-signatures) |
 | Integrate with Claude / Cursor / n8n | [Agent Adapter Guide](./agent-adapters.md) |
 | Read a specific skill specification | [Skill Reference](#skill-reference) below |
 | Contribute a new skill | [Contributing Guide](../CONTRIBUTING.md) |
@@ -38,16 +38,16 @@ The following files establish the foundational principles and vocabulary of the 
 
 ## MCP Server
 
-The MCP server is the primary runtime for all 11 skills. It implements the official `@modelcontextprotocol/sdk` JSON-RPC 2.0 protocol over stdio.
+The MCP server is the primary runtime for all 9 skills. It implements the official `@modelcontextprotocol/sdk` JSON-RPC 2.0 protocol over stdio.
 
 | Document | Description |
 |---|---|
-| [MCP Server README](../mcp-servers/README.md) | Full reference for all 10 tools, including input/output schemas. |
+| [MCP Server README](../mcp-servers/README.md) | Full reference for all 9 tools, including input/output schemas. |
 | [Agent Adapter Guide](./agent-adapters.md) | Step-by-step integration examples for all major agent platforms. |
 | [Protocol Specification](./protocol.md) | The formal protocol specification for the MCP server. |
-| [Action Contracts Source](../mcp-servers/src/index.ts) | TypeScript source for all 10 action contracts. |
+| [Action Contracts Source](../mcp-servers/src/index.ts) | TypeScript source for all 9 action contracts. |
 | [MCP Server Source](../mcp-servers/src/mcp-server.ts) | Full MCP server implementation with tool registrations. |
-| [Handler Source](../mcp-servers/src/handlers.ts) | All 10 action handler implementations. |
+| [Handler Source](../mcp-servers/src/handlers.ts) | All 9 action handler implementations. |
 
 ---
 

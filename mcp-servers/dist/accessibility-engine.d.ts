@@ -1,12 +1,12 @@
 /**
- * WCAG AA Accessibility Scoring Engine.
- * Analyses HTML input and returns per-criterion scores (0-100) with
- * an aggregate accessibility score. Supports both AA (4.5:1 contrast)
- * and AAA (7:1 contrast) levels.
+ * WCAG Accessibility Scoring Engine.
+ * 13 scoring functions covering all 78 WCAG 2.2 success criteria.
+ * Optional axe-core integration for ~80% automated coverage.
  *
  * Copyright (c) 2026 Ascent Partners Foundation. MIT License.
  */
-export type AccessibilityLevel = "AA" | "AAA";
+import type { CriterionResult } from "./wcag-criteria.js";
+export type AccessibilityLevel = "A" | "AA" | "AAA";
 export interface CriterionScore {
     category: string;
     score: number;
@@ -19,8 +19,11 @@ export interface AccessibilityScoreResult {
     aggregateScore: number;
     level: AccessibilityLevel;
     heuristic: boolean;
-    criteria: CriterionScore[];
+    criteria: CriterionResult[];
     summary: string;
+    automatedCount: number;
+    manualCount: number;
+    engine: "axe+regex" | "regex";
 }
-export declare function assessAccessibility(input: string, level: AccessibilityLevel): AccessibilityScoreResult;
+export declare function assessAccessibility(input: string, level: AccessibilityLevel): Promise<AccessibilityScoreResult>;
 //# sourceMappingURL=accessibility-engine.d.ts.map
