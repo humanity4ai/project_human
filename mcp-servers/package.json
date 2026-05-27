@@ -1,14 +1,13 @@
 {
   "name": "@humanity4ai/mcp-servers",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "MCP contracts and runtime server for Humanity4AI skills",
   "engines": {
     "node": ">=20",
     "pnpm": ">=10"
   },
-
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -34,7 +33,6 @@
   "publishConfig": {
     "access": "public"
   },
-
   "bin": {
     "@humanity4ai/mcp-servers": "./dist/bin.js"
   },
