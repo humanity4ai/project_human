@@ -2,7 +2,7 @@
 
 ## v1.0 (Current)
 
-- 10 launch skills with structured artifacts
+- 9 launch skills with structured artifacts
 - MCP action contracts and schema set
 - Standard MCP SDK (JSON-RPC 2.0) implementation
 - Baseline evaluation harness and governance framework
