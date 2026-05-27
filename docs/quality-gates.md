@@ -61,5 +61,5 @@ PASS  wcag-aaa-accessibility
 PASS  wcag-aa-accessibility
 PASS  contract-consistency
 
-All 10 checks passed.
+All 9 checks passed.
 ```
