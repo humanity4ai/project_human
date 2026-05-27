@@ -9,7 +9,9 @@
       "type": "string"
     },
     "target_context": {
-      "type": "string"
+      "type": "string",
+      "default": "general digital interface",
+      "description": "Optional context about the target audience or use case (e.g. 'healthcare patients', 'elderly users')"
     }
   },
   "additionalProperties": false,

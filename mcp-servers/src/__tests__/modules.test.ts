@@ -4,6 +4,7 @@
  */
 import { describe, it, expect } from "vitest";
 import { detectCrisisSignals, detectSafetySignals } from "../crisis-detection.js";
+import { SERVER_INSTRUCTIONS } from "../instructions.js";
 import { detectEmotion } from "../emotion-detection.js";
 import { assessAccessibility } from "../accessibility-engine.js";
 import { WCAG_CRITERIA, getChecklist, criteriaByLevel, AXE_COVERED_CRITERIA, ALL_CRITERIA } from "../wcag-criteria.js";
@@ -589,5 +590,13 @@ describe("i18n — locale-aware functions", () => {
     expect(SUPPORTED_LOCALES).toContain("ko");
     expect(SUPPORTED_LOCALES).toContain("ar");
     expect(SUPPORTED_LOCALES).toContain("pt");
+  });
+});
+
+// ─── instructions char limit ──────────────────────────────────────────────
+
+describe("instructions — char limit", () => {
+  it("MOD-INST-1: SERVER_INSTRUCTIONS is under 4096 characters", () => {
+    expect(SERVER_INSTRUCTIONS.length).toBeLessThanOrEqual(4096);
   });
 });

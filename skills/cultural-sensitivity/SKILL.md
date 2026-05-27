@@ -241,23 +241,12 @@ For each issue:
 - **[references/gender.md](references/gender.md)** - Gender considerations
 - **[references/regional.md](references/regional.md)** - Regional differences
 - **[references/checklist.md](references/checklist.md)** - Implementation checklist
-- **[references/examples.md](references/examples.md)** - Examples
-- **[references/quick-reference.md](references/quick-reference.md)** - Quick reference
+- **[references/context.md](references/context.md)** - Cultural context frameworks
+- **[references/respect.md](references/respect.md)** - Respectful engagement guidelines
 
 ## Script Usage
 
-This skill includes validation scripts:
-
-- **detect_issues.py** — Detect cultural issues
-- **audit_assumptions.py** — Audit cultural assumptions
-- **check_stereotypes.py** — Check for stereotypes
-- **detect_bias.py** — Detect implicit bias
-
-```bash
-# Detect cultural issues
-
-# Check for stereotypes
-```
+The MCP server performs cultural context checking via the `cultural_context_check` tool action. Inputs: `message` (required), `audience` (required), `region` (optional). Outputs: `adapted_message`, `notes[]`, `uncertainty`.
 
 ---
 

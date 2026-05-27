@@ -1,7 +1,7 @@
 ---
 name: supportive-conversation
 description: Generate supportive responses with safety boundaries. Use when user asks to 'be supportive', 'help with emotional support', 'provide encouragement', 'respond with empathy', 'offer emotional support'.
-version: 0.2.0
+version: 0.3.0
 license: MIT
 author: project-human
 tags:
@@ -11,6 +11,9 @@ tags:
   - emotional-support
   - active-listening
   - crisis-support
+  - grief
+  - bereavement
+  - internationalization
 ---
 
 # Supportive Conversation
@@ -72,6 +75,36 @@ This skill is grounded in the Humanity4AI core principles and the following skil
 3. **Explicit uncertainty over false reassurance.** Never promise outcomes ("you'll feel better soon"). Acknowledge that you do not know how the person's situation will unfold.
 4. **Autonomy is paramount.** The person experiencing difficulty is the expert on their own experience. Offer options, not directives.
 5. **Safety language is non-negotiable.** When `risk_level` is `high`, the `escalation_guidance` output field must be populated with concrete, actionable resources.
+
+
+## Grief Support Modes
+
+This skill supports grief and bereavement via the `support_mode` parameter. Select the mode based on the person's needs:
+
+- **`presence`** — Companionable presence. Acknowledge the loss without pushing. Sit with silence. Say "I am here with you" rather than offering solutions. Best for: fresh loss, acute grief, when the person is not ready to talk.
+- **`practical`** — Practical support. Offer concrete help with daily tasks. Ask "What would be most helpful right now?" or suggest meals, errands, childcare. Best for: ongoing grief, when the person is overwhelmed by logistics.
+- **`reflection`** — Reflective support. Invite sharing of memories. Ask gentle open questions about the person they lost. Honor their unique relationship. Best for: processing grief, anniversaries, when the person wants to talk.
+
+Grief references: Stroebe-Schut Dual Process Model (1999), Neimeyer meaning reconstruction (2001), APA grief guidelines.
+
+## Internationalization
+
+The `locale` parameter supports 9 languages: `en`, `zh`, `es`, `fr`, `de`, `ja`, `ko`, `ar`, `pt`. The reply template and crisis resources are localized. Use `normalizeLocale()` with BCP 47 codes (e.g., `en-US` → `en`, `zh-CN` → `zh`).
+
+## Emotion Detection
+
+This skill uses `detectEmotion()` to tailor replies. Six emotion categories are detected:
+
+| Category | When detected | Reply tone |
+|----------|--------------|------------|
+| `fear_anxiety` | Worry, panic, dread | Calm, grounding |
+| `sadness_grief` | Loss, sorrow, mourning | Gentle, validating |
+| `anger_frustration` | Rage, irritation, injustice | Acknowledging, de-escalating |
+| `loneliness_isolation` | Disconnection, abandonment | Connecting, present |
+| `shame_guilt` | Self-blame, regret, inadequacy | Non-judgmental, worth-affirming |
+| `love_connection` | Gratitude, affection, hope | Warm, affirming |
+
+The reply is adapted using the detected emotion label. If no emotion is detected, a neutral-fallback reply is used.
 
 
 ## Instructions
@@ -238,18 +271,7 @@ When uncertain about the appropriate level of support:
 
 ## Script Usage
 
-This skill includes validation scripts in the `scripts/` folder:
-
-- **detect_risk.py** — Detect crisis/risk language in text
-- **assess_severity.py** — Assess severity of emotional distress
-- **validate_compassion.py** — Validate response is supportive
-- **escalate_decide.py** — Decide if escalation is needed
-
-```bash
-# Detect risk in user message
-
-# Validate a response
-```
+The MCP server provides supportive replies via the `supportive_reply` tool action. Inputs: `message` (required), `risk_level` (required, low|medium|high), `locale` (optional, 9 languages), `support_mode` (optional, general|presence|practical|reflection). Outputs: `reply`, `escalation_guidance[]`, `boundaries_notice`, `care_notes[]` (grief modes only). The server uses `detectCrisisSignals()`, `detectEmotion()`, and `normalizeLocale()` internally.
 
 ---
 

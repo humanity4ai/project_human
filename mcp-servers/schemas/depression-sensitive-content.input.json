@@ -17,7 +17,9 @@
       "default": "rewrite"
     },
     "domain": {
-      "type": "string"
+      "type": "string",
+      "default": "general",
+      "description": "Optional domain context (e.g. 'healthcare', 'social media')"
     }
   },
   "additionalProperties": false,

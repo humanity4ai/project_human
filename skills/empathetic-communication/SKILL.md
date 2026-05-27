@@ -265,18 +265,7 @@ When you're not sure:
 
 ## Script Usage
 
-This skill includes validation scripts:
-
-- **validate_empathy.py** — Validate response shows genuine empathy
-- **analyze_tone.py** — Analyze emotional tone
-- **detect_hollow.py** — Detect hollow empathy phrases
-- **suggest_improvements.py** — Suggest improvements
-
-```bash
-# Validate empathy
-
-# Analyze tone
-```
+The MCP server performs empathetic reframing via the `empathetic_reframe` tool action. This is a tone-based reframer — it replaces blame/failure language with neutral outcomes (warm mode), elevates register (formal mode), or applies minimal changes (neutral mode). Inputs: `message` (required), `tone` (warm|neutral|formal, default "warm"). Outputs: `reframed_message`, `rationale[]`, `escalation_guidance[]`.
 
 ---
 
