@@ -10,9 +10,5 @@
  *
  * Copyright (c) 2026 Ascent Partners Foundation. MIT License.
  */
-import { main } from "./mcp-server.js";
-main().catch((err) => {
-    process.stderr.write(`Fatal error: ${String(err)}\n`);
-    process.exit(1);
-});
+import "./mcp-server.js";
 //# sourceMappingURL=bin.js.map
