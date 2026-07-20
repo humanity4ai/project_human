@@ -2,7 +2,7 @@ import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "n
 import { basename, dirname, join, normalize } from "node:path";
 import { parse } from "yaml";
 import { z } from "zod";
-import { invokeAction } from "../../mcp-servers/src/handlers.js";
+import { invokeAction } from "@humanity4ai/mcp-servers/handlers";
 
 type EvalResult = {
   skill: string;
