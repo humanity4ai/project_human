@@ -3,5 +3,5 @@
   "compilerOptions": {
     "types": ["node"]
   },
-  "include": ["src/**/*.ts", "../mcp-servers/src/handlers.ts", "../mcp-servers/src/index.ts"]
+  "include": ["src/**/*.ts"]
 }

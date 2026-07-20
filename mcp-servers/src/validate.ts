@@ -8,8 +8,6 @@ import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const schemasDir = join(dirname(fileURLToPath(import.meta.url)), "..", "schemas");
-
 type ValidationResult =
   | { valid: true }
   | { valid: false; errors: string[] };
