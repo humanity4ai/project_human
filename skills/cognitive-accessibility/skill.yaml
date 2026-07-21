@@ -9,8 +9,6 @@ tags:
   - simplification
   - chunking
 author: project-human
-compatibility: Requires Python 3.8+
-allowed-tools: Bash(python3:*), Read, Write
 boundaries:
   - Non-clinical guidance only
 actions:
