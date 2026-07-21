@@ -190,13 +190,7 @@ When uncertain:
 - Use "died by suicide" not "committed suicide"
 - Use "suicidal thoughts" not "suicidal tendencies"
 - Use "person with suicidal ideation" not "suicidal person"
-- Include crisis resources:
-  - **International**: Befrienders Worldwide — https://www.befrienders.org (global directory covering 32 countries)
-  - **International**: International Association for Suicide Prevention — https://www.iasp.info/resources/Crisis_Centres/
-  - **UK & Ireland**: Samaritans — 116 123 (free, 24/7) — https://www.samaritans.org
-  - **US & Canada**: 988 Suicide & Crisis Lifeline — call/text 988 — https://988lifeline.org
-  - **Online chat**: IMAlive — https://www.imalive.org (volunteer crisis chat, available in English)
-  - **Global text line**: Crisis Text Line — text HOME to 741741 (US/Canada/UK/Ireland)
+- Include crisis resources (runtime source of truth: `crisis-resources.ts` — surface those verbatim; exemplar list in `supportive-conversation/SKILL.md` Step 5: Crisis Response)
 
 ## Cognitive Accessibility
 
