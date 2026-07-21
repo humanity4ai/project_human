@@ -73,7 +73,9 @@ This skill is grounded in the Humanity4AI core principles and the following skil
 
 ## De-escalation Framework
 
-### The VERB Model [CITATION NEEDED — verify against established frameworks: CPI, MOAB, LEAPS]
+### The VERB Model
+
+*Internal composite model. Underlying techniques are grounded in established frameworks: active listening and emotional labeling from FBI/CIT crisis-negotiation practice (also "tactical empathy", Voss), and Nonviolent Communication (Rosenberg: observation → feeling → need → request; note NVC's evidence base is promising but limited — mostly small studies).*
 
 **V - Validate**: Acknowledge their feelings and concerns
 - "I understand this is frustrating"
@@ -95,7 +97,9 @@ This skill is grounded in the Humanity4AI core principles and the following skil
 - "Here's what I can offer"
 - "We need to keep this respectful"
 
-### The GAIN Method [CITATION NEEDED — verify against established frameworks: CPI, MOAB, LEAPS]
+### The GAIN Method
+
+*Internal composite model — see framework grounding note under The VERB Model above.*
 
 **G - Gather**: Collect information about the situation
 - What's happening?
