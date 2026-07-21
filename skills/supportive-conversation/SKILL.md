@@ -166,13 +166,14 @@ Gently offer support options:
 **Required Response**:
 1. Validate: "I'm so glad you reached out"
 2. Express care: "I want to make sure you're safe"
-3. Provide resources:
-   - **International**: Befrienders Worldwide — https://www.befrienders.org (global directory covering 32 countries)
+ 3. Provide resources (runtime source of truth: `crisis-resources.ts` — surface those verbatim):
+   - **International directory**: Find a Helpline — https://findahelpline.com (maintained global directory)
    - **International**: International Association for Suicide Prevention — https://www.iasp.info/resources/Crisis_Centres/
    - **UK & Ireland**: Samaritans — 116 123 (free, 24/7) — https://www.samaritans.org
    - **US & Canada**: 988 Suicide & Crisis Lifeline — call/text 988 — https://988lifeline.org
-   - **Online chat**: IMAlive — https://www.imalive.org (volunteer crisis chat, available in English)
-   - **Global text line**: Crisis Text Line — text HOME to 741741 (US/Canada/UK/Ireland)
+   - **US text**: Crisis Text Line — text HOME to 741741 (US & Puerto Rico)
+   - **UK text**: Shout — text SHOUT to 85258
+   - **Ireland text**: Text About It — text HELLO to 50808
 4. Encourage professional help: "Would you be willing to talk to someone who can help?"
 
 ### Step 6: Close with Care
