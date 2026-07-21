@@ -197,7 +197,7 @@ server.tool(
   {
     mode: z
       .enum(["crawl", "session"])
-      .describe("crawl: score pages against all 78 WCAG 2.2 criteria. session: return WCAG checklist for this session."),
+      .describe("crawl: score pages against all 86 WCAG 2.2 criteria. session: return WCAG checklist for this session."),
     level: z
       .enum(["A", "AA", "AAA"])
       .default("AA")

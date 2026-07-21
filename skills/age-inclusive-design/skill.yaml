@@ -21,7 +21,16 @@ uncertainty:
 provenance:
   sources:
     - internal-curation
+    - w3c-wai-older-users
+    - w3c-wai-age-literature-review
+    - ico-age-appropriate-design-code
   license: MIT
 references:
   - name: Skill References
     url: https://github.com/humanity4ai/project_human/tree/main/skills/age-inclusive-design/references
+  - name: W3C WAI — Older Users and Web Accessibility
+    url: https://www.w3.org/WAI/older-users/
+  - name: W3C WAI-AGE Literature Review (incl. NIA/NLM senior-friendly checklist)
+    url: https://www.w3.org/TR/wai-age-literature/
+  - name: UK ICO Age-Appropriate Design Code (children's UX)
+    url: https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/childrens-information/childrens-code-guidance-and-resources/

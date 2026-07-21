@@ -17,7 +17,7 @@ export const actionContracts: ActionContract[] = [
   {
     skill: "accessibility",
     action: "accessibility_audit",
-    description: "Audit web pages for WCAG 2.2 compliance or set session WCAG level. Crawl mode: provide pages with URL+HTML for per-page scoring and ranking across all 78 success criteria. Session mode: returns the complete WCAG checklist for the requested level that the agent must enforce.",
+    description: "Audit web pages for WCAG 2.2 compliance or set session WCAG level. Crawl mode: provide pages with URL+HTML for per-page scoring and ranking across all 86 success criteria. Session mode: returns the complete WCAG checklist for the requested level that the agent must enforce.",
     inputSchemaPath: "schemas/accessibility.input.json",
     outputSchemaPath: "schemas/accessibility.output.json",
     safetyBoundary: "Compliance guidance only; does not replace legal review"
