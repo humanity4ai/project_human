@@ -1,6 +1,6 @@
 /**
  * WCAG 2.2 Criteria Map — single source of truth for accessibility_audit tool.
- * All 78 unique success criteria across 4 POUR principles.
+ * All 86 success criteria across 4 POUR principles.
  * Each criterion includes an axeRule field for axe-core integration.
  *
  * Copyright (c) 2026 Ascent Partners Foundation. MIT License.

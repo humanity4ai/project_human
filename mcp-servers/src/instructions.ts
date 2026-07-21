@@ -18,7 +18,7 @@ export const SERVER_INSTRUCTIONS: string = [
   "  sadness, loneliness, shame, anxiety, or seeks support. Use risk_level based on severity.",
   "  Use support_mode='presence'/'practical'/'reflection' for grief. Always surface",
   "  boundaryNotice and escalation_guidance verbatim. If crisis detected (risk=high),",
-  "  include crisis resources (988, 741741, 116 123) in your response.",
+  "  include localized crisis resources (from the crisis-resources module) in your response.",
   "",
   "PRIORITY 2 (before emitting response):",
   "- rewrite_depression_sensitive_content: Before sending any advice, instructions, feedback,",
