@@ -1,157 +1,93 @@
-# Reddit Post Pack — DS-WCS Skill
+# Reddit Post Pack — Humanity4AI
 
-Three posts, one per subreddit. Each is written community-first — the value (resource, examples, discussion) leads; the project link is secondary. Reddit penalises posts that read as self-promotion. These are framed as contributions to the community.
+Three posts, one per subreddit. Community-first framing: the insight/resource leads; the link is secondary. Reddit penalises self-promotion. Post these inside the 48-hour launch window (see launch-plan.md). Build karma in each sub before posting if the account is new there.
 
 ---
 
 ## Post 1 — r/accessibility
 
-**Subreddit:** r/accessibility
-**Post type:** Text post (no link post — text posts perform better in this sub)
-**Title:** Free cognitive accessibility audit checklist for UI content — 40 items, maps to WCAG 2.2 and W3C COGA
-
----
-
-**Body:**
-
-I put together an open-source audit framework for cognitive accessibility in UI content — specifically for the content layer that most accessibility audits skip: error messages, CTAs, empty states, form instructions, notifications, and onboarding flows.
-
-It covers 40+ audit items across those categories, with severity ratings (HIGH/MEDIUM/LOW), remediation guidance, and full traceability to WCAG 2.2, W3C COGA, ISO 9241-110, and ISO/IEC 30071-1 for every finding.
-
-A few examples of what it catches:
-
-**HIGH severity:**
-- Blame language in error messages ("You entered invalid data" → attribute to format, not user)
-- Missing recovery paths ("Error occurred" with no next step)
-- Placeholder text used as the only label (disappears on focus, violates WCAG 3.3.2)
-- Conditional fields that appear without warning
-
-**MEDIUM severity:**
-- Generic button labels ("Submit", "OK", "Go") — violates WCAG 2.4.6
-- Password requirements hidden until after failure
-- Multi-step forms with no progress indicator
-- Memory-dependent form instructions ("Call us for your policy number")
-
-**LOW severity:**
-- Exclamation points in error states
-- Excessive enthusiasm in confirmations ("Congratulations!!! You did it!!!")
-
-The checklist is in a GitHub repo along with a 15-example before/after rewrite library and a full standards traceability matrix.
-
-Would be interested in feedback from practitioners on gaps — particularly for native app contexts, voice interfaces, or domains I haven't covered well (e.g., education platforms, government services).
-
-→ https://github.com/simonplmak-cloud/depression-sensitive-web-content
-
----
-
-## Post 2 — r/UXDesign
-
-**Subreddit:** r/UXDesign
 **Post type:** Text post
-**Title:** 15 before/after UI content rewrites for cognitive accessibility — looking for critique
-
----
+**Title:** I built a rule-based WCAG 2.2 auditor that runs inside AI agents (MCP) — all 86 success criteria, no API calls
 
 **Body:**
 
-I've been building an open-source audit framework for cognitive accessibility in UI content and wanted to share the rewrite library here for critique. These are the patterns I see most frequently in audits — interested to know if practitioners here agree with the rewrites or would approach them differently.
+Most AI accessibility tooling sends your HTML to an LLM and asks "is this accessible?" The answer is non-deterministic and unverifiable.
 
-Here are 5 of the 15 examples:
+I took a different approach: a fully rule-based engine that scores pages against all 86 WCAG 2.2 success criteria (A/AA/AAA, all four POUR principles). Regex + structured heuristics only — zero LLM calls, zero network requests. Same input, same output, every time.
 
----
+What it does:
 
-**Error message — e-commerce checkout:**
-Before: "Invalid email! Try again."
-After: "Email format not recognised. Please use this format: name@domain.com"
+- **Crawl mode:** feed it `{url, html}` pairs, get a 0–100 score per criterion, per page, plus site aggregate and ranking
+- **Session mode:** declare your target level (A/AA/AAA), get the full checklist the agent must enforce
+- Honest about limits: the 41 fully automatable criteria get real scores; manual-only criteria (e.g., audio description) are flagged with a `manual_reason` instead of being fake-passed
+- Optional axe-core engine if you want Deque's rules too (~57% automation ceiling — it says so in the output)
 
-Rationale: Removes blame attribution, removes exclamation point, provides concrete recovery path and format example.
+It's one of 9 "humanity skills" in the project (the others cover cognitive accessibility, neurodiversity-aware design, depression-sensitive content). Everything is MIT licensed and runs as a standard MCP server:
 
----
+```
+npx @humanity4ai/mcp-servers
+```
 
-**Empty state — wellness app:**
-Before: "No activities logged. You should track your mood daily to see your progress over time."
-After: "When you log activities, they'll appear here. Optional: track your mood to identify patterns in your energy and wellbeing."
+I ran it on its own landing page and it scored itself 79/100 at AAA — the failing criteria were instructive (no `line-height ≥ 1.5` in body CSS, touch targets under 44px). Dogfooding found real bugs.
 
-Rationale: Removes "should" (obligation language), removes "progress" (implies current failure), emphasises optionality.
+Feedback wanted: which WCAG criteria do you most want deterministic automation for that everyone leaves manual?
 
----
-
-**CTA — account signup:**
-Before: "Sign up now!"
-After: "Create your account (takes about 2 minutes)"
-
-Rationale: Self-descriptive outcome, time expectation reduces uncertainty, no urgency pressure.
+→ https://github.com/humanity4ai/project_human
 
 ---
 
-**Session timeout — general web:**
-Before: "WARNING: Your session expires in 60 seconds! Save now or lose all your changes!"
-After: "Your session will expire in 5 minutes due to inactivity. Save your work to continue."
+## Post 2 — r/LocalLLaMA (or r/artificial)
 
-Rationale: Extended warning window, removed caps and exclamation points, removed threat language, single calm action.
-
----
-
-**Job application rejection — job platform:**
-Before: "Application rejected. Better luck next time!"
-After: "Application status: Not selected. You can apply for other open positions that match your skills."
-
-Rationale: Removed "rejected" framing, removed "luck" (implies random outcome), provided constructive next step.
-
----
-
-All 15 rewrites map to WCAG 2.2, W3C COGA, ISO 9241-110, and ISO/IEC 30071-1 — so the rationale isn't subjective, it's grounded in the relevant standards.
-
-The full library, audit checklist, and standards traceability matrix are in the repo if anyone wants to dig in:
-→ https://github.com/simonplmak-cloud/depression-sensitive-web-content
-
-Happy to discuss any of the rewrites — particularly cases where the before version might be appropriate in certain contexts, or where the after version introduces new problems.
-
----
-
-## Post 3 — r/opensource
-
-**Subreddit:** r/opensource
 **Post type:** Text post
-**Title:** DS-WCS — open-source OpenCode skill for cognitive accessibility audits in UI content [MIT]
-
----
+**Title:** 9 rule-based "humanity skills" for LLM agents — crisis detection, de-escalation, empathy checks, all deterministic, all local
 
 **Body:**
 
-**What it is:**
-An OpenCode agent skill that audits and rewrites UI content for cognitive accessibility. It targets the content layer — error messages, CTAs, form instructions, empty states, notifications — that most accessibility tools don't cover.
+A pattern I kept hitting: agents are fine at code and terrible at humans. A user says "I can't do this anymore" and the agent responds with a stack trace.
 
-**How it works:**
-Install with one `git clone` into your `.opencode/skills/` directory. Ask OpenCode to audit any file or content snippet. It returns prioritised findings with standards citations (WCAG 2.2, W3C COGA, ISO 9241-110, ISO/IEC 30071-1) and before/after rewrite recommendations.
+So I built 9 rule-based skills that run inside any MCP-compatible agent (Claude Code, OpenCode, Copilot, Cursor):
 
-```bash
-mkdir -p .opencode/skills
-git clone https://github.com/simonplmak-cloud/depression-sensitive-web-content.git \
-  .opencode/skills/depression-sensitive-web-content
-```
+1. **Supportive reply** — detects crisis signals across 6 emotion categories, generates a supportive response, and always escalates to real crisis lines (988, 741741, Samaritans, IASP — localized, 9 languages). High-risk input never gets a purely AI response.
+2. **Depression-sensitive content rewriter** — flags shame/blame/urgency patterns in UI copy and rewrites them, mapped to WCAG 2.2 + COGA + ISO standards.
+3. **WCAG 2.2 audit** — all 86 success criteria, regex engine + optional axe-core.
+4. **Cognitive accessibility audit** — reading level, structure, cognitive load.
+5. **Cultural context check** — sensitivity flags for a stated audience/region, with uncertainty disclosure.
+6. **De-escalation plan** — structured plans by intensity (low/medium/high), explicitly non-coercive.
+7. **Empathetic reframe** — catches hollow empathy ("I understand how you feel") and rewrites it.
+8. **Neurodiversity design check** — ADHD/autism/dyslexia/sensory UI audit.
+9. **Age-inclusive design check** — barriers for children through older adults.
 
-Then in OpenCode:
-```
-Audit src/components/ErrorState.tsx for depression-sensitive content issues
-```
+Design decisions that might interest this sub:
 
-**What's in the repo:**
-- `SKILL.md` — main skill definition loaded by OpenCode
-- `resources/implementation-guide.md` — 7 core rewrite principles, 15 before/after examples, 40-item audit checklist, full standards traceability matrix
-- `AGENTS.md` — agent context and auto-invocation triggers
-- `docs/` — SDG/ESG alignment documentation, fork instructions
+- **No LLM in the loop.** Every skill is patterns + heuristics. Deterministic, auditable, zero token cost, works offline. The LLM orchestrates; the skill adjudicates.
+- **Uncertainty is mandatory output.** Every response states low/medium/high confidence. Cultural checks default to high uncertainty.
+- **Safety boundaries are machine-readable.** Each skill declares what it will never do (no diagnosis, no therapy, no legal compliance claims).
 
-**License:** MIT
+MIT, TypeScript, 90%+ test coverage: https://github.com/humanity4ai/project_human
 
-**Looking for contributors:**
-The implementation guide currently covers general web, e-commerce, healthcare, financial services, and job platform contexts. Would like to expand to:
-- Education platforms
-- Government / public sector services
-- Native mobile (iOS/Android content patterns)
-- Voice interfaces
-- Additional language/localization examples
+What humane failure modes have you hit with your agents? Genuinely asking — scenarios become test fixtures.
 
-If you work in any of these domains and want to add before/after examples or audit checklist items, the contribution guide is in `.github/CONTRIBUTING.md`.
+---
 
-→ https://github.com/simonplmak-cloud/depression-sensitive-web-content
+## Post 3 — r/webdev (or r/opensource)
+
+**Post type:** Text post
+**Title:** I consolidated my scattered accessibility/mental-health repos into one MCP toolkit — here's what the star data taught me
+
+**Body:**
+
+I maintained separate repos for a WCAG design system, a depression-sensitive content skill, and an NVDA testing pipeline. The single-purpose WCAG repo got 6x the stars of my comprehensive toolkit — matching the pattern you see across GitHub (single-purpose MCP servers like WhatsApp-MCP and Firecrawl hit thousands of stars while polished multi-tool repos sit at zero).
+
+So I ran the experiment properly: consolidated everything into one coherent project (9 skills, one MCP server, one npm package), archived the old repos with redirects, and rebuilt the README around a 3-second comprehension test.
+
+What actually moved the needle, ranked:
+
+1. **A skills table above the fold.** "9 humanity skills" is abstract. A 9-row table with one-line outcomes is not.
+2. **One-command install.** `npx @humanity4ai/mcp-servers` replaced a 5-step setup.
+3. **20 precise topics** (mcp-server, llm, claude, openai, wcag) — GitHub caps at 20; dropping vanity topics for search-volume topics matters.
+4. **Archiving old repos with redirect READMEs** instead of deleting — the stars stay visible and funnel traffic.
+5. **Dogfooding the tool on itself** — the WCAG auditor scored its own landing page 79/100 and found real issues (missing line-height, small touch targets). That story is better marketing than any feature list.
+
+The toolkit: https://github.com/humanity4ai/project_human (MIT)
+
+Happy to share the full before/after README diff if anyone's doing the same consolidation.
