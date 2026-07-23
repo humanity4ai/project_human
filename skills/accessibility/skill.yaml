@@ -18,4 +18,5 @@ provenance:
     - internal
     - wcag-aaa-accessibility
     - wcag-aa-accessibility
+    - wcag-aaa-web-design
   license: MIT

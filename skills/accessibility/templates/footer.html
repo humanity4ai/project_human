@@ -1,0 +1,108 @@
+<!--
+  Accessible Footer Component
+  WCAG 2.2 AAA Compliant
+
+  Requirements met:
+  - 2.4.9  Link Purpose (link only) — all links self-descriptive
+  - 2.4.10 Section Headings — footer sections have headings
+  - 2.5.5  Target Size (enhanced) — 44x44px minimum
+  - 1.3.1  Info and Relationships — semantic structure
+  - 3.2.3  Consistent Navigation — same footer across pages
+
+  Security:
+  - External links use rel="noopener noreferrer" and target="_blank"
+  - Year is set via textContent (not innerHTML) to prevent XSS
+
+  Responsive behavior:
+  - sm: Single column, stacked sections
+  - md: 2-column grid
+  - lg+: Multi-column layout
+-->
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <!-- Footer Navigation Sections -->
+    <div class="footer-grid">
+      <!-- Column 1: Company Info -->
+      <div class="footer-section">
+        <h2 class="footer-heading">{{SITE_NAME}}</h2>
+        <p class="footer-description">
+          {{SITE_DESCRIPTION}}
+        </p>
+      </div>
+
+      <!-- Column 2: Navigation Links -->
+      <nav aria-label="Footer Navigation">
+        <h2 class="footer-heading">Navigation</h2>
+        <ul class="footer-links" role="list">
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/resources">Resources</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <!-- Column 3: Legal Links -->
+      <nav aria-label="Legal Information">
+        <h2 class="footer-heading">Legal</h2>
+        <ul class="footer-links" role="list">
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/accessibility">Accessibility Statement</a></li>
+          <li><a href="/cookies">Cookie Policy</a></li>
+        </ul>
+      </nav>
+
+      <!--
+        Column 4: Contact Information
+        NOTE: The <address> element is semantically for the contact info
+        of the document or article author. For general company contact
+        details, use a plain <div> to avoid confusing assistive technologies.
+      -->
+      <div class="footer-section">
+        <h2 class="footer-heading">Contact</h2>
+        <div class="footer-contact">
+          <p>
+            <a href="mailto:{{CONTACT_EMAIL}}">{{CONTACT_EMAIL}}</a>
+          </p>
+          <p>
+            <a href="tel:{{CONTACT_PHONE}}">{{CONTACT_PHONE}}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom Bar -->
+    <div class="footer-bottom">
+      <p>
+        &copy; <span id="footer-year">2026</span> {{SITE_NAME}}.
+        All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!--
+  EXTERNAL LINK PATTERN:
+  When linking to external websites, always include rel="noopener noreferrer"
+  to prevent the target page from accessing window.opener. Add a visual
+  indicator and screen reader text to inform users the link opens externally.
+
+  Example:
+    <a href="https://example.com"
+       target="_blank"
+       rel="noopener noreferrer">
+      Example Site
+      <span class="sr-only">(opens in a new tab)</span>
+    </a>
+-->
+
+<!--
+  Footer year auto-update (include in main.js):
+  SECURITY: Use textContent, not innerHTML.
+
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear().toString();
+  }
+-->

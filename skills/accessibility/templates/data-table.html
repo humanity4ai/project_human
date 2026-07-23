@@ -1,0 +1,133 @@
+<!--
+  Accessible Data Table Template
+  WCAG 2.2 AAA Compliant
+
+  Features:
+  - Proper <caption> for screen readers
+  - Sortable column headers with aria-sort
+  - Sticky header on scroll
+  - Row-level actions revealed on hover/focus
+  - Responsive wrapper for horizontal scroll
+  - Tabular numerals for numeric columns
+  - Bulk action toolbar (shown on selection)
+
+  Replace placeholder content with actual data.
+  All classes reference `tokens.css` and `components.css` for styling.
+-->
+
+<!-- Bulk Action Toolbar — shown when rows are selected -->
+<div class="table-toolbar" role="toolbar" aria-label="Table actions" hidden>
+  <span class="table-toolbar__count" aria-live="polite">
+    <span class="table-toolbar__count-number">0</span> items selected
+  </span>
+  <div class="table-toolbar__actions">
+    <button type="button" class="btn btn--secondary btn--sm">Export</button>
+    <button type="button" class="btn btn--danger btn--sm">Delete</button>
+  </div>
+</div>
+
+<!-- Responsive wrapper preserves table semantics for screen readers -->
+<div class="table-responsive" role="region" aria-label="Data table" tabindex="0">
+  <table class="data-table">
+    <caption class="data-table__caption">
+      Quarterly Performance Report
+      <!-- Optional: add a brief description for complex tables -->
+      <span class="sr-only">
+        Sortable table. Use column headers to sort. Select rows for bulk actions.
+      </span>
+    </caption>
+    <thead class="data-table__head">
+      <tr>
+        <!-- Select-all checkbox -->
+        <th scope="col" class="data-table__cell--checkbox">
+          <label class="sr-only" for="select-all">Select all rows</label>
+          <input type="checkbox" id="select-all" aria-label="Select all rows" />
+        </th>
+        <!-- Text column: left-aligned (default) -->
+        <th scope="col" aria-sort="none">
+          <button type="button" class="data-table__sort-btn">
+            Name
+            <span class="data-table__sort-icon" aria-hidden="true"></span>
+          </button>
+        </th>
+        <!-- Text column -->
+        <th scope="col" aria-sort="none">
+          <button type="button" class="data-table__sort-btn">
+            Department
+            <span class="data-table__sort-icon" aria-hidden="true"></span>
+          </button>
+        </th>
+        <!-- Numeric column: right-aligned -->
+        <th scope="col" class="data-table__cell--numeric" aria-sort="none">
+          <button type="button" class="data-table__sort-btn">
+            Revenue
+            <span class="data-table__sort-icon" aria-hidden="true"></span>
+          </button>
+        </th>
+        <!-- Date column: left-aligned (qualitative number) -->
+        <th scope="col" aria-sort="descending">
+          <button type="button" class="data-table__sort-btn">
+            Date
+            <span class="data-table__sort-icon" aria-hidden="true"></span>
+          </button>
+        </th>
+        <!-- Status column -->
+        <th scope="col">Status</th>
+        <!-- Actions column (no sort) -->
+        <th scope="col" class="data-table__cell--actions">
+          <span class="sr-only">Actions</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="data-table__body">
+      <tr>
+        <td class="data-table__cell--checkbox">
+          <label class="sr-only" for="row-1">Select row 1</label>
+          <input type="checkbox" id="row-1" aria-label="Select Acme Corporation" />
+        </td>
+        <td>Acme Corporation</td>
+        <td>Engineering</td>
+        <td class="data-table__cell--numeric">$1,234,567.89</td>
+        <td>2026-01-15</td>
+        <td>
+          <!-- Status uses both color AND text — never color alone (1.4.1) -->
+          <span class="status-badge status-badge--success">Active</span>
+        </td>
+        <td class="data-table__cell--actions">
+          <button type="button" class="btn btn--ghost btn--sm" aria-label="Edit Acme Corporation">
+            Edit
+          </button>
+          <button type="button" class="btn btn--ghost btn--sm btn--danger" aria-label="Delete Acme Corporation">
+            Delete
+          </button>
+        </td>
+      </tr>
+      <!-- Additional rows follow the same pattern -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Pagination -->
+<nav class="table-pagination" aria-label="Table pagination">
+  <div class="table-pagination__info" aria-live="polite">
+    Showing 1-10 of 42 results
+  </div>
+  <div class="table-pagination__controls">
+    <label for="rows-per-page" class="table-pagination__label">Rows per page:</label>
+    <select id="rows-per-page" class="table-pagination__select">
+      <option value="10" selected>10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+    <button type="button" class="btn btn--ghost btn--sm" aria-label="Previous page" disabled>
+      Previous
+    </button>
+    <span class="table-pagination__page" aria-current="page">1</span>
+    <span class="table-pagination__page">2</span>
+    <span class="table-pagination__page">3</span>
+    <button type="button" class="btn btn--ghost btn--sm" aria-label="Next page">
+      Next
+    </button>
+  </div>
+</nav>

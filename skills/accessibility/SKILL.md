@@ -37,3 +37,22 @@ Two analysis engines:
 - Level A: 31 criteria (18 automatable, 4 partial)
 - Level AA: 55 criteria cumulative (31 automatable, 8 partial)
 - Level AAA: 86 criteria cumulative (41 automatable, 15 partial)
+
+## References
+
+Implementation guidance and enterprise patterns (merged from `wcag-aaa-web-design`):
+
+- `references/wcag-aaa-checklist.md` — all 87 WCAG 2.2 criteria with implementation guidance and AAA design implications
+- `references/corporate-design-system.md` — AAA-verified color palette with precomputed contrast ratios, type scale, BEM architecture
+- `references/aria-patterns.md` — ARIA widget patterns (modals, tabs, accordions, focus traps)
+- `references/form-patterns.md` — accessible form design and validation
+- `references/security-error-handling.md` — OWASP-aligned secure error handling (CSP, CSRF, output encoding)
+- `references/application-states.md` — loading, empty, and error state patterns
+- `references/data-presentation.md` — accessible data table and density patterns
+- `references/navigation-patterns.md` — sidebar, breadcrumb, and wayfinding patterns
+- `references/responsive-breakpoints.md` — mobile-first breakpoint system
+- `references/corporate-ux-patterns.md` — enterprise UX conventions
+
+## Templates
+
+AAA-verified starter templates in `templates/`: design tokens with precomputed 7:1 contrast palette (`tokens.css`), BEM component library (`components.css`), semantic HTML partials, and defensive vanilla JS (`main.js`). A standalone contrast checker with auto-suggestion engine is included as `templates/check_contrast.py` (stdlib-only Python; can audit `--color-*` tokens directly from `tokens.css`).

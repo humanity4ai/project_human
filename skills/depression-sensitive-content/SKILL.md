@@ -146,6 +146,7 @@ When uncertain:
 - **[references/examples.md](references/examples.md)** - Good/bad examples
 - **[references/alternatives.md](references/alternatives.md)** - Alternative phrases
 - **[references/quick-reference.md](references/quick-reference.md)** - Quick reference guide
+- **[references/implementation-guide.md](references/implementation-guide.md)** - Deep implementation guide: 7 rewrite principles with clinical rationale, 15 worked examples, full standards traceability matrix (WCAG 2.2 / COGA / ISO 9241-110 / ISO/IEC 30071-1), 40+ item audit checklist, localization guidance
 
 ## Progressive Disclosure
 
