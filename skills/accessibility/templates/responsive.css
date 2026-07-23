@@ -1,0 +1,231 @@
+/*
+ * WCAG 2.2 AAA Responsive Layout System
+ * Mobile-first, 3 breakpoints minimum (sm, md, lg)
+ *
+ * Breakpoints:
+ *   sm: 0 -- 767px     (phones)
+ *   md: 768px -- 1023px (tablets)
+ *   lg: 1024px+         (desktops)
+ *   xl: 1280px+         (optional, wide desktops)
+ *
+ * WCAG compliance:
+ *   1.3.4  Orientation — no orientation lock
+ *   1.4.4  Resize Text — rem-based sizing
+ *   1.4.10 Reflow — no horizontal scroll at 320px width
+ *   2.5.5  Target Size (AAA) — 44px minimum at all breakpoints
+ */
+
+/* ========================================
+   CONTAINER
+   ======================================== */
+
+.container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+/* ========================================
+   GRID SYSTEM
+   ======================================== */
+
+.grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* ========================================
+   sm (base): 0 -- 767px
+   Single column, stacked layout
+   ======================================== */
+
+.grid {
+  grid-template-columns: 1fr;
+}
+
+/* Header layout: stacked */
+.header-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  gap: var(--space-3);
+}
+
+/* Footer layout: single column */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.footer-links a {
+  display: block;
+  min-height: var(--target-size-min);
+  padding-block: var(--space-2);
+}
+
+/* ========================================
+   md: 768px -- 1023px
+   Two-column layouts, expanded navigation
+   ======================================== */
+
+@media (min-width: 768px) {
+  .container {
+    max-width: var(--container-md);
+    padding-inline: var(--space-5);
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+
+  .grid--3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Header: horizontal layout */
+  .header-container {
+    flex-wrap: nowrap;
+    padding: var(--space-4) var(--space-5);
+  }
+
+  /* Footer: 2-column */
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* ========================================
+   lg: 1024px+
+   Full multi-column layouts
+   ======================================== */
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: var(--container-lg);
+    padding-inline: var(--space-6);
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Header: full horizontal nav */
+  .nav-toggle {
+    display: none;
+  }
+
+  .primary-nav {
+    display: flex;
+  }
+
+  .nav-list {
+    display: flex;
+    gap: var(--space-4);
+    list-style: none;
+  }
+
+  /* Footer: multi-column */
+  .footer-grid {
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* ========================================
+   xl: 1280px+ (optional enhancement)
+   ======================================== */
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: var(--container-xl);
+  }
+}
+
+/* ========================================
+   TEXT CONTAINER (WCAG 1.4.8)
+   Max 80 characters per line
+   ======================================== */
+
+.text-container {
+  max-width: var(--max-line-width);
+}
+
+/* ========================================
+   REFLOW SUPPORT (WCAG 1.4.10)
+   Ensure no horizontal scroll at 320px
+   ======================================== */
+
+img, video, iframe, object, embed, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/*
+ * FIX: Do NOT use `display: block` on <table> — it breaks table
+ * semantics for screen readers. Use a wrapper <div> instead.
+ */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+pre, code {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* ========================================
+   FLUID SPACING (Modern Best Practice)
+   Sections use clamp() for smooth scaling
+   ======================================== */
+
+.section {
+  padding-block: clamp(2rem, 1rem + 5vw, 6rem);
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  .nav-toggle,
+  .skip-link,
+  .utility-nav {
+    display: none;
+  }
+
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    background: #fff;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.875em;
+  }
+}

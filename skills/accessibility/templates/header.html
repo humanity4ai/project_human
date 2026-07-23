@@ -1,0 +1,108 @@
+<!--
+  Accessible Header / Navigation Component
+  WCAG 2.2 AAA Compliant
+
+  Requirements met:
+  - 2.4.1  Bypass Blocks (skip link in base.html)
+  - 2.4.5  Multiple Ways (nav + search)
+  - 2.4.9  Link Purpose (link only) — descriptive link text
+  - 2.1.3  Keyboard (no exception) — full keyboard operability
+  - 2.5.5  Target Size (enhanced) — 44x44px minimum
+  - 2.4.12 Focus Not Obscured (enhanced)
+  - 2.4.13 Focus Appearance — 3px outline, 3:1 contrast
+
+  Security:
+  - Search form uses GET (safe for search queries)
+  - Output encoding required when reflecting search terms (see security-error-handling.md)
+
+  Responsive behavior:
+  - sm: Hamburger menu with off-canvas panel + overlay
+  - md: Condensed horizontal nav
+  - lg+: Full horizontal nav with all items visible
+-->
+
+<header class="site-header">
+  <div class="header-container">
+    <!-- Logo / Site Identity -->
+    <a href="/" class="site-logo" aria-label="{{SITE_NAME}} — Return to Homepage">
+      <!--
+        Use an SVG or text logo. If using an image:
+        <img src="logo.svg" alt="{{SITE_NAME}}" width="160" height="40" />
+      -->
+      <span class="logo-text">{{SITE_NAME}}</span>
+    </a>
+
+    <!-- Mobile Menu Toggle (visible on sm/md only) -->
+    <button
+      type="button"
+      class="nav-toggle"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+      aria-label="Open Navigation Menu"
+    >
+      <span class="nav-toggle-icon" aria-hidden="true"></span>
+    </button>
+
+    <!-- Overlay for mobile nav (click to close) -->
+    <div class="nav-overlay" data-open="false" aria-hidden="true"></div>
+
+    <!-- Primary Navigation -->
+    <nav
+      id="primary-navigation"
+      class="primary-nav"
+      aria-label="Primary Navigation"
+    >
+      <ul class="nav-list" role="list">
+        <li class="nav-item">
+          <a href="/about" class="nav-link" aria-current="false">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="/services" class="nav-link">Services</a>
+        </li>
+        <li class="nav-item">
+          <a href="/resources" class="nav-link">Resources</a>
+        </li>
+        <li class="nav-item">
+          <a href="/contact" class="nav-link">Contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Utility Navigation (search) -->
+    <div class="utility-nav">
+      <!--
+        SECURITY: This search form uses GET, which is safe.
+        When reflecting the search term back in results, you MUST
+        encode the output to prevent reflected XSS:
+          element.textContent = searchTerm; // SAFE
+          element.innerHTML = searchTerm;   // UNSAFE
+        See references/security-error-handling.md for full guidance.
+      -->
+      <form action="/search" method="get" role="search" aria-label="Site Search">
+        <label for="site-search" class="sr-only">Search</label>
+        <input
+          type="search"
+          id="site-search"
+          name="q"
+          placeholder="Search..."
+          autocomplete="off"
+          aria-label="Search the site"
+        />
+        <button type="submit" aria-label="Submit Search">
+          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span class="sr-only">Search</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<!--
+  Mobile Navigation JavaScript (include in main.js):
+
+  See templates/main.js for the complete, production-ready implementation
+  with focus trapping, Escape key handling, and overlay click-to-close.
+-->

@@ -1,5 +1,19 @@
 # Changelog
 
+## [Unreleased]
+
+### Consolidation
+- Merged `wcag-aaa-web-design` (13⭐, archived) into `skills/accessibility/`: 10 reference guides (WCAG-AAA checklist, ARIA patterns, corporate design system, form patterns, security error handling, application states, data presentation, navigation, responsive breakpoints, UX patterns) + 10 AAA-verified templates (tokens.css with 7:1 contrast palette, components.css, HTML partials, main.js)
+- Merged `depression-sensitive-web-content` (archived) into `skills/depression-sensitive-content/references/implementation-guide.md`: 7 rewrite principles with clinical rationale, 15 worked examples, standards traceability matrix (WCAG 2.2 / COGA / ISO 9241-110 / ISO/IEC 30071-1), 40+ item audit checklist, localization guidance
+- Archived `nvda-wcag22-testing` (empty placeholder) with redirect notice
+- Salvaged launch marketing packs (Dev.to drafts, Reddit/X/LinkedIn post packs, directory submission template) into `docs/marketing/`
+- `check_contrast.py` (AAA contrast checker with auto-suggestion engine) included in `skills/accessibility/templates/`
+
+### Discoverability
+- README restructured: 9-skill table above the fold, star CTA, star-history chart, one-command quick start, Share-on-X link
+- GitHub topics updated to 20 high-search tags (added mcp-server, llm, claude, openai, npm-package)
+- Site landing page: 9-skill card grid with category tags, npm CTA
+
 ## [1.0.0] — 2026-05-26
 
 ### Stable Release

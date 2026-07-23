@@ -183,6 +183,33 @@ h1 {
   padding: 1rem;
 }
 
+.card h3 {
+  margin-top: 0;
+}
+
+.card p {
+  color: var(--muted);
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: #f0fdfa;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+@media (prefers-contrast: more) {
+  .tag {
+    color: #000000;
+    border-color: #000000;
+    background: #ffffff;
+  }
+}
+
 pre {
   background: #0b1220;
   color: #d1fae5;

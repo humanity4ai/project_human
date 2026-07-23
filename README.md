@@ -1,31 +1,50 @@
-# Humanity4AI
+# Humanity4AI ⭐
 
-Humanity4AI is an open, community-driven project that provides reusable "humanity skills" for AI systems and agents.
+**9 humanity skills for AI agents** — crisis detection, accessibility auditing, empathy, cultural sensitivity, and more. Ready-to-use via MCP, npm, or direct prompting.
 
 [![CI](https://github.com/humanity4ai/project_human/actions/workflows/ci.yml/badge.svg)](https://github.com/humanity4ai/project_human/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/releases)
 [![npm](https://img.shields.io/npm/v/@humanity4ai/mcp-servers?color=0f766e)](https://www.npmjs.com/package/@humanity4ai/mcp-servers)
-[![License](https://img.shields.io/badge/license-MIT-0f766e)](LICENSE)
-[![Issues](https://img.shields.io/github/issues/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/issues)
+[![License: MIT](https://img.shields.io/badge/license-MIT-0f766e)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/releases)
 [![Contributors](https://img.shields.io/github/contributors/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/graphs/contributors)
-[![Pages](https://img.shields.io/badge/docs-GitHub%20Pages-1f2937)](https://humanity4ai.github.io/project_human/)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux%20%7C%20Android%20%7C%20iOS-0f766e)](https://github.com/humanity4ai/project_human)
 [![CodeQL](https://github.com/humanity4ai/project_human/actions/workflows/codeql.yml/badge.svg)](https://github.com/humanity4ai/project_human/actions/workflows/codeql.yml)
 
-## Get Started in 3 Steps
+---
 
-**Prerequisites:** Node.js >= 20 | pnpm >= 10 | Windows, macOS, or Linux
+## Skills at a Glance
+
+| Skill | Category | What it does |
+|-------|----------|-------------|
+| 🛡️ **Supportive Reply** | Emotional Safety | Detects crisis signals, generates supportive responses with escalation guidance |
+| 📝 **Safe Content Rewriter** | Emotional Safety | Audits and rewrites text to remove harmful, stigmatising, or triggering patterns |
+| ♿ **Accessibility Audit** | Accessibility | Scores pages against all 86 WCAG 2.2 success criteria (A/AA/AAA) |
+| 🧠 **Cognitive Accessibility** | Cognitive Support | Audits content for reading level, structure, and cognitive load |
+| 🌍 **Cultural Context Check** | Cultural Context | Flags cultural sensitivity issues for a given audience and region |
+| 🔥 **De-escalation Plan** | Conflict Navigation | Generates structured de-escalation plans calibrated to conflict intensity |
+| 💬 **Empathetic Reframe** | Communication | Reframes messages with genuine empathy, catching hollow empathy patterns |
+| 🧩 **Neurodiversity Design** | Neurodiversity | Audits UIs for ADHD, autism, dyslexia, and sensory sensitivity |
+| 👶 **Age-Inclusive Design** | Age Inclusion | Audits user flows for age barriers across children, adults, and older users |
+
+> ⭐ **If you find this useful, a star helps others discover it**
+
+[![Star History Chart](https://api.star-history.com/svg?repos=humanity4ai/project_human&type=Date)](https://www.star-history.com/#humanity4ai/project_human&Date)
+
+---
+
+## Quick Start
 
 ```bash
-# Step 1 — Install & Verify
-git clone https://github.com/humanity4ai/project_human.git && cd project_human && pnpm install && pnpm check && pnpm evals
-
-# Step 2 — Start the MCP server
-pnpm start
-
-# Step 3 — Configure your agent
+# One command — clone, install, verify, start
+git clone https://github.com/humanity4ai/project_human.git && cd project_human && pnpm install && pnpm check && pnpm evals && pnpm start
 ```
-Add to your MCP client config:
+
+Or use the npm package directly:
+
+```bash
+npx @humanity4ai/mcp-servers
+```
+
+Then add to your MCP client config:
 
 ```json
 {
@@ -39,242 +58,80 @@ Add to your MCP client config:
 }
 ```
 
-All 9 humanity skills are now discoverable via `tools/list` and invocable via `tools/call`.
+All 9 skills are now discoverable via `tools/list` and invocable via `tools/call`.
 
----
-## Three Ways to Use Humanity4AI Skills
+**Docker**: `docker compose up`
 
-This repository provides **9 Humanity Skills** — reusable, testable specifications for humane AI behaviour covering empathy, accessibility, grief support, cultural sensitivity, and more. There are three distinct ways to access these skills, depending on your AI platform and its capabilities.
-
-| Method | Skills Access | Best for... | How it Works |
-|---|---|---|---|
-| **1. MCP Server** | All 9 skills as invocable tools | Developer tools (VS Code, Cursor) and agents (Manus AI, OpenCode) | Run a local server that exposes all 9 skills as tools via the Model Context Protocol (MCP). |
-| **2. LLM Prompting** | Any skill via context window | Web chat AIs (Claude, Gemini, ChatGPT) | Provide the content of `llms.txt` or a specific `SKILL.md` directly in the chat context. |
-| **3. Local Files** | Any skill via filesystem | CLI tools without web access (OpenCode) | Clone the repository and point the tool to the relevant `SKILL.md` file path. |
+**Prerequisites**: Node.js >= 20, pnpm >= 10 | Windows, macOS, Linux, Android, iOS
 
 ---
 
-### Method 1: MCP Server (for Developer Tools & Agents)
+## Three Ways to Use
 
-This is the most reliable and structured way to use the skills.
+| Method | Best for | How |
+|--------|----------|-----|
+| **MCP Server** | VS Code, Cursor, Claude Code, Copilot, Manus AI, OpenCode | Start the server, configure your agent's MCP client |
+| **LLM Prompting** | ChatGPT, Claude, Gemini (web chat) | Share `llms.txt` or paste `llms-full.txt` into the chat |
+| **Local Files** | Offline CLI tools | Clone the repo, point your tool at the `skills/` directory |
 
-**Step 1 — Start the server:**
-
-```bash
-# From the project root
-pnpm start
-```
-
-**Step 2 — Configure your agent:**
-
-Add the following to your agent's MCP configuration file. See the [Agent Adapter Guide](docs/agent-adapters.md) for platform-specific file paths.
-
-```json
-{
-  "mcpServers": {
-    "humanity4ai": {
-      "command": "pnpm",
-      "args": ["--filter", "@humanity4ai/mcp-servers", "start"],
-      "cwd": "/path/to/project_human"
-    }
-  }
-}
-```
-
-Once configured, all 9 skills are discoverable via `tools/list` and invocable via `tools/call`.
+See [Agent Adapter Guide](docs/agent-adapters.md) for platform-specific setup instructions.
 
 ---
 
-### Method 2: LLM Prompting (for Web Chat AIs)
+## Why Humanity4AI?
 
-This method is for web-based chat interfaces like Claude, Gemini, and ChatGPT. It relies on the LLM's ability to read context provided directly in the prompt.
+AI agents are everywhere — but they're not always humane. Humanity4AI gives agents **reusable, tested skills** for the moments that matter:
 
-**Step 1 — Provide the context:**
+- An agent detects a user in crisis → **Supportive Reply** generates an appropriate response and escalates to qualified help
+- A UI is inaccessible to screen readers → **Accessibility Audit** scores it against WCAG 2.2 and provides remediation
+- Content uses stigmatising language → **Safe Content Rewriter** flags and rewrites harmful patterns
+- A conflict is escalating → **De-escalation Plan** generates structured, non-coercive guidance
 
-Tell your LLM:
+Every skill includes:
+- **Explicit safety boundaries** — what the skill can and cannot do
+- **Uncertainty disclosure** — confidence level stated upfront (low/medium/high)
+- **Evaluation gates** — automated baseline checks for quality
 
-> "You are an AI assistant with the Humanity4AI skillset. Your primary goal is to interact with users in a humane, ethical, and context-aware manner. Start by reading the `llms.txt` file at the root of this repository to understand your capabilities, then apply the principles and skills you find there in our conversation."
-
-**Step 2 — Verify and interact:**
-
-The LLM should acknowledge the context and begin applying the principles. Note that not all web chat AIs can fetch URLs. If the LLM cannot access `llms.txt`, you can paste the content of `llms-full.txt` directly into the chat.
-
----
-
-### Method 3: Local Files (for Offline CLI Tools)
-
-This method is for tools like OpenCode that operate on a local filesystem and do not have web access.
-
-**Step 1 — Clone the repository:**
-
-```bash
-git clone https://github.com/humanity4ai/project_human.git
-```
-
-**Step 2 — Point your tool to the local path:**
-
-Follow the instructions for your specific tool to have it read the files from the cloned repository directory.
+These skills are **rule-based and non-clinical** — they do not provide diagnosis, treatment, or professional medical/legal advice.
 
 ---
 
-## Get Involved
+## Supported Platforms
 
-- **Contributors**: [Contributing Guide](CONTRIBUTING.md)
-- **Integrators**: [Agent Adapter Guide](docs/agent-adapters.md)
-- **Team**: [Operations Plan](docs/OPERATIONS.md)
-- **Public Site**: <https://humanity4ai.github.io/project_human/>
+OpenCode · Claude Code · Microsoft Copilot · Manus AI · OpenClaw · ChatGPT · Claude · Gemini
 
-## Prerequisites
+---
 
-- **Node.js** >= 20
-- **pnpm** >= 10
-
-## Quick Start (for local development)
+## Contribute
 
 ```bash
-git clone https://github.com/humanity4ai/project_human.git
-cd project_human
-pnpm install
-pnpm check
-pnpm evals
-```
-
-### For AI Agents — Standard MCP SDK (JSON-RPC 2.0)
-
-Start the standard MCP server compatible with Claude Code, Copilot, Manus AI, OpenCode, and any MCP SDK client:
-
-```bash
-pnpm start
-```
-
-Configure your agent by adding this to your MCP client config:
-
-```json
-{
-  "mcpServers": {
-    "humanity4ai": {
-      "command": "pnpm",
-      "args": ["--filter", "@humanity4ai/mcp-servers", "start"],
-      "cwd": "/path/to/project_human"
-    }
-  }
-}
-```
-
-All 9 humanity skills are discoverable via `tools/list` and invocable via `tools/call`.
-See [`mcp-servers/README.md`](mcp-servers/README.md) for full protocol details and tool reference.
-
-Full install and deploy guide: [`INSTALL.md`](docs/INSTALL.md)
-
-## Docker (one command)
-
-```bash
-docker compose up
-```
-
-## MCP Runtime
-
-`mcp-servers` exposes all 9 skill actions via the standard MCP SDK JSON-RPC 2.0 protocol:
-
-| Server | Command | Protocol |
-|--------|---------|----------|
-| **Standard MCP SDK** | `pnpm start` | JSON-RPC 2.0 over stdio |
-
-All tools include input validation, structured responses, safety boundaries, and uncertainty disclosure.
-See [`mcp-servers/README.md`](mcp-servers/README.md) for the full tool reference.
-
-## Alternative: Prompt Engineering
-
-If your AI agent doesn't support MCP or skills, you can still use Humanity4AI by providing project content directly in the conversation context. This is less reliable than the MCP server but provides a good fallback.
-
-### How It Works
-
-You (the user) manually share the relevant file contents with your LLM. The LLM then applies those principles when responding to you. The best way to do this is to point the LLM to the `llms.txt` file.
-
-### What to Share
-
-Tell your LLM:
-
-> "You are an AI assistant with the Humanity4AI skillset. Your primary goal is to interact with users in a humane, ethical, and context-aware manner. Start by reading the `llms.txt` file at the root of this repository to understand your capabilities, then apply the principles and skills you find there in our conversation."
-
-Alternatively, you can provide the full context in one go:
-
-> "Here is the full context for the Humanity4AI skillset. Apply these principles and skills in our conversation:
-> 
-> [Paste the entire content of `llms-full.txt` here]"
-
-## Integrations
-
-- OpenCode
-- Claude Code
-- Microsoft Copilot ecosystem
-- Manus AI
-- OpenClaw
-
-See implementation notes in `docs/integrations.md` and `docs/agent-adapters.md`.
-
-## Contribute in 10 Minutes
-
-**Step 1 — Pick a task**
-
-Browse [open starter issues](https://github.com/humanity4ai/project_human/issues/new/choose) or see `docs/good-first-issues.md` for curated tasks.
-
-**Step 2 — Fork, branch, and implement**
-
-```bash
-# Clone your fork
 git clone https://github.com/<your-username>/project_human.git
 cd project_human
-
-# Branch from main (the default branch)
-git checkout main
 git checkout -b my-contribution
-
-# Copy the skill template if adding a new skill
+# Copy the skill template if adding a new skill:
 cp -r templates/skill skills/my-skill-name
-
-# Run all checks before opening a PR
-pnpm check && pnpm evals && pnpm test
+pnpm check && pnpm evals && pnpm test  # Run all checks before PR
 ```
 
-**Step 3 — Open a PR targeting `main`**
-
-```bash
-gh pr create \
-  --base main \
-  --title "Add: my contribution" \
-  --body "Closes #<issue-number>"
-```
-
-Or open via GitHub UI — the default base branch is `main`.
-
-**Troubleshooting**
+Open a PR targeting `main`. Browse [good first issues](https://github.com/humanity4ai/project_human/issues?q=is%3Aopen+label%3A%22good+first+issue%22) or read the [Contributing Guide](CONTRIBUTING.md).
 
 | Error | Fix |
 |-------|-----|
-| `ERR_PNPM_OUTDATED_LOCKFILE` | Run `pnpm install` (without `--frozen-lockfile`) to update the lockfile, then commit `pnpm-lock.yaml` |
-| `pnpm: command not found` | Run `npm install -g pnpm` |
-| `pnpm evals` fails | Run `EVAL_REPORT=1 pnpm evals` — the report at `evals/reports/latest.md` shows which gates failed and why |
+| `ERR_PNPM_OUTDATED_LOCKFILE` | Run `pnpm install`, then commit `pnpm-lock.yaml` |
+| `pnpm: command not found` | `npm install -g pnpm` |
+| `pnpm evals` fails | `EVAL_REPORT=1 pnpm evals` — see `evals/reports/latest.md` |
 
-## Traction and Roadmap
+---
 
-- 14-day launch cadence: `docs/traction-14-day.md`
-- Quality gates: `docs/quality-gates.md`
-- Release roadmap: `docs/ROADMAP.md`
+## Resources
 
-## How To Help This Week
+- [Contributing Guide](CONTRIBUTING.md)
+- [Agent Adapter Guide](docs/agent-adapters.md)
+- [Governance](docs/GOVERNANCE.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Release Process](docs/release-process.md)
+- [Public Site](https://humanity4ai.github.io/project_human/)
 
-- Good first issues: https://github.com/humanity4ai/project_human/issues?q=is%3Aopen+label%3A%22good+first+issue%22
-- Help wanted: https://github.com/humanity4ai/project_human/issues?q=is%3Aopen+label%3A%22help+wanted%22
+---
 
-## Package Release
-
-`mcp-servers` is now prepared as a publishable package with build artifacts and schema exports.
-
-- Build package: `pnpm --filter @humanity4ai/mcp-servers build`
-- Create tarball: `pnpm --filter @humanity4ai/mcp-servers pack`
-- Release guide: `docs/package-release.md`
-
-## Safety Position
-
-Humanity4AI includes non-clinical support-oriented skills. It does not provide diagnosis, treatment, or professional medical/legal advice.
+**[Share on X](https://twitter.com/intent/tweet?text=Humanity4AI%20%E2%80%94%209%20humanity%20skills%20for%20AI%20agents%20%F0%9F%A4%9D%0A%0ACrisis%20detection%2C%20WCAG%20audits%2C%20empathy%2C%20cultural%20sensitivity%2C%20and%20more.%0A%0Ahttps%3A%2F%2Fgithub.com%2Fhumanity4ai%2Fproject_human)** · MIT License · Copyright © 2026 Ascent Partners Foundation

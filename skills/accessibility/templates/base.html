@@ -1,0 +1,198 @@
+<!--
+  Base HTML5 Template
+  WCAG 2.2 AAA Compliant
+
+  Features:
+  - `lang` attribute for accessibility
+  - `color-scheme` meta tag for light/dark mode support
+  - Security meta tags (CSP, Referrer-Policy)
+  - Skip link for keyboard users
+  - ARIA live regions for screen reader announcements
+  - `noscript` fallback
+  - Logical document structure with ARIA landmarks
+
+  This file provides the foundational structure for all pages.
+-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="{{PAGE_DESCRIPTION}}" />
+  <meta name="color-scheme" content="light" />
+
+  <!--
+    SECURITY: HTTP Security Headers
+    These meta tags provide baseline security when HTTP headers cannot be set.
+    For production, configure these as HTTP response headers on your server
+    or reverse proxy instead. See references/security-error-handling.md.
+  -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!--
+    SECURITY: Content Security Policy (CSP)
+    This is a FALLBACK meta tag. For production, use an HTTP header instead,
+    which supports additional directives (frame-ancestors, report-uri).
+
+    Replace {{CSP_NONCE}} with a server-generated nonce for each request.
+    If serving static files without a server, remove the nonce and use
+    hash-based CSP or a permissive policy during development only.
+
+    See references/security-error-handling.md for full guidance.
+  -->
+  <!--
+  <meta http-equiv="Content-Security-Policy"
+    content="
+      default-src 'self';
+      script-src 'self' 'nonce-{{CSP_NONCE}}' 'strict-dynamic';
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: https:;
+      font-src 'self';
+      object-src 'none';
+      base-uri 'none';
+      form-action 'self';
+    "
+  />
+  -->
+
+  <title>{{PAGE_TITLE}} — {{SITE_NAME}}</title>
+
+  <!-- Preconnect to external origins if needed -->
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com" /> -->
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="responsive.css" />
+  <link rel="stylesheet" href="components.css" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <noscript>
+    <style>
+      /* Ensure content is visible even without JavaScript */
+      [hidden] { display: block !important; }
+      .js-only { display: none !important; }
+      /* Show a noscript banner */
+      .noscript-banner { display: block !important; }
+    </style>
+  </noscript>
+</head>
+<body>
+  <!--
+    ACCESSIBILITY: Noscript Banner
+    Informs users that JavaScript is required for full functionality.
+    Hidden by default; shown via the <noscript> style rule above.
+  -->
+  <div class="noscript-banner alert alert--warning" role="alert" hidden>
+    <p>
+      This application requires JavaScript for full functionality.
+      Core content is available, but interactive features are disabled.
+    </p>
+  </div>
+
+  <!--
+    Skip Navigation Link (WCAG 2.4.1)
+    Must be the first focusable element on the page.
+  -->
+  <a href="#main-content" class="skip-link">
+    Skip to Main Content
+  </a>
+
+  <!--
+    Header Component
+    Replace with header.html content or framework equivalent.
+    Includes: logo, primary navigation, utility navigation.
+  -->
+  <header class="site-header">
+    <!-- See header.html template -->
+  </header>
+
+  <!--
+    Breadcrumb Navigation (WCAG 2.4.8 AAA - Location)
+    Provides location context within the site hierarchy.
+  -->
+  <nav aria-label="Breadcrumb">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li><a href="/section">Section</a></li>
+      <li><span aria-current="page">Current Page</span></li>
+    </ol>
+  </nav>
+
+  <!--
+    Main Content Area
+    The id="main-content" is the target of the skip link.
+    tabindex="-1" allows programmatic focus.
+  -->
+  <main id="main-content" tabindex="-1">
+    <!--
+      Page Heading (WCAG 2.4.10 AAA - Section Headings)
+      Every page must have an H1. Sections must use proper heading hierarchy.
+    -->
+    <h1>{{PAGE_HEADING}}</h1>
+
+    <!--
+      Content sections go here.
+      Each section should have a heading (h2, h3, etc.) for AAA compliance.
+      Text containers must use max-width: 80ch for line length (1.4.8).
+    -->
+    <section aria-labelledby="section-1-heading">
+      <h2 id="section-1-heading">Section Title</h2>
+      <div class="text-container">
+        <p>Content goes here.</p>
+      </div>
+    </section>
+  </main>
+
+  <!--
+    Footer Component
+    Replace with footer.html content or framework equivalent.
+  -->
+  <footer class="site-footer">
+    <!-- See footer.html template -->
+  </footer>
+
+  <!--
+    Back to Top Link (AAA best practice for long pages)
+  -->
+  <a href="#main-content" class="back-to-top" aria-label="Back to top of page">
+    Back to Top
+  </a>
+
+  <!--
+    Live Region for Status Messages (WCAG 4.1.3)
+    Use this region to announce dynamic status updates to screen readers.
+    SECURITY: Use textContent (not innerHTML) to inject text.
+    Example: document.getElementById('status-announcer').textContent = '...';
+  -->
+  <div
+    id="status-announcer"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    class="sr-only"
+  ></div>
+
+  <!--
+    Alert Region for Urgent Messages
+    Use for error messages or time-sensitive notifications.
+    SECURITY: Use textContent (not innerHTML) to inject text.
+    Example: document.getElementById('alert-announcer').textContent = '...';
+  -->
+  <div
+    id="alert-announcer"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+    class="sr-only"
+  ></div>
+
+  <!--
+    Scripts
+    SECURITY: Add nonce="{{CSP_NONCE}}" when using a nonce-based CSP.
+    The defer attribute ensures scripts run after the DOM is parsed.
+  -->
+  <script src="main.js" defer></script>
+</body>
+</html>
+

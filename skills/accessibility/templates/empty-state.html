@@ -1,0 +1,60 @@
+<!--
+  Empty State Templates
+  WCAG 2.2 AAA Compliant
+
+  Three variants for different contexts:
+  1. No Data (First Use)
+  2. No Results (Search/Filter)
+  3. Error State (System/Permission)
+
+  Replace placeholder content with actual text and actions.
+  All classes reference `tokens.css` and `components.css` for styling.
+-->
+
+<!-- ============================================
+     VARIANT 1: No Data (First Use)
+     ============================================ -->
+<div class="empty-state" role="status">
+  <!-- Optional: simple, non-decorative illustration -->
+  <!-- <img src="illustration.svg" alt="" class="empty-state__image" aria-hidden="true" /> -->
+  <h2 class="empty-state__title">No projects yet</h2>
+  <p class="empty-state__body">
+    Projects help you organize your work into manageable units.
+    Create your first project to get started.
+  </p>
+  <div class="empty-state__actions">
+    <button type="button" class="btn btn--primary">Create Project</button>
+    <a href="/docs/projects" class="empty-state__link">Learn more about projects</a>
+  </div>
+</div>
+
+
+<!-- ============================================
+     VARIANT 2: No Results (Search/Filter)
+     ============================================ -->
+<div class="empty-state" role="status" aria-live="polite">
+  <h2 class="empty-state__title">No results found</h2>
+  <p class="empty-state__body">
+    Your search for "<strong>quarterly report</strong>" did not match any records.
+    Try adjusting your search terms or removing filters.
+  </p>
+  <div class="empty-state__actions">
+    <button type="button" class="btn btn--secondary">Clear All Filters</button>
+  </div>
+</div>
+
+
+<!-- ============================================
+     VARIANT 3: Error State (System/Permission)
+     ============================================ -->
+<div class="empty-state empty-state--error" role="alert">
+  <h2 class="empty-state__title">Unable to load data</h2>
+  <p class="empty-state__body">
+    An error occurred while retrieving the requested information.
+    This may be a temporary issue. If the problem persists, please contact support.
+  </p>
+  <div class="empty-state__actions">
+    <button type="button" class="btn btn--primary">Retry</button>
+    <a href="/support" class="empty-state__link">Contact support</a>
+  </div>
+</div>
