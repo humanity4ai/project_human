@@ -1,71 +1,76 @@
-# Directory Submission Template — DS-WCS Skill
+# Directory & Awesome-List Submission Pack — Humanity4AI
 
-Ready-to-use submission text for responsible tech directories, accessibility resource lists, and ESG/SDG platforms. Adapt as needed for each directory's specific form fields.
+Ready-to-use submission text for awesome lists, MCP directories, and responsible-tech catalogs. Adapt to each directory's form fields. Submit in the week before the launch window so listings land during the traffic spike.
 
 ---
 
 ## Standard Submission Block
 
 **Project Name:**
-Depression-Sensitive Web Content Support (DS-WCS)
+Humanity4AI (project_human)
 
 **Short Description (1 sentence):**
-An open-source OpenCode skill that audits and rewrites web content for cognitive accessibility, mapping every finding to WCAG 2.2, W3C COGA, ISO 9241-110, and ISO/IEC 30071-1.
+Open-source collection of 9 rule-based "humanity skills" for AI agents — crisis detection, WCAG 2.2 auditing, empathetic reframing, cultural sensitivity, and more — exposed as MCP tools and npm package.
 
 **Full Description (150 words):**
-DS-WCS is a free, open-source skill for the OpenCode AI coding agent that helps content designers, UX writers, and product teams identify and fix content patterns that create cognitive barriers or emotional distress for users with depression, anxiety, and other conditions affecting executive function.
+Humanity4AI is an open-source skill system that gives AI agents reusable, tested behaviors for humane interaction. Nine skills cover emotional safety (crisis detection + supportive replies, depression-sensitive content rewriting), accessibility (full WCAG 2.2 audit across all 86 success criteria), cognitive accessibility, cultural sensitivity, conflict de-escalation, empathetic communication, neurodiversity-aware design, and age-inclusive design.
 
-The skill applies seven evidence-based rewrite principles across error messages, CTAs, empty states, forms, notifications, and onboarding flows. Every recommendation maps to four international standards, providing audit-ready traceability for ESG disclosures, accessibility policies, and inclusive design commitments.
+All skills are rule-based — no LLM calls, no external APIs — with explicit safety boundaries, uncertainty disclosure (low/medium/high), and structured JSON-schema-validated outputs. Crisis-adjacent responses always route to professional resources, never AI substitutes.
 
-DS-WCS contributes to SDG 3 (mental health and well-being) and SDG 10 (reduced inequalities) and addresses the Social and Governance pillars of ESG frameworks. It includes a 40-item audit checklist, 15 before/after rewrite examples, and a complete standards traceability matrix.
-
-Free to install with one git clone. MIT license.
+Available as a standard MCP server (`npx @humanity4ai/mcp-servers`) compatible with Claude Code, OpenCode, Copilot, Cursor, and any MCP client, or as plain markdown skill packs usable via direct prompting. MIT license, 9 languages, 90%+ test coverage.
 
 **URL:**
-https://github.com/simonplmak-cloud/depression-sensitive-web-content
+https://github.com/humanity4ai/project_human
 
-**License:**
-MIT
+**npm:**
+https://www.npmjs.com/package/@humanity4ai/mcp-servers
+
+**License:** MIT
 
 **Category / Tags:**
-Accessibility, Cognitive Accessibility, Content Design, UX Writing, Mental Health UX, Inclusive Design, ESG Social, SDG 3, SDG 10, Neurodiversity, Responsible Tech, WCAG, W3C COGA, Developer Tools, Open Source
+MCP, Model Context Protocol, AI agents, accessibility, WCAG, mental health, content safety, inclusive design, neurodiversity, developer tools, open source, TypeScript, LLM tools, AI ethics, responsible AI
 
 **Target Users:**
-UX writers, content designers, accessibility specialists, product teams, ESG/CSR teams, healthcare and financial services teams
+AI agent developers, MCP integrators, accessibility specialists, UX/content teams, mental-health-adjacent product teams, trust & safety teams
 
 **Standards Alignment:**
-WCAG 2.2, W3C COGA Supplemental Guidance, ISO 9241-110:2006, ISO/IEC 30071-1:2019
-
-**SDG Alignment:**
-SDG 3 (Target 3.4), SDG 8 (Target 8.5), SDG 10 (Target 10.3)
+WCAG 2.2 (all 86 success criteria), W3C COGA, ISO 9241-110, ISO/IEC 30071-1, Model Context Protocol (JSON-RPC 2.0)
 
 ---
 
-## Target Directories
+## Priority Awesome Lists (GitHub PR submissions)
 
-### Accessibility
+| List | Repo | Section | Entry format |
+|------|------|---------|--------------|
+| awesome-mcp-servers | punkpeye/awesome-mcp-servers | Appropriate category (see PR) | `- [humanity4ai/project_human](url) 🎖️ 🐍/📇 ☁️/🏠 - description` |
+| awesome-a11y | brunopulis/awesome-a11y | Tools | Follow list format |
+| awesome-ai-agents | e2b-dev/awesome-ai-agents | Tools/SDKs | Follow list format |
+| awesome-llm-apps | Shubhamsaboo/awesome-llm-apps | MCP section | Follow list format |
+| awesome (sindresorhus) related niche lists | search `awesome wcag`, `awesome mental health` | — | — |
 
-| Directory | URL | Notes |
-|-----------|-----|-------|
-| The A11Y Project Resources | https://www.a11yproject.com/resources/ | Submit via GitHub PR |
-| WebAIM Resources | https://webaim.org/resources/ | Email submission |
-| Inclusive Design Institute | https://inclusivedesign.ca | Contact form |
-| W3C COGA Community Group | https://www.w3.org/community/coga-community/ | Mailing list post |
-
-### Responsible Tech / ESG
-
-| Directory | URL | Notes |
-|-----------|-----|-------|
-| Responsible Tech Guide | https://responsibletechguide.com | Submission form |
-| Tech for Good Global | https://www.techforgood.global | Directory submission |
-| B Lab Tech for Social Good | https://www.bcorporation.net | Post in B Corp community |
-| GRI Community Forums | https://community.globalreporting.org | Post in Social pillar thread |
-
-### Developer / Open Source
+## MCP Registries & Directories
 
 | Directory | URL | Notes |
 |-----------|-----|-------|
-| OpenCode Skills Gallery | https://opencode.ai | If/when skills gallery launches |
-| Awesome Accessibility (GitHub) | https://github.com/brunopulis/awesome-a11y | PR to add under Tools |
-| Product Hunt | https://www.producthunt.com | Launch post |
-| Dev.to | https://dev.to | Technical article with submission |
+| Official MCP servers repo | github.com/modelcontextprotocol/servers | PR to community servers section |
+| MCP Registry | github.com/mcp/registry (or registry.modelcontextprotocol.io) | Publish server metadata |
+| Smithery | smithery.ai | MCP server directory — submit |
+| Glama MCP directory | glama.ai/mcp/servers | Auto-indexed from GitHub; claim listing |
+| PulseMCP | pulsemcp.com | Directory + newsletter |
+| mcp.so | mcp.so | Directory submission |
+
+## Responsible Tech / Accessibility Directories
+
+| Directory | URL | Notes |
+|-----------|-----|-------|
+| The A11Y Project Resources | a11yproject.com/resources/ | Submit via GitHub PR |
+| Responsible Tech Guide | responsibletechguide.com | Submission form |
+| W3C COGA Community Group | w3.org/community/coga-community/ | Mailing list post (accessibility + cognitive skills) |
+
+---
+
+## Submission Notes
+
+- **One PR per list**, follow each list's CONTRIBUTING.md exactly (alphabetical order, badge conventions, no marketing language).
+- Lead with what it does in one clause; maintainers reject vague entries.
+- Don't submit to all lists on the same day — spread across the pre-launch week so each merge is a separate touchpoint.

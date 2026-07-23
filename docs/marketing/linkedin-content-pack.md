@@ -1,173 +1,74 @@
-# LinkedIn Content Pack — DS-WCS Skill
+# LinkedIn Content Pack — Humanity4AI
 
-Five ready-to-post LinkedIn updates. Each is self-contained and can be posted independently. The recommended sequence is Posts 1–3 in weeks 1–2, then Posts 4–5 in weeks 3–5.
-
----
-
-## Post 1 — Skill Announcement (Week 1)
-
-**Target audience:** ESG practitioners, product teams, accessibility specialists, OpenCode users
-
-```
-We just open-sourced a free tool for product teams building more inclusive digital experiences.
-
-Depression-Sensitive Web Content Support (DS-WCS) is an OpenCode skill that audits and rewrites UI content — error messages, CTAs, forms, empty states — for cognitive accessibility.
-
-Every finding maps to four international standards:
-• WCAG 2.2
-• W3C COGA
-• ISO 9241-110
-• ISO/IEC 30071-1
-
-It advances SDG 3 (mental health and well-being) and SDG 10 (reduced inequalities) — and contributes directly to the Social pillar of ESG frameworks.
-
-One git clone. Works inside OpenCode. Zero cost.
-
-→ github.com/simonplmak-cloud/depression-sensitive-web-content
-
-#ESG #SDG #CognitiveAccessibility #InclusiveDesign #ResponsibleTech #WCAG #OpenSource
-```
+Two posts: a launch announcement (Day 1) and a thought-leadership follow-up (Day 4-5). LinkedIn rewards professional framing — lead with the problem and the engineering discipline, not the star count.
 
 ---
 
-## Post 2 — Before/After Rewrite Examples (Week 1–2)
+## Post 1 — Launch Announcement
 
-**Target audience:** UX writers, content designers, product managers
+**Format:** Text + link preview (put the GitHub link in the first comment, not the post body — LinkedIn deprioritises posts with external links)
 
-```
-Your error messages may be driving users away — not because of bugs, but because of language.
+**Body:**
 
-Here are 3 real rewrites from our open-source DS-WCS content audit framework:
+AI agents write our code, answer our customers, and increasingly talk to people in vulnerable moments.
 
----
+But when a user tells an agent "I can't do this anymore," most agents respond with whatever the model feels like generating.
 
-BEFORE: "Invalid email! Try again."
-AFTER: "Email format not recognized. Please use this format: name@domain.com"
+Over the past months I've been building Humanity4AI — an open-source system of 9 "humanity skills" for AI agents:
 
----
+→ Crisis detection with supportive replies that always escalate to real helplines (988, Samaritans, IASP — in 9 languages)
+→ WCAG 2.2 accessibility auditing across all 86 success criteria
+→ Depression-sensitive content rewriting, mapped to WCAG, W3C COGA, and ISO standards
+→ Cultural sensitivity checks with mandatory uncertainty disclosure
+→ Conflict de-escalation planning
+→ Empathetic communication reframing
+→ Neurodiversity-aware and age-inclusive design audits
 
-BEFORE: "You broke something. This page doesn't exist."
-AFTER: "Page not found. Check the URL for typos, or return to the homepage."
+Two engineering decisions I'm most confident about:
 
----
+1. **Zero LLM calls.** Every skill is rule-based — pattern libraries and scoring functions. Deterministic, auditable, and testable (90%+ branch coverage on safety-critical paths). You can't put a prompt chain under branch coverage.
 
-BEFORE: "Application rejected. Better luck next time!"
-AFTER: "Application status: Not selected. You can apply for other open positions that match your skills."
+2. **Mandatory humility.** Every output declares its uncertainty (low/medium/high) and its safety boundary — what the skill will never do, including diagnosing, treating, or claiming legal compliance.
 
----
+The system runs as a standard MCP server — one command, compatible with Claude Code, Copilot, Cursor, OpenCode, and any MCP client.
 
-The difference isn't just tone. Research shows shame-inducing language activates the brain's threat response, impairing executive function and triggering task abandonment — particularly for users experiencing depression.
+MIT licensed. Contributions, scenarios, and critiques welcome — especially from accessibility practitioners and mental-health-adjacent product teams.
 
-280 million people globally live with depression (WHO). They use your product.
+(Link in comments)
 
-Full rewrite library (15 before/after examples, 40-item audit checklist):
-→ github.com/simonplmak-cloud/depression-sensitive-web-content
-
-#UXWriting #ContentDesign #CognitiveAccessibility #InclusiveDesign #ESG #MentalHealthUX
-```
+#ResponsibleAI #Accessibility #OpenSource #AIAgents #InclusiveDesign
 
 ---
 
-## Post 3 — ESG Social Pillar Angle (Week 2)
+## Post 2 — Thought Leadership (Day 4-5)
 
-**Target audience:** ESG/CSR teams, sustainability leads, responsible tech advocates
+**Format:** Text only, no link (link in comments)
 
-```
-Most ESG Social disclosures focus on supply chain, workforce diversity, and community investment.
+**Body:**
 
-Very few mention cognitive accessibility in digital products.
+A lesson from shipping open-source AI tooling: my most carefully engineered project had 2 GitHub stars. A far simpler side project had 6x more.
 
-That's a gap worth closing.
+The data across the ecosystem explains why. Single-purpose tools dominate — the top MCP servers each do exactly one thing and say so in one sentence. Comprehensive toolkits, however well-built, fail the 3-second comprehension test.
 
-Depression affects 280 million people globally. Cognitive differences — including those caused by anxiety, ADHD, and executive function impairments — are among the most common disabilities in the world.
+So I ran the experiment:
 
-When your digital interfaces use blame language, urgency pressure, or memory-dependent instructions, you are systematically excluding a significant portion of your users. That is a Social pillar issue.
+1. Consolidated three scattered repos into the main toolkit — as enriched content, not new features
+2. Archived the old repos with redirect notices (stars preserved, traffic funneled)
+3. Rebuilt the README around a table of outcomes, not a wall of features
+4. Dogfooded the WCAG auditor on its own site — it scored 79/100 and found two genuine bugs. Fixed them, and that story became the demo.
 
-The Depression-Sensitive Web Content Support (DS-WCS) framework gives product teams:
-• A 40-item content audit checklist
-• 15 before/after rewrite examples
-• Standards traceability to WCAG 2.2, W3C COGA, ISO 9241-110, and ISO/IEC 30071-1
-• Alignment documentation for GRI, SASB, B Corp, and UN Global Compact reporting
+Early results: the redirect traffic alone now exceeds the original organic traffic.
 
-It's open source, free to use, and maps directly to SDG 3 and SDG 10.
+The deeper point for engineering leaders: quality and discoverability are separate workstreams. The best code in your portfolio is worthless if a stranger can't articulate what it does in 3 seconds. Consolidate the engineering; fragment the pitch.
 
-SDG & ESG alignment documentation:
-→ github.com/simonplmak-cloud/depression-sensitive-web-content/blob/main/docs/sdg-esg-alignment.md
+What's worked for your projects?
 
-#ESG #SocialImpact #SDG3 #SDG10 #DEI #Neurodiversity #DigitalEquity #ResponsibleTech
-```
+#OpenSource #EngineeringLeadership #DevRel
 
 ---
 
-## Post 4 — Standards Traceability as ESG Evidence (Week 3–4)
+## Engagement Notes
 
-**Target audience:** ESG reporting teams, governance leads, compliance officers
-
-```
-"We are committed to inclusive design."
-
-That sentence appears in a lot of ESG reports.
-
-What's rarer: audit-ready evidence of what that commitment looks like in practice.
-
-The DS-WCS skill generates findings in this format:
-
----
-Finding: Blame language in error message
-File: src/components/checkout/ErrorState.tsx:42
-Original: "You entered invalid card details."
-Standards: WCAG 3.3.1 (Error Identification) | COGA Objective 2 | ISO 9241-110 Clause 5.7 | ISO/IEC 30071-1 Clause 9.1
----
-
-Every finding is traceable to a specific clause in a specific standard.
-
-That's the kind of documentation that belongs in an ESG Social disclosure — not just a statement of intent, but a record of what was found, what was fixed, and which international standards guided the decision.
-
-DS-WCS is free, open source, and requires one git clone to install.
-
-→ github.com/simonplmak-cloud/depression-sensitive-web-content
-
-#ESG #Governance #AccessibilityAudit #WCAG #ContentDesign #InclusiveDesign #SDG10
-```
-
----
-
-## Post 5 — Contributor & Fork Invitation (Week 4–5)
-
-**Target audience:** Accessibility community, UX writers, responsible tech practitioners, open-source contributors
-
-```
-DS-WCS is an open-source OpenCode skill for depression-sensitive content design.
-
-It already covers:
-• 7 core rewrite principles
-• 15 before/after examples across healthcare, finance, e-commerce, and government contexts
-• 40+ audit checklist items
-• Full standards traceability to WCAG 2.2, W3C COGA, ISO 9241-110, and ISO/IEC 30071-1
-
-We are looking for contributors from the accessibility, UX writing, and responsible tech communities to help expand it.
-
-If you work in:
-• Content design or UX writing
-• Accessibility consulting
-• Mental health technology
-• Healthcare or financial services UX
-• ESG / responsible product development
-
-...your domain knowledge belongs in this resource.
-
-Fork instructions, contribution guidelines, and the full implementation guide are in the repository.
-
-→ github.com/simonplmak-cloud/depression-sensitive-web-content
-
-#OpenSource #AccessibilityContributions #UXWriting #CognitiveAccessibility #ResponsibleTech #ESG #SDG #InclusiveDesign
-```
-
----
-
-## Posting Notes
-
-- Recommended cadence: one post every 5–7 days
-- Tag 2–3 relevant people or organizations in each post where appropriate (accessibility leads, ESG practitioners, OpenCode community)
-- Engage with comments within the first 60 minutes of posting to boost algorithmic reach
-- Posts 2 and 4 perform well as carousel formats — the before/after structure translates directly to slides
+- Respond to every comment within 2 hours during launch week — LinkedIn's algorithm weights early comment velocity heavily
+- Repost to relevant groups: Accessibility professionals, Responsible AI, AI Ethics communities
+- If Ascent Partners Foundation has a LinkedIn page, publish Post 1 there and reshare from the personal account
