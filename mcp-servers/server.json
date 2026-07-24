@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.humanity4ai/project-human",
+  "description": "9 humanity skills for AI agents — crisis detection, WCAG 2.2, empathy, cultural sensitivity",
+  "repository": {
+    "url": "https://github.com/humanity4ai/project_human",
+    "source": "github",
+    "subfolder": "mcp-servers"
+  },
+  "version": "1.0.6",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@humanity4ai/mcp-servers",
+      "version": "1.0.6",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
