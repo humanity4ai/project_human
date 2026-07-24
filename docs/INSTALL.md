@@ -8,7 +8,7 @@
 
 | Requirement | Minimum version | Install |
 |-------------|----------------|---------|
-| Node.js | 20.x LTS or later | [nodejs.org/download](https://nodejs.org/en/download) |
+| Node.js | 22.x LTS or later | [nodejs.org/download](https://nodejs.org/en/download) |
 | pnpm | 10.x or later | `npm install -g pnpm` |
 | Git | Any recent version | [git-scm.com](https://git-scm.com) |
 | Docker | 24.x or later (optional) | [docs.docker.com/get-docker](https://docs.docker.com/get-docker/) |
@@ -169,10 +169,10 @@ npm install -g pnpm
 
 ### `error TS...` on `pnpm check`
 
-Ensure you are using Node.js >= 20:
+Ensure you are using Node.js >= 22:
 
 ```bash
-node --version  # should be v20.x or higher
+node --version  # should be v22.x or higher
 ```
 
 ### Server starts but returns no output

@@ -74,7 +74,7 @@ All PRs require 1 approving review before merge. Safety-critical paths require t
 ## Prerequisites
 
 ```bash
-node --version   # >= 20
+node --version   # >= 22
 pnpm --version   # >= 10
 ```
 
