@@ -15,6 +15,7 @@
     "directory": "mcp-servers"
   },
   "homepage": "https://github.com/humanity4ai/project_human/tree/main/mcp-servers",
+  "mcpName": "io.github.humanity4ai/project-human",
   "bugs": {
     "url": "https://github.com/humanity4ai/project_human/issues"
   },
