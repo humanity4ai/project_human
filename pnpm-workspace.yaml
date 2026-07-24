@@ -1,3 +1,6 @@
 packages:
   - "mcp-servers"
   - "evals"
+
+allowedBuiltDependencies:
+  - "esbuild"
