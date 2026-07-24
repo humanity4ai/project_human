@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "mcp-servers/api/mcp.ts": {
+      "runtime": "nodejs22.x",
+      "maxDuration": 30
+    }
+  }
+}

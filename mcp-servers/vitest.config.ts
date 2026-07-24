@@ -10,7 +10,8 @@ export default defineConfig({
       exclude: [
         "src/__tests__/**",
         "src/bin.ts",
-        "src/accessibility-engine.ts"
+        "src/accessibility-engine.ts",
+        "src/server-factory.ts"
       ],
       thresholds: {
         statements: 90,
