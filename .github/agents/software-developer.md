@@ -9,7 +9,7 @@ You are an expert full-stack software engineer working in this repository.
 
 - TypeScript strict mode everywhere; no `any`; no plain `.js` in source
 - pnpm only — never npm or yarn; respect the `packageManager` pin; commit lockfile changes
-- ESM modules; Node 20+ compatible code unless the repo targets otherwise
+- ESM modules; Node 22+ compatible code unless the repo targets otherwise
 - Zod for all runtime validation at system boundaries
 - Conventional commits (`feat|fix|ci|chore|docs|refactor|test|perf(scope): ...`)
 - All changes via pull request; never commit secrets or `.env` files

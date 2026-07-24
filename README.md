@@ -62,7 +62,7 @@ All 9 skills are now discoverable via `tools/list` and invocable via `tools/call
 
 **Docker**: `docker compose up`
 
-**Prerequisites**: Node.js >= 20, pnpm >= 10 | Windows, macOS, Linux, Android, iOS
+**Prerequisites**: Node.js >= 22, pnpm >= 10 | Windows, macOS, Linux, Android, iOS
 
 ---
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Humanity4AI — One-Line Installer
 # Supports: Windows (WSL/Git Bash), macOS, Linux
-# Prerequisites: Node.js >= 20
+# Prerequisites: Node.js >= 22
 
 set -e
 
@@ -19,13 +19,13 @@ echo ""
 # ── Check Node.js ──────────────────────────────────────────────────────────
 if ! command -v node &> /dev/null; then
     echo -e "${RED}Node.js is required but not installed.${NC}"
-    echo "Download from: https://nodejs.org (v20 or later)"
+    echo "Download from: https://nodejs.org (v22 or later)"
     exit 1
 fi
 
 NODE_VERSION=$(node -v | cut -d'v' -f2 | cut -d'.' -f1)
 if [ "$NODE_VERSION" -lt 20 ]; then
-    echo -e "${RED}Node.js v20 or later required. Current: $(node -v)${NC}"
+    echo -e "${RED}Node.js v22 or later required. Current: $(node -v)${NC}"
     exit 1
 fi
 echo -e "${GREEN}✓ Node.js $(node -v)${NC}"
