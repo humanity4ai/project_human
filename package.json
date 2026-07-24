@@ -7,6 +7,9 @@
     "node": ">=22",
     "pnpm": ">=10"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  },
   "scripts": {
     "check": "pnpm -r check",
     "build": "pnpm --filter @humanity4ai/mcp-servers build",
