@@ -82,4 +82,4 @@ Each of the 5 Humanity4AI core principles mapped to implementation artifacts.
 **No uncovered principles. All 5 principles have at least 7 traceable artifacts across code, tests, docs, and CI.**
 
 ---
-Generated: 2026-07-24 | v1.0.4
+Generated: 2026-07-24 | v1.0.6

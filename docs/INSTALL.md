@@ -57,7 +57,7 @@ pnpm start
 The server will print a startup banner to stderr:
 
 ```
-Humanity4AI MCP Server v1.0.5
+Humanity4AI MCP Server v1.0.6
 Actions: 9 registered
 Transport: stdio (MCP JSON-RPC 2.0)
 Ready
@@ -203,3 +203,25 @@ pnpm evals             # All 10 quality gates pass
 echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 # Should return JSON with 9 actions
 ```
+
+## Vercel Deployment (Remote Access)
+
+A public MCP endpoint is deployed at:
+
+```
+https://humanity4ai-mcp-simon-maks-projects.vercel.app/api/mcp
+```
+
+Users connect with zero setup — just configure the URL in their MCP client:
+
+```json
+{
+  "mcpServers": {
+    "humanity4ai": {
+      "url": "https://humanity4ai-mcp-simon-maks-projects.vercel.app/api/mcp"
+    }
+  }
+}
+```
+
+To deploy your own instance: connect the repo to Vercel, set **Root Directory** to `mcp-servers/`. The function at `api/mcp.ts` uses `StreamableHTTPServerTransport` in stateless mode with schemas bundled as inline JS data — no file I/O, no build tricks needed. SSO protection must be disabled for public MCP access (`PATCH /v9/projects/:id` with `{"ssoProtection": null}`).

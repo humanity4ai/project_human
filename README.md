@@ -66,11 +66,12 @@ All 9 skills are now discoverable via `tools/list` and invocable via `tools/call
 
 ---
 
-## Three Ways to Use
+## Four Ways to Use
 
 | Method | Best for | How |
 |--------|----------|-----|
-| **MCP Server** | VS Code, Cursor, Claude Code, Copilot, Manus AI, OpenCode | Start the server, configure your agent's MCP client |
+| **Remote URL** | Zero-setup, any MCP client | Point to `https://humanity4ai-mcp-simon-maks-projects.vercel.app/api/mcp` |
+| **MCP Server** | VS Code, Cursor, Claude Code, Copilot, Manus AI, OpenCode | `npx @humanity4ai/mcp-servers` or clone & start |
 | **LLM Prompting** | ChatGPT, Claude, Gemini (web chat) | Share `llms.txt` or paste `llms-full.txt` into the chat |
 | **Local Files** | Offline CLI tools | Clone the repo, point your tool at the `skills/` directory |
 

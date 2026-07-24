@@ -27,7 +27,11 @@ pnpm --filter @humanity4ai/mcp-servers start
 The server starts on **stdio** using the official MCP SDK JSON-RPC 2.0 protocol.
 All 9 humanity skills are registered as MCP tools and discoverable via `tools/list`.
 
+A remote endpoint is also available at `https://humanity4ai-mcp-simon-maks-projects.vercel.app/api/mcp` using Streamable HTTP transport — no clone needed.
+
 ### 3. Configure your MCP client
+
+**Local (stdio):**
 
 Add to your MCP client configuration (e.g. `claude_desktop_config.json`, `.cursor/mcp.json`, `opencode.json`):
 
@@ -56,6 +60,18 @@ Or use `npx` once published to npm (no local clone needed):
 }
 ```
 
+**Remote (Streamable HTTP):**
+
+```json
+{
+  "mcpServers": {
+    "humanity4ai": {
+      "url": "https://humanity4ai-mcp-simon-maks-projects.vercel.app/api/mcp"
+    }
+  }
+}
+```
+
 ---
 
 ## Available Tools (9 skills)
@@ -76,7 +92,10 @@ Or use `npx` once published to npm (no local clone needed):
 
 ## Protocol
 
-The server uses the official `@modelcontextprotocol/sdk` and communicates via **JSON-RPC 2.0 over stdio**.
+The server uses the official `@modelcontextprotocol/sdk` and communicates via **JSON-RPC 2.0** over two transports:
+
+- **stdio** — local process (clone & run, npx, Docker)
+- **Streamable HTTP** — remote deployment (Vercel, stateless mode)
 
 **Tool discovery:**
 ```json
@@ -109,10 +128,10 @@ Every tool response includes a `boundaryNotice` field. Always surface this to us
 
 ## Package Use
 
-Install from npm once published:
-
 ```bash
 pnpm add @humanity4ai/mcp-servers
+# or
+npm install @humanity4ai/mcp-servers
 ```
 
 Import contracts programmatically:
@@ -142,9 +161,9 @@ The `examples/` directory contains one complete request/response pair per action
 
 ---
 
-## v1.1+ Roadmap
+## Roadmap
 
-- HTTP/SSE transport for remote MCP server deployments
-- Auth policies and rate controls
+- Auth policies and rate controls for remote deployments
 - Telemetry and evaluation hooks
 - Rich scenario scoring beyond structural checks
+- MCP Registry listing (mcp-publisher)
