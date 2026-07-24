@@ -42,7 +42,7 @@ Two analysis engines:
 
 Implementation guidance and enterprise patterns (merged from `wcag-aaa-web-design`):
 
-- `references/wcag-aaa-checklist.md` — all 87 WCAG 2.2 criteria with implementation guidance and AAA design implications
+- `references/wcag-aaa-checklist.md` — all 86 WCAG 2.2 criteria with implementation guidance and AAA design implications
 - `references/corporate-design-system.md` — AAA-verified color palette with precomputed contrast ratios, type scale, BEM architecture
 - `references/aria-patterns.md` — ARIA widget patterns (modals, tabs, accordions, focus traps)
 - `references/form-patterns.md` — accessible form design and validation

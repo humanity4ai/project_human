@@ -5,7 +5,7 @@ This plan is designed to convert visitors into contributors and integrators.
 ## Week 1
 
 - Day 1: Launch post with value proposition and quickstart.
-- Day 2: Skill spotlight 1 (`wcag-aaa-accessibility`) with before/after example.
+- Day 2: Skill spotlight 1 (`accessibility`) with before/after example.
 - Day 3: Integration spotlight (`supportive_reply` MCP invocation snippet).
 - Day 4: Contributor call with one starter issue.
 - Day 5: Skill spotlight 2 (`depression-sensitive-content`) with boundaries note.

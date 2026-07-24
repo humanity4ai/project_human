@@ -58,10 +58,10 @@ PASS  empathetic-communication
 PASS  supportive-conversation
 PASS  neurodiversity-aware-design
 PASS  supportive-conversation
-PASS  wcag-aaa-accessibility
+PASS  accessibility
 PASS  contract-consistency
 
-All 11 checks passed.
+All 10 checks passed.
 ```
 
 ---
