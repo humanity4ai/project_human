@@ -57,7 +57,7 @@ pnpm start
 The server will print a startup banner to stderr:
 
 ```
-Humanity4AI MCP Server v1.0.4
+Humanity4AI MCP Server v1.0.5
 Actions: 9 registered
 Transport: stdio (MCP JSON-RPC 2.0)
 Ready

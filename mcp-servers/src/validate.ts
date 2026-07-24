@@ -2,23 +2,21 @@
  * Runtime input validation against declared JSON schemas.
  * Validates incoming action inputs before dispatching to handlers.
  *
+ * Schemas are bundled as inline data (schemas-data.ts) —
+ * no file I/O needed, works in all environments including Vercel/bundlers.
+ *
  * Copyright (c) 2026 Ascent Partners Foundation. MIT License.
  */
-import { readFileSync } from "node:fs";
-import { join, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { SCHEMA_REGISTRY } from "./schemas-data.js";
+import { basename } from "node:path";
 
 type ValidationResult =
   | { valid: true }
   | { valid: false; errors: string[] };
 
 function loadSchema(schemaPath: string): Record<string, unknown> | null {
-  try {
-    const full = join(dirname(fileURLToPath(import.meta.url)), "..", schemaPath);
-    return JSON.parse(readFileSync(full, "utf8")) as Record<string, unknown>;
-  } catch {
-    return null;
-  }
+  // Resolve schema by filename (e.g. "schemas/empathetic-communication.input.json")
+  return SCHEMA_REGISTRY[basename(schemaPath)] ?? null;
 }
 
 function validateField(
