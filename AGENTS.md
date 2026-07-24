@@ -92,10 +92,10 @@ New conditionals → new tests in `__tests__/modules.test.ts`.
 - Publish: build dist in Codespace → `pnpm pack` → copy tarball locally → `npm publish <tarball> --access public` (local Node 20 can't run prepack; publish tarball directly)
 
 ### Vercel deployment
+- Domain: `https://humanity4ai.ascent.partners/api/mcp`
 - Project: `humanity4ai-mcp` on `simon-maks-projects` team
-- Deploy: `vercel_deploy_to_vercel` MCP tool with `api/mcp.ts` + `package.json` + optional `vercel.json`
+- Deploy: `vercel_deploy_to_vercel` MCP tool with `api/mcp.ts` + `package.json`
 - SSO protection disabled via `PATCH /v9/projects/:id` with `{"ssoProtection": null}`
-- Aliases: `humanity4ai-mcp-simon-maks-projects.vercel.app`
 
 ---
 

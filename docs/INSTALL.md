@@ -209,7 +209,7 @@ echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' | pnpm --filte
 A public MCP endpoint is deployed at:
 
 ```
-https://humanity4ai-mcp-simon-maks-projects.vercel.app/api/mcp
+https://humanity4ai.ascent.partners/api/mcp
 ```
 
 Users connect with zero setup — just configure the URL in their MCP client:
@@ -218,7 +218,7 @@ Users connect with zero setup — just configure the URL in their MCP client:
 {
   "mcpServers": {
     "humanity4ai": {
-      "url": "https://humanity4ai-mcp-simon-maks-projects.vercel.app/api/mcp"
+      "url": "https://humanity4ai.ascent.partners/api/mcp"
     }
   }
 }
