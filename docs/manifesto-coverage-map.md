@@ -10,7 +10,7 @@ Each of the 5 Humanity4AI core principles mapped to implementation artifacts.
 |--------------|------|----------|
 | Skill | `skills/cultural-sensitivity/SKILL.md` | Notes Hofstede contested, cultural variation |
 | Skill | `skills/conflict-de-escalation/SKILL.md` | Intensity-based adaptation |
-| Skill | `skills/wcag-aa-accessibility/SKILL.md` | Heuristic mode for ambiguous input |
+| Skill | `skills/accessibility/SKILL.md` | Heuristic mode for ambiguous input |
 | Handler | `handlers.ts` → `handleCulturalContext` | uncertainty: "high" — acknowledges cultural generalization limits |
 | Handler | `handlers.ts` → `handleWcagAaCheck` | heuristic flag for non-HTML input |
 | Test | `handlers.test.ts` H-35..H-44 | Cultural context variations |
@@ -82,4 +82,4 @@ Each of the 5 Humanity4AI core principles mapped to implementation artifacts.
 **No uncovered principles. All 5 principles have at least 7 traceable artifacts across code, tests, docs, and CI.**
 
 ---
-Generated: 2026-05-26 | v1.0.0
+Generated: 2026-07-24 | v1.0.4

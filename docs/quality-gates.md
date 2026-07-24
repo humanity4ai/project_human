@@ -2,7 +2,7 @@
 
 The evaluation harness runs **10 automated checks** — one for each of the 9 skills plus contract consistency.
 
-## Gates 1-10: Skill Completeness (per skill)
+## Gates 1–9: Skill Completeness (per skill)
 
 For each skill in `skills/`:
 
@@ -57,8 +57,7 @@ PASS  empathetic-communication
 PASS  supportive-conversation
 PASS  neurodiversity-aware-design
 PASS  supportive-conversation
-PASS  wcag-aaa-accessibility
-PASS  wcag-aa-accessibility
+PASS  accessibility
 PASS  contract-consistency
 
 All 9 checks passed.

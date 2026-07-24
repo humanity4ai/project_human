@@ -12,7 +12,7 @@ NC='\033[0m'
 
 echo -e "${CYAN}╔══════════════════════════════════════════╗${NC}"
 echo -e "${CYAN}║     Humanity4AI — One-Line Installer    ║${NC}"
-echo -e "${CYAN}║         v1.0.0 — 11 Humanity Skills     ║${NC}"
+echo -e "${CYAN}║         v1.0.4 — 9 Humanity Skills      ║${NC}"
 echo -e "${CYAN}╚══════════════════════════════════════════╝${NC}"
 echo ""
 
@@ -24,7 +24,7 @@ if ! command -v node &> /dev/null; then
 fi
 
 NODE_VERSION=$(node -v | cut -d'v' -f2 | cut -d'.' -f1)
-if [ "$NODE_VERSION" -lt 20 ]; then
+    if [ "$NODE_VERSION" -lt 22 ]; then
     echo -e "${RED}Node.js v22 or later required. Current: $(node -v)${NC}"
     exit 1
 fi

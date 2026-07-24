@@ -10,17 +10,17 @@ All links in this file use absolute raw.githubusercontent.com URLs pointing to t
 ---
 ## System Prompt
 
-See: https://raw.githubusercontent.com/humanity4ai/project_human/development/SYSTEM_PROMPT.md
+See: https://raw.githubusercontent.com/humanity4ai/project_human/main/SYSTEM_PROMPT.md
 
 ---
 ## Core Principles
 
-See: https://raw.githubusercontent.com/humanity4ai/project_human/development/knowledge-core/principles.md
+See: https://raw.githubusercontent.com/humanity4ai/project_human/main/knowledge-core/principles.md
 
 ---
 ## Taxonomy
 
-See: https://raw.githubusercontent.com/humanity4ai/project_human/development/knowledge-core/taxonomy.md
+See: https://raw.githubusercontent.com/humanity4ai/project_human/main/knowledge-core/taxonomy.md
 
 ---
 ## Skill Reference
@@ -3006,5 +3006,5 @@ If unable to complete the audit:
 ---
 ## MCP Tool Signatures
 
-See: https://raw.githubusercontent.com/humanity4ai/project_human/development/llms.txt
-See: https://raw.githubusercontent.com/humanity4ai/project_human/development/mcp-servers/README.md
+See: https://raw.githubusercontent.com/humanity4ai/project_human/main/llms.txt
+See: https://raw.githubusercontent.com/humanity4ai/project_human/main/mcp-servers/README.md
