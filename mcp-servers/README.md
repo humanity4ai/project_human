@@ -27,7 +27,7 @@ pnpm --filter @humanity4ai/mcp-servers start
 The server starts on **stdio** using the official MCP SDK JSON-RPC 2.0 protocol.
 All 9 humanity skills are registered as MCP tools and discoverable via `tools/list`.
 
-A remote endpoint is also available at `https://humanity4ai-mcp-simon-maks-projects.vercel.app/api/mcp` using Streamable HTTP transport — no clone needed.
+A remote endpoint is also available at `https://humanity4ai.ascent.partners/api/mcp` using Streamable HTTP transport — no clone needed.
 
 ### 3. Configure your MCP client
 
@@ -66,7 +66,7 @@ Or use `npx` once published to npm (no local clone needed):
 {
   "mcpServers": {
     "humanity4ai": {
-      "url": "https://humanity4ai-mcp-simon-maks-projects.vercel.app/api/mcp"
+      "url": "https://humanity4ai.ascent.partners/api/mcp"
     }
   }
 }
