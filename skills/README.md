@@ -1,21 +1,20 @@
 # Humanity4AI Skills
 
-This directory contains the 11 launch skill packs for Humanity4AI v1.0. Each skill is a self-contained unit with a machine-readable specification (`SKILL.md`), a YAML configuration (`skill.yaml`), evaluation scenarios, and a scoring rubric.
+This directory contains the 9 launch skill packs for Humanity4AI. Each skill is a self-contained unit with a machine-readable specification (`SKILL.md`), a YAML configuration (`skill.yaml`), evaluation scenarios, and a scoring rubric.
 
 ## Skill Index
 
 | Skill | Category | Description |
 |---|---|---|
+| [`accessibility`](./accessibility/) | `accessibility` | Unified WCAG 2.2 audit — scores pages against all 86 criteria (A/AA/AAA). |
 | [`age-inclusive-design`](./age-inclusive-design/) | `age-inclusion` | Design for users of all ages. |
 | [`cognitive-accessibility`](./cognitive-accessibility/) | `cognitive-support` | Improve content for varied attention, memory, and executive function. |
 | [`conflict-de-escalation`](./conflict-de-escalation/) | `conflict-navigation` | De-escalate tense interactions. |
 | [`cultural-sensitivity`](./cultural-sensitivity/) | `cultural-context` | Design for cultural inclusivity. |
 | [`depression-sensitive-content`](./depression-sensitive-content/) | `emotional-safety` | Audit and rewrite content to reduce stigma and improve emotional safety. |
 | [`empathetic-communication`](./empathetic-communication/) | `communication` | Improve emotional resonance in communication. |
-| [`supportive-conversation`](./supportive-conversation/) | `emotional-safety` | Offer non-clinical, compassionate support language for grief, loss, and emotional distress. |
 | [`neurodiversity-aware-design`](./neurodiversity-aware-design/) | `neurodiversity` | Design for diverse cognitive processing. |
-| [`supportive-conversation`](./supportive-conversation/) | `communication` | Generate supportive responses with safety boundaries. |
-| [`wcag-aaa-accessibility`](./wcag-aaa-accessibility/) | `accessibility` | Audit a webpage or HTML for WCAG 2.2 AAA compliance. |
+| [`supportive-conversation`](./supportive-conversation/) | `emotional-safety` | Offer non-clinical, compassionate support language for grief, loss, and emotional distress. |
 
 ## Skill Structure
 

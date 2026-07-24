@@ -34,18 +34,18 @@ pnpm install
 
 ```bash
 pnpm check   # TypeScript type checks
-pnpm evals   # Skill quality gates (all 11 should pass)
+pnpm evals   # Skill quality gates (all 10 should pass)
 ```
 
 Expected output:
 
 ```
-PASS  wcag-aaa-accessibility
+PASS  accessibility
 PASS  depression-sensitive-content
 ...
 PASS  contract-consistency
 
-All 11 checks passed.
+All 10 checks passed.
 ```
 
 ### 4. Start the MCP server
@@ -57,8 +57,8 @@ pnpm start
 The server will print a startup banner to stderr:
 
 ```
-Humanity4AI MCP Server v1.0.0
-Actions: 11 registered
+Humanity4AI MCP Server v1.0.4
+Actions: 9 registered
 Transport: stdio (MCP JSON-RPC 2.0)
 Ready
 ```
@@ -72,7 +72,7 @@ echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' \
   | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
 ```
 
-You should receive a JSON response listing all 11 registered actions.
+You should receive a JSON response listing all 9 registered actions.
 
 ### 6. Invoke a skill
 
@@ -199,7 +199,7 @@ Run this checklist before deploying to any environment:
 pnpm install           # Dependencies installed
 pnpm check             # TypeScript passes
 pnpm build             # Package builds cleanly
-pnpm evals             # All 11 quality gates pass
+pnpm evals             # All 10 quality gates pass
 echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' | pnpm --filter @humanity4ai/mcp-servers exec tsx src/mcp-server.ts
-# Should return JSON with 11 actions
+# Should return JSON with 9 actions
 ```

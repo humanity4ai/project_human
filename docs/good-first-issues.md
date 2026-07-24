@@ -19,7 +19,7 @@ Add at least 10 multilingual prompts to `skills/supportive-conversation/scenario
 
 ### #3 — Quality uplift for launch skills
 
-Review boundary wording, `SKILL.md` anti-patterns, and rubric examples for 4 skills: `wcag-aaa-accessibility`, `depression-sensitive-content`, `supportive-conversation`, `cognitive-accessibility`.
+Review boundary wording, `SKILL.md` anti-patterns, and rubric examples for 4 skills: `accessibility`, `depression-sensitive-content`, `supportive-conversation`, `cognitive-accessibility`.
 
 - Issue: https://github.com/humanity4ai/project_human/issues/3
 - Labels: `help wanted`

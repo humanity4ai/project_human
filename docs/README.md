@@ -65,9 +65,7 @@ Each skill is defined by a `SKILL.md` file containing its purpose, boundaries, p
 | Empathetic Communication | `communication` | [SKILL.md](../skills/empathetic-communication/SKILL.md) |
 | Supportive Conversation (incl. grief) | `emotional-safety` | [SKILL.md](../skills/supportive-conversation/SKILL.md) |
 | Neurodiversity-Aware Design | `neurodiversity` | [SKILL.md](../skills/neurodiversity-aware-design/SKILL.md) |
-| Supportive Conversation | `communication` | [SKILL.md](../skills/supportive-conversation/SKILL.md) |
-| WCAG AAA Accessibility | `accessibility` | [SKILL.md](../skills/wcag-aaa-accessibility/SKILL.md) |
-| WCAG AA Accessibility | `accessibility` | [SKILL.md](../skills/wcag-aa-accessibility/SKILL.md) |
+| Accessibility (WCAG A/AA/AAA) | `accessibility` | [SKILL.md](../skills/accessibility/SKILL.md) |
 
 The full structured index of all skills is available at [`skills/index.yaml`](../skills/index.yaml).
 
