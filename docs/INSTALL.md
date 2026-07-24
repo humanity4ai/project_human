@@ -9,7 +9,7 @@
 | Requirement | Minimum version | Install |
 |-------------|----------------|---------|
 | Node.js | 22.x LTS or later | [nodejs.org/download](https://nodejs.org/en/download) |
-| pnpm | 10.x or later | `npm install -g pnpm` |
+| pnpm | 11.x or later | `npm install -g pnpm` |
 | Git | Any recent version | [git-scm.com](https://git-scm.com) |
 | Docker | 24.x or later (optional) | [docs.docker.com/get-docker](https://docs.docker.com/get-docker/) |
 
