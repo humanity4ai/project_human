@@ -1,5 +1,7 @@
 # @humanity4ai/mcp-servers
 
+![Humanity4AI](https://raw.githubusercontent.com/humanity4ai/project_human/main/site/assets/favicon.svg)
+
 MCP action contracts and server runtime for Humanity4AI skills.
 
 All 9 humanity skills are exposed as standard MCP tools using the official `@modelcontextprotocol/sdk` JSON-RPC 2.0 protocol, natively compatible with Claude Code, Copilot, Manus AI, OpenCode, LangChain, and any other MCP SDK client.
