@@ -6,7 +6,7 @@
 [![npm](https://img.shields.io/npm/v/@humanity4ai/mcp-servers?color=0f766e)](https://www.npmjs.com/package/@humanity4ai/mcp-servers)
 [![License: MIT](https://img.shields.io/badge/license-MIT-0f766e)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/releases)
-[![Contributors](https://img.shields.io/github/contributors/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/graphs/contributors)
+[![Works with](https://img.shields.io/badge/works_with-VS%20Code%20%7C%20Cursor%20%7C%20Claude%20Code-0f766e)](https://github.com/humanity4ai/project_human?tab=readme-ov-file#quick-start)
 [![CodeQL](https://github.com/humanity4ai/project_human/actions/workflows/codeql.yml/badge.svg)](https://github.com/humanity4ai/project_human/actions/workflows/codeql.yml)
 
 ---
@@ -72,6 +72,22 @@ All 9 skills are discoverable via `tools/list` and invocable via `tools/call`.
 **Prerequisites (for local only):** Node.js >= 22, pnpm >= 10 | Windows, macOS, Linux, Android, iOS
 
 ---
+
+## Architecture
+
+```mermaid
+graph TD
+    A[MCP Client<br/>VS Code / Cursor / Claude Code] -->|stdio| B[mcp-server.ts]
+    A -->|HTTP POST| C[Vercel<br/>humanity4ai.ascent.partners]
+    B --> D[server-factory.ts<br/>createServer]
+    C -->|api/mcp.ts| D
+    D --> E[9 Tool Registrations]
+    E --> F[handlers.ts<br/>invokeAction]
+    F --> G[validate.ts<br/>SCHEMA_REGISTRY]
+    G --> H[schemas-data.ts<br/>18 inline schemas]
+    F --> I[9 Handler Functions<br/>rule-based, zero LLM calls]
+    I --> J[crisis-resources<br/>patterns<br/>i18n<br/>wcag-criteria]
+```
 
 ## Four Ways to Use
 
