@@ -1,11 +1,11 @@
 {
   "name": "@humanity4ai/mcp-servers",
   "private": false,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "description": "MCP contracts and runtime server for Humanity4AI skills",
   "engines": {
-    "node": ">=20",
+    "node": ">=22",
     "pnpm": ">=10"
   },
   "license": "MIT",

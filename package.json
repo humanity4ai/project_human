@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "Open skill system for humane AI behavior",
   "engines": {
-    "node": ">=20",
+    "node": ">=22",
     "pnpm": ">=10"
   },
   "scripts": {

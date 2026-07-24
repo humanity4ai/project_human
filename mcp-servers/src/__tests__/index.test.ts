@@ -3,6 +3,8 @@
  * Copyright (c) 2026 Ascent Partners Foundation. MIT License.
  */
 import { describe, it, expect } from "vitest";
+import { readdirSync, statSync } from "node:fs";
+import { resolve } from "node:path";
 import { actionContracts, validateContracts } from "../index.js";
 
 const EXPECTED_ACTIONS = [
@@ -68,5 +70,55 @@ describe("validateContracts", () => {
   it("I-9: throws on contract with empty skill string", () => {
     const invalid = [{ ...actionContracts[0]!, skill: "" }];
     expect(() => validateContracts(invalid)).toThrow();
+  });
+});
+
+describe("schema-consistency (F-002 drift guard)", () => {
+  const SCHEMAS_DIR = resolve("schemas");
+
+  it("I-10: every inputSchemaPath references an existing file", () => {
+    for (const c of actionContracts) {
+      statSync(c.inputSchemaPath);
+    }
+  });
+
+  it("I-11: every outputSchemaPath references an existing file", () => {
+    for (const c of actionContracts) {
+      statSync(c.outputSchemaPath);
+    }
+  });
+
+  it("I-12: every .input.json in schemas/ has a registered contract", () => {
+    const entries = readdirSync(SCHEMAS_DIR, { withFileTypes: true })
+      .filter((e) => e.isFile() && e.name.endsWith(".input.json"))
+      .map((e) => `schemas/${e.name}`);
+    for (const path of entries) {
+      expect(actionContracts.some((c) => c.inputSchemaPath === path)).toBe(
+        true
+      );
+    }
+  });
+
+  it("I-13: every .output.json in schemas/ has a registered contract", () => {
+    const entries = readdirSync(SCHEMAS_DIR, { withFileTypes: true })
+      .filter((e) => e.isFile() && e.name.endsWith(".output.json"))
+      .map((e) => `schemas/${e.name}`);
+    for (const path of entries) {
+      expect(actionContracts.some((c) => c.outputSchemaPath === path)).toBe(
+        true
+      );
+    }
+  });
+
+  it("I-14: schema file count matches contract count (9 inputs + 9 outputs)", () => {
+    const inputs = readdirSync(SCHEMAS_DIR, { withFileTypes: true }).filter(
+      (e) => e.isFile() && e.name.endsWith(".input.json")
+    );
+    const outputs = readdirSync(SCHEMAS_DIR, { withFileTypes: true }).filter(
+      (e) => e.isFile() && e.name.endsWith(".output.json")
+    );
+    expect(inputs.length).toBe(9);
+    expect(outputs.length).toBe(9);
+    expect(actionContracts.length).toBe(9);
   });
 });
