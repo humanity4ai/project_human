@@ -1,0 +1,22 @@
+name: demo-gif
+on:
+  push:
+    paths:
+      - 'vhs.tape'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  vhs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: charmbracelet/vhs-action@v2
+        with:
+          path: 'vhs.tape'
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: update demo GIF'
+          file_pattern: 'demo.gif'
