@@ -14,6 +14,27 @@
 - GitHub topics updated to 20 high-search tags (added mcp-server, llm, claude, openai, npm-package)
 - Site landing page: 9-skill card grid with category tags, npm CTA
 
+## [1.0.4] — 2026-07-23
+
+### Fixed
+
+- **bin entry double-start crash** — `npx @humanity4ai/mcp-servers` no longer dies with `Fatal error: Already connected`. (PR #151)
+- **F-003:** `validateContracts()` now called at server startup — malformed action contracts fail fast at boot instead of silently passing CI-only validation (#155)
+- **F-006:** `engines.node` bumped from `>=20` to `>=22` across all packages — Node 20 EOL April 2026; CI tests Node 22 exclusively (#158)
+
+### Changed
+
+- **F-008:** `VALID_CATEGORIES` in evals now parsed from `knowledge-core/taxonomy.md` at runtime instead of hardcoding 10 slugs — editing the taxonomy no longer silently desyncs the eval gate (#160)
+
+### Added
+
+- **F-002:** Schema-consistency tests (I-10–I-14) bidirectionally validate `actionContracts` ↔ `schemas/`: every contract references existing files, every schema file has a contract, file count matches (#154)
+
+### Documentation
+
+- **F-004:** CLI auto-run-on-import design decision documented in `mcp-server.ts` (#156)
+- **F-005:** Committed `dist/` policy rationale added to AGENTS.md (#157)
+
 ## [1.0.0] — 2026-05-26
 
 ### Stable Release

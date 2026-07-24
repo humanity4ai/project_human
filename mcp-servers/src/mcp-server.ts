@@ -20,7 +20,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import { invokeAction } from "./handlers.js";
-import { actionContracts } from "./index.js";
+import { actionContracts, validateContracts } from "./index.js";
 import { SERVER_INSTRUCTIONS } from "./instructions.js";
 
 const pkg = JSON.parse(
@@ -362,6 +362,7 @@ server.tool(
 // ── Start server ──────────────────────────────────────────────────────────────
 
 export async function main(): Promise<void> {
+  validateContracts(actionContracts);
   const transport = new StdioServerTransport();
   await server.connect(transport);
   process.stderr.write(
@@ -373,6 +374,11 @@ export async function main(): Promise<void> {
 }
 
 /* istanbul ignore next */
+// Design decision (F-004): auto-run on import guarded by NODE_ENV !== "test".
+// The bin.ts entry point also imports this file — the guard prevents double-start
+// (the double-start bug was fixed in PR #151). The alternative (explicit CLI entry
+// only) would break `pnpm start` (tsx src/mcp-server.ts). The current pattern works
+// and is documented in AGENTS.md.
 if (process.env.NODE_ENV !== "test") {
   main().catch((err: unknown) => {
     process.stderr.write(`Fatal error: ${String(err)}\n`);

@@ -2,7 +2,7 @@
   "name": "@humanity4ai/evals",
   "private": true,
   "engines": {
-    "node": ">=20",
+    "node": ">=22",
     "pnpm": ">=10"
   },
   "version": "0.1.0",

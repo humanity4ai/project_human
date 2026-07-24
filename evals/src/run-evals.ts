@@ -1,34 +1,33 @@
 import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
-import { basename, dirname, join, normalize } from "node:path";
+import { basename, dirname, join, normalize, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { parse } from "yaml";
 import { z } from "zod";
 import { invokeAction } from "@humanity4ai/mcp-servers/handlers";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+function loadTaxonomySlugs(): string[] {
+  const path = resolve(__dirname, "../../knowledge-core/taxonomy.md");
+  const content = readFileSync(path, "utf-8");
+  return [...content.matchAll(/\| \d+ \| .+ \| `([a-z-]+)` \|/g)].map(
+    (m) => m[1]
+  );
+}
+
+const VALID_CATEGORIES = new Set(loadTaxonomySlugs());
+
+// Skills that must include escalation language in boundaries
+const ESCALATION_REQUIRED_SKILLS = new Set([
+  "supportive-conversation",
+  "depression-sensitive-content",
+]);
 
 type EvalResult = {
   skill: string;
   pass: boolean;
   issues: string[];
 };
-
-// Valid taxonomy category slugs from knowledge-core/taxonomy.md
-const VALID_CATEGORIES = new Set([
-  "accessibility",
-  "emotional-safety",
-  "communication",
-  "cognitive-support",
-  "cultural-context",
-  "conflict-navigation",
-  "inclusive-design",
-  "lifecycle-support",
-  "neurodiversity",
-  "age-inclusion"
-]);
-
-// Skills that must include escalation language in boundaries
-const ESCALATION_REQUIRED_SKILLS = new Set([
-  "supportive-conversation",
-  "depression-sensitive-content"
-]);
 
 const skillSpecSchema = z.object({
   name: z.string().min(1),

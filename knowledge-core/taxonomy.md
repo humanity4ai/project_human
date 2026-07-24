@@ -1,5 +1,9 @@
 # Humanity4AI Taxonomy
 
+> **Canonical slugs** for programmatic consumption: `knowledge-core/taxonomy.ts`.  
+> This file is the human-readable reference; `taxonomy.ts` exports `CATEGORY_SLUGS` and `ESCALATION_REQUIRED_SKILLS`.  
+> Changes to categories require updating **both** files.
+
 ## Launch Categories
 
 Each category has a display name and a canonical kebab-case slug for use in `skill.yaml`.
