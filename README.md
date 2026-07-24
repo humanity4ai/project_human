@@ -33,36 +33,43 @@
 
 ## Quick Start
 
-```bash
-# One command — clone, install, verify, start
-git clone https://github.com/humanity4ai/project_human.git && cd project_human && pnpm install && pnpm check && pnpm evals && pnpm start
-```
-
-Or use the npm package directly:
-
-```bash
-npx @humanity4ai/mcp-servers
-```
-
-Then add to your MCP client config:
+**Zero setup — just a URL:**
 
 ```json
 {
   "mcpServers": {
     "humanity4ai": {
-      "command": "pnpm",
-      "args": ["--filter", "@humanity4ai/mcp-servers", "start"],
-      "cwd": "/path/to/project_human"
+      "url": "https://humanity4ai.ascent.partners/api/mcp"
     }
   }
 }
 ```
 
-All 9 skills are now discoverable via `tools/list` and invocable via `tools/call`.
+**Or one command with npx:**
 
-**Docker**: `docker compose up`
+```bash
+npx @humanity4ai/mcp-servers
+```
 
-**Prerequisites**: Node.js >= 22, pnpm >= 10 | Windows, macOS, Linux, Android, iOS
+Then configure your MCP client:
+
+```json
+{
+  "mcpServers": {
+    "humanity4ai": {
+      "command": "npx",
+      "args": ["-y", "@humanity4ai/mcp-servers"]
+    }
+  }
+}
+```
+
+**Docker**: `docker compose up`  
+**For contributors**: `git clone … && pnpm install && pnpm start`  
+
+All 9 skills are discoverable via `tools/list` and invocable via `tools/call`.
+
+**Prerequisites (for local only):** Node.js >= 22, pnpm >= 10 | Windows, macOS, Linux, Android, iOS
 
 ---
 
