@@ -29,7 +29,7 @@ pnpm start
 You will see on stderr:
 
 ```
-Humanity4AI MCP Server v1.0.4 (JSON-RPC 2.0)
+Humanity4AI MCP Server v1.0.6 (JSON-RPC 2.0)
 Tools: 9 registered
 Transport: stdio (MCP SDK)
 Ready — waiting for MCP client connections

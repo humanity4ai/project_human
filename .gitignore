@@ -7,7 +7,6 @@ coverage/
 .DS_Store
 Thumbs.db
 reports/
-AGENTS.md
 specs/
 legacy/
 mcp-servers/coverage/
