@@ -54,7 +54,7 @@ $ pnpm test
 ## Quality Checklist
 
 - [ ] `pnpm check` passes (TypeScript)
-- [ ] `pnpm evals` passes (all 11 gates)
+- [ ] `pnpm evals` passes (all 10 gates)
 - [ ] `pnpm test` passes (all tests)
 - [ ] If manifesto-related, linked principle in `docs/manifesto-roadmap-map.md` and linked issue are included
 - [ ] New skills have at least 10 scenarios
