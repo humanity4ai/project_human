@@ -2,11 +2,12 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schemas/accessibility.input.json",
   "type": "object",
-  "required": ["mode"],
+  "required": [],
   "properties": {
     "mode": {
       "type": "string",
       "enum": ["crawl", "session"],
+      "default": "crawl",
       "description": "crawl: score pages against WCAG criteria. session: return checklist for agent to enforce."
     },
     "level": {

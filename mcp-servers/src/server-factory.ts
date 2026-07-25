@@ -167,6 +167,7 @@ export function createServer(): McpServer {
     {
       mode: z
         .enum(["crawl", "session"])
+        .default("crawl")
         .describe(
           "crawl: score pages against all 86 WCAG 2.2 criteria. session: return WCAG checklist for this session."
         ),
