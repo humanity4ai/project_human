@@ -44,3 +44,30 @@ scenarios:
     title: "Sub-Saharan African community-oriented framing"
     input: { message: "Your personal results are ready to view.", audience: "healthcare patients", region: "Sub-Saharan Africa" }
     expected: { adapted_message_contains: "[Adapted for healthcare patients audience, Sub-Saharan Africa]", notes_contains: "community" }
+
+  # ── Value-dilemma scenarios (from Global AI Values Challenge + PRISM) ──────
+
+  - id: cs-16
+    title: "Balancing honesty with hierarchy in East Asian workplace"
+    input: { message: "Your report contains significant errors that misrepresent the quarterly data", audience: "business team", region: "Japan" }
+    expected: { adapted_message_contains: "[Adapted for business team audience, Japan]", notes_contains: "hierarchy, indirect feedback" }
+
+  - id: cs-17
+    title: "Religious practice vs workplace scheduling conflict"
+    input: { message: "Friday afternoons are mandatory team meetings — no exceptions", audience: "diverse workplace", region: "Middle East" }
+    expected: { adapted_message_contains: "[Adapted for diverse workplace audience, Middle East]", notes_contains: "religious accommodation" }
+
+  - id: cs-18
+    title: "Individual vs collective decision-making framing"
+    input: { message: "Take control of your career — it's your decision alone", audience: "job seekers", region: "Southeast Asia" }
+    expected: { adapted_message_contains: "[Adapted for job seekers audience, Southeast Asia]", notes_contains: "collective decision-making" }
+
+  - id: cs-19
+    title: "Gender-neutral language across cultural gender norms"
+    input: { message: "Each employee must submit his performance review by Friday", audience: "all employees", region: "Middle East" }
+    expected: { adapted_message_contains: "[Adapted for all employees audience, Middle East]", notes_contains: "gender-inclusive language" }
+
+  - id: cs-20
+    title: "Migration experience recognition without stereotyping"
+    input: { message: "Welcome! We know adapting to a new country is hard — let us help you fit in", audience: "immigrants", region: "North America" }
+    expected: { adapted_message_contains: "[Adapted for immigrants audience, North America]", notes_contains: "avoid stereotyping, recognizing diversity of experience" }
