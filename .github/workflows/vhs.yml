@@ -25,6 +25,7 @@ jobs:
       - uses: charmbracelet/vhs-action@v2
         with:
           path: 'vhs.tape'
+          install: false
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'chore: update demo GIF'
