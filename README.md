@@ -10,6 +10,8 @@
 [![CodeQL](https://github.com/humanity4ai/project_human/actions/workflows/codeql.yml/badge.svg)](https://github.com/humanity4ai/project_human/actions/workflows/codeql.yml)
 [![MCP Registry](https://img.shields.io/badge/MCP_Registry-listed-0f766e)](https://registry.modelcontextprotocol.io?search=io.github.humanity4ai%2Fproject-human)
 
+![Demo](demo.gif)
+
 ---
 
 ## Skills at a Glance
