@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { parse } from "yaml";
 import { z } from "zod";
 import { invokeAction } from "@humanity4ai/mcp-servers/handlers";
+import { runConsistencyChecks } from "./consistency-test.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -297,6 +298,18 @@ async function main(): Promise<void> {
 
   const results = skillDirs.map(evaluateSkill);
   results.push(await evaluateContractConsistency(skillsRoot, repoRoot));
+
+  // Consistency check — run each skill scenario 3x, verify deterministic output
+  const consistency = await runConsistencyChecks();
+  results.push({
+    skill: "consistency-check",
+    pass: consistency.failed === 0,
+    issues: consistency.failed > 0
+      ? consistency.results.filter((r) => !r.consistent).map(
+          (r) => `${r.skill}: ${r.details}`
+        )
+      : [],
+  });
 
   const failures = results.filter((r: EvalResult) => !r.pass);
 
