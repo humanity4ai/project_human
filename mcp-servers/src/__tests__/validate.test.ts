@@ -205,9 +205,9 @@ describe("validateInput — accessibility schema", () => {
     expect(result.valid).toBe(false);
   });
 
-  it("V-22: missing required mode fails", () => {
+  it("V-22: mode optional since v1.0.8 (defaults to crawl)", () => {
     const result = validateInput("schemas/accessibility.input.json", { level: "AA" });
-    expect(result.valid).toBe(false);
+    expect(result.valid).toBe(true);
   });
 });
 
