@@ -15,6 +15,17 @@
       "default": "AA",
       "description": "WCAG conformance level to evaluate against"
     },
+    "url": {
+      "type": "string",
+      "description": "URL to audit — automatically fetched. Alternative to providing pages array."
+    },
+    "urls": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "maxItems": 100,
+      "description": "Multiple URLs to audit — all automatically fetched."
+    },
     "pages": {
       "type": "array",
       "minItems": 1,
@@ -46,7 +57,11 @@
         "properties": { "mode": { "const": "crawl" } }
       },
       "then": {
-        "required": ["pages"]
+        "anyOf": [
+          { "required": ["url"] },
+          { "required": ["urls"] },
+          { "required": ["pages"] }
+        ]
       }
     },
     {

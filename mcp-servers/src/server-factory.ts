@@ -174,10 +174,18 @@ export function createServer(): McpServer {
         .enum(["A", "AA", "AAA"])
         .default("AA")
         .describe("WCAG conformance level"),
+      url: z
+        .string()
+        .optional()
+        .describe("URL to audit (auto-fetched — no need to provide HTML)"),
+      urls: z
+        .array(z.string())
+        .optional()
+        .describe("Multiple URLs to audit (all auto-fetched)"),
       pages: z
         .array(z.object({ url: z.string(), html: z.string() }))
         .optional()
-        .describe("Array of crawled pages (required for crawl mode)"),
+        .describe("Array of crawled pages with pre-fetched HTML (optional if url/urls provided)"),
       locale: z
         .string()
         .optional()

@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [1.0.7] — 2026-07-25
+
+### Added
+
+- **accessibility_audit URL auto-fetch**: added `url` (string) and `urls` (string[]) parameters. When provided, the server fetches HTML automatically — no need to pre-fetch and pass raw HTML. Falls back to existing `pages` parameter for pre-fetched content. 15s timeout per URL with graceful error handling.
+
 ## [1.0.6] — 2026-07-24
 
 ### Fixed
