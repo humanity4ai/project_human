@@ -85,9 +85,30 @@ async function handleAccessibilityAudit(input: Record<string, unknown>, boundary
   }
 
   // ── Crawl mode ──────────────────────────────────────────────────────────
-  const pages = Array.isArray(input["pages"]) ? (input["pages"] as Array<{url: string; html: string}>) : [];
+  let pages = Array.isArray(input["pages"]) ? (input["pages"] as Array<{url: string; html: string}>) : [];
+  const rawUrl = str(input, "url", "");
+  const rawUrls = Array.isArray(input["urls"]) ? (input["urls"] as string[]) : [];
+
+  // Auto-fetch URLs when url/urls parameter is provided instead of pages
+  if (pages.length === 0 && (rawUrl || rawUrls.length > 0)) {
+    const urls = rawUrl ? [rawUrl] : rawUrls;
+    for (const u of urls) {
+      try {
+        const res = await fetch(u, { signal: AbortSignal.timeout(15000) });
+        if (!res.ok) {
+          pages.push({ url: u, html: "" });
+          continue;
+        }
+        const html = await res.text();
+        pages.push({ url: u, html });
+      } catch {
+        pages.push({ url: u, html: "" });
+      }
+    }
+  }
+
   if (pages.length === 0) {
-    return { ok: false, error: "Crawl mode requires at least 1 page in 'pages' array with 'url' and 'html' fields." };
+    return { ok: false, error: "Crawl mode requires at least 1 page. Provide 'url', 'urls', or 'pages' (with 'url' and 'html' fields)." };
   }
   if (pages.length > 100) {
     return { ok: false, error: "Crawl mode supports up to 100 pages. Use max_pages parameter to limit." };
@@ -120,7 +141,7 @@ async function handleAccessibilityAudit(input: Record<string, unknown>, boundary
       uncertainty: pageResults.some(r => r.heuristic) ? "high" : "medium",
       assumptions: [
         `Level: WCAG 2.2 ${level}`,
-        `Mode: crawl (${pages.length} pages)`,
+        `Mode: crawl (${pages.length} pages${(rawUrl || rawUrls.length > 0) ? ", auto-fetched" : ""})`,
         `Locale: ${locale}`,
         `Engine: ${pageResults[0]?.criteria[0] ? "see per-criterion results" : "regex"}`,
         pageResults.some(r => r.heuristic) ? "Heuristic mode: some pages scored via non-HTML input" : "HTML-based analysis: scores computed from actual markup patterns",
