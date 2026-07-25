@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+### Value System
+
+- **constitution.md**: 5 immutable principles grounded in philosophical ethics, mapped to ValueCompass dimensions
+- **values-taxonomy.md / values-taxonomy.ts**: all 9 skills mapped to ValueCompass framework (5 dimensions, 12 types, 49 values) with alignment strength scores and LLM divergence warnings
+- **divergence-map.md**: documented gaps between human-preferred and LLM-default values — justification for rule-based skills
+- **consistency-test.ts**: repeated-invocation stability checks in eval harness (11th gate)
+
+## [1.0.8] — 2026-07-25
+
 ## [1.0.7] — 2026-07-25
 
 ### Added
