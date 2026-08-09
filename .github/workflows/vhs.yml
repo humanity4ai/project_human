@@ -24,7 +24,7 @@ jobs:
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg ttyd
       - run: go install github.com/charmbracelet/vhs@latest
       - run: ~/go/bin/vhs < vhs.tape
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'chore: update demo GIF'
           file_pattern: 'demo.gif'
