@@ -1,14 +1,14 @@
-# Humanity4AI ⭐
+# Humanity4AI
 
-**9 humanity skills for AI agents** — crisis detection, accessibility auditing, empathy, cultural sensitivity, and more. Ready-to-use via MCP, npm, or direct prompting.
+> **9 humanity skills for AI agents** — crisis detection, accessibility auditing, empathy, cultural sensitivity, and more. Ready-to-use via MCP, npm, or direct prompting.
 
 [![CI](https://github.com/humanity4ai/project_human/actions/workflows/ci.yml/badge.svg)](https://github.com/humanity4ai/project_human/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/@humanity4ai/mcp-servers?color=0f766e)](https://www.npmjs.com/package/@humanity4ai/mcp-servers)
-[![License: MIT](https://img.shields.io/badge/license-MIT-0f766e)](LICENSE)
+[![npm](https://img.shields.io/npm/v/@humanity4ai/mcp-servers)](https://www.npmjs.com/package/@humanity4ai/mcp-servers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/humanity4ai/project_human)](https://github.com/humanity4ai/project_human/releases)
-[![Works with](https://img.shields.io/badge/works_with-VS%20Code%20%7C%20Cursor%20%7C%20Claude%20Code-0f766e)](https://github.com/humanity4ai/project_human?tab=readme-ov-file#quick-start)
 [![CodeQL](https://github.com/humanity4ai/project_human/actions/workflows/codeql.yml/badge.svg)](https://github.com/humanity4ai/project_human/actions/workflows/codeql.yml)
-[![MCP Registry](https://img.shields.io/badge/MCP_Registry-listed-0f766e)](https://registry.modelcontextprotocol.io?search=io.github.humanity4ai%2Fproject-human)
+[![MCP Registry](https://img.shields.io/badge/MCP_Registry-listed-blueviolet)](https://registry.modelcontextprotocol.io?search=io.github.humanity4ai%2Fproject-human)
+[![Works with](https://img.shields.io/badge/works_with-VS%20Code%20%7C%20Cursor%20%7C%20Claude%20Code-brightgreen)](https://github.com/humanity4ai/project_human#quick-start)
 
 ![Demo](demo.gif)
 
@@ -27,10 +27,6 @@
 | 💬 **Empathetic Reframe** | Communication | Reframes messages with genuine empathy, catching hollow empathy patterns |
 | 🧩 **Neurodiversity Design** | Neurodiversity | Audits UIs for ADHD, autism, dyslexia, and sensory sensitivity |
 | 👶 **Age-Inclusive Design** | Age Inclusion | Audits user flows for age barriers across children, adults, and older users |
-
-> ⭐ **If you find this useful, a star helps others discover it**
-
-[![Star History Chart](https://api.star-history.com/svg?repos=humanity4ai/project_human&type=Date)](https://www.star-history.com/#humanity4ai/project_human&Date)
 
 ---
 
@@ -129,7 +125,7 @@ OpenCode · Claude Code · Microsoft Copilot · Manus AI · OpenClaw · ChatGPT 
 
 ---
 
-## Contribute
+## Contributing
 
 ```bash
 git clone https://github.com/<your-username>/project_human.git
@@ -159,6 +155,12 @@ Open a PR targeting `main`. Browse [good first issues](https://github.com/humani
 - [Release Process](docs/release-process.md)
 - [Public Site](https://humanity4ai.github.io/project_human/)
 
+## License
+
+MIT — see [LICENSE](LICENSE).
+
 ---
 
-**[Share on X](https://twitter.com/intent/tweet?text=Humanity4AI%20%E2%80%94%209%20humanity%20skills%20for%20AI%20agents%20%F0%9F%A4%9D%0A%0ACrisis%20detection%2C%20WCAG%20audits%2C%20empathy%2C%20cultural%20sensitivity%2C%20and%20more.%0A%0Ahttps%3A%2F%2Fgithub.com%2Fhumanity4ai%2Fproject_human)** · MIT License · Copyright © 2026 Ascent Partners Foundation
+A [Humanity4AI](https://humanity4ai.github.io/project_human/) project by [Ascent Partners Foundation](https://www.ascent.partners).
+
+If this saves you time, a ⭐ on GitHub helps others find it.
